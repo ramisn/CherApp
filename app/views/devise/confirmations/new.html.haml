@@ -1,0 +1,23 @@
+.rebrand.full-width-container
+  .container.is-family-secondary
+    .panel.has-fixed-width.is-centered
+      .columns.is-centered.is-multiline.is-marginless
+        .column.is-11
+          %h3= t("labels.confirmation_instructions")
+        - if devise_mapping.omniauthable?
+          .column.is-11
+            .columns.is-vcentered.is-centered.has-border-bottom.is-marginless
+              .column.is-4.has-text-right-desktop
+                %span.is-bold= t('sign_in.connect_with')
+              .column.is-7
+                = render "devise/shared/links"
+        .column.is-11
+          = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+            .field
+              = f.label :email, class: "label"
+              = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "email input", placeholder: t("placeholders.email")
+              - if resource.errors[:email]
+                %p.help.is-danger
+                  = resource.errors[:email].first
+            = f.submit t("devise.buttons.resend_instructions"), class: "button is-primary is-fullwidth"
+          = link_to t('labels.already_have_an_account'), user_session_path, class: 'is-caption'

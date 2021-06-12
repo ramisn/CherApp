@@ -1,0 +1,21 @@
+.is-size-4.is-bold.m-t-md
+  = t('sell.contact_information')
+%p.help.m-b-md
+  = t('sell.contact_information_note')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-desktop.is-2-fullhd
+    .field
+      = f.label :email_contact, t('generic.email'), class: 'label'
+      .control
+        = f.email_field :email_contact, class: 'input', placeholder: t('placeholders.your_email'), value: @house.owner.email
+  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-desktop.is-2-fullhd.is-offset-1
+    .field
+      = f.label :phone_contact, t('generic.phone_number'), class: 'label'
+      .control
+        = f.text_field :phone_contact, class: 'input', placeholder: t('placeholders.phone_number'), maxlength: 10, minlength: 10, 'data-target': 'numerical-inputs.input', value: @house.owner.phone_number || @house.phone_contact
+
+.field.m-t-md
+  = f.check_box :accept_terms, class: 'is-checkradio'
+  = f.label :accept_terms, class: 'label has-text-weight-normal' do
+    %span=t('sell.terms_of_user_1')
+    = link_to t('sell.terms_and_conditions'), "#{root_url}/docs/Terms_Of_Service.pdf", { target: '_blank', class: 'has-text-essential-blue'}

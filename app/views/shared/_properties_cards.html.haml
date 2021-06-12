@@ -1,0 +1,89 @@
+#propertiesCardsContainer.columns.is-marginless.is-multiline
+  - properties.each do |item|
+    .column.is-12-desktop.is-6-widescreen.is-12-tablet.is-relative{ id: "property#{item['listingId']}", 'data-controller': 'watched-property home-price-slider' }
+      .panel.has-shadow.property-preview.is-marginless
+        - if price_status(item['listPrice'], item['listingId'])
+          = image_tag "cherapp-ownership-coborrowing-price-#{price_status(item['listPrice'], item['listingId'])}.svg", class: 'is-absolute to-top to-right m-r-md m-t-xs is-above-container'
+        - elsif most_watched?(item['address']['city'], item['listingId'])
+          = image_tag 'cherapp-ownership-coborrowing-ico-fire.svg', class: 'is-absolute to-top to-right m-r-md is-above-container'
+        %div{ 'data-controller': 'carousel' }
+          - if item.dig("photos").nil?
+            = link_to image_tag('cherapp-ownership-coborrowing-property_placeholder.png',
+                                alt: t('look_around.featured.alts.home'),
+                                class: "property-image",
+                                "loading": "lazy"),
+                      property_path(item['listingId'])
+          - else
+            .carousel.has-no-pagination{ 'data-target': 'carousel.imageContainer', class: (item.dig("photos").size > 1 ? '' : 'has-no-arrows') }
+              - item.dig("photos").each_with_index do |image, index|
+                %div{ class: "item-#{item['listingId']}-#{index + 1}", 'data-target': 'carousel.images' }
+                  = link_to image_tag(sanitize_image(image),
+                                      alt: t('look_around.featured.alts.home'),
+                                      class: "property-image",
+                                      "data-controller": "property-default-image",
+                                      "data-action": "error->property-default-image#setDefaultPropertyImage",
+                                      "loading": "lazy"),
+                            property_path(item['listingId'])
+        .is-flex.has-space-between.has-direction-column.has-full-height
+          .property-content
+            .columns.is-marginless.is-mobile.has-space-between.is-multiline
+              .column.is-paddingless.has-full-width
+                %h3.is-bold.is-marginless.has-text-left.is-size-3
+                  = "#{number_to_currency(item.dig('listPrice'), locale: :en, precision: 0)}"
+
+                - if can_user_see_slider_options?(current_user)
+                  .is-hidden-mobile
+                    = hidden_field 'home_price','', value: item.dig('listPrice') , 'data-target': 'home-price-slider.defaultPriceList'
+                    %span Est.
+                    %span.is-bold{ 'data-target': 'home-price-slider.amountWithCher' }
+                    %span monthly
+                    %input.custom-slider-primary.is-fullwidth{ 'data-target': 'home-price-slider.numberOfFriends', 'data-action': 'input->home-price-slider#updateMonthlyMortgage input->home-price-slider#updateSliderStyle input->home-price-slider#updateSelectedIcon', max: 4, min: 1, type: 'range', value: 4, step: 1 }
+                    .columns.is-flex.has-space-between.coborrowing-slider.m-t-sm
+                      %div
+                        = image_tag 'cherapp-ownership-coborrowing-friends-1.svg', class: 'is-clickable', id: 'friendsIcon1', 'data-target': 'home-price-slider.personIcon', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 1
+                        = image_tag 'cherapp-ownership-coborrowing-friends-1-active.svg', class: 'is-hidden', id: 'solidfriendsIcon1', 'data-target': 'home-price-slider.solidPersonIcon'
+                      %div
+                        = image_tag 'cherapp-ownership-coborrowing-friends-2.svg', class: 'is-clickable', id: 'friendsIcon2', 'data-target': 'home-price-slider.personIcon', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 2
+                        = image_tag 'cherapp-ownership-coborrowing-friends-2-active.svg', class: 'is-hidden', id: 'solidfriendsIcon2', 'data-target': 'home-price-slider.solidPersonIcon'
+                      %div
+                        = image_tag 'cherapp-ownership-coborrowing-friends-3.svg', class: 'is-clickable', id: 'friendsIcon3', 'data-target': 'home-price-slider.personIcon', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 3
+                        = image_tag 'cherapp-ownership-coborrowing-friends-3-active.svg', class: 'is-hidden', id: 'solidFriendsIcon3', 'data-target': 'home-price-slider.solidPersonIcon'
+                      %div
+                        = image_tag 'cherapp-ownership-coborrowing-friends-4.svg', class: 'is-hidden is-clickable', id: 'friendsIcon4', 'data-target': 'home-price-slider.personIcon', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 4
+                        = image_tag 'cherapp-ownership-coborrowing-friends-4-active.svg', class: '', id: 'solidFriendsIcon4', 'data-target': 'home-price-slider.solidPersonIcon'
+
+                %div.is-bold= item.dig('address', 'full')
+                %div= item.dig('address', 'city')
+                %div.line-height.m-b-md
+                  %span= item.dig('address', 'state')
+                  %span= item.dig('address', 'postalCode')
+          .property-content{ 'data-controller': 'look-around-properties-share modal' }
+            - if user_signed_in?
+
+              = render 'shared/share-property-modal', property_url: property_url(item['listingId']), property_address: "#{item.dig('address', 'full')}, #{item.dig('address', :city)}, #{item.dig('address', :state)} #{item.dig('address', :postalCode)}"
+              %button.button.has-full-width{ 'data-controller': 'watched-property',
+                  'data-target': 'watched-property.flagPropertyLink',
+                  'data-action': "watched-property#toggleflagProperty #{'modal#toggleModal' if can_user_share_property_through_modal?(flagged_properties_ids, item['listingId'] ) }",
+                  'data-is-user-professional': current_user.agent? ? '1' : '' ,
+                  'data-property-flag-status': flagged_properties_ids.include?(item['listingId']) ? 'flagged' : 'unflagged',
+                  'data-property-listing-id': item['listingId'],
+                  'data-property-city': item.dig('address', 'city') || '',
+                  'data-status': item['watchingProperty'] ? 'flagged' : 'unflagged',
+                  'data-property-price': item['listPrice'],
+                  class: item['watchingProperty'] ? 'unflag' : 'flag',
+                  class: flagged_properties_ids.include?(item['listingId']) ? 'is-secondary' : 'is-primary'  }
+                = image_tag(property_flag_icon(flagged_properties_ids, item['listingId']), alt: t('img_alts.flag'), class: 'is-is-16x16 m-r-sm')
+                %span= property_card_action(current_user, flagged_properties_ids, item['listingId'])
+
+            .m-t-md.has-border-bottom{'data-controller': 'collapsible'}
+              %button.has-text-main-body.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-size-6.has-text-weight-bold.image{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+                = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'is-8x8 m-t-sm m-l-sm icon arrow-up is-pulled-right is-down', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+                %span= "Details"
+              %hr.is-marginless.has-full-width
+              .is-clipped{'data-target': 'collapsible.container'}
+                = render "/properties/property_details", property: item, hide_price: true
+
+- unless next_batch_link.nil?
+  .columns.is-marginless
+    %button.button.is-primary.has-regular-margin#nextBatchLinkButton{ type: 'button', 'data-action': 'properties-search#getNextPropertiesBatch', 'data-target': 'properties-search.nextBatchButton', 'data-next-batch-url': next_batch_link }
+      = t('look_around.search.next_batch')

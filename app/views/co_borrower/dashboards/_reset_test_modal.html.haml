@@ -1,0 +1,13 @@
+.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .box{ 'data-target': 'modal.modalContent' }
+      .column.is-6.is-offset-3.has-centered-text
+        = image_tag 'cherapp-ownership-coborrowing-ico-user-key.svg', alt: t('img_alts.person_with_key'), width: '50%'
+      %p.m-t-md= t("personality_test.confirmation_reset_message")
+      .columns
+        .column
+          = link_to t("generic.lets_do_it_again"), co_borrower_response_path(current_user), method: :delete, class: "button is-primary is-marginless is-fullwidth gtm-track-click", 'gtm-label': 'Personality Test Retake - Click', 'gtm-value': current_user.id
+        .column
+          %button.button.is-secondary.is-fullwidth{"data-action": "modal#toggleModal" }
+            =t("generic.maybe_later")

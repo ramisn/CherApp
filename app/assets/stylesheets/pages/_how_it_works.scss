@@ -1,0 +1,62 @@
+.how-it-works-page {
+  background-color: $divider-blue;
+
+  section {
+    background-image: image-url('cherapp-ownership-coborrowing-how-it-works-hero.png');
+    background-position: center;
+    background-size: cover;
+    height: auto;
+    min-height: calc(100vh - 100px);
+
+    @media (max-width: 769px) {
+      background-image: image-url('how_works/cherapp-ownership-coborrowing-how-it-works-hero-mobile.png') !important;
+    }
+
+    .is-size-1 {
+      font-size: 3.6rem;
+    }
+  }
+
+  .has-gradient {
+    background: linear-gradient(180deg, #fff 14.62%, rgba(255, 255, 255, 0) 60.62%);
+
+    span {
+      line-height: 22px;
+    }
+  }
+
+  .why-cher {
+    background-image: image-url('how_works/cherapp-ownership-coborrowing-why-cher.png');
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+  }
+
+  .regular-border {
+    border-radius: 3px;
+  }
+
+  .hovers button {
+    outline: 0;
+
+    &.is-active {
+      filter: brightness(0);
+      text-decoration: none;
+    }
+
+    &:hover {
+      filter: brightness(0);
+      text-decoration: none;
+    }
+  }
+
+  .full-width-centered-buttons {
+    button {
+      align-items: center;
+      display: flex;
+      font-size: 1rem;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}

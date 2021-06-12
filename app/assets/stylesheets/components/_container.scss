@@ -1,0 +1,31 @@
+.container {
+  flex: 1;
+}
+
+.full-width-container {
+  @extend .container;
+  margin: 0;
+  max-width: 100%;
+  padding: 0 32px;
+  width: 100%;
+}
+
+.line-height {
+  line-height: 18.7px;
+}
+
+@media (max-width: 769px) {
+  .full-width-container {
+    padding: 0 16px;
+  }
+
+  .roadmap {
+    width: 75%;
+  }
+}
+
+@media (max-width: 510px) {
+  .roadmap {
+    width: 60%;
+  }
+}

@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id            :integer          not null, primary key
+#  uuid          :uuid             not null
+#  title         :string
+#  feature_image :string
+#  plaintext     :string
+#  slug          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: 6326732d-023c-4c82-8341-78a6a783f2d2
+  title: MyString
+  feature_image: MyString
+  plaintext: MyString
+  slug: 10-thing-you-didnt-know
+
+two:
+  uuid: 6326732d-023c-4c82-8341-78a6a783f2d3
+  title: MyString
+  feature_image: MyString
+  plaintext: MyString
+  slug: 10-thing-you-didnt-know

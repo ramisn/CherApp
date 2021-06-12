@@ -1,0 +1,17 @@
+- title(t("meta.loans.title"))
+.container.m-t-lg
+  .columns.is-centered.is-multiline.is-marginless{ 'data-controller': 'stepper loans property-share modal', 'data-stepper-active': 'foundHomeContainer' }
+    .column.is-10-tablet.is-8-widescreeen.panel.is-pointed
+      .p-l-md.p-r-md
+        = form_with(model: @loan, url: co_borrower_loans_path, local: true) do |f|
+          = render 'found_home', f: f
+          = render 'calculator', f: f
+          = render 'location', f: f
+          = render 'coowners', f: f
+          = render 'first_home', f: f
+          = render 'live_there', f: f
+      = render 'shared/share_general_item_modal', path: property_url('property_id'), type: 'property', property_address: ''
+
+%div{ 'data-controller': 'modal' }
+  = render 'shared/social_network_add_friend_modal'
+%script{ crossorigin: "anonymous", src: "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.8/lottie.js", type: "text/javascript" }

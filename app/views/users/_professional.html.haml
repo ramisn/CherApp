@@ -1,0 +1,98 @@
+- title(t("meta.professional_profile.title"))
+.container.m-t-lg
+  .columns.is-marginless.is-multiline
+    .column.is-9
+      .panel.is-full.has-shadow
+        .columns.is-marginless.is-multiline
+          .column.is-4
+            .m-b-lg
+              .profile-section
+                .profile-avatar.no-upload
+                  = image_tag(@user.profile_image, class: "image is-agent #{ "premium" if @user.part_of_clique? }", alt: t('img_alts.user_profile'))
+              .profile-info.has-centered-text
+                .profile-name.is-bold= @user.full_name
+              - if @user.part_of_clique?
+                .is-paddingless.is-size-6.is-italic.has-text-centered
+                  %span.is-marginless
+                    = image_tag "cherapp-ownership-coborrowing-cher-clique-user.svg", class: "m-r-xs"
+                    = t("dashboard.cher_agent")
+              - if current_user != @user
+                #messageButtonContainer.has-text-centered
+              - unless current_user == @user
+                - if FriendRequest.request_status(current_user.id, @user.id) == 'pending'
+                  %button.button.is-disabled.is-secondary.has-full-width.m-t-xs
+                    = t('social_network.friend_request_sent')
+                - elsif !users_are_friends?(@user.id)
+                  = link_to t('social_network.send_friend_request'), friend_requests_path( friend_request: { requestee_id: @user.id }), method: :post, class: 'button is-secondary m-t-xs has-full-width'
+                .m-t-sm
+                  = link_to "Message #{@user.first_name}", conversation_path(@user), class: 'button is-secondary has-full-width'
+            - unless @user.company_name.blank?
+              %h5.is-size-5.is-bold.m-b-sm= t('review.company_contact')
+              .is-bold= t('review.brokerage')
+              %p.is-marginless= @user.company_name
+            - unless @user.address1.blank?
+              .is-bold.m-t-md= t('review.address')
+              %p.is-marginless= @user.address1
+              %p.is-marginless= "#{@user.city}, #{@user.state}"
+              %p.is-marginless= @user.zipcode
+
+            - unless @user.number_license.blank?
+              .is-bold.m-t-md= t('review.license_number')
+              %p.is-marginless= @user.number_license
+          .column.is-8{ 'data-controller': 'modal'}
+            - unless @user.description.blank?
+              .is-bold.m-b-xs= t('review.my_bio')
+              %p.is-marginless= @user.description
+            - unless @user.areas.blank?
+              .m-b-lg
+                .is-bold.m-t-md.m-b-xs= t('review.my_areas')
+                - @user.areas.each do |area|
+                  .tag.is-blue
+                    = area
+              .m-b-md
+                %hr.is-marginless.has-full-width
+
+            %h5.is-size-5.is-bold= t('review.rating_and_reviews')
+            - if @user.professional_reviews.any?
+              .m-b-md
+                - for i in (1..5) do
+                  = fa_icon('star', type: i <= @user.reviews_avg ? :solid : :regular)
+                %span.m-l-xs.is-size-6= t('review.average', number: @user.reviews_avg.round(1))
+            - if user_can_receive_review?(@user)
+              %p.is-marginless= t('review.have_you_worked_with', name: @user.first_name)
+              %button.link.button.has-no-style.m-t-xs.is-underlined{ 'data-action': 'modal#toggleModal' }
+                = t('review.write_a_review!')
+              .modal{"data-target": "modal.modal"}
+                .modal-background
+                .modal-content.column.is-4-full-hd.is-5-widescreen.is-5-desktop
+                  .box.rebrand{ 'data-target': 'modal.modalContent' }
+                    .is-size-4.m-b-lg.is-bold
+                      = t('review.write_a_review')
+                    = render 'users/review_form', review: @review, path: customer_professional_reviews_path, method: :post
+                    %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}
+            .columns.is-marginless.is-multiline.has-space-between
+              .column.is-paddingless.is-12.m-t-md{ 'data-controller': 'collapsible' }
+                - if @user.professional_reviews.any?
+                  %hr.is-marginless
+                  .is-bold.m-b-md.m-t-md= t('review.highly_likely_to_recoment')
+                  = render 'users/given_reviews', review: @user.professional_reviews.first
+                  - if @user.professional_reviews.size > 1
+                    .is-collapsible{ 'data-target': 'collapsible.container' }
+                      - for index in (1...@user.professional_reviews.size)
+                        = render 'users/given_reviews', review: @user.professional_reviews[index]
+                    %button.button.has-no-style.is-size-7.has-text-primary{ 'data-action': 'click->collapsible#toogleCollapsible', 'data-target': 'collapsible.messageContainer' }
+                      = t('generic.show_more')
+
+    .column.is-3
+      .panel.has-shadow.is-paddingless.network-list
+        %h2.is-size-5.p-t-md.p-l-md.m-b-none
+          = t("dashboard.mutual_friends")
+        %hr.mt-xs.m-b-xs
+        .has-regular-padding
+          %ul.items-list.has-rounded-items
+            = render  partial: 'shared/network_list_item', collection: @user_data[:mutual_friends]
+          - if @user_data[:mutual_friends].blank?
+            %p= t('generic.no_mutual_friends', user_name: @user.first_name)
+    - if users_are_friends?(@user.id)
+      .column.is-9
+        = render 'shared/newsfeed', publication: @publication, posting_in_friend_profile: true

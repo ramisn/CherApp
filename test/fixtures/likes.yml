@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: likes
+#
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  post_type  :string
+#  post_id    :bigint
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+join_cher:
+  user: co_borrower
+  post: join_cher (Activity)
+
+house_publication:
+  user: co_borrower
+  post: co_borrower_home (Publication)

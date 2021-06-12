@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }
+  %body
+    %h2= "A new #{@user_role} joined Cher"
+    %p= "Email: #{@user_email}"
+    - if @user_city
+      %p= "City: #{@user_city}"
+    %br

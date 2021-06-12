@@ -1,0 +1,24 @@
+%h3.is-bold.is-size-4.m-t-lg.has-text-left
+  = t('rental.contact_info')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    .field
+      = f.label :name, t('generic.name'), class: 'label'
+      .control.m-r-md
+        = f.text_field :name, class: 'input', readonly: current_user.admin?
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    .field
+      = f.label :phone_number, t('generic.phone_number'), class: 'label'
+      .control.m-r-md
+        = f.phone_field :phone_number, class: 'input', required: true, readonly: current_user.admin?, pattern: "[0-9]{10}", maxlength: 10, minlength: 10
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    .field
+      = f.label :email, t('generic.email'), class: 'label'
+      .control.m-r-md
+        = f.email_field :email, class: 'input', readonly: current_user.admin?
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    .field
+      = f.label :listed_by_type, t('rental.for_rent_by'), class: 'label'
+      .control
+        .select
+          = f.select :listed_by_type, Rental.listed_by_types.keys.map{ |type| [t("rental.listed_by_type.#{type}"), type] }, {}, { readonly: current_user.admin? }

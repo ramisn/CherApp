@@ -1,0 +1,55 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'bin/*'
+    - 'tmp/**/*'
+    - 'db/schema.rb'
+
+Metrics/AbcSize:
+  Max: 18
+  Exclude:
+  - 'db/**/*'
+  - 'lib/places.rb'
+  - 'app/services/create_user_from_omniauth_service.rb'
+
+Metrics/CyclomaticComplexity:
+  Max: 9
+
+Metrics/ModuleLength:
+  Exclude:
+  - 'app/helpers/activity_feed_helper.rb'
+
+Metrics/LineLength:
+  Max: 190
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+  - 'db/**/*'
+  - 'lib/places.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/models/*'
+    - 'test/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/**/*'
+    - 'config/environments/*'
+    - 'config/routes.rb'
+    - 'test/**/*.rb'
+
+Metrics/PerceivedComplexity:
+  Max: 9
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*'
+
+Style/GlobalVars:
+  Enabled: false

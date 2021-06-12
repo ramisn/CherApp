@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  body       :text             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+co_borrower_topic:
+  name: What a co-owner is
+  body: A random description

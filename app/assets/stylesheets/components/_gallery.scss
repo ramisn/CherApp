@@ -1,0 +1,55 @@
+.gallery-container {
+  --image-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0 $regular-padding;
+
+  .gallery-image-container {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    padding: 0;
+    position: relative;
+
+    .gallery-image {
+      border-radius: 5px;
+      height: var(--image-size);
+      object-fit: cover;
+      pointer-events: none;
+      width: var(--image-size);
+    }
+
+    .gallery-image-delete {
+      background-color: transparent;
+      border: 0;
+      color: $black;
+      display: none;
+      font-size: .5rem;
+      padding: 2px;
+      position: absolute;
+      right: 0;
+    }
+
+    .gallery-image-delete:hover {
+      cursor: pointer;
+    }
+  }
+
+  .gallery-image-container:hover .gallery-image-delete {
+    display: inline;
+  }
+
+  .modal-content {
+    .image {
+      border-radius: 5px;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
+}

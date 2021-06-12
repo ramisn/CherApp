@@ -1,0 +1,33 @@
+.panel.has-shadow.m-t-md{'data-controller': 'collapsible'}
+  %button.has-no-style.is-link.has-full-width.m-t-sm.m-b-md.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+    %span= t('review.my_reviews')
+  .is-clipped.has-full-height-tablet{'data-target': 'collapsible.container'}
+    .column.is-paddingless.is-9
+      .columns.is-marginless.is-multiline
+        .column.is-paddingless.is-12
+          %h4.is-bold.has-text-primary.m-b-sm.is-hidden-mobile.is-family-secondary.is-size-5
+            = t('review.my_reviews')
+          %div{ 'data-controller': 'modal' }
+            - for i in (1..5) do
+              = fa_icon('star', type: i <= current_user.reviews_avg ? :solid : :regular, class: "has-text-primary")
+            %span.m-l-xs.m-r-xs.is-size-6= current_user.reviews_avg.positive? ? current_user.reviews_avg.round(1) : t("review.no_reviews")
+            - if current_user.professional_reviews.any?
+              %button.link.button.has-no-style.m-t-xs.is-underlined{ 'data-action': 'modal#toggleModal' }
+                = t('review.view')
+              .modal{"data-target": "modal.modal"}
+                .modal-background
+                .modal-content.column.is-4-full-hd.is-5-widescreen.is-5-desktop
+                  .box{ 'data-target': 'modal.modalContent' }
+                    .is-bold.m-b-lg.is-size-4
+                      = t('review.my_reviews')
+                    - current_user.professional_reviews.each do |review|
+                      = render 'shared/given_reviews', review: review
+                    %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}
+
+          %div{ 'data-controller': 'modal' }
+            %span.is-family-secondary= t('buttons.click')
+            %button.link.button.has-no-style.m-t-xs.is-underlined.has-text-primary{ 'data-action': 'modal#toggleModal' }
+              = t('buttons.here')
+            %span.is-family-secondary= t('review.to_request_more_reviews')
+            = render 'shared/customer/request_reviews_modal'

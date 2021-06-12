@@ -1,0 +1,11 @@
+.gallery-container
+  #imageGalleryContainer.modal{ 'data-target': 'images-modal.modal' }
+    .modal-background
+    .modal-content.is-fully-centered.is-relative{ 'data-target': 'images-modal.container' }
+      %div{ 'data-target': 'images-modal.modalContent' }
+        %button.button.has-no-style.arrow-left{'data-action': 'images-modal#previousItem' }
+          = fa_icon('angle-left', size: '2x')
+        %img{ src: '', alt: "User gallery", class:"image", 'data-target': 'images-modal.modalImage'}
+        %button.button.has-no-style.arrow-right{ 'data-action': 'images-modal#nextItem' }
+          = fa_icon('angle-right', size: '2x')
+    %button.modal-close.is-large{"aria-label": "close", "data-action": "images-modal#toggleModal"}

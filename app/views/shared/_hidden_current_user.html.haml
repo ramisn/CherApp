@@ -1,0 +1,6 @@
+= javascript_pack_tag 'ga_events'
+
+- if @new_user.present?
+  %li{:style=>"display:none;", :id => "hidden-current-user", :data => {:new_user_role => "#{@new_user[:role]}", :new_user_professional_role => "#{@new_user[:professional_role]}"}}
+  :javascript
+    window.sendCompleteYourProfileEventToGA()

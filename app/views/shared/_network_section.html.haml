@@ -1,0 +1,16 @@
+#dashboard.panel.has-shadow.is-paddingless.network-list
+  %h2.is-size-5
+    = t("dashboard.my_network")
+  %hr.mt-xs.m-b-xs
+  .description
+    %em
+      = t("dashboard.see_preview_list_of_contacts")
+  - if friends.blank?
+    .has-regular-padding
+      %p.m-b-xs
+        = t("dashboard.connect_or_invite_people")
+      = link_to(t("generic.search_friends"), search_path, class: 'button is-primary is-fullwidth m-t-xs')
+  - else
+    .has-regular-padding
+      %ul.items-list.has-rounded-items
+        = render  partial: 'shared/network_list_item', collection: friends

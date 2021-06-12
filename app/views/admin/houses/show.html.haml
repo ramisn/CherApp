@@ -1,0 +1,20 @@
+- title(t("meta.admin.houses.title"))
+.container
+  .panel.m-t-lg
+    %h1.m-t-md.m-b-md= t('sell.home_for_sale')
+    .is-size-5.is-bold.is-inline
+      = t('generic.status')
+    = t("house.status.#{@house.status}")
+    = render 'contact_information'
+    %hr
+    = render 'general_information'
+    %hr
+    = render 'home_facts'
+    %hr
+    = render 'pictures'
+    %hr
+    = render 'open_house'
+    %hr
+    = render 'additional_information'
+
+    = link_to t('sell.edit_home'), edit_admin_house_path(@house), class: 'button is-primary m-t-md'

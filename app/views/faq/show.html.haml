@@ -1,0 +1,45 @@
+- title(t("meta.faq.title"))
+- meta_tag(:description, t("meta.faq.description"))
+.container
+  .section
+    %h3.has-text-weight-bold.has-text-centered.is-purple
+      = t(".title")
+    .has-text-centered
+      %p
+        = t(".description")
+        %span
+          = mail_to "cher@cher.app", t(".contact"), subject: t(".subject"), class: "link red"
+        = t(".description_2")
+  .sections-collapsibles{ "data-controller": "section"}
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'difference_tenants_common_and_joint'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'examples_of_co-ownership'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'difference_between_co-owner_and_cosigner'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'why_co-own_home'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'current_problems_with_co-owning'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'how_does_make_money'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'manage_relationship'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'co-owner_can_not_pay_mortgage'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'co-owner_refuses_to_pay_mortgage'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'manage_exits_or_sale'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'are_the_users_on_cher_vetted'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'co-owners_different_objetives_and_priorities'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'who_finds_the_home'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'how_does_paperwork'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'real_state_professional_does_not_have_an_account'
+    .section.collapsible{"data-action": "click->section#toggleSection"}
+      = render 'real_state_professionals_listed_on_cher'

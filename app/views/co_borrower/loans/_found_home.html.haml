@@ -1,0 +1,23 @@
+#foundHomeContainer
+  %h2.is-size-3.has-text-centered.has-text-blue= t('loans.hello_there')
+  %h5.is-size-5.has-text-centered.is-bold.m-b-md=t('loans.found_dream_home')
+  .columns.is-marginless.is-mobile
+    .column.is-6.is-mobile.is-6-tablet
+      .is-flex.has-items-centered.has-direction-column
+        = image_tag('mortgage/cherapp-ownership-coborrowing-basic-house-blue.svg', alt: t('img_alts.basic_house'), class: 'image is-64x64 has-text-primary', id: 'houseBlueIcon')
+        = image_tag('mortgage/cherapp-ownership-coborrowing-basic-house-grey.svg', alt: t('img_alts.basic_house'), class: 'image is-64x64 has-text-primary is-hidden', id: 'houseGreyIcon')
+        .field.m-t-md
+          = f.radio_button :found_home, true, class: 'is-checkradio', checked: true, id: 'loan_found_home_true', 'data-action': 'loans#updateIcon loans#updatelookAroundLink', 'data-disable-image': ['campFireBlue', 'houseGreyIcon'].to_json, 'data-enable-image': ['campFireGrey', 'houseBlueIcon'].to_json
+          = f.label :found_home_true, 'Yes, I have'
+
+    .column.is-6.is-mobile.is-6-tablet
+      .is-flex.has-items-centered.has-direction-column
+        = image_tag('mortgage/cherapp-ownership-coborrowing-camp-fire-grey.svg', alt: t('img_alts.camp_fire'), class: 'image is-64x64', id: 'campFireGrey')
+        = image_tag('mortgage/cherapp-ownership-coborrowing-camp-fire-blue.svg', alt: t('img_alts.camp_fire'), class: 'image is-64x64 is-hidden', id: 'campFireBlue')
+        .field.m-t-md
+          = f.radio_button :found_home, false, class: 'is-checkradio', id: 'loan_found_home_false', 'data-action': 'loans#updateIcon loans#updatelookAroundLink', 'data-disable-image': ['houseBlueIcon', 'campFireGrey'].to_json, 'data-enable-image': ['houseGreyIcon', 'campFireBlue'].to_json
+          = f.label :found_home_false, t('generic.no_no_yet')
+  .is-flex.is-justified-center.m-t-md
+    = link_to t('generic.next'), look_around_path, class: 'button is-tag-primary has-regular-border is-hidden', 'data-target': 'loans.lookArroundLink'
+    %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#nextItem', 'data-next-item': 'locationContainer', 'data-current-item': 'foundHomeContainer', id: 'foundHouseNextStepButton', 'data-target': 'loans.foundHomeNextButton'}
+      = t('generic.next')

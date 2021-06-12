@@ -1,0 +1,475 @@
+From 84160097ac49178096b9ccffad6dbb470c14579b Mon Sep 17 00:00:00 2001
+From: Hector Bustillos <hecbuma@gmail.com>
+Date: Wed, 27 May 2020 22:10:51 -0500
+Subject: [PATCH] add sidekiq
+
+---
+ Gemfile                                       |  1 +
+ Gemfile.lock                                  |  8 +++++++
+ Procfile                                      |  0
+ app/controllers/admin/contacts_controller.rb  | 10 ++++-----
+ app/jobs/contact_job.rb                       |  9 ++++++++
+ app/jobs/register_contact_sendgrid_job.rb     |  2 +-
+ app/jobs/remove_sendgrid_job.rb               |  2 +-
+ app/jobs/update_sendgrid_job.rb               |  2 +-
+ app/models/contact.rb                         |  3 +--
+ app/models/prospect.rb                        | 11 ++++++++--
+ app/models/user.rb                            | 13 +++++++++---
+ app/services/create_contact_service.rb        | 12 +++++++++++
+ app/services/register_sendgrid_service.rb     | 21 ++++++++++++++++---
+ .../sendgrid_email_validation_service.rb      |  6 +++++-
+ app/services/update_sendgrid_service.rb       |  6 ++++++
+ config/environments/development.rb            |  1 +
+ config/environments/production.rb             |  2 +-
+ config/environments/staging.rb                |  2 +-
+ config/initializers/sidekiq.rb                |  8 +++++++
+ ...8012020_add_sendgrid_syncs_to_prospects.rb |  8 +++++++
+ ...00528012912_add_sendgrid_syncs_to_users.rb |  8 +++++++
+ db/schema.rb                                  |  6 +++++-
+ 22 files changed, 118 insertions(+), 23 deletions(-)
+ create mode 100644 Procfile
+ create mode 100644 app/jobs/contact_job.rb
+ create mode 100644 app/services/create_contact_service.rb
+ create mode 100644 config/initializers/sidekiq.rb
+ create mode 100644 db/migrate/20200528012020_add_sendgrid_syncs_to_prospects.rb
+ create mode 100644 db/migrate/20200528012912_add_sendgrid_syncs_to_users.rb
+
+diff --git a/Gemfile b/Gemfile
+index 764a23b3..ab3b31fc 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -29,6 +29,7 @@ gem 'redis', '~> 4.1', '>= 4.1.3'
+ gem 'rest-client'
+ gem 'sass-rails', '~> 5'
+ gem 'sentry-raven'
++gem 'sidekiq'
+ gem 'stripe-rails'
+ gem 'turbolinks', '~> 5'
+ gem 'twilio-ruby', '~> 5.31.1'
+diff --git a/Gemfile.lock b/Gemfile.lock
+index 04c4bc01..319a42a8 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -246,6 +246,8 @@ GEM
+     rack (2.2.2)
+     rack-host-redirect (1.3.0)
+       rack
++    rack-protection (2.0.8.1)
++      rack
+     rack-proxy (0.6.5)
+       rack
+     rack-test (1.1.0)
+@@ -335,6 +337,11 @@ GEM
+     sentry-raven (3.0.0)
+       faraday (>= 1.0)
+     sexp_processor (4.14.1)
++    sidekiq (6.0.1)
++      connection_pool (>= 2.2.2)
++      rack (>= 2.0.0)
++      rack-protection (>= 2.0.0)
++      redis (>= 4.1.0)
+     spring (2.1.0)
+     spring-watcher-listen (2.0.1)
+       listen (>= 2.7, < 4.0)
+@@ -437,6 +444,7 @@ DEPENDENCIES
+   scss_lint
+   selenium-webdriver
+   sentry-raven
++  sidekiq
+   spring
+   spring-watcher-listen (~> 2.0.0)
+   stripe-rails
+diff --git a/Procfile b/Procfile
+new file mode 100644
+index 00000000..e69de29b
+diff --git a/app/controllers/admin/contacts_controller.rb b/app/controllers/admin/contacts_controller.rb
+index a4321146..ec23ab16 100644
+--- a/app/controllers/admin/contacts_controller.rb
++++ b/app/controllers/admin/contacts_controller.rb
+@@ -9,12 +9,10 @@ module Admin
+         format.csv do
+           if uploaded_file_is_valid?
+             CSV.foreach(@contacts_file.path, headers: true) do |contact|
+-              if SendgridEmailValidationService.validate(contact['email']) == 'Valid'
+-                Contact.find_or_create_by_prospect(email: contact['email'],
+-                                                   role: contact['role'],
+-                                                   first_name: contact['first_name'],
+-                                                   city: contact['city'])
+-              end
++              ContactJob.perform_later(email: contact['email'],
++                                       role: contact['role'],
++                                       first_name: contact['first_name'],
++                                       city: contact['city'])
+             end
+           end
+           flash[:notice] = t('flashes.contact.create_csv.notice')
+diff --git a/app/jobs/contact_job.rb b/app/jobs/contact_job.rb
+new file mode 100644
+index 00000000..551bcdbc
+--- /dev/null
++++ b/app/jobs/contact_job.rb
+@@ -0,0 +1,9 @@
++# frozen_string_literal: true
++
++class ContactJob < ApplicationJob
++  queue_as :default
++
++  def perform(contact)
++    CreateContactService.new.process(contact)
++  end
++end
+diff --git a/app/jobs/register_contact_sendgrid_job.rb b/app/jobs/register_contact_sendgrid_job.rb
+index 7b60aa9d..0a7508f6 100644
+--- a/app/jobs/register_contact_sendgrid_job.rb
++++ b/app/jobs/register_contact_sendgrid_job.rb
+@@ -3,7 +3,7 @@
+ class RegisterContactSendgridJob < ApplicationJob
+   queue_as :default
+ 
+-  def self.perform(email, role)
++  def perform(email, role)
+     RegisterSendgridService.new.process(email, role)
+   end
+ end
+diff --git a/app/jobs/remove_sendgrid_job.rb b/app/jobs/remove_sendgrid_job.rb
+index 62f54e6a..85c5607d 100644
+--- a/app/jobs/remove_sendgrid_job.rb
++++ b/app/jobs/remove_sendgrid_job.rb
+@@ -3,7 +3,7 @@
+ class RemoveSendgridJob < ApplicationJob
+   queue_as :default
+ 
+-  def self.perform(contact_id, list_id)
++  def perform(contact_id, list_id)
+     RemoveSendgridService.new.process(contact_id, list_id)
+   end
+ end
+diff --git a/app/jobs/update_sendgrid_job.rb b/app/jobs/update_sendgrid_job.rb
+index f8deb6e3..8b067942 100644
+--- a/app/jobs/update_sendgrid_job.rb
++++ b/app/jobs/update_sendgrid_job.rb
+@@ -3,7 +3,7 @@
+ class UpdateSendgridJob < ApplicationJob
+   queue_as :default
+ 
+-  def self.perform(email, to_list)
++  def perform(email, to_list)
+     UpdateSendgridService.new.process(email, to_list)
+   end
+ end
+diff --git a/app/models/contact.rb b/app/models/contact.rb
+index abd170fa..9e6a6ae0 100644
+--- a/app/models/contact.rb
++++ b/app/models/contact.rb
+@@ -14,8 +14,7 @@ class Contact < ApplicationRecord
+     prospect_record.role = prospect[:role] || 'prospect'
+     prospect_record.first_name = prospect[:first_name]
+     prospect_record.city = prospect[:city]
+-    prospect_record.save
+-    Contact.find_or_create_by(contactable: prospect_record)
++    Contact.find_or_create_by(contactable: prospect_record) if prospect_record.save!
+   end
+ 
+   def self.lookup(email)
+diff --git a/app/models/prospect.rb b/app/models/prospect.rb
+index ae1028d4..d4e707a6 100644
+--- a/app/models/prospect.rb
++++ b/app/models/prospect.rb
+@@ -20,6 +20,7 @@ class Prospect < ApplicationRecord
+   has_one :contact, as: :contactable
+ 
+   enum role: %i[subscriber prospect user customer_other general_contractor loan_officer mortgage_broker realtor title_officer escrow_officer]
++  enum sendgrid_sync_status: %i[sendgrid_pending sendgrid_sync]
+ 
+   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
+ 
+@@ -49,10 +50,16 @@ class Prospect < ApplicationRecord
+   end
+ 
+   def move_to_sendgrid
+-    RegisterContactSendgridJob.perform(email, "prospect_#{role}".to_sym)
++    RegisterContactSendgridJob.perform_later(email, "prospect_#{role}".to_sym)
+   end
+ 
+   def update_sendgrid
+-    UpdateSendgridJob.perform(email, "prospect_#{role}".to_sym)
++    sendgrid_pending!
++    UpdateSendgridJob.perform_later(email, "prospect_#{role}".to_sym)
++  end
++
++  def sendrig_updated!
++    sendgrid_sync!
++    touch(:sendgrid_updated_at)
+   end
+ end
+diff --git a/app/models/user.rb b/app/models/user.rb
+index ceae30cf..ef25cdb7 100644
+--- a/app/models/user.rb
++++ b/app/models/user.rb
+@@ -102,6 +102,7 @@ class User < ApplicationRecord
+   enum role: %i[co_borrower agent admin]
+   enum status: %i[looking ready process closing]
+   enum professional_role: %i[estate_agent loan_officer escrow_officer general_contractor mortgage_broker title_officer other]
++  enum sendgrid_sync_status: %i[sendgrid_pending sendgrid_sync]
+ 
+   multisearchable against: %i[first_name last_name email], if: :confirmed?
+ 
+@@ -253,7 +254,7 @@ class User < ApplicationRecord
+     return unless lookup_contact.nil?
+ 
+     Contact.find_or_create_by_prospect(email: email, role: 'user')
+-    # RegisterContactSendgridJob.perform(email, :prospect_user)
++    # RegisterContactSendgridJob.perform_later(email, :prospect_user)
+   end
+ 
+   def lookup_contact
+@@ -261,7 +262,8 @@ class User < ApplicationRecord
+ 
+     if contact&.contactable
+       contact.user!
+-      UpdateSendgridJob.perform(email, :prospect_user)
++      sendgrid_pending!
++      UpdateSendgridJob.perform_later(email, :prospect_user)
+     end
+ 
+     contact
+@@ -278,7 +280,12 @@ class User < ApplicationRecord
+ 
+     contact = build_contact
+     contact.save
++    sendgrid_pending!
++    UpdateSendgridJob.perform_later(email, type)
++  end
+ 
+-    UpdateSendgridJob.perform(email, type)
++  def sendrig_updated!
++    sendgrid_sync!
++    touch(:sendgrid_updated_at)
+   end
+ end
+diff --git a/app/services/create_contact_service.rb b/app/services/create_contact_service.rb
+new file mode 100644
+index 00000000..c128794d
+--- /dev/null
++++ b/app/services/create_contact_service.rb
+@@ -0,0 +1,12 @@
++# frozen_string_literal: true
++
++class CreateContactService
++  def process(contact)
++    return unless SendgridEmailValidationService.validate(contact[:email], 'file_upload') == 'Valid'
++
++    Contact.find_or_create_by_prospect(email: contact[:email],
++                                       role: contact[:role],
++                                       first_name: contact[:first_name],
++                                       city: contact[:city])
++  end
++end
+diff --git a/app/services/register_sendgrid_service.rb b/app/services/register_sendgrid_service.rb
+index 0803ccec..44dab60e 100644
+--- a/app/services/register_sendgrid_service.rb
++++ b/app/services/register_sendgrid_service.rb
+@@ -1,15 +1,30 @@
+ # frozen_string_literal: true
+ 
+ class RegisterSendgridService < BaseSendgridService
++  # rubocop:disable Style/RescueStandardError
+   def process(email, type)
+     return if %i[admin stage_agent].include? type
+ 
+-    RestClient::Request.execute(method: :put, url: 'https://api.sendgrid.com/v3/marketing/contacts',
+-                                headers: { 'Content-Type': 'application/json', 'Authorization': "Bearer #{ENV['SENDGRID_API_KEY']}" },
+-                                payload: data_body(email, type))
++    begin
++      request = RestClient::Request.execute(method: :put, url: 'https://api.sendgrid.com/v3/marketing/contacts',
++                                            headers: { 'Content-Type': 'application/json', 'Authorization': "Bearer #{ENV['SENDGRID_API_KEY']}" },
++                                            payload: data_body(email, type))
++      raise 'Sendgrid rate limit' if request.code == 429
++
++      mark_done(email)
++    rescue => e
++      Raven.capture_exception(e)
++      false
++    end
+   end
++  # rubocop:enable Style/RescueStandardError
+ 
+   def data_body(email, type)
+     { list_ids: [list[type]], contacts: [{ email: email }] }.to_json
+   end
++
++  def mark_done(email)
++    contact = Contact.lookup(email)
++    contact.sendrig_updated! if contact&.contactable
++  end
+ end
+diff --git a/app/services/sendgrid_email_validation_service.rb b/app/services/sendgrid_email_validation_service.rb
+index bfdc92c8..78475fd2 100644
+--- a/app/services/sendgrid_email_validation_service.rb
++++ b/app/services/sendgrid_email_validation_service.rb
+@@ -3,15 +3,19 @@
+ require 'rest-client'
+ 
+ class SendgridEmailValidationService
++  # rubocop:disable Style/RescueStandardError
+   def self.validate(email, source = 'invite')
+     return 'Valid' unless Rails.env.production?
+ 
+     request = request(email, source)
++    raise 'Sendgrid rate limit' if request.code == 429
++
+     JSON.parse(request)['result']['verdict']
+-  rescue StandardError => e
++  rescue => e
+     Raven.capture_exception(e)
+     false
+   end
++  # rubocop:enable Style/RescueStandardError
+ 
+   def self.data_body(email, source)
+     { email: email, source: source }.to_json
+diff --git a/app/services/update_sendgrid_service.rb b/app/services/update_sendgrid_service.rb
+index 375af1aa..f96636b4 100644
+--- a/app/services/update_sendgrid_service.rb
++++ b/app/services/update_sendgrid_service.rb
+@@ -1,10 +1,12 @@
+ # frozen_string_literal: true
+ 
+ class UpdateSendgridService < BaseSendgridService
++  # rubocop:disable Style/RescueStandardError
+   def process(email, to_list)
+     response = RestClient::Request.execute(method: :post, url: 'https://api.sendgrid.com/v3/marketing/contacts/search',
+                                            headers: { 'Content-Type': 'application/json', 'Authorization': "Bearer #{ENV['SENDGRID_API_KEY']}" },
+                                            payload: data_body(email))
++    raise 'Sendgrid rate limit' if request.code == 429
+ 
+     response = JSON.parse(response)
+     return unless response['contact_count'] >= 1
+@@ -16,9 +18,13 @@ class UpdateSendgridService < BaseSendgridService
+     end
+ 
+     RegisterContactSendgridJob.perform(email, to_list)
++  rescue => e
++    Raven.capture_exception(e)
++    false
+   end
+ 
+   def data_body(email)
+     { query: "email LIKE '#{email}%'" }.to_json
+   end
++  # rubocop:enable Style/RescueStandardError
+ end
+diff --git a/config/environments/development.rb b/config/environments/development.rb
+index a4801a7e..78a3755d 100644
+--- a/config/environments/development.rb
++++ b/config/environments/development.rb
+@@ -14,6 +14,7 @@ Rails.application.configure do
+ 
+   # Show full error reports.
+   config.consider_all_requests_local = true
++  config.active_job.queue_adapter    = :sidekiq
+ 
+   # Enable/disable caching. By default caching is disabled.
+   # Run rails dev:cache to toggle caching.
+diff --git a/config/environments/production.rb b/config/environments/production.rb
+index a929fcc9..1bf74b62 100644
+--- a/config/environments/production.rb
++++ b/config/environments/production.rb
+@@ -56,7 +56,7 @@ Rails.application.configure do
+   # config.cache_store = :mem_cache_store
+ 
+   # Use a real queuing backend for Active Job (and separate queues per environment).
+-  # config.active_job.queue_adapter     = :resque
++  config.active_job.queue_adapter = :sidekiq
+   # config.active_job.queue_name_prefix = "cherapp_production"
+ 
+   config.action_mailer.perform_caching = false
+diff --git a/config/environments/staging.rb b/config/environments/staging.rb
+index be24de14..8d06460d 100644
+--- a/config/environments/staging.rb
++++ b/config/environments/staging.rb
+@@ -56,7 +56,7 @@ Rails.application.configure do
+   # config.cache_store = :mem_cache_store
+ 
+   # Use a real queuing backend for Active Job (and separate queues per environment).
+-  # config.active_job.queue_adapter     = :resque
++  config.active_job.queue_adapter = :sidekiq
+   # config.active_job.queue_name_prefix = "cherapp_production"
+ 
+   config.action_mailer.perform_caching = false
+diff --git a/config/initializers/sidekiq.rb b/config/initializers/sidekiq.rb
+new file mode 100644
+index 00000000..a299a5a5
+--- /dev/null
++++ b/config/initializers/sidekiq.rb
+@@ -0,0 +1,8 @@
++# frozen_string_literal: true
++# Sidekiq.configure_server do |config|
++#     config.redis = { url: ENV['REDIS_URL'], network_timeout: 7 }
++# end
++#
++# Sidekiq.configure_client do |config|
++#     config.redis = { url: ENV['REDIS_URL'], network_timeout: 7 }
++# end
+diff --git a/db/migrate/20200528012020_add_sendgrid_syncs_to_prospects.rb b/db/migrate/20200528012020_add_sendgrid_syncs_to_prospects.rb
+new file mode 100644
+index 00000000..e842bec6
+--- /dev/null
++++ b/db/migrate/20200528012020_add_sendgrid_syncs_to_prospects.rb
+@@ -0,0 +1,8 @@
++# frozen_string_literal: true
++
++class AddSendgridSyncsToProspects < ActiveRecord::Migration[6.0]
++  def change
++    add_column :prospects, :sendgrid_updated_at, :timestamp
++    add_column :prospects, :sendgrid_sync_status, :integer, default: 0
++  end
++end
+diff --git a/db/migrate/20200528012912_add_sendgrid_syncs_to_users.rb b/db/migrate/20200528012912_add_sendgrid_syncs_to_users.rb
+new file mode 100644
+index 00000000..04299b03
+--- /dev/null
++++ b/db/migrate/20200528012912_add_sendgrid_syncs_to_users.rb
+@@ -0,0 +1,8 @@
++# frozen_string_literal: true
++
++class AddSendgridSyncsToUsers < ActiveRecord::Migration[6.0]
++  def change
++    add_column :users, :sendgrid_updated_at, :timestamp
++    add_column :users, :sendgrid_sync_status, :integer, default: 0
++  end
++end
+diff --git a/db/schema.rb b/db/schema.rb
+index 314c7b56..b1f37198 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema.define(version: 2020_05_26_200231) do
++ActiveRecord::Schema.define(version: 2020_05_28_012912) do
+ 
+   # These are extensions that must be enabled in order to support this database
+   enable_extension "plpgsql"
+@@ -189,6 +189,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_200231) do
+     t.integer "role", default: 0
+     t.string "first_name"
+     t.string "city"
++    t.datetime "sendgrid_updated_at"
++    t.integer "sendgrid_sync_status", default: 0
+     t.index ["email"], name: "index_prospects_on_email", unique: true
+   end
+ 
+@@ -278,6 +280,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_200231) do
+     t.string "referral_code"
+     t.string "phone_number"
+     t.string "discard_token"
++    t.datetime "sendgrid_updated_at"
++    t.integer "sendgrid_sync_status", default: 0
+     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+     t.index ["discarded_at"], name: "index_users_on_discarded_at"
+     t.index ["email"], name: "index_users_on_email", unique: true
+-- 
+2.24.1
+

@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: live_factors
+#
+#  id          :integer          not null, primary key
+#  question    :string           not null
+#  weight      :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  start_label :string
+#  end_label   :string
+#
+
+neat_person:
+  question: Would you say you're a neat person?
+  weight: 5
+  start_label: 'I can never find anything.'
+  end_label: 'Did you just drop that?'
+
+reflecting_on_things:
+  question: Do you spend time reflecting on things?
+  weight: 5
+  start_label: No regrets, I move on.
+  end_label: Whoops, just zoned out.

@@ -1,0 +1,77 @@
+.container{'data-controller': 'collapsible'}
+  %button.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.image{'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'is-18x18 icon is-absolute to-right-2 arrow-up is-down', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+    %h3.has-text-primary.m-l-md= t('property_overview.more_details')
+  .is-clipped{'data-target': 'collapsible.container'}
+    .is-grey.m-b-lg.m-t-lg
+      .columns.is-multiline
+        .column.is-6-desktop.is-12-tablet
+          .columns.is-mobile
+            .column.is-flex.has-items-centered.is-6-mobile.is-6-desktop.is-offset-1
+              %span.is-flex.m-r-md.image
+                = image_tag("cherapp-ownership-coborrowing-icon-zoning.svg", alt: t('img_alts.zoning'))
+              %span.is-size-5-half-touch.is-size-5-desktop.is-bold= t('property_overview.zoning')
+            .column
+              %span.is-size-5-half-desktop= field_data(expanded_profile&.dig('summary', 'propSubType'))
+        .column.is-5-desktop.is-12-tablet
+          .columns.is-mobile
+            .column.is-flex.has-items-centered.is-6-mobile.is-9-desktop.is-offset-1
+              %span.is-flex.m-r-md.image
+                = image_tag("cherapp-ownership-coborrowing-icon-year.svg", alt: t('img_alts.yearBuilt'))
+              %span.is-size-5-half-touch.is-size-5-desktop.is-bold= t('property_overview.year_built')
+            .column
+              %span.is-size-5-half-desktop= field_data(detail&.dig('property', 'yearBuilt'))
+      .columns.is-multiline
+        .column.is-6-tablet.is-12-touch
+          .columns.is-mobile
+            .column.is-flex.has-items-centered.is-6-mobile.is-6-desktop.is-offset-1
+              %span.is-flex.m-r-md.image
+                = image_tag("cherapp-ownership-coborrowing-icon-cooling.svg", alt: t('img_alts.cooling'))
+              %span.is-size-5-half-touch.is-size-5-desktop.is-bold= t('property_overview.cooling')
+            .column
+              %span.is-size-5-half-desktop= property_utilities(detail&.dig('property', 'cooling'))
+        .column.is-5-desktop.is-12-touch
+          .columns.is-mobile
+            .column.is-flex.has-items-centered.is-6-mobile.is-9-desktop.is-offset-1
+              %span.is-flex.m-r-md.m-l-xs.image
+                = image_tag("cherapp-ownership-coborrowing-icon-heating.svg", alt: t('img_alts.heating'))
+              %span.is-size-5-half-touch.is-size-5-desktop.is-bold.m-l-xs= t('property_overview.heating')
+            .column
+              %span.is-size-5-half-desktop= property_utilities(detail&.dig('property', 'heating'))
+      .columns
+        .column
+          .columns.is-mobile
+            .column.m-l-2-2.m-l-lg-fullhd.m-l-1-5-widescreen.is-flex.has-items-centered.is-offset-1-touch
+              %span.is-flex.m-r-md.image
+                = image_tag("cherapp-ownership-coborrowing-icon-area.svg", alt: t('img_alts.area'), class: 'is-18x18')
+              %span.is-size-5-half-touch.is-size-5-desktop.is-bold= t('property_overview.building_interior')
+      .columns
+        .column
+          .columns.is-mobile
+            .column.is-7.is-offset-2
+              %span.is-size-6-half-touch= t('property_overview.basement_size')
+            .column.is-5
+              %span.is-size-6-half-touch= size_area(expanded_profile&.dig('building', 'interior', 'bsmtSize'))
+        .column
+          .columns.is-mobile
+            .column.is-7.is-offset-2
+              %span.is-size-6-half-touch= t('property_overview.floors')
+            .column.is-5
+              %span.is-size-6-half-touch= field_data(expanded_profile&.dig('building', 'interior', 'floors'))
+      .columns
+        .column
+          .columns.is-mobile
+            .column.is-7.is-offset-2
+              %span.is-size-6-half-touch= t('property_overview.parking_size')
+            .column.is-5
+              %span.is-size-6-half-touch= size_area(expanded_profile&.dig('building', 'parking', 'prkgSize'))
+        .column
+          .columns.is-mobile
+            .column.is-7.is-offset-2
+              %span.is-size-6-half-touch= t('property_overview.parking_spaces')
+            .column.is-5
+              %span.is-size-6-half-touch= field_data(detail&.dig('property', 'garageSpaces'))
+
+    - if expanded_profile
+      .m-l-md
+        = render 'assessments', assessment: expanded_profile.dig('assessment'), preforeclosure_details: preforeclosure_details

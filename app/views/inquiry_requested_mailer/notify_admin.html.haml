@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }
+  %body
+    %h2= "New inquiry"
+    %p= "#{@first_name} has requested an inquiry."
+    %p= "First name: #{@first_name}"
+    %p= "Middle name: #{@middle_name}" if @middle_name
+    %p= "Last name: #{@last_name}"
+    %p= "Date of birth: #{@date_of_birth}"
+    %p= "You can access to Cher and change the user's background check status once you receive a response from Barada."
+

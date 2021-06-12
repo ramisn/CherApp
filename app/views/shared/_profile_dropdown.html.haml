@@ -1,0 +1,46 @@
+.go-profile.is-white{'data-controller': 'modal'}
+  = render "shared/contact_concierge_modal"
+  = image_tag(current_user.profile_image, class: "profile-image #{ "is-agent" if current_user.agent? } #{ "premium" if current_user.part_of_clique? }", alt: t('img_alts.user_profile'))
+  = fa_icon('angle-down', class: 'has-text-primary m-l-xs')
+  #notificationBadgeContainer
+  .drop-down
+    .drop-container
+      - if current_user.admin?
+        = render 'shared/admin_profile_dropdown'
+      - else
+        .drop-title= t("generic.dicover")
+        = link_to(look_around_url, class: 'gtm-navbar-find-homes has-text-primary') do
+          = image_tag('cherapp-ownership-coborrowing-ico-search-home-purple.svg', alt: t('img_alts.house_with_magnifying_glass'), class: 'drop-image gtm-navbar-find-homes')
+          = t("generic.find_homes")
+        .drop-title= t("generic.account")
+        = link_to(current_user.co_borrower? ? co_borrower_dashboard_path : customer_dashboard_path, class: 'gtm-navbar-dashboard has-text-primary') do
+          = image_tag('cherapp-ownership-coborrowing-ico-dashboard.svg', alt: t('img_alts.dashboard'), class: 'drop-image gtm-navbar-dashboard')
+          = t('navbar.menu.dashboard')
+        = link_to(edit_profile_path(current_user), class: 'gtm-navbar-settings has-text-primary') do
+          = image_tag('cherapp-ownership-coborrowing-ico-config.svg', alt: t('img_alts.gear'), class: 'drop-image gtm-navbar-settings')
+          = t('navbar.menu.settings')
+        = link_to(social_networks_path, class: 'gtm-navbar-friends has-text-primary') do
+          = image_tag("cherapp-ownership-coborrowing-friend.svg", alt: t('img_alts.friends'), class: 'drop-image gtm-navbar-friends')
+          = current_user.agent? ? t('dashboard.my_network') : t("labels.my_friends")
+          %span.is-badge#socialNetworkBadge{ class: current_user.friend_request_pending? ? '' : 'is-hidden'}
+        - unless current_user.agent?
+          - if current_user.active_loan_request.blank?
+            = link_to(new_co_borrower_loan_path, class: 'gtm-navbar-get-loan has-text-primary') do
+              = image_tag('cherapp-ownership-coborrowing-money.svg', alt: t('img_alts.money'), class: 'drop-image gtm-navbar-get-loan')
+              = t('dashboard.progress_bar.get_loan')
+          - else
+            = link_to co_borrower_loan_path(current_user.active_loan_request), class: 'has-text-primary' do
+              = image_tag('cherapp-ownership-coborrowing-money.svg', alt: t('img_alts.money'), class: 'drop-image gtm-navbar-get-loan')
+              = t('dashboard.progress_bar.get_loan')
+          = link_to(new_co_borrower_house_path, target: '_blank', class: 'gtm-navbar-list-rental has-text-primary') do
+            = image_tag('cherapp-ownership-coborrowing-sell.svg', alt: t('img_alts.sell'), class: 'drop-image gtm-navbar-list-rental')
+            = t('generic.sell_home')
+          = link_to(new_co_borrower_rental_path, target: '_blank', class: 'gtm-navbar-list-rental has-text-primary') do
+            = image_tag('cherapp-ownership-coborrowing-deal.svg', alt: t('img_alts.handing_keys'), class: 'drop-image gtm-navbar-list-rental')
+            = t('generic.list_rental_sell')
+          = link_to('#', class: 'gtm-navbar-list-rental has-text-primary', 'data-action': 'modal#toggleModal') do
+            = image_tag('cherapp-ownership-coborrowing-concierge-chat.svg', alt: t('img_alts.handing_keys'), class: 'drop-image gtm-navbar-list-rental')
+            = t('labels.contact_concierge')
+      = link_to(destroy_user_session_path, method: :delete, class: 'is-secondary has-text-primary m-b-md is-marginless-mobile') do
+        = image_tag('cherapp-ownership-coborrowing-ico-signout.svg', alt: t('img_alts.exit_door'), class: 'drop-image')
+        = t('navbar.menu.sign_out')

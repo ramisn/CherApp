@@ -1,0 +1,32 @@
+- @users.each do |user|
+  .column.is-6-tablet.is-12-mobile.is-4-widescreen.card-container
+    .user-panel
+      .panel-top-section
+        = link_to user_path(user) do
+          = image_tag(user.profile_image, class: 'profile-image', alt: t('img_alts.user_profile'))
+          .panel-text-content
+            = user.full_name
+      .panel-bottom-section{ 'data-controller': 'friend-request' }
+        - if FriendRequest.users_are_friends?(current_user.id, user.id)
+          .option-button.is-size-7
+            = t('generic.friends')
+        - elsif FriendRequest.request_status(current_user.id, user.id) == 'pending'
+          .option-button.is-size-7
+            = t('generic.pending')
+        - else
+          - if current_user.profile_completed?
+            %button.option-button{ 'data-action': 'friend-request#sendRequest', 'data-target': 'friend-request.buttonAction','data-user-id': user.id }
+              = t("friend_request.add_user.#{user.role}")
+          - else
+            = link_to t("friend_request.add_user.#{user.role}"), friend_requests_path(friend_request: { requestee_id: user.id, status: 'pending' }), class: 'option-button', method: :post
+- unless @invitable_emails.blank?
+  .column.is-12.is-12-mobile
+    %h3.is-size-6= t('social_network.invitable_emails')
+  = form_with(url: invite_path, local: true) do |f|
+    - @invitable_emails.each do |email|
+      .column.is-12.is-12-mobile
+        = check_box_tag 'emails[]', email, false, class: 'is-checkradio', id: "invite_#{email}"
+        = label_tag 'emails', email, for: "invite_#{email}", class: 'has-text-black	'
+    .column.is-12.is-12-mobile
+      %button.button.is-primary{ type: 'submit' }
+        = t('generic.invite')

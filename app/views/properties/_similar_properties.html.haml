@@ -1,0 +1,22 @@
+- if @extra_data[:similar_properties].size > 1
+  .columns.similar-properties-container
+    .column.container-header
+      %hr.m-t-none
+      %h3.is-marginless= t('property_overview.similar_homes')
+    .column.is-paddingless.m-t-sm
+      .columns.container-body
+        - @extra_data[:similar_properties].each do |item|
+          - if item['listingId'] != @property['listingId']
+            .column.is-one-fifth-desktop.is-6-mobile.is-3-tablet.similar-property
+              = link_to image_tag(property_image(item),
+                                  'data-turbolinks': 'false',
+                                  alt: t('look_around.featured.alts.home'),
+                                  class: "property-image",
+                                  loading: "lazy",
+                                  "data-controller": "property-default-image",
+                                  "data-action": "error->property-default-image#setDefaultPropertyImage"),
+                        property_path(item['listingId'])
+              .property-content
+                %h4.is-marginless= number_to_currency(item.dig('listPrice'), precision: 0)
+                .is-caption
+                  = item.dig('address', 'full')

@@ -1,0 +1,47 @@
+
+# == Schema Information
+#
+# Table name: responses
+#
+#  id             :integer          not null, primary key
+#  user_id        :integer          not null
+#  live_factor_id :integer          not null
+#  response       :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+user_response_neat_person:
+  user: co_borrower_user
+  live_factor: neat_person
+  response: 0
+
+user_reflecting_on_things_response:
+  user: co_borrower_user
+  live_factor: reflecting_on_things
+  response: 1
+
+verified_user_neat_person_response:
+  user: verified_user
+  live_factor: neat_person
+  response: 0
+
+verified_user_reflecting_on_things_response:
+  user: verified_user
+  live_factor: reflecting_on_things
+  response: 1
+
+co_borrower_2_response:
+  user: co_borrower_user_2
+  live_factor: neat_person
+  response: 1
+
+test_blocked_neat_person:
+  user: co_borrower_user_3
+  live_factor: neat_person
+  response: 1
+
+test_blocked_reflecting_on_things_response:
+  user: co_borrower_user_3
+  live_factor: reflecting_on_things
+  response: 2

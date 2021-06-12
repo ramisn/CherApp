@@ -1,0 +1,39 @@
+.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent' }
+      .column.is-11
+        .box
+          .is-size-4.is-bold.m-b-md.has-text-centered= t('referral.cher_pays_your_mortgage')
+          .columns.is-marginless.is-centered
+            .column.is-flex.has-content-centered
+              = image_tag('cherapp-ownership-coborrowing-owner-feed.svg', class: 'image is-64x64 is-marginless', alt: t('img_alts.house_over_a_hang'))
+          %p.has-text-centered.is-marginless= t('referral.get_cash')
+          %p.has-text-centered.is-marginless+
+          %p.has-text-centered= t('referral.referred_friend_get_cash')
+          = form_for(:user, url: user_invitation_path) do |f|
+            .field
+              = f.label :email, t('labels.friends_email'), class: 'label'
+              = f.text_field :email, class: 'input', placeholder: t('placeholders.email'), type: 'email', minlength: 10, maxlength: 50, required: true
+              = f.text_field :referral_url, value: "#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}", class: 'copy-input', "data-target": "share-item.linkInput"\
+            .field
+              = f.submit t('buttons.send_invitation'), class: 'button is-primary is-fullwidth'
+          .has-text-centered= t('generic.or')
+          .share-links.has-content-centered.m-t-md
+            = image_tag('cherapp-ownership-coborrowing-ico-link.svg', alt: t('img_alts.copy_link'), class: 'icon', 'data-action': 'click->share-item#copyLink')
+            %a{ href: "https://twitter.com/share?url=#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}", target: '_blank', rel: 'noopener' }
+              = image_tag 'cherapp-ownership-coborrowing-ico-twitter-basic.svg', alt: t("img_alts.twitter_footer"), class: 'icon'
+            %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}", target: '_blank', rel: 'noopener' }
+              = image_tag 'cherapp-ownership-coborrowing-ico-facebook-basic.svg', alt: t("img_alts.facebook_account"), class: 'icon'
+            %a{href: "https://www.linkedin.com/shareArticle?url=#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}&source=LinkedIn", target: '_blank', rel: 'noopener' }
+              = image_tag 'cherapp-ownership-coborrowing-ico-linkedin-basic.svg', alt: t("img_alts.linkedin_footer"), class: 'icon'
+
+          %p.help.is-hidden.is-marginless{'data-target': 'share-item.linkMessage'}
+            = t('property_overview.link_copied')
+          %hr
+          %p.has-text-centered.is-size-7.m-t-md
+            = t('referral.cash_amount_received')
+            %span.is-bold= t('referral.limit_cash')
+          %button#dontShowInvitationPopUp.button.link.has-no-style.is-size-7
+            = t('generic.dont_show_again')
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

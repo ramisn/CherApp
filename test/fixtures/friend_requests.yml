@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: friend_requests
+#
+#  id           :integer          not null, primary key
+#  requester_id :integer          not null
+#  requestee_id :integer          not null
+#  status       :integer          default("0"), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+co_borrower_user_2_request:
+  requester: co_borrower_user
+  requestee: co_borrower_user_2
+  status: 0
+
+co_borrower_user_2_verified_request:
+  requester: co_borrower_user
+  requestee: verified_user
+  status: 0
+
+co_borrower_user_friend:
+  requester: co_borrower_user
+  requestee: user_without_responses
+  status: 1

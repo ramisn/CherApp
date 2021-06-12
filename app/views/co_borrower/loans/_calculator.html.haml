@@ -1,0 +1,8 @@
+#calculatorContainer.is-hidden
+  %h2.is-size-3.has-text-centered.has-text-blue= t('loans.lets_talk_numbers')
+  = render 'slider-cost'
+  .is-flex.has-space-between.m-t-md
+    %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#previousItem', 'data-previous-item': 'locationContainer', 'data-current-item': 'calculatorContainer' }
+      = t('generic.previous')
+    %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#nextItem', 'data-next-item': 'coownersContainer', 'data-current-item': 'calculatorContainer', 'data-target': 'loans.addressNextStepButton' }
+      = t('generic.next')

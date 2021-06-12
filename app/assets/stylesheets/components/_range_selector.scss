@@ -1,0 +1,222 @@
+.range-group.has-fa-icons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  width: 100%;
+
+  .icon-solid {
+    display: none;
+  }
+
+  .label {
+    align-items: center;
+    display: flex;
+
+    &:hover .icon-bordered {
+      display: none;
+    }
+
+    &:hover .icon-solid {
+      display: block;
+    }
+
+    &:hover ~ .label .icon-bordered {
+      display: none;
+    }
+
+    &:hover ~ .label .icon-solid {
+      display: block;
+    }
+  }
+
+  .input {
+    display: none;
+
+    &:checked ~ .label .icon-bordered {
+      display: none;
+    }
+
+    &:checked ~ .label .icon-solid {
+      display: block;
+    }
+  }
+}
+
+.custom-slider,
+.custom-slider-primary {
+  -webkit-appearance: none; // Hides the slider so that custom slider can be made
+  background: transparent; // Otherwise white in Chrome
+  border-bottom: 1px solid transparent;
+  width: 100%; // Specific width is required for Firefox
+
+  &:focus,
+  &:active {
+    border: 0;
+    box-shadow: none;
+    outline: none; // Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though.
+  }
+
+  &:not(.is-disabled) {
+    border: 0;
+
+    &:focus {
+      border: 0 none;
+    }
+  }
+
+  &.is-pastel-blue {
+    &::-webkit-slider-thumb {
+      border: 2px solid $pastel-blue;
+    }
+
+    // FF
+    &:-moz-range-progress {
+      background-color: $pastel-blue;
+      border: 2px solid $pastel-blue;
+      border-radius: 15px;
+    }
+
+    &::-moz-range-thumb {
+      border: 2px solid $pastel-blue;
+    }
+
+    // IE
+    &::-ms-fill-lower {
+      background-color: $pastel-blue;
+      border: 2px solid $pastel-blue;
+      border-radius: 15px;
+    }
+
+    &::-ms-thumb {
+      border: 2px solid $pastel-blue;
+    }
+  }
+}
+
+// Special styling for WebKit/Blink
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: $white;
+  border: 2px solid $essential-blue;
+  border-radius: 15px;
+  cursor: pointer;
+  height: 15px;
+  margin-top: -5px;
+  width: 15px;
+}
+
+// All the same stuff for Firefox, IE
+.custom-slider::-moz-range-thumb {
+  background: $white;
+  border: 2px solid $essential-blue;
+  border-radius: 15px;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+}
+
+.custom-slider::-ms-thumb {
+  background: $white;
+  border: 2px solid $essential-blue;
+  border-radius: 15px;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+}
+
+// Special styling for WebKit/Blink
+.custom-slider::-webkit-slider-runnable-track {
+  background: $helper-blue;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 5px;
+  width: 100%;
+
+  &:focus {
+    background: $helper-blue;
+  }
+}
+
+// All the same stuff for Firefox, IE
+.custom-slider::-moz-range-track {
+  background: $helper-blue;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 5px;
+  width: 100%;
+}
+
+.custom-slider::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 5px 0;
+  color: transparent;
+  cursor: pointer;
+  height: 5px;
+  width: 100%;
+}
+
+// Special styling for Firefox
+.custom-slider:-moz-range-progress {
+  background: $helper-blue;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 5px;
+  width: 100%;
+}
+
+// All the same stuff for IE
+.custom-slider::-ms-fill-lower {
+  background: $helper-blue;
+  border: 0;
+  border-radius: 5px;
+
+  &:focus {
+    background: $helper-blue;
+  }
+}
+
+.custom-slider::-ms-fill-upper {
+  background: $helper-blue;
+  border: 0;
+  border-radius: 5px;
+
+  &:focus {
+    background: $helper-blue;
+  }
+}
+
+// //FOR PRIMARY
+.custom-slider-primary {
+  -webkit-appearance: none;
+  background: $essential-blue;
+  border: 0;
+  border-radius: 15px;
+  height: 3px;
+  width: 100%;
+}
+
+.custom-slider-primary::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: $white;
+  border: 2px solid $essential-blue;
+  border-radius: 13px;
+  cursor: pointer;
+  height: 13px;
+  margin-top: -2.5px;
+  width: 13px;
+}
+
+.custom-slider-primary::-moz-range-thumb {
+  -webkit-appearance: none;
+  background: $white;
+  border: 2px solid $essential-blue;
+  border-radius: 13px;
+  cursor: pointer;
+  height: 13px;
+  margin-top: -2.5px;
+  width: 13px;
+}

@@ -1,0 +1,113 @@
+- title(t("meta.property_overview.title"))
+- meta_tag(:'og:url', request.original_url)
+- meta_tag(:'og:type', 'website')
+- meta_tag(:'og:image', @property.dig("photos").first)
+- meta_tag(:'og:title', t('property_overview.have_you_tried'))
+- meta_tag(:'og:description', t('property_overview.coowning_advantages_2'))
+- meta_tag(:'og:app_id', '516703312244212')
+- meta_tag(:'twitter:creator', '@Cher_App')
+- meta_tag(:'twitter:card', 'summary_large_image')
+- meta_tag(:'twitter:site', '@Cher_App')
+- meta_tag(:'twitter:title', t('property_overview.have_you_tried'))
+- meta_tag(:'twitter:description', t('property_overview.coowning_advantages_2'))
+- meta_tag(:'twitter:image', @property.dig("photos").first)
+- meta_tag(:'twitter:image:alt', t('img_alts.property'))
+
+.full-width-container.property-pdp{ 'data-controller': 'property', 'data-property-property': @property.to_json }
+  - if current_user&& !@properties.blank?
+    %div{ 'data-controller': 'modal' }
+      = render "flagged_properties/contact_profesional_modal", property_id: params[:id]
+
+  .container.m-t-lg.m-b-lg
+    %input{ type: 'hidden', value: @property.dig('geo', 'lat'), id: 'propertyLat' }
+    %input{ type: 'hidden', value: @property.dig('geo', 'lng'), id: 'propertyLng' }
+
+    .box
+      .is-hidden-tablet.m-b-md
+        .p-l-md.p-r-md.p-t-sm
+          = render 'flag_property_button'
+        = render 'shared/share_general_item_modal', path: request.original_url, type: 'property', property_address: property_full_address(@property["address"]), property_id: params[:id]
+        %button.button.is-fullwidth.has-margin-auto.m-t-md{ 'data-action': 'modal#toggleModal' }
+          = image_tag('cherapp-ownership-coborrowing-ico-share-blue.svg', alt: t('img_alts.share'), class: 'm-r-md')
+          %span.has-text-essential-blue= t('generic.share')
+      .columns.property-overview.is-marginless.is-aligned-start{'data-controller': 'carousel'}
+        .column.is-8-tablet.is-9-widescreen.is-full-mobile.is-marginless.carousel-container.p-t-none
+          .p-l-md.p-r-md
+            .carousel{'data-target': 'carousel.imageContainer'}
+              - @property.dig("photos").each_with_index do |image, index|
+                %div{ class: "item-#{index + 1}", 'data-target': 'carousel.images' }
+                  = image_tag sanitize_image(image), alt: t('look_around.featured.alts.home'), class:'property-image', loading: "lazy"
+          .columns.is-paddingless.is-marginless.is-mobile
+            - @property.dig("photos").first(4).each_with_index do |image, index|
+              .column{ class: "#{index < 2 ? "is-hidden-touch is-2" : "is-one-third-mobile"}" }
+                %figure.image.is-5by3
+                  = image_tag(sanitize_image(image), alt: t('look_around.featured.alts.home'), 'data-action': 'click->carousel#udapeCurrentSlide', 'slide-number': index+1)
+            .column.is-4.is-2-mobile
+              .streetview
+                = link_to "http://maps.google.com/maps?q=&layer=c&cbll=#{@property.dig('geo', 'lat')},#{@property.dig('geo', 'lng')}", rel: 'no_oppener', target: '_blank' do
+                  = image_tag("cherapp-ownership-coborrowing-streetview.svg", alt: t('property_overview.streetview'))
+                  %span= t('property_overview.streetview')
+          .is-full.is-marginless.is-paddingless.is-hidden-tablet
+            = render 'property_information'
+          .m-t-md.m-b-lg.m-l-md.m-r-md
+            %h2.has-text-left= t('property_overview.overview')
+            %p= @property['remarks']
+
+          .columns.is-marginless
+            .column.is-12-mobile
+              %h2.has-text-left.m-b-none= t('property_overview.explore_neighborhood')
+              #singlePropertyMapContainer.map
+          .panel.has-shadow.is-pointed.m-t-md.p-l-lg.p-r-lg
+            .m-b-md
+              %h4.is-bold.is-marginless.has-letter-spacing-normal
+                Add a Destination
+            %input.input-has-border.is-not-focusable.is-marginless.p-l-md{ placeholder: "Start typing an address or place", "data-target": "property.directionsInput" }
+            %p.help.is-marginless.is-hidden.has-text-primary{ 'data-target': 'property.estimationTime' }
+
+            .radio-button.is-secondary.m-t-sm
+              = radio_button_tag :travel_mode, 'DRIVING', true, id: 'travel_car', class: "is-checkradio is-small is-group"
+              = label_tag :travel_car do
+                %span.icon.is-size-6
+                  = fa_icon('car')
+              = radio_button_tag :travel_mode, 'BICYCLING', false, id: 'travel_bycicling', class: "is-checkradio is-small is-group"
+              = label_tag :travel_bycicling do
+                %span.icon.is-size-6
+                  = fa_icon('bicycle')
+              = radio_button_tag :travel_mode, 'TRANSIT', false,  id: 'travel_transit', class: "is-checkradio is-small is-group"
+              = label_tag :travel_transit do
+                %span.icon.is-size-6
+                  = fa_icon('bus')
+              = radio_button_tag :travel_mode, 'WALKING', false,  id: 'travel_walking', class: "is-checkradio is-small is-group"
+              = label_tag :travel_walking do
+                %span.icon.is-size-6
+                  = fa_icon('walking')
+            %button.button.is-secondary.m-t-md{ type: 'button', 'data-action': 'property#triggerSuggesterInput' }
+              Calculate Commute
+
+          .columns.is-marginless
+            = render 'places_nerby', places: @property_frankeinstein[:hospitals], title: t('property_overview.hospitals')
+            = render 'places_nerby', places: @property_frankeinstein[:schools], title: t('property_overview.schools')
+          %hr
+          - if @property_frankeinstein[:walkscore]
+            = render 'walk_score', score_data: @property_frankeinstein[:walkscore]
+          .is-paddingless.is-full.m-b-lg.is-hidden-touch
+            = render 'within_one_mile'
+
+          = render 'popular_nerby', restaurants: @property_frankeinstein[:restaurants]
+
+          .columns.is-marginless.is-paddingless
+            .column.is-full
+              %hr
+              %h3.has-text-left= t('property_overview.mortgage_calculator')
+              = render("mortgage_calculator", property_cost: @property["listPrice"])
+
+          = render 'sales_trend', sales_trend: @property_frankeinstein[:sales_trend]
+          = render 'similar_properties'
+          = render 'timeline', history: @property_frankeinstein[:history]
+          = render 'more_details', detail: @property, expanded_profile: @property_frankeinstein[:expanded_profile], preforeclosure_details: @property_frankeinstein[:preforeclosure_details]
+          = link_to 'Back to Search results', look_around_path, class: 'button is-primary is-outlined has-full-width m-t-md'
+
+        .column.is-4-tablet.is-3-widescreen.is-hidden-mobile.is-marginless.is-paddingless.is-sticky.to-top-7
+          = render 'property_information' 
+- unless user_signed_in?
+  = render 'join_modal'

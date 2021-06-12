@@ -1,0 +1,61 @@
+.is-size-4.is-bold
+  = t('sell.home_facts')
+.columns.is-marginless.is-multiline
+  .column
+    .columns.is-marginless.is-multiline.is-flex
+      .column.is-paddingless
+        .m-b-sm
+          .is-size-5.is-bold
+            = t('sell.home_type')
+          = @house.home_type
+      .column.is-paddingless
+        .m-b-sm
+          .is-size-5.is-bold
+            = t('sell.beds')
+          = @house.beds || t('generic.n_a')
+    .columns.is-marginless.is-multiline.is-flex
+      .column.is-paddingless.is-6-mobile.is-6.m-b-sm
+        .is-size-5.is-bold
+          = t('sell.full_baths')
+        = @house.full_baths
+      .column.is-paddingless.is-6-mobile.is-6.m-b-sm
+        .is-size-5.is-bold
+          = t('sell.half_baths')
+        = @house.half_baths || t('generic.n_a')
+      .column.is-paddingless.is-6-mobile.is-6.m-b-sm
+        .is-size-5.is-bold
+          = t('sell.interior_area')
+        = @house.interior_area
+      .column.is-paddingless.is-6-mobile.is-6.m-b-sm
+        .is-size-5.is-bold
+          = t('sell.lot_size')
+        = @house.lot_size
+  .column
+    .columns.is-marginless.is-flex
+      .column.is-paddingless
+        .m-b-sm
+          .is-size-5.is-bold
+            = t('sell.hoa_dues')
+          = @house.hoa_dues || t('generic.n_a')
+      .column.is-paddingless
+        .is-size-5.is-bold
+          = t('sell.year_built')
+        = @house.year_build || t('generic.n_a')
+    .columns.is-marginless.is-flex
+      .column.is-paddingless
+        .m-b-sm
+          .is-size-5.is-bold
+            = t('sell.basement_area')
+          = @house.basement_area || t('generic.n_a')
+      .column.is-paddingless
+        .m-b-sm
+          .is-size-5.is-bold
+            = t('sell.garage_area')
+          = @house.garage_area || t('generic.n_a')
+    .m-b-sm
+      .is-size-5.is-bold
+        = t('generic.description')
+      - if @house.description.blank?
+        = t('generic.n_a')
+      - else
+        = @house.description

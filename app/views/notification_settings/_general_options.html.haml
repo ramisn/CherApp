@@ -1,0 +1,116 @@
+
+%tr
+  %th
+    = t('notifications.subscription')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.marketing_information')
+  %th
+    = notification_check_box_input('subscription_email')
+    %label{ for: 'notification_settings_subscription_email' }
+  %th
+  %th
+%tr
+  %th
+    = t('notifications.flagged_home')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.someone_flagged_a_property')
+  %th
+    = notification_check_box_input('flagged_home_email')
+    %label{ for: 'notification_settings_flagged_home_email' }
+  %th
+    = notification_check_box_input('flagged_home_sms')
+    %label{ for: 'notification_settings_flagged_home_sms' }
+  %th
+    = notification_check_box_input('flagged_home_in_app')
+    %label{ for: 'notification_settings_flagged_home_in_app' }
+
+%tr
+  %th
+    = t('notifications.friend_request')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.you_received_a_friend_request')
+  %th
+    = notification_check_box_input('friend_request_email')
+    %label{ for: 'notification_settings_friend_request_email' }
+  %th
+    = notification_check_box_input('friend_request_sms')
+    %label{ for: 'notification_settings_friend_request_sms' }
+  %th
+    = notification_check_box_input('friend_request_in_app')
+    %label{ for: 'notification_settings_friend_request_in_app' }
+
+%tr
+  %th
+    = t('notifications.home_share')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.someone_shared_a_property')
+  %th
+    = notification_check_box_input('home_share_email')
+    %label{ for: 'notification_settings_home_share_email' }
+  %th
+    = notification_check_box_input('home_share_sms')
+    %label{ for: 'notification_settings_home_share_sms' }
+  %th
+    = notification_check_box_input('home_share_in_app')
+    %label{ for: 'notification_settings_home_share_in_app' }
+
+%tr
+  %th
+    = t('notifications.post_share')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.someone_shared_a_post')
+  %th
+    = notification_check_box_input('post_share_email')
+    %label{ for: 'notification_settings_post_share_email' }
+  %th
+    = notification_check_box_input('post_share_sms')
+    %label{ for: 'notification_settings_post_share_sms' }
+  %th
+    = notification_check_box_input('post_share_in_app')
+    %label{ for: 'notification_settings_post_share_in_app' }
+
+%tr
+  %th
+    = t('notifications.review_share')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.a_realtor_request')
+  %th
+    = notification_check_box_input('review_share_email')
+    %label{ for: 'notification_settings_review_share_email' }
+  %th
+    = notification_check_box_input('review_share_sms')
+    %label{ for: 'notification_settings_review_share_sms' }
+  %th
+    = notification_check_box_input('review_share_in_app')
+    %label{ for: 'notification_settings_review_share_in_app' }
+
+%tr
+  %th
+    = t('notifications.video_share')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.someone_shared_video')
+  %th
+    = notification_check_box_input('video_share_email')
+    %label{ for: 'notification_settings_video_share_email' }
+  %th
+    = notification_check_box_input('video_share_sms')
+    %label{ for: 'notification_settings_video_share_sms' }
+  %th
+    = notification_check_box_input('video_share_in_app')
+    %label{ for: 'notification_settings_video_share_in_app' }
+
+%tr
+  %th
+    = t('notifications.delete_account')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.deleting_account')
+  %th
+    = notification_check_box_input('delete_account_email')
+    %label{ for: 'notification_settings_delete_account_email' }
+  %th
+    = notification_check_box_input('delete_account_sms')
+    %label{ for: 'notification_settings_delete_account_sms' }
+  %th
+
+  %tr.is-hidden
+  %th.is-hidden
+    = t('notifications.share_house')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.share_house_modal')
+  %th.is-hidden
+  %th.is-hidden
+  %th.is-hidden
+    = notification_check_box_input('share_house_modal_in_app')
+    %label{ for: 'notification_settings_share_house_modal_in_app' }
+

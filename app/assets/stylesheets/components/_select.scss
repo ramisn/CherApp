@@ -1,0 +1,64 @@
+.select {
+  select {
+    background: none;
+    border: 1px solid $divider-blue;
+    border-radius: 3px;
+    box-shadow: none;
+    font-family: $family-secondary;
+    height: 38px;
+    margin-bottom: 10px;
+    transition: all 300ms ease-in;
+    width: 100%;
+
+    &:active {
+      border-color: $helper-blue;
+      box-shadow: 0 0 10px rgba($helper-blue, .5);
+    }
+
+    &:focus {
+      border-color: $helper-blue;
+      box-shadow: 0 0 10px rgba($helper-blue, .8);
+    }
+
+    &:hover {
+      border-color: $helper-blue;
+      border-width: 1px;
+    }
+
+    &.is-primary {
+      background-color: $white;
+      border: 1px solid $essential-blue;
+      font-size: 16px;
+
+      &.essential-blue {
+        color: $essential-blue;
+      }
+
+      &.bold {
+        font-weight: bold;
+      }
+
+      &::placeholder {
+        color: $lighter-blue;
+        font-style: italic;
+      }
+    }
+  }
+
+  &.is-disabled {
+    filter: grayscale(1);
+    opacity: .5;
+    pointer-events: none;
+    text-decoration: none;
+
+    &::after {
+      filter: grayscale(1);
+      opacity: .5;
+    }
+  }
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  right: .7em;
+  top: 40%;
+}

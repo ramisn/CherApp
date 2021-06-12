@@ -1,0 +1,7 @@
+%li
+  .item-image{ 'data-controller': 'users-profile-picture' }
+    = image_tag(network_list_item.profile_image, alt: t('img_alts.user_profile'), 'data-action': 'error->users-profile-picture#setDefaultPicture')
+  .item-info
+    .info
+      = network_list_item.full_name
+    = link_to( t("generic.view_profile"), user_path(network_list_item))

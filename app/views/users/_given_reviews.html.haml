@@ -1,0 +1,47 @@
+.m-b-lg
+  %p.is-italic.is-marginless
+    = l(review.created_at, format: :numerical)
+    %span.m-l-md= review.reviewer.full_name
+  %p.is-italic= review.title
+
+  .columns.is-marginless.is-flex
+    .column.is-7-mobile.is-6-tablet.is-5-desktop.is-bold.is-paddingless.m-b-xs
+      = t('review.local_knowledge')
+    .column.is-paddingless.is-6
+      - for i in (1..5) do
+        = fa_icon('star', type: i <= review.local_knowledge ? :solid : :regular)
+
+  .columns.is-marginless.is-flex
+    .column.is-7-mobile.is-6-tablet.is-5-desktop.is-bold.is-paddingless.m-b-xs
+      = t('review.process_expertise')
+    .column.is-paddingless.is-6
+      - for i in (1..5) do
+        = fa_icon('star', type: i <= review.process_expertise ? :solid : :regular)
+
+  .columns.is-marginless.is-flex
+    .column.is-7-mobile.is-6-tablet.is-5-desktop.is-bold.is-paddingless.m-b-xs
+      = t('review.responsiveness')
+    .column.is-paddingless.is-6
+      - for i in (1..5) do
+        = fa_icon('star', type: i <= review.responsiveness ? :solid : :regular)
+
+  .columns.is-marginless.is-flex
+    .column.is-7-mobile.is-6-tablet.is-5-desktop.is-bold.is-paddingless.m-b-xs
+      = t('review.negotiation_skills')
+    .column.is-paddingless.is-6
+      - for i in (1..5) do
+        = fa_icon('star', type: i <= review.negotiation_skills ? :solid : :regular)
+  %p.is-marginless= review.comment
+
+  - if review.reviewer_id == current_user.id
+    .columns.is-marginless.is-flex.is-justified-end{ 'data-controller': 'modal' }
+      %button.button.is-tertiary.is-small{ 'data-action': 'modal#toggleModal' }
+        = t('review.edit_review')
+      .modal{"data-target": "modal.modal"}
+        .modal-background
+        .modal-content.column.is-4-full-hd.is-5-widescreen.is-5-desktop
+          .box.rebrand{ 'data-target': 'modal.modalContent' }
+            .is-size-4.m-b-lg.is-bold
+              = t('review.edit_review')
+            = render 'users/review_form', review: review, path: customer_professional_review_path(review), method: :patch
+            %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

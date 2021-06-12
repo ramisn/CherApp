@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }
+  %body
+    %h2= "Activate Cher account"
+    %span= "Hello #{@user.first_name}. Please "
+    %span= link_to 'click here', edit_activation_url(@user, discard_token: @user.discard_token), method: :put
+    %span= ' to continue with your account activation process.'
+    %p= "If you didn't request it, please ignore this email"

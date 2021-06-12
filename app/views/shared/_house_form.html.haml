@@ -1,0 +1,33 @@
+= form_for(@house, url: submit_path, html: { 'data-controller': 'numerical-inputs', method: method }) do |f|
+  - if current_user.admin?
+    .m-b-md
+      .columns.is-marginless.is-mobile
+        .column.is-narrow.is-paddingless
+          .field.m-r-md
+            = f.label :status, t('generic.status'),  class: 'label'
+            .select
+              = f.select :status, House.statuses.keys.map{ |key| [ t("house.status.#{key}"), key ] }, { required: true }
+        .column.is-narrow.is-paddingless
+          .field
+            = f.label :mlsid, class: 'label'
+            .control
+              = f.text_field :mlsid, class: 'input', required: true
+
+  = render 'shared/house_general_information', f: f
+
+  %hr
+  = render 'shared/house_images', f: f
+
+  = render 'shared/house_facts', f: f
+  %hr
+
+  = render 'shared/extra_house_info', f: f
+  %hr
+
+  = render 'shared/house_contact', f: f
+
+  .columns.is-marginless
+    .column.is-3
+      = f.submit submit_text, class: 'button is-primary', type: 'submit'
+    .column.is-3
+      = f.submit t("generic.save_draft"), class: 'button is-white', type: 'submit'

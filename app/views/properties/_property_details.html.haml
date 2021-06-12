@@ -1,0 +1,81 @@
+- @property = local_assigns[:property] if local_assigns[:property]
+
+.columns.is-marginless.is-paddingless.is-multiline.is-mobile
+  .column.is-paddingless.is-full.mb-20
+    .columns.is-marginless.is-multiline.has-space-between.is-mobile
+      - if controller_name != "properties" && !local_assigns[:hide_price]
+        .column.is-paddingless.is-narrow.is-narrow-mobile.m-r-md
+          %p.is-caption.is-marginless
+            = t('generic.price')
+        %h3
+          = number_to_currency(@property["listPrice"], precision: 0) || 'N/A'
+      - if @property['selling_percentage']
+        .column.is-paddingless.is-narrow.is-narrow-mobile.is-flex.has-direction-column-reversed
+          %h4.is-marginless
+            = "#{@property['selling_percentage']}% home for sale"
+  .column.is-paddingless.is-one-third.mb-20
+    %p.is-caption.is-marginless
+      %span=property_beds(@property)
+    = image_tag("cherapp-ownership-coborrowing-icon-bedrooms.svg", alt: t('img_alts.bedroom'))
+
+  .column.is-paddingless.is-one-third.mb-20.has-text-centered
+    %p.is-caption.is-marginless
+      %span=property_baths(@property)
+    = image_tag("cherapp-ownership-coborrowing-icon-bathrooms.svg", alt: t('img_alts.bathroom'))
+
+  .column.is-paddingless.is-one-third.mb-20.has-text-right
+    %p.is-caption.is-marginless
+      %span=@property["property"]["area"] || 'N/A'
+      = t('property_overview.stats.area')
+    = image_tag("cherapp-ownership-coborrowing-icon-area.svg", alt: t('img_alts.area'))
+
+  .column.is-paddingless.is-one-third.mb-20
+    %p.is-caption.is-marginless
+      %span=@property["property"]["lotSize"] || 'N/A'
+      = t('property_overview.stats.area')
+    = image_tag("cherapp-ownership-coborrowing-ico-lot-size.svg", alt: t('img_alts.area'), class: 'image is-32x32')
+
+  .column.is-paddingless.is-one-third.mb-20.has-text-centered
+    %p.is-caption.is-marginless
+      %span=@property["property"]["garage"] || 'N/A'
+      = t('property_overview.stats.garage')
+    = image_tag("cherapp-ownership-coborrowing-icon-garage.svg", alt: t('img_alts.garage'))
+
+  .column.is-paddingless.is-one-third.mb-20.has-text-right
+    %p.is-caption.is-marginless
+      %span=@property["property"]["pool"] || 'N/A'
+      = t('property_overview.stats.pool')
+    = image_tag("cherapp-ownership-coborrowing-icon-pool.svg", alt: t('img_alts.pool'))
+
+.columns.is-marginless.is-paddingless.is-mobile.is-multiline
+  - unless @property["listDate"].blank?
+    .column.is-paddingless.is-one-third
+      %p.is-caption.is-marginless
+        = t('property_overview.days_on_market')
+      %h4
+        = distance_of_time_in_words(@property["listDate"], Time.now)
+
+  .column.is-paddingless.is-one-third.has-text-centered
+    %p.is-caption.is-marginless
+      = t('property_overview.stats.stories')
+    %h4
+      =@property["property"]["stories"] || 'N/A'
+
+  .column.is-paddingless.is-one-third.has-text-right
+    %p.is-caption.is-marginless
+      = t('property_overview.year_built')
+    %h4
+      = @property["property"]["yearBuilt"] || 'N/A'
+- if @property['owner_name']
+  .columns.is-marginless.is-paddingless.is-mobile.is-multiline
+    %h4.is-marginless
+      = t('property_overview.for_sale_by_owner')
+    .column.is-paddingless.is-12.is-12-mobile.m-t-xs
+      %span.is-bold= t('property_overview.contact_name')
+      = @property['owner_name']
+    .column.is-paddingless.is-12.is-12-mobile.m-t-xxs
+      %span.is-bold= t('property_overview.contact_email')
+      = @property['owner_email']
+    .column.is-paddingless.is-12.is-12-mobile.m-t-xxs
+      %span.is-bold= t('property_overview.contact_phone')
+      = @property['owner_phone']

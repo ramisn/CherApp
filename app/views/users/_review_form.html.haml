@@ -1,0 +1,56 @@
+= form_for(review, url: path, method: method) do |f|
+  = f.hidden_field :reviewed_id, value: @user.id
+  = f.label :title, t('labels.how_did_customer_help_you', name: @user.first_name), class: 'label'
+  = f.text_field :title, class: 'input', maxlength: 100, minlength: 10
+
+  .label.m-t-md
+    = t('labels.how_would_you_rate_customer', name: @user.first_name)
+  .columns.is-marginless.is-flex
+    .column.is-5-mobile.is-4-tablet.is-5-desktop.is-4-fullhd.is-paddingless
+      .label.is-marginless
+        = t('review.local_knowledge')
+    .column.is-4.is-paddingless.is-flex
+      .range-group.has-fa-icons
+        - (1..5).reverse_each do |index|
+          = f.radio_button :local_knowledge, index, id: "local_knowledge_#{index}_#{review.id}", class: 'input', checked: review.local_knowledge == index
+          %label.label.is-marginless{ for: "local_knowledge_#{index}_#{review.id}"}
+            = fa_icon('star', type: :regular, class: 'icon-bordered')
+            = fa_icon('star', type: :solid, class: 'icon-solid')
+  .columns.is-marginless.is-flex
+    .column.is-5-mobile.is-4-tablet.is-5-desktop.is-4-fullhd.is-paddingless.m-t-sm
+      .label.is-marginless
+        = t('review.process_expertise')
+    .column.is-4.is-paddingless.m-t-sm.is-flex
+      .range-group.has-fa-icons
+        - (1..5).reverse_each do |index|
+          = f.radio_button :process_expertise, index, id: "process_expertise_#{index}_#{review.id}", class: 'input', checked: review.process_expertise == index
+          %label.label.is-marginless{ for: "process_expertise_#{index}_#{review.id}"}
+            = fa_icon('star', type: :regular, class: 'icon-bordered')
+            = fa_icon('star', type: :solid, class: 'icon-solid')
+  .columns.is-marginless.is-flex
+    .column.is-5-mobile.is-4-tablet.is-5-desktop.is-4-fullhd.is-paddingless.m-t-sm
+      .label.is-marginless
+        = t('review.responsiveness')
+    .column.is-4.is-paddingless.m-t-sm.is-flex
+      .range-group.has-fa-icons
+        - (1..5).reverse_each do |index|
+          = f.radio_button :responsiveness, index, id: "responsiveness_#{index}_#{review.id}", class: 'input', checked: review.responsiveness == index
+          %label.label.is-marginless{ for: "responsiveness_#{index}_#{review.id}"}
+            = fa_icon('star', type: :regular, class: 'icon-bordered')
+            = fa_icon('star', type: :solid, class: 'icon-solid')
+  .columns.is-marginless.is-flex
+    .column.is-5-mobile.is-4-tablet.is-5-desktop.is-4-fullhd.is-paddingless.m-t-sm
+      .label.is-marginless
+        = t('review.negotiation_skills')
+    .column.is-4.is-paddingless.m-t-sm.is-flex
+      .range-group.has-fa-icons
+        - (1..5).reverse_each do |index|
+          = f.radio_button :negotiation_skills, index, id: "negotiation_skills_#{index}_#{review.id}", class: 'input', checked: review.negotiation_skills == index
+          %label.label.is-marginless{ for: "negotiation_skills_#{index}_#{review.id}"}
+            = fa_icon('star', type: :regular, class: 'icon-bordered')
+            = fa_icon('star', type: :solid, class: 'icon-solid')
+  .field.m-t-md
+    = f.label :comment, t('reviews.comment'), class: 'label'
+    .control
+      = f.text_area :comment, class: 'textarea has-fixed-size', placeholder: t('placeholders.what_would_you_tell_about_customer', name: @user.full_name ), maxlength: 100, minlength: 10
+  = f.button t('buttons.submit'), class: 'button is-primary m-t-md', type: :submit

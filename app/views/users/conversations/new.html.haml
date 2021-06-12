@@ -1,0 +1,11 @@
+.full-width-container.is-paddingless.is-gradient-blue{ 'data-controller': 'viewheight' }
+  .container
+    %input{ type: 'hidden', value: 'conversations page', id: 'currentPageInput' }
+    - title(t("meta.conversations.title"))
+    .columns.is-marginless
+      = render 'user_card'
+      .column.is-8-tablet.is-9-widescreen.is-12-mobile.is-paddingless-mobile
+        .box.is-borderless.is-paddingless.is-transparent-mobile
+          = react_component('chat/NewConversation', friends: @friends)
+  %div{ 'data-controller': 'modal' }
+    = render 'shared/social_network_add_friend_modal'

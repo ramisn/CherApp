@@ -1,0 +1,20 @@
+%table.module{:border => "0", :cellpadding => "0", :cellspacing => "0", "data-mc-module-version" => "2019-10-22", "data-muid" => "aac14e4e-b904-4164-8614-73540d210038", "data-type" => "text", :role => "module", :style => "table-layout: fixed;", :width => "100%"}
+  %tbody
+    %tr
+      %td{:bgcolor => "", :height => "100%", :role => "module-content", :style => "padding:18px 0px 18px 0px; line-height:22px; text-align:inherit;", :valign => "top"}
+        %div
+          %div{:style => "font-family: inherit; text-align: inherit"}
+            %span{:style => "font-size: 16px"}= "Hello Russell,"
+          %div{:style => "font-family: inherit; text-align: inherit"}
+            %br/
+          %div{:style => "font-family: inherit; text-align: inherit"}
+            %span{:style => "font-size: 16px"}= @user.full_name
+            %br/
+            %span{:style => "font-size: 16px"}= "Phone number: #{@phone_number}"
+            %br/
+            %br/
+            %span{:style => "font-size: 16px"}= "Contacted you about this:"
+            %br/
+            %span{:style => "font-size: 16px"}= @body
+          %div{:style => "font-family: inherit; text-align: inherit"}
+            %br/

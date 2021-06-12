@@ -1,0 +1,39 @@
+- title(t("meta.admin.rentals.title"))
+.container
+  .panel.m-t-lg.m-b-lg
+    %h2.has-text-centered
+      = t('rental.houses_for_rent')
+      .columns.is-marginless
+    .columns.is-marginless.is-justified-end
+      .buttons.is-justified-end.is-marginless
+        = link_to t("admin.professionals.all"), admin_rentals_path, class: 'button is-info is-small'
+        = link_to t("house.status.approved"), admin_rentals_path(filter: :approved), class: 'button is-warning is-small'
+        = link_to t("house.status.pending"), admin_rentals_path(filter: :pending), class: 'button is-success is-small'
+        = link_to t("house.status.rejected"), admin_rentals_path(filter: :rejected), class: 'button is-danger is-small'
+    .columns.is-marginless
+      .column
+        %table.table.has-full-width
+          %thead
+            %tr
+              %th
+                = t('generic.owner')
+              %th
+                = t('generic.address')
+              %th
+                = t('generic.status')
+              %th
+                = t('generic.actions')
+          %tbody
+            - @rentals.each do |rental|
+              %tr
+                %td
+                  = rental.owner.full_name
+                %td
+                  = rental.address
+                %td
+                  = t("rental.status.#{rental.status}")
+                %td
+                  = link_to edit_admin_rental_path(rental) do
+                    = fa_icon('edit')
+                  = link_to admin_rental_path(rental) do
+                    = fa_icon('eye')

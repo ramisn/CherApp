@@ -1,0 +1,7 @@
+.container
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-9-tablet.is-6-desktop.m-t-lg
+      %h1.is-size-2= "You were invited to a loan process"
+      %p.is-bold= "Hello #{@loan_participant.full_name.blank? ? @loan_participant.email : @loan_participant.full_name}!"
+      %p= "Your friend #{@inviter.full_name.blank? ? @inviter.email : @inviter.full_name} invited you to share the mortgage for a home at #{@loan_participant.loan.property_street}, #{@loan_participant.loan.property_city}"
+      = link_to 'Accept invitation', loan_participant_path(@loan_participant, token: @loan_participant.token, participant: { accepted_request: true} ), method: :put, class: 'button is-primary m-t-md'

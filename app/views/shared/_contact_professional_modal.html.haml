@@ -1,0 +1,42 @@
+.modal#professionalContactModal{ 'data-controller': 'home-selecter', "data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .column{ 'data-target': 'modal.modalContent' }
+      .box
+        %h3= t('property_overview.contact_professional')
+        %form.m-t-md
+          - if current_user.first_name.blank?
+            .field
+              %label.label{ for: 'userName'}
+                = t('generic.name')
+              .control
+                %input.input{ type: "text", name: "userName" , id: "userName" }
+          - else
+            %input{ type: 'hidden', name: "userName" , id: "userName", value: current_user.full_name }
+          .field
+            %label.label.is-marginless{ for: 'userEmail'}
+              = t('dashboard.select_home')
+            .control
+              .columns.is-marginless.is-multiline.is-flex
+                - @flagged_properties.each_with_index do |property, index|
+                  .column.is-6-mobile.is-4-tablet{ 'data-controller': 'home-selecter' }
+                    .panel.has-shadow.property-preview{ class: "#{index == 0 ? 'is-selected' : ''}",
+                                                        'data-target': 'home-selecter.container',
+                                                        'data-action': 'click->home-selecter#selectHome',
+                                                        'data-home-area': property.dig("address", "city"),
+                                                        'data-home-address': property_full_address(property["address"])}
+                      = image_tag(property_image(property),
+                                        alt: t('look_around.featured.alts.home'),
+                                        class: "property-image",
+                                        "data-controller": "property-default-image",
+                                        "data-action": "error->property-default-image#setDefaultPropertyImage")
+                      %h4.is-bold.is-marginless= number_to_currency(property.dig('listPrice'), precision: 0)
+                      .is-caption
+                        = property.dig('address', 'full')
+          .has-text-left
+            %p.is-size-7= t('property_overview.termns_and_conditions')
+            %input#propertyAddressInput.is-hidden{ value: property_full_address(@flagged_properties.first["address"])}
+            %input#propertyAreaInput.is-hidden{ value: @flagged_properties.first.dig("address", "city")}
+            %button.button.is-primary{ type: 'button', 'data-target': 'home-selecter.contactButton', 'data-action': 'home-selecter#requestProfessionalContant'}
+              = t('generic.contact')
+        %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

@@ -1,0 +1,77 @@
+.panel.has-shadow.m-t-md.m-b-md
+  = link_to t('leads.dashboard'), customer_dashboard_path, class: 'link is-bold p-l-md'
+  .columns.is-marginless.has-space-between
+    .column.is-narrow
+      %h4.is-size-5.is-bold
+        = t('dashboard.suggested_leads')
+    .column.is-narrow.is-paddingless-mobile.is-7
+      .columns.is-marginless
+        .column.is-narrow.is-paddingless.is-flex.has-items-centered
+          %span.m-r-sm= t('leads.filter_by_city')
+        .column.is-paddingless
+          = form_with(url: customer_leads_path, method: :get, local: true) do |f|
+            .field.has-submit-beside.is-primary
+              = f.text_field :city, class: 'input is-primary has-submit-beside', placeholder: t('leads.search_city'), value: params[:city]
+              .control
+                = f.button image_tag('cherapp-ownership-coborrowing-magnifier-white.svg'), type: 'submit', class: 'button'
+
+
+  %hr
+  - if @suggested_leads.empty?
+    .has-text-centered.m-t-lg
+      = image_tag "cherapp-ownership-coborrowing-empty-leads.svg", class: 'm-b-md'
+      %span.has-text-weight-bold.is-lighter-blue.is-block
+        = t("dashboard.no_suggested_leads_title")
+      %span.is-lighter-blue.is-block
+        = t("dashboard.no_suggested_leads_subtitle")
+  - else
+    .columns.is-marginless.is-hidden-mobile
+      .column.is-12-mobile.has-text-left-mobile.is-offset-8-mobile.has-text-centered.is-paddingless
+        .columns.is-marginless.is-justified-end
+          .column.is-4.has-text-left
+            %p.has-text-primary.is-size-6.m-l-sm= t("dashboard.credits_left", credits: current_user.message_credits)
+          .column.is-4-mobile.is-4-tablet.is-fully-centered
+            %span.is-bold= t("dashboard.lead_goal")
+          .column.is-4-tablet.is-paddingless.is-flex.has-items-centered.is-justified-end
+            = link_to customer_leads_path, class: 'is-flex has-items-centered is-bold is-size-5' do
+              = t('dashboard.refresh_list')
+              = image_tag "cherapp-ownership-coborrowing-refresh-ico.svg", class: 'm-l-sm m-r-sm'
+    .columns.is-marginless.is-flex.has-space-between.is-hidden-tablet
+      %span
+        %span.has-text-primary.is-bold.is-size-5
+          = current_user.message_credits
+        %span.m-l-sm
+          = t("dashboard.credits")
+      %span.is-bold.has-regular-padding= t("dashboard.lead_goal")
+
+    .has-regular-padding.is-paddingless-mobile
+      - @suggested_leads.each do |user|
+        .suggested-lead.columns.has-border-bottom.is-marginless.is-mobile.is-multiline{id: "suggestedLead#{user.id}", 'data-user-id': user.id}
+          .column.is-2-mobile.is-1-tablet.is-paddingless.is-flex.has-items-centered
+            %figure.image.is-48x48{ 'data-controller': 'users-profile-picture' }
+              = image_tag(user.profile_image, alt: t('img_alts.user_profile'), class: 'is-fully-centered is-rounded is-rounded', 'data-action': 'error->users-profile-picture#setDefaultPicture')
+          .column.is-3-tablet.p-l-md.is-6-mobile
+            .has-text-primary.has-text-weight-bold.is-flex.has-items-centered
+              %span= suggested_lead_name(user)
+              - if user.recently_active?
+                .logged-in-ico.m-l-sm
+              - if user.created_at > 1.week.ago
+                .is-flex.is-salmon.has-items-centered.m-l-sm
+                  = image_tag "cherapp-ownership-coborrowing-new-orange-user.svg", class: 'm-r-xs'
+                  = t("generic.new").capitalize
+            %span.is-size-7= user.city || t("landing_page.body.testimonial_santa_monica")
+          .column.is-4-mobile.is-4-tablet.is-fully-centered
+            .is-justified-center.is-flex{'data-tooltip': user_step_description(user)}
+              %span.is-size-6.has-text-blue-grey= user_step_name(user)
+              = image_tag "cherapp-ownership-coborrowing-info-ico.svg", class: 'm-l-xs info-ico'
+          .column.is-4-tablet.is-paddingless.is-flex.has-items-centered.is-justified-end
+            = link_to current_user.can_start_conversation? ? conversation_path(user) : '', class: "button is-primary has-text-gold m-t-md column is-12-mobile is-hidden-desktop is-flex #{ 'is-disabled' unless current_user.can_start_conversation? }" do
+              = t("buttons.send_message")
+              = image_tag "cherapp-ownership-coborrowing-ico-send-message.svg", class: 'm-l-md'
+            = link_to current_user.can_start_conversation? ? conversation_path(user) : '', class: "button is-primary has-text-gold is-pulled-right is-block-mobile is-hidden-touch #{ 'is-disabled' unless current_user.can_start_conversation? }" do
+              = t("buttons.send_message")
+              = image_tag "cherapp-ownership-coborrowing-ico-send-message.svg", class: 'm-l-md'
+
+        %hr
+  .is-bold.p-l-md.p-r-md.has-space-between
+    = paginate @suggested_leads

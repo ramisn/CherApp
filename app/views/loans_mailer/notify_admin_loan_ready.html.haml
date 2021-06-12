@@ -1,0 +1,5 @@
+%h2= "A loan request is ready to procesed"
+%p= "Overyone involved in #{@loan.user.full_name || @loan.user.email} loan request has accepted the process"
+%p= "You can access to cher.app as an admin and select #{@loan.user.full_name || @loan.user.email} loan requests"
+
+= link_to 'Go to request', edit_admin_co_borrower_loan_url(@loan.user, @loan)

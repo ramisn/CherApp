@@ -1,0 +1,21 @@
+.column.is-4-table.is-3-widescreen.is-hidden-mobile
+  .profile-section.box.is-borderless
+    = render 'shared/user_profile_picture'
+    - unless current_user.first_name.blank?
+      .profile-info.has-centered-text.m-b-md
+        .profile-name.m-t-md
+          - unless current_user.full_name.blank?
+            %h2.is-size-5= current_user.full_name
+    = react_component("UserGallery", user: @user_serialized, isEditable: true)
+    %hr
+    .is-flex.has-direction-column
+      = link_to notifications_path, class: 'link is-flex' do
+        = image_tag('cherapp-ownership-coborrowing-bell.svg', class: 'icon m-r-sm', alt: t('notifications.title'))
+        = t('notifications.title')
+      = link_to look_around_path, class: 'link is-flex m-t-md' do
+        = image_tag('cherapp-ownership-coborrowing-house.svg', class: 'icon m-r-sm', alt: t('generic.search_homes'))
+        = t('generic.search_homes')
+      = link_to conversations_path, class: "link is-flex has-items-centered m-t-md has-no-line #{user_is_in_conversation_list? ? 'is-disabled' : ''}" do
+        = image_tag('cherapp-ownership-coborrowing-ico-message-2.svg', class: 'icon m-r-sm', alt: t('generic.messages'))
+        = t('generic.messages')
+        %span.badge.m-l-sm.is-hidden#pendingMessagesIndicator

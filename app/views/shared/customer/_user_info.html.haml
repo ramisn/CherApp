@@ -1,0 +1,18 @@
+.panel.has-shadow.m-t-md{'data-controller': 'collapsible'}
+  %button.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+    %span= t('review.company_contact')
+  .is-clipped.has-full-height-tablet{'data-target': 'collapsible.container'}
+    = react_component("customer/ProfessionalInformation", { companyName: current_user.company_name,
+                                                address1: current_user.address1,
+                                                address2: current_user.address2,
+                                                city: current_user.city,
+                                                state: current_user.state,
+                                                zipcode: current_user.zipcode,
+                                                userId: current_user.id,
+                                                numberLicense: current_user.number_license,
+                                                states: @states,
+                                                description: current_user.description,
+                                                selectedAreas: current_user.areas,
+                                                availableAreas: Area.all.select(:name)},
+                                              { class: "has-full-height" })

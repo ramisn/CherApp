@@ -1,0 +1,105 @@
+.vouched-container {
+  border-radius: 10px;
+  height: 500px;
+  margin: 50px auto;
+  margin-top: 50px;
+  max-width: 1000px;
+
+  .progress-content {
+    > div {
+      display: flex;
+      font-size: 0;
+      justify-content: center;
+      margin-bottom: 15px;
+
+      &:last-of-type::after {
+        content: 'Please wait a moment...';
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .drop-zone {
+    .children {
+      > div {
+        --size: 100px;
+        background: image-url('cherapp-ownership-coborrowing-ico-id.svg');
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: var(--size);
+        padding-top: calc(var(--size) + 15px);
+
+        i {
+          display: none;
+        }
+      }
+    }
+
+    .icon-label {
+      font-size: 0;
+
+      &::after {
+        content: 'Click here to upload an identification';
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .vouched {
+    background: none;
+  }
+
+  .identity-display {
+    display: none;
+  }
+
+  .retry {
+    .image {
+      margin: 0;
+      width: auto;
+    }
+  }
+
+  .switch {
+    border-color: $light-coral;
+    border-width: 3px;
+
+    input {
+      + label {
+        background: $white;
+        overflow: hidden;
+        padding: 5px 15px;
+
+        &::before {
+          content: 'Upload';
+          display: block;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        &:last-of-type::before {
+          color: $light-coral;
+          content: 'Take Photo';
+        }
+
+        i {
+          display: none;
+        }
+      }
+
+      &:checked {
+        + label {
+          background-color: $light-coral;
+
+          &::before {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

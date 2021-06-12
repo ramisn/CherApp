@@ -1,0 +1,46 @@
+.modal{ 'data-target': 'modal.modal' }
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless
+      .column.is-11.box{ 'data-target': 'modal.modalContent' }
+        %h3.is-size-3.has-text-centered
+          = t("labels.select_your_role")
+          = form_for :user, url: new_user_registration_path(current_user, format: :html), method: :get, html: { 'data-controller': 'user-profile'} do |f|
+            .columns.has-regular-margin-vertical.is-multiline
+              .column.is-12-widescreen.is-12-tablet.is-12-mobile
+                .control
+                  = f.label :role, t('labels.please_select_type_of_account'), class: 'label'
+                  .field
+                    = f.radio_button :role,
+                                          :co_borrower,
+                                          class: 'is-checkradio',
+                                          required: true,
+                                          'data-action': 'user-profile#toggleProfessionalRequirements'
+                    %label{ for: 'user_role_co_borrower' }
+                      = t("roles.multiple_regular_user")
+                  .field
+                    = f.radio_button :role,
+                                          :agent,
+                                          class: 'is-checkradio',
+                                          'data-action': 'user-profile#toggleProfessionalRequirements',
+                                          required: true,
+                                          'data-target': 'user-profile.agentRadio'
+                    %label{ for: 'user_role_agent' }
+                      = t("roles.real_estate_professional")
+                .control.m-t-sm.is-hidden{ 'data-target': 'user-profile.professionalOptionContainer' }
+                  .field
+                    = f.label :professional_role, t('generic.please_be_more_specific'), class: 'label'
+                    .select
+                      = f.select :professional_role, User.professional_roles.keys.map{ |role| [t("professional_roles.#{role}"), role] },
+                              { selected: '', prompt: 'Select a role', disabled: '' },
+                              { 'data-target': 'user-profile.professionalRoleInput',
+                                'data-action': 'user-profile#requireEstateAgentAgreement',
+                              }
+                  .field.m-t-md.is-hidden{ 'data-target': 'user-profile.professionalEstateAgentContainer' }
+                    = f.check_box :accept_referral_agreement, class: 'is-checkradio', required: false, 'data-target': 'user-profile.professionalAgreementInput'
+                    = f.label :accept_referral_agreement, class: 'label has-text-essential-blue' do
+                      = link_to t('labels.accept_referral_agreement'), "#{root_url}/docs/Referral_Agreement.pdf", { target: '_blank', class: 'has-text-essential-blue'}
+                .control
+                  .field.m-t-md
+                    = f.button t("buttons.continue"), type: "submit",  class: "button is-secondary is-fullwidth", 'data-target': 'user-profile.submitButton'
+        %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

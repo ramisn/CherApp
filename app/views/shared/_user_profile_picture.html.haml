@@ -1,0 +1,4 @@
+.profile-avatar#profileAvatarImage{ "data-controller": "profile-picture"}
+  .image{ class: "#{"is-agent" if current_user.agent? } #{ "premium" if current_user.part_of_clique? }", 'data-target': 'profile-picture.imageContainer' }
+    = image_tag(current_user.profile_image, class: "user-image", 'data-target': 'profile-picture.image', "data-action": "click->profile-picture#triggerInput", alt: t('img_alts.user_profile'))
+    %input.is-hidden{ type: 'file', accept: 'image/jpeg, image/jpg, image/png', "data-target": "profile-picture.uploaderButton", "data-action": "profile-picture#updateImage", 'data-user-id': current_user.id}

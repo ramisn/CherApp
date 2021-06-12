@@ -1,0 +1,11 @@
+%section.section.custom-background-blur-image
+  .columns.is-marginless.is-fully-centered.is-multiline
+    .column.is-12.is-paddingless
+      %h3.has-text-primary.has-centered-text= t("footer.news_update")
+    .column.is-12-mobile.is-8-tablet.is-5-desktop.is-5-widescreen.is-4-fullhd.is-paddingless
+      = form_for(:prospect, url: prospect_path) do |f|
+        .field.has-addons.m-t-sm
+          %p.control.is-expanded
+            = f.email_field :email, autocomplete: "off", placeholder: 'Email', type: 'email', class: 'input is-primary has-border-blue'
+          %p.control
+            = f.submit 'Stay updated', class: "button is-full-blue"

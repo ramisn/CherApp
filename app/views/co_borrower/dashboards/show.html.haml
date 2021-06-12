@@ -1,0 +1,20 @@
+%input{ type: 'hidden', value: 'co-borrower dashboard page', id: 'currentPageInput' }
+.is-light-purple
+  - title(t("meta.dashboard.title"))
+  #dashboard.container
+    .columns.is-marginless.is-flex.has-direction-column
+      = render "steps"
+    .columns.is-marginless.is-flex.has-direction-column.p-t-md
+      .columns.is-marginless
+        .column.is-marginless-desktop.is-3.is-paddingless-mobile.m-b-md
+          = render "user_profile"
+        .column.is-marginless-tablet.is-9.is-12-mobile.is-paddingless-mobile.m-t-md
+          = render 'properties_map_section'
+    .has-regular-padding.is-paddingless-mobile
+      .panel.is-paddingless-mobile{'data-controller': 'collapsible'}
+        %button.has-no-style.is-link.has-full-width.m-t-md.m-b-sm.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold.has-regular-padding.has-text-black{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+          = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+          %span= t("newsfeed.title")
+
+        .is-clipped.is-paddingless-mobile.has-full-height-tablet{'data-target': 'collapsible.container'}
+          = render 'shared/newsfeed', publication: @publication, posting_in_friend_profile: false, collapses: true

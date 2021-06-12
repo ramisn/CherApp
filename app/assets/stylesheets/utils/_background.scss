@@ -1,0 +1,41 @@
+.is-divider-blue {
+  background-color: $divider-blue;
+}
+
+.is-helper-blue {
+  background-color: $helper-blue;
+}
+
+.is-essential-blue {
+  background-color: $essential-blue;
+}
+
+.is-white {
+  background-color: $white;
+}
+
+.is-gradient-blue {
+  background: linear-gradient(180deg, #fff 0%, #eaf1f9 51.39%);
+}
+
+.is-light-purple {
+  background-color: $purple-background;
+}
+
+.is-transparent-mobile {
+  @media (max-width: 769px){
+    background-color: transparent;
+  }
+}
+
+.is-main-body {
+  background-color: $main-body;
+}
+
+.is-grey {
+  background-color: $background-grey;
+}
+
+.is-coborrower-blue {
+  background-color: $coborrower-blue;
+}

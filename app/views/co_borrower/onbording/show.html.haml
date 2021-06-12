@@ -1,0 +1,26 @@
+%input{ type: 'hidden', value: 'onbording page', id: 'currentPageInput' }
+.columns.is-marginless.p-t-lg.p-b-xl.onbording.is-paddingless-mobile.is-light-purple
+  .column.is-12-mobile.is-offset-1-desktop.is-10-desktop.panel.has-shadow.has-text-centered.p-l-xxl.p-r-xxl.is-paddingless-mobile{'data-controller': 'onbording'}
+    = hidden_field_tag :user_id, current_user.slug, 'data-target': 'onbording.userId'
+    .is-size-5.is-bold.p-t-md= t("onbording.welcome")
+    %h4.is-size-4.is-bold.is-size-4-mobile.m-b-md.is-family-montserrat= t("onbording.where_to_buy")
+    / %hr
+    .m-t-lg.is-size-6= t("onbording.looking_to_buy")
+    .m-t-md.m-b-md.is-size-5.is-bold.is-capitalized{'data-target': 'onbording.geoLocationCity'}= current_user.city || "Santa Monica, CA."
+    .m-t-md.is-size-6= "You can always change this in settings"
+
+    %p.help.is-danger{'data-target': 'onbording.errorMessage'}
+    .is-relative
+      .is-absolute.search.has-full-width.is-flex
+        .field.has-addons.has-regular-padding.is-marginless-mobile.column.is-12.is-8-desktop.is-offset-2-desktop
+          .control.has-full-width
+            %input.is-primary.p-l-md{placeholder:t("onbording.search_location"), 'data-controller': 'google-auto-complete-input', 'data-target': 'google-auto-complete-input.searchInput onbording.searchInput', type: 'text', 'data-action': 'input->onbording#setCity'}
+          .control
+            %button.button.is-primary.is-small-mobile{'data-action': 'onbording#saveUserCity mixpanel#trackEvent', 'data-target': 'onbording.changeLocationButton', 'data-event-name': 'Changed location'}
+              = t("onbording.change_location")
+      #locationMapContainer.map.m-b-lg.is-relative
+
+    .columns.is-marginless
+      .column.is-half.is-offset-3.m-b-lg
+        %button.button.is-primary.is-fullwidth{'data-action': 'onbording#saveUserCity mixpanel#trackEvent', 'data-target': 'onbording.startButton', 'data-event-name': 'Clicked start'}
+          = t("onbording.start")

@@ -1,0 +1,14 @@
+.container.has-regular-padding-vertical
+  .columns.is-centered.is-marginless
+    .column.is-10
+      = form_for(topic, url: path) do |f|
+        .field
+          .control
+            = f.label :name, t("labels.topic_name"), class: "label"
+            = f.text_field :name, placeholder: t("placeholders.define_topic_name"), class: "input"
+        .field
+          .control
+            = f.label :rich_body, t("labels.topic_description"), class: "label"
+            = f.rich_text_area :rich_body, placeholder: t("placeholders.topic_description")
+        = f.submit action, class: "button is-primary"
+      = link_to t("generiv.return"), admin_topics_path

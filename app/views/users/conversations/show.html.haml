@@ -1,0 +1,11 @@
+%input{ type: 'hidden', value: 'conversations page', id: 'currentPageInput' }
+- title(t("meta.conversations.title"))
+.is-gradient-blue{ 'data-controller': 'viewheight' }
+  .container
+    .columns.is-marginless
+      = render 'user_card'
+      .column.is-8-tablet.is-9-widescreen.is-12-mobile.is-paddingless-mobile
+        .box.is-borderless.is-paddingless
+          = hidden_field_tag :sms_message_link, conversation_url(current_user)
+          = hidden_field_tag :sms_message_user_name, current_user.full_name
+          = react_component('chat/ChannelConversation', channelSid: @conversation_id, userEmail: current_user.email, userProfilePicture: url_for(current_user.profile_image))

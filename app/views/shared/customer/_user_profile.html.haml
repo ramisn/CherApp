@@ -1,0 +1,36 @@
+.panel.has-shadow.m-t-md{'data-controller': 'collapsible user-name-hidder'}
+  %button.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold{ 'data-action': 'collapsible#toogleCollapsible user-name-hidder#toggleUserName', 'type': 'button' }
+    %span.is-hidden-tablet.is-hidden{ 'data-target': 'user-name-hidder.userName' }
+      = current_user.full_name.blank? ? current_user.email : current_user.full_name
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right is-down', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+  .profile-section.is-clipped.has-full-height-tablet.is-active{'data-target': 'collapsible.container'}
+    = link_to edit_profile_path(current_user), class: 'is-pulled-right has-text-primary is-hidden-mobile' do
+      = image_tag('cherapp-ownership-coborrowing-edit.svg', alt: 'Edit')
+    .is-flex.has-items-centered.has-direction-column
+      = render 'shared/user_profile_picture'
+      .profile-info
+        = link_to edit_profile_path(current_user), class: 'is-pulled-right has-text-primary is-hidden-tablet' do
+          = image_tag('cherapp-ownership-coborrowing-edit.svg', alt: 'Edit')
+        .profile-name= current_user.full_name
+      .is-paddingless.is-size-6.is-italic.has-text-centered-tablet.has-text-left-mobile.has-full-width
+        - if current_user.part_of_clique?
+          %span
+            = image_tag "cherapp-ownership-coborrowing-cher-clique-user.svg", class: "m-r-xs is-hidden-mobile"
+            %span= t("dashboard.cher_agent")
+        - elsif current_user.professional_role
+          = t("professional_roles.#{current_user.professional_role}")
+      .has-full-width.m-t-sm
+        = react_component("UserGallery", user: @user_serialized, isEditable: true)
+      %hr
+      = link_to look_around_path, class: 'columns is-marginless has-border-bottom has-full-width p-l-md has-text-left is-size-6' do
+        = image_tag "cherapp-ownership-coborrowing-ico-home-agent.svg", class: 'm-r-sm'
+        = t("dashboard.quick_links.search_homes")
+      = link_to conversations_path, class: 'columns is-marginless p-t-md p-b-md has-border-bottom has-full-width p-l-md has-text-left is-size-6' do
+        = image_tag "cherapp-ownership-coborrowing-chatting-agent.svg", class: 'm-r-sm'
+        = t("dashboard.quick_links.messages")
+      = link_to notifications_path, class: 'columns is-marginless p-b-md has-border-bottom has-full-width p-l-md has-text-left is-size-6' do
+        = image_tag "cherapp-ownership-coborrowing-outline-bell.svg", class: 'm-r-sm'
+        = t("dashboard.quick_links.notifications")
+      = link_to edit_customer_billing_info_path(current_user), class: 'columns is-marginless has-border-bottom has-full-width p-l-md has-text-left is-size-6' do
+        = image_tag "cherapp-ownership-coborrowing-clique-settings.svg", class: 'm-r-sm'
+        = t("dashboard.clique_settings")

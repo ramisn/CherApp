@@ -1,0 +1,77 @@
+#shareGeneralItemModal.modal{"data-target": "modal.modal property-share.modal"}
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent' }
+      .column.is-11
+        .box.has-regular-padding{'data-controller': 'share-item'}
+          .is-size-4.is-bold.m-b-md.has-text-centered= t("generic.share_#{type}")
+          = form_for :email, url: email_path, remote: true, html: { 'data-action': "submit->share-item##{local_assigns[:fullNotification] ? 'handleSubmitFull' : 'handleSubmit' }", autocomplete: 'off' } do |f|
+            - if user_signed_in?
+              = f.hidden_field :user_email, id: 'userContactInput', 'data-target': 'share-item.userContactInput', value: current_user.email
+            - else
+              .field.is-marginless
+                .label= "From"
+                .control
+                  = react_component('UserSuggester', scopeName: "user")
+
+            - if !user_signed_in?
+              .field.is-marginless{'data-target': 'share-item.userFullNameInputs', class: user_signed_in? ? '' : 'is-hidden'}
+                .label.has-text-centered.is-italic.has-text-weight-light
+                  and
+                .field-body
+                  .field
+                    .control
+                      = f.text_field :user_first_name, class: 'input is-marginless is-primary', placeholder: 'Your First Name', 'data-target': 'share-item.userFirstNameInput', minlength: 2, id: 'userFirstNameInput', required: true
+                  .field
+                    .control
+                      = f.text_field :user_last_name, class: 'input is-marginless is-primary', placeholder: 'Your Last Name', 'data-target': 'share-item.userLastNameInput', minlength: 2, id: 'userLastNameInput', required: true
+            - elsif current_user.full_name.blank?
+              .field-body
+                .field
+                  .control
+                    = f.text_field :user_first_name, class: 'input is-marginless', placeholder: 'Your First Name', 'data-target': 'share-item.userFirstNameInput', minlength: 2, id: 'userFirstNameInput', required: true
+                .field
+                  .control
+                    = f.text_field :user_last_name, class: 'input is-marginless', placeholder: 'Your Last Name', 'data-target': 'share-item.userLastNameInput', minlength: 2, id: 'userLastNameInput', required: true
+            - else
+              = f.hidden_field :user_first_name, id: 'userFirstName', 'data-target': 'share-item.userFirstNameInput', value: current_user.first_name
+              = f.hidden_field :user_last_name, id: 'userLastName', 'data-target': 'share-item.userLastNameInput', value: current_user.last_name
+
+
+            .field.m-t-md
+              .label= "To"
+              .control
+                = react_component('UserSuggester', scopeName: "recipient")
+            .field.is-hidden{'data-target': 'share-item.recipientFullNameInputs'}
+              .label.has-text-centered.is-italic.has-text-weight-light
+                and
+              .field-body
+                .field
+                  .control
+                    = f.text_field :recipient_first_name, class: 'input is-marginless is-primary', placeholder: "Recipient's First Name", 'data-target': 'share-item.recipientFirstNameInput', minlength: 2, id: 'recipientFirstNameInput', required: true
+                .field
+                  .control
+                    = f.text_field :recipient_last_name, class: 'input is-marginless is-primary', placeholder: "Recipient's Last Name", 'data-target': 'share-item.recipientLastNameInput', minlength: 2, id: 'recipientLastNameInput', required: true
+            %p.help.is-danger.is-hidden{'data-target': 'share-item.errorMessage'}
+            %p.help.is-success.is-hidden{'data-target': 'share-item.successMessage'}
+            .field.m-t-md
+              .control
+                = f.text_area :body, class: 'textarea has-fixed-size input is-primary', placeholder: "Message", required: true, 'data-target': 'share-item.messageInput', maxlemgth: 140
+            = f.text_field :link, value: path, class: 'copy-input', "data-target": "share-item.linkInput property-share.propertyLink"
+            = f.hidden_field :type, value: type, 'data-target': 'share-item.typeInput'
+            - if type == 'property'
+              = f.hidden_field :property_address, value: property_address, 'data-target': 'share-item.addressInput property-share.propertyAddress'
+              = f.hidden_field :property_id, value: params[:id], 'data-target': 'share-item.propertyId'
+            = f.submit 'Send', class: 'button is-primary is-fullwidth'
+          %hr
+          .share-links
+            = image_tag('cherapp-ownership-coborrowing-ico-link.svg', alt: t('img_alts.copy_link'), class: 'icon', 'data-action': 'click->share-item#copyLink')
+            %a{ href: "https://twitter.com/share?url=#{path}", target: '_blank', rel: 'noopener', 'data-target': 'property-share.twitterLink' }
+              = image_tag('cherapp-ownership-coborrowing-ico-twitter-basic.svg', alt: t("img_alts.twitter_footer"), class: 'icon')
+            %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{path}", target: '_blank', rel: 'noopener', 'data-target': 'property-share.facebookLink' }
+              = image_tag('cherapp-ownership-coborrowing-ico-facebook-basic.svg', alt: t("img_alts.facebook_account"), class: 'icon')
+            %a{href: "https://www.linkedin.com/shareArticle?url=#{path}&source=LinkedIn", target: '_blank', rel: 'noopener', 'data-target': 'property-share.linkedInLink' }
+              = image_tag('cherapp-ownership-coborrowing-ico-linkedin-basic.svg', alt: t("img_alts.linkedin_footer"), class: 'icon')
+          %p.help.is-hidden.is-marginless{'data-target': 'share-item.linkMessage'}
+            = t('property_overview.link_copied')
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

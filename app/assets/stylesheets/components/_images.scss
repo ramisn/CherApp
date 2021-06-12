@@ -1,0 +1,46 @@
+.rounded-image-container {
+  height: 50px;
+  width: 50px;
+
+  img {
+    border-radius: 100%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.image {
+  img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+
+    &.is-rounded {
+      border-radius: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.has-shadow {
+      box-shadow: $darker-shadow;
+    }
+  }
+
+  .is-8x8 {
+    height: 8px;
+    width: 8px;
+  }
+
+  .is-18x18 {
+    height: 18px;
+    width: 18px;
+  }
+
+  @media (min-width: 769px) {
+    .is-3rem-tablet {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+}

@@ -1,0 +1,4 @@
+
+join_cher:
+  key: user.create
+  owner: co_borrower_user (User)

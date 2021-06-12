@@ -1,0 +1,167 @@
+.hover-container.has-text-left.is-aligned-left-desktop
+  .is-hidden-tablet.m-b-md.is-a-checkbox-group
+    = t('look_around.search.beds')
+    .column.is-paddingless.is-a-checkbox-group.is-flex.m-b-md
+      = f.radio_button :minbeds, 1, id: 'search_minbeds_any', class: "is-checkradio is-small is-group"
+      = f.label :minbeds_any, t('look_around.search.any'),  class: "label"
+      - (1..5).each do |index|
+        = f.radio_button :minbeds, index, id: "search_minbeds_#{index}", class: "is-checkradio is-small is-group"
+        = f.label :"minbeds_#{index}", "#{index}+", class: "label"
+    = t('look_around.search.bathrooms')
+    .column.is-paddingless.m-t-xs.is-a-checkbox-group.is-flex
+      = f.radio_button :minbaths, 1, id: 'search_minbaths_any', class: "is-checkradio is-small is-group"
+      = f.label :minbaths_any, t('look_around.search.any'),  class: "label"
+      = f.radio_button :minbaths, 1, id: 'search_minbaths_1', class: "is-checkradio is-small is-group"
+      = f.label :minbaths_1, '1+', class: "label"
+      = f.radio_button :minbaths, 1.5, id: 'search_minbaths_2', class: "is-checkradio is-small is-group"
+      = f.label :minbaths_2, '1.5+', class: "label"
+      = f.radio_button :minbaths, 2, id: 'search_minbaths_3', class: "is-checkradio is-small is-group"
+      = f.label :minbaths_3, '2+', class: "label"
+      = f.radio_button :minbaths, 3, id: 'search_minbaths_4', class: "is-checkradio is-small is-group"
+      = f.label :minbaths_4, '3+', class: "label"
+      = f.radio_button :minbaths, 4, id: 'search_minbaths_5', class: "is-checkradio is-small is-group"
+      = f.label :minbaths_5, '4+', class: "label"
+
+  - unless user_signed_in? && current_user.agent?
+    .columns.is-marginless.is-flex.is-multiline
+      .column.is-paddingless.is-12{ 'data-controller': 'date-picker' }
+        .m-b-sm
+          = f.label :startdate, t('look_around.search.open_house_date'), class: 'label'
+          = f.date_field :startdate, type: 'date', 'data-target': 'date-picker.picker'
+      .column.is-paddingless.is-12.is-12-mobile
+        .m-b-sm
+          = f.label :start_hour_for_open_house, t('sell.start_time'), class: 'label'
+          .is-flex.is-wrapped
+            .select.m-r-sm
+              = am_pm_select_hour(nil, { prefix: 'search', field_name: "start_hour", prompt: true })
+            .select
+              = select_minute(nil, { prefix: 'search', field_name: "start_minute", prompt: true, minute_step: 10 })
+
+    = t('look_around.search.status')
+    .columns.is-marginless.has-direction-column.m-t-xs
+    - if user_signed_in? && current_user.agent?
+      = t('look_around.search.status')
+      .columns.is-marginless.has-direction-column.m-t-xs
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_active_status', multiple: true, checked: true }, 'Active', nil
+          = f.label :active_status, "Active"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_active_under_contract_status', multiple: true, checked: true }, 'ActiveUnderContract', nil
+          = f.label :active_under_contract_status, "Active under contract"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_closed_status', multiple: true, checked: false }, 'Closed', nil
+          = f.label :closed_status, "Closed"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_delete_status', multiple: true, checked: false }, 'Delete', nil
+          = f.label :delete_status, "Delete"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_expired_status', multiple: true, checked: false }, 'Expired', nil
+          = f.label :expired_status, "Expired"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_hold_status', multiple: true, checked: true }, 'Hold', nil
+          = f.label :hold_status, "Hold"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_incomplete_status', multiple: true, checked: true }, 'Incomplete', nil
+          = f.label :incomplete_status, "Incomplete"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_pending_status', multiple: true, checked: true }, 'Pending', nil
+          = f.label :pending_status, "Pending"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_withdraw_status', multiple: true, checked: true }, 'Withdraw', nil
+          = f.label :withdraw_status, "Withdraw"
+    - else
+      - if user_signed_in?
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_flagged_status', multiple: true }, 'Flagged', nil
+          = f.label :flagged_status, "Flagged"
+      .column.is-paddingless.m-t-xs
+        = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_active_status', multiple: true, checked: true }, 'Active', nil
+        = f.label :active_status, "For Sale"
+      .column.is-paddingless.m-t-xs
+        = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_pending_status', multiple: true, checked: true }, 'Pending', nil
+        = f.label :pending_status, "Pending"
+      .column.is-paddingless.m-t-xs
+        = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_not_active_status', multiple: true, 'data-action': 'properties-search#updatePropertiesStatus' }, 'ActiveUnderContract', nil
+        = f.label :not_active_status, "Not Active"
+
+      - unless user_signed_in? && current_user.agent?
+        .column.is-paddingless.m-t-xs
+          = f.check_box :type, { class: 'is-checkradio is-small', id: 'search_rental_status', multiple: true, 'data-action': 'properties-search#updateHomeTypes' }, 'rental', nil
+          = f.label :rental_status, t('look_around.search.rental')
+      .column.is-paddingless.m-t-xs
+        = f.check_box :type, { class: 'is-checkradio is-small', id: 'search_fractional_sale_status', multiple: true, 'data-action': 'properties-search#verifyMultifamilyHomeType' }, 'fractional', nil
+        = f.label :fractional_sale_status, 'Fractional Sale'
+      .is-hidden
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_closed_status', multiple: true, 'data-target': 'properties-search.unactivePropertyStatusInput' }, 'Closed', nil
+          = f.label :closed_status, "Closed"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_delete_status', multiple: true, 'data-target': 'properties-search.unactivePropertyStatusInput' }, 'Delete', nil
+          = f.label :delete_status, "Delete"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_expired_status', multiple: true, 'data-target': 'properties-search.unactivePropertyStatusInput' }, 'Expired', nil
+          = f.label :expired_status, "Expired"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_hold_status', multiple: true, 'data-target': 'properties-search.unactivePropertyStatusInput' }, 'Hold', nil
+          = f.label :hold_status, "Hold"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_incomplete_status', multiple: true, 'data-target': 'properties-search.unactivePropertyStatusInput' }, 'Incomplete', nil
+          = f.label :incomplete_status, "Incomplete"
+        .column.is-paddingless.m-t-xs
+          = f.check_box :status, { class: 'is-checkradio is-small', id: 'search_withdraw_status', multiple: true, 'data-target': 'properties-search.unactivePropertyStatusInput' }, 'Withdraw', nil
+          = f.label :withdraw_status, "Withdraw"
+
+  .columns.is-marginless.has-direction-column
+    .column.is-paddingless.m-t-md
+      %label{ for: 'search_minarea' }
+        = t('look_around.search.square_feed')
+      .field.is-horizontal.is-marginless
+        .field-body
+          .field
+            .control
+              = f.number_field :minarea, max: 100_000, min: 10, class: "input has-border", placeholder: t('placeholders.min'), 'data-target': 'properties-search.textInput numerical-inputs.input'
+          .field
+            .control
+              = f.number_field :maxarea, max: 100_000, min: 10, class: "input has-border", placeholder: t('placeholders.max'), 'data-target': 'properties-search.textInput numerical-inputs.input'
+    .column.is-paddingless.m-t-md
+      %label{ for: 'search_minyear' }
+        = t('look_around.search.year_built')
+      .field.is-horizontal.is-marginless
+        .field-body
+          .field
+            .control
+              = f.number_field :minyear, min: 1_900, max: 2_020, class: "input has-border", placeholder: t('placeholders.min'), 'data-target': 'properties-search.textInput numerical-inputs.input'
+          .field
+            .control
+              = f.number_field :maxyear, min: 1_900, max: 2_020, class: "input has-border", placeholder: t('placeholders.max'), 'data-target': 'properties-search.textInput numerical-inputs.input'
+    .column.is-paddingless.m-t-md
+      %label{ for: 'search_minacres' }
+        = t('look_around.search.lot_size')
+      .field.is-horizontal.is-marginless
+        .field-body
+          .field
+            .control
+              = f.number_field :minacres, class: "input has-border", placeholder: t('placeholders.min'), 'data-target': 'properties-search.textInput numerical-inputs.input'
+          .field
+            .control
+              = f.number_field :maxacres, class: "input has-border", placeholder: t('placeholders.max'), 'data-target': 'properties-search.textInput numerical-inputs.input'
+    .column.is-paddingless.m-t-md
+      .is-bold
+        = t('look_around.search.waterfront')
+      = f.check_box :water, { class: 'is-checkradio is-small', 'data-target': 'properties-search.water' }, 'true', 'false'
+      = f.label :water, t('look_around.search.waterfront_property')
+    .column.is-paddingless.m-t-md
+      %label{ for: 'search_maxdom' }
+        = t('look_around.search.days_on_cher')
+      = f.text_field :maxdom, class: "input has-border", placeholder: t('placeholders.any'), min: 1, max: 1_000, 'data-target': 'numerical-inputs.input'
+    .column.is-paddingless.m-t-md
+      %label{ for: 'search_features' }
+        = t('look_around.search.keywords')
+      = f.text_field :features, class: "input has-border", placeholder: t('placeholders.yard_fireplace'), 'data-target': 'properties-search.textInput', 'data-action': 'properties-search#updateExteriorFeatures'
+      = f.text_field :exteriorFeatures, class: "is-hidden", placeholder: t('placeholders.yard_fireplace'), 'data-target': 'properties-search.textInput properties-search.exteriorFeatures'
+  .columns.is-marginless
+    .column.is-paddingless.is-flex.has-space-between.m-t-md
+      %button.button.is-secondary{ 'data-action': 'properties-search#resetMoreFilters' }
+        = t('look_around.search.reset')
+      %button.button.is-primary{ 'data-action': 'properties-search#toggleHoverContainer' }
+        = t('look_around.search.done')

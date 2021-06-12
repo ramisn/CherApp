@@ -1,0 +1,26 @@
+- meta_tag(:'og:url', request.original_url)
+- meta_tag(:'og:type', 'website')
+- meta_tag(:'og:title', 'Cher post')
+- meta_tag(:'og:description', @publication.message)
+- meta_tag(:'og:app_id', '516703312244212')
+- meta_tag(:'twitter:creator', '@Cher_App')
+- meta_tag(:'twitter:card', 'summary_large_image')
+- meta_tag(:'twitter:site', '@Cher_App')
+- meta_tag(:'twitter:title', 'Cher post')
+- meta_tag(:'twitter:description', @publication.message)
+- meta_tag(:'twitter:image:alt', 'Cher post')
+
+.container.m-t-lg
+  .panel.activity-feed
+    %ul.m-t-md{ 'data-controller': 'images-modal edit-publications share-post' }
+      = render 'shared/user_publication', post: @publication
+      = render 'shared/share_post_modal'
+      = render 'shared/post_image_gallery_modal'
+
+      #editPublicationModal.modal{ 'data-target': 'edit-publications.modal' }
+        .modal-background
+        .modal-content.is-fully-centered
+          .panel{ 'data-target': 'edit-publications.modalContent' }
+            #publicationEditModal.is-size-4.is-bold= t('generic.edit_pot')
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "edit-publications#toggleModal"}
+

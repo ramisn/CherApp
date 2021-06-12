@@ -1,0 +1,30 @@
+.panel.has-shadow.m-t-md.m-b-md.is-helper-blue.is-relative{'data-controller': 'clique-banner', 'data-target': 'clique-banner.cliqueContainer'}
+  %h2.is-size-4.has-text-primary.has-text-centered Have any leads interested in sharing home ownership?
+  .columns.is-marginless.is-centered.i
+    .column.is-two-thirds{'data-controller': 'invitations'}
+      = form_for :user, url: user_invitation_path, remote: true, html: { 'data-action': 'submit->invitations#handleInviteEmail', autocomplete: 'off' } do |f|
+        = f.text_field :user_email, class: 'is-hidden', id: 'userContactInput', 'data-target': 'invitations.userContactInput', value: current_user.email
+        = f.text_field :user_first_name, class: 'is-hidden', id: 'userFirstName', 'data-target': 'invitations.userFirstNameInput', value: current_user.first_name
+        = f.text_field :user_last_name, class: 'is-hidden', id: 'userLastName', 'data-target': 'invitations.userLastNameInput', value: current_user.last_name
+
+        .field.has-addons.is-marginless
+          .control.is-expanded
+            = react_component('UserSuggester', scopeName: "recipient", controllerName: 'invitations', isPrimary: true)
+          %p.control
+            = f.submit 'Invite', class: 'button is-primary is-fullwidth'
+
+        .field.is-hidden{'data-target': 'invitations.recipientFullNameInputs'}
+          .field-body
+            .field
+              .control
+                = f.text_field :recipient_first_name, class: 'input is-primary is-marginless', placeholder: "Recipient's First Name", 'data-target': 'invitations.recipientFirstNameInput', minlength: 2, id: 'recipientFirstNameInput', required: true
+            .field
+              .control
+                = f.text_field :recipient_last_name, class: 'input is-primary is-marginless', placeholder: "Recipient's Last Name", 'data-target': 'invitations.recipientLastNameInput', minlength: 2, id: 'recipientLastNameInput', required: true
+
+        %p.help.is-danger.is-hidden.is-marginless{'data-target': 'invitations.errorsMessage'}
+        %p.help.is-success.is-hidden.is-marginless{'data-target': 'invitations.resultMessage'}
+        #inviteSendMessage.field.is-hidden{'data-target': 'invitations.sendMessage'}
+
+    %button.button.is-absolute.has-no-style.to-right.to-top.m-t-sm.m-r-md{'data-action': 'clique-banner#hide'}
+      = fa_icon('times', class: 'has-text-primary')

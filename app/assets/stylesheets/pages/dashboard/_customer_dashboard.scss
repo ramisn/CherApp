@@ -1,0 +1,23 @@
+#dashboard {
+  .column {
+    max-width: 100%;
+  }
+
+  .monthly-sales {
+    background-image: image-url('cherapp-ownership-coborrowing-graph.svg');
+    background-position: right 15px top 15px;
+    background-repeat: no-repeat;
+    background-size: 25% 100px;
+    object-fit: contain;
+
+    h2 {
+      max-width: 70%;
+    }
+  }
+
+  .recent-message-container:not(:last-of-type) {
+    .button {
+      border-bottom: 1px solid $divider-blue;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+#locationContainer.is-hidden
+  %h2.is-size-3.has-text-centered.has-text-blue= t('loans.tell_us_about_it')
+  = f.hidden_field :property_id, 'data-target': 'loans.propertyIdInput'
+  = f.hidden_field :property_price, 'data-target': 'loans.propertyPriceInput', id: 'propertyPriceInput', disabled: true
+  = f.hidden_field :property_street, 'data-target': 'loans.propertyStreetInput', id: 'propertyStreetInput'
+  = f.hidden_field :property_zipcode, 'data-target': 'loans.propertyZipcodeInput', id: 'propertyZipcodeInput'
+  = f.hidden_field :property_type, 'data-target': 'loans.propertyTypeInput', id: 'propertyTypeInput'
+  = f.hidden_field :property_county, 'data-target': 'loans.propertyCountyInput', id: 'propertyCountyInput'
+  = f.hidden_field :property_city, 'data-target': 'loans.propertyCityInput', id: 'propertyCityInput'
+  = f.hidden_field :property_state, 'data-target': 'loans.propertyStateInput', id: 'propertyStateInput'
+  .columns.is-marginless.is-fully-centered
+    .column.is-12-mobile.is-10-tablet.is-8-desktop.is-6-widescreen.has-direction-column.is-fully-centered
+      = image_tag('mortgage/cherapp-ownership-coborrowing-pointer.svg', alt: t('img_alts.map_marker'), class: 'image is-64x64 has-text-primary')
+      = f.label :property_address, t('loans.where_is_it'), class: 'label m-t-md', for: 'propertyAddressInput'
+      .field.has-full-width
+        %p.control.has-icons-left.m-b-sm{ 'data-target': 'loans.inputContainer' }
+          = f.text_field :property_address, class: "input has-border has-border-blue is-marginless", placeholder: 'Search', "data-target": "google-auto-complete-input.searchInput loans.addressInput", "data-controller": "google-auto-complete-input", required: true, id: 'propertyAddressInput', 'data-type': 'address', name: ''
+          %span.icon.is-small.is-left
+            = image_tag('cherapp-ownership-coborrowing-magnifier.svg')
+  .is-hidden{ 'data-target': 'loans.propertyCard' }
+    %p.is-bold.is-maringless.has-text-centered
+      = t('loans.is_this_right_address')
+    .is-flex.is-justified-center
+      .property-preview.is-flex.is-bordered.has-regular-padding
+        %figure.image.is-128x128{ 'data-controller': 'property-default-image' }
+          %image{ src: '','data-target': 'loans.propertyImage', alt: t('look_around.featured.alts.home'), 'data-action': 'error->property-default-image#setDefaultPropertyImage' }
+        .m-l-md
+          %p.is-marginless.is-bold.is-hidden{ 'data-target': 'loans.propertyPrice' }
+          %p.is-marginless{ 'data-target': 'loans.propertyAddress' }
+          %p.is-marginless{ 'data-target': 'loans.propertyAddress2' }
+          = link_to 'See this property', property_path('property_id'), 'data-target': 'loans.propertyLink', class: 'is-underlined m-t-md', target: "_blank" 
+  - if @flagged_properties.any?
+    %hr
+    = render 'flagged_properties', f: f
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-8-tablet.is-flex.has-space-between.m-t-lg
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#previousItem', 'data-previous-item': 'foundHomeContainer', 'data-current-item': 'locationContainer' }
+        = t('generic.previous')
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#nextItem', 'data-next-item': 'calculatorContainer', 'data-current-item': 'locationContainer', 'data-target': 'loans.addressNextStepButton' }
+        = t('generic.next')

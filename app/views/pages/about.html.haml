@@ -1,0 +1,149 @@
+.how-it-works-page.rebrand.is-family-secondary.is-secondary{'data-controller': 'how-it-works'}
+  %section.section.is-main.is-relative.is-paddingless
+    .has-gradient.p-t-md.p-b-md
+      .container
+        .columns.is-centered.is-multiline.is-vcentered.is-marginless.central-menu
+          .column.is-full.has-text-centered
+            %h1.is-size-biggest.has-text-dark-black.is-marginless.has-text-blue.is-size-3-mobile
+              How does Cher work?
+          %span.column.is-full.has-text-centered.has-text-black.is-bold.is-size-5.p-b-none
+            Cher is an all-in-one platform making the process of sharing homeownership simple.
+          %span.column.is-full.has-text-centered.has-text-black.m-b-lg
+            To share homeownership is to share its equity and expenses with one or more people.
+          .columns.is-marginless.is-centered.is-flex
+            .column.is-full.is-4-tablet.has-text-centered
+              = link_to t('landing_page.body.get_started'), start_path, class: 'button is-primary has-full-width', 'data-target': 'mixpanel.link', 'data-link-message': 'Clicked get started_1_about'
+
+  .columns.is-marginless
+    .column.is-10.is-offset-1.is-paddingless
+      .columns.is-full-width.is-marginless.has-items-centered.p-b-lg.p-t-lg
+        .column.is-two-thirds.is-paddingless-mobile
+          %h3.has-text-centered.m-t-md.is-marginless.p-t-md.p-b-md= "What are you looking for?"
+          .columns.is-multiline.is-marginless.is-justified-center
+            .column.is-6-desktop.is-8-tablet.p-t-md.p-b-m.is-white.regular-border
+              %button.button.is-primary.has-full-width{'data-action': 'how-it-works#togglePart mixpanel#trackEvent', 'data-reason-number': 1, 'data-target': 'how-it-works.reasonButton', 'data-event-name': 'buy to live'}
+                Buy a home to live in
+              %button.button.is-primary.has-full-width.is-outlined.m-t-md.m-b-md{'data-action': 'how-it-works#togglePart mixpanel#trackEvent', 'data-reason-number': 2, 'data-target': 'how-it-works.reasonButton', 'data-event-name': 'buy to invest'}
+                Buy a home to invest in
+              %button.button.is-primary.has-full-width.is-outlined{'data-action': 'how-it-works#togglePart mixpanel#trackEvent', 'data-reason-number': 3, 'data-target': 'how-it-works.reasonButton', 'data-event-name': 'sell partially'}
+                Sell partial homeownership
+
+          .m-t-md
+            .is-white.regular-border.p-md{'data-target': 'how-it-works.reasonDescription'}
+              %h6.is-size-5.m-b-xs.is-bold= "Why share homeownership?"
+              %p.is-size-6.has-text-weight-normal= "Sharing can make homeownership affordable as the mortgage will be shared. You can save up monthly rent, increase buying power and credit score, and build up your home investment equity."
+              %h6.is-size-5.m-b-xs.is-bold.m-t-md= "Who to share with?"
+              %p.is-size-6.has-text-weight-normal= "Friends, family members, significant others, and even vetted matches you find online in Cher can share your homeownership. What is a vetted match? Our buyers can complete a background check, Identity check, and even a personality quiz to help you connect with quality buyers!"
+
+            .is-white.regular-border.p-md.is-hidden{'data-target': 'how-it-works.reasonDescription'}
+              %h6.is-size-5.m-b-xs.is-bold= "Why share homeownership?"
+              %p.is-size-6.has-text-weight-normal= "Sharing can make your investment flexible without paying for the whole home. We also take care of everything after the closing – at Cher you can exit, rent, buyout or transfer ownership rights to receive equity effectively."
+              %h6.is-size-5.m-b-xs.is-bold.m-t-md= "Who to share with?"
+              %p.is-size-6.has-text-weight-normal= "Other vetted investors. Tell us where you’d like to own and decide how much you want to own. We help you find other qualified investors to share the home equity."
+
+            .is-white.regular-border.p-md.is-hidden.m-b-xl{'data-target': 'how-it-works.reasonDescription'}
+              %h6.is-size-5.m-b-xs.is-bold= "Other cases"
+              %span.is-block.is-size-6= "- Looking to help my children with their first property acquisition."
+              %span.is-block.is-size-6.m-b-md.m-t-md.m-b-xxs= "- I have a property and I want to find someone to share the mortgage."
+              %span.is-block.is-size-6{ 'data-controller': 'modal' }
+                = render 'shared/contact_cher'
+                = "- Any other cases."
+                %button.is-link.is-size-6{ 'data-action': 'modal#toggleModal' }
+                  Ask Cher!
+                = render "shared/contact_cher"
+
+
+        .column.is-one-third.has-text-centered.has-margin-auto
+          = image_tag 'how_works/cherapp-ownership-coborrowing-reasons-1.png', id: 'cherapp-reasons-1', 'data-target': 'how-it-works.reasonImage', alt: 'Buy a home to live in phone image'
+          = image_tag 'how_works/cherapp-ownership-coborrowing-reasons-2.png', id: 'cherapp-reasons-2', class: 'is-hidden', 'data-target': 'how-it-works.reasonImage', alt: 'Buy a home to invest in phone image'
+          = image_tag 'how_works/cherapp-ownership-coborrowing-reasons-3.png', id: 'cherapp-reasons-3', class: 'is-hidden', 'data-target': 'how-it-works.reasonImage', alt: 'Sell partial homeownership phone image'
+
+  .columns.is-marginless.is-white.is-paddingless-mobile.hovers
+    .column.is-10.is-offset-1
+      .columns.is-full-width.is-marginless.is-paddingless-mobile.p-b-lg.p-t-lg
+        .column.is-two-thirds.has-margin-auto
+          %h3.has-text-centered= "What is the process of sharing homeownership?"
+          .columns.is-multiline.is-marginless.is-mobile
+            .column.is-6-tablet.is-offset-3-tablet.reasons.p-t-md.p-b-md.is-half-mobile.is-paddingless-tablet
+              %button.link.is-link.has-full-width.is-block.has-text-centered.is-bold.is-active{type: 'button', 'data-action': 'how-it-works#toggleProcess', 'data-step-number': 1, 'data-target': 'how-it-works.processButton'}
+                = image_tag 'how_works/cherapp-ownership-coborrowing-houses.svg', class: 'is-block has-margin-auto m-b-sm', alt: 'Find your dream home icon'
+                = "Find your dream home"
+            .column.is-6-tablet.is-offset-3-tablet.reasons.p-t-md.p-b-md.is-half-mobile.is-paddingless-tablet
+              %button.link.is-link.has-full-width.is-block.has-text-centered.is-bold{type: 'button', 'data-action': 'how-it-works#toggleProcess', 'data-step-number': 2, 'data-target': 'how-it-works.processButton'}
+                = image_tag 'how_works/cherapp-ownership-coborrowing-people.svg', class: 'is-block has-margin-auto m-b-sm', alt: 'We match you with buyers icon'
+                = "We match you with buyers"
+            .column.is-6-tablet.is-offset-3-tablet.reasons.p-t-md.p-b-md.is-half-mobile.is-paddingless-tablet
+              %button.link.is-link.has-full-width.is-block.has-text-centered.is-bold{type: 'button', 'data-action': 'how-it-works#toggleProcess', 'data-step-number': 3, 'data-target': 'how-it-works.processButton'}
+                = image_tag 'how_works/cherapp-ownership-coborrowing-realtors.svg', class: 'is-block has-margin-auto m-b-sm', alt: 'Let a Realtor contact you icon'
+                = "Let a Realtor contact you"
+            .column.is-6-tablet.is-offset-3-tablet.reasons.p-t-md.p-b-md.is-half-mobile.is-paddingless-tablet
+              %button.link.is-link.has-full-width.is-block.has-text-centered.is-bold{type: 'button', 'data-action': 'how-it-works#toggleProcess', 'data-step-number': 4, 'data-target': 'how-it-works.processButton'}
+                = image_tag 'how_works/cherapp-ownership-coborrowing-finance.svg', class: 'is-block has-margin-auto m-b-sm', alt: 'We help you finance icon'
+                = "We help you finance"
+            .column.is-6-tablet.is-offset-3-tablet.reasons.p-t-md.p-b-md.is-full-mobile.is-paddingless-tablet
+              %button.link.is-link.has-full-width.is-block.has-text-centered.is-bold{type: 'button', 'data-action': 'how-it-works#toggleProcess', 'data-step-number': 5, 'data-target': 'how-it-works.processButton'}
+                = image_tag 'how_works/cherapp-ownership-coborrowing-keys.svg', class: 'is-block has-margin-auto m-b-sm', alt: 'Get the key icon'
+                = "Get the key!"
+
+        .column.is-one-third.has-text-centered.has-margin-auto
+          = image_tag 'how_works/cherapp-ownership-coborrowing-process-1.png', id: 'cherapp-process-1', 'data-target': 'how-it-works.processImage', alt: 'Find your dream home step'
+          = image_tag 'how_works/cherapp-ownership-coborrowing-process-2.png', id: 'cherapp-process-2', class: 'is-hidden', 'data-target': 'how-it-works.processImage', alt: 'We match you with buyers step'
+          = image_tag 'how_works/cherapp-ownership-coborrowing-process-3.png', id: 'cherapp-process-3', class: 'is-hidden', 'data-target': 'how-it-works.processImage', alt: 'Let a Realtor contact you step'
+          = image_tag 'how_works/cherapp-ownership-coborrowing-process-4.png', id: 'cherapp-process-4', class: 'is-hidden', 'data-target': 'how-it-works.processImage', alt: 'We help you finance step'
+          = image_tag 'how_works/cherapp-ownership-coborrowing-process-5.png', id: 'cherapp-process-5', class: 'is-hidden', 'data-target': 'how-it-works.processImage', alt: 'Get the key step'
+
+  .columns.is-marginless.hovers
+    .column.is-half.p-t-lg.p-b-lg
+      .columns.is-marginless.is-justified-center
+        .column.is-8-tablet.is-6-desktop.is-5-widescreen
+          %h3.has-text-centered= "Why Cher?"
+          .full-width-centered-buttons
+            %button.link.is-active{ type: 'button', 'data-action': 'how-it-works#toggleWhy', 'data-why-number': 1, 'data-target': 'how-it-works.processButton' }
+              = image_tag('how_works/cherapp-ownership-coborrowing-why-cher-1.svg', class: 'icon is-medium', alt: 'Competitive Loan icon')
+              .column.has-text-centered.has-text-left-mobile
+                %span.is-bold= "Competitive Loan"
+            %button.link{ type: 'button', 'data-action': 'how-it-works#toggleWhy', 'data-why-number': 2, 'data-target': 'how-it-works.processButton' }
+              = image_tag('how_works/cherapp-ownership-coborrowing-why-cher-2.svg', class: 'icon is-medium', alt: 'Secured Buyers icon')
+              .column.has-text-centered.has-text-left-mobile
+                %span.is-bold= "Secured Buyers"
+            %button.link{ type: 'button', 'data-action': 'how-it-works#toggleWhy', 'data-why-number': 3, 'data-target': 'how-it-works.processButton' }
+              = image_tag('how_works/cherapp-ownership-coborrowing-why-cher-3.svg', class: 'icon is-medium', alt: 'Simple Payment icon')
+              .column.has-text-centered.has-text-left-mobile
+                %span.is-bold= "Simple Payment"
+            %button.link{ type: 'button', 'data-action': 'how-it-works#toggleWhy', 'data-why-number': 4, 'data-target': 'how-it-works.processButton' }
+              = image_tag('how_works/cherapp-ownership-coborrowing-why-cher-4.svg', class: 'icon is-medium', alt: 'Flexible Market icon')
+              .column.has-text-centered.has-text-left-mobile
+                %span.is-bold= "Flexible Market"
+            %button.link{ type: 'button', 'data-action': 'how-it-works#toggleWhy', 'data-why-number': 5, 'data-target': 'how-it-works.processButton' }
+              = image_tag('how_works/cherapp-ownership-coborrowing-why-cher-5.svg', class: 'icon is-medium', alt: 'Dedicated Support icon')
+              .column.has-text-centered.has-text-left-mobile
+                %span.is-bold= "Dedicated Support"
+
+      .columns.is-marginless
+        .column.is-6.is-offset-3
+          = link_to t('landing_page.body.get_started'), start_path, class: 'button is-primary has-full-width', 'data-target': 'mixpanel.link', 'data-link-message': 'clicked get started_2_about'
+    .column.is-half.is-essential-blue.is-paddingless
+      .why-cher.is-fully-centered.is-size-5.has-text-centered
+        .is-fully-centered.has-regular-padding.has-text-justified-mobile
+          %div{'data-target': 'how-it-works.whyDescription'}
+            %span.is-bold.has-text-white= "Cher has partnered up with UWM and Quicken Wholesale Loans, two of the largest wholesale lenders in the country. These lenders offer competitive mortgages making interest rates on loans as low as 3%. Furthermore, Cher charges no closing costs, which can save you up to $5,000 and as low as 3% down payment that is shared between co-owners."
+          .is-hidden{'data-target': 'how-it-works.whyDescription'}
+            %span.is-bold.has-text-white= "To ensure a secure experience, buyers have the option of going through a third party background check and identity validation. Our social network system will match you up with other people who are good fits based on a personality test and financial validation."
+          .is-hidden{'data-target': 'how-it-works.whyDescription'}
+            %span.is-bold.has-text-white= "Patented secure software to help you and your homeowners easily pay your mortgage payments. Collecting payments from everyone can get annoying but our payment process makes it simple for everyone."
+          .is-hidden{'data-target': 'how-it-works.whyDescription'}
+            %span.is-bold.has-text-white= "Easily post your ownership as a for sale by Owner, and our entire network of fractional homeowners will be notified! They will message you from there, or you can use Cher Support to help you with this entire process."
+          .is-hidden{'data-target': 'how-it-works.whyDescription'}
+            %span.is-bold.has-text-white= "We don’t want to be confused by paperworks and the legal process. Our team of experienced professionals is ready to help and guide you through the process step by step."
+
+
+  .is-size-3.is-bold.has-text-centered.is-white.p-b-lg.p-t-lg.has-text-black
+    FAQs
+    .columns.is-marginless.is-multiline
+      .column.is-6.is-offset-3.has-text-left
+        %h6.is-bold.is-size-5.m-b-sm= "How does Cher make money?"
+        %p.is-size-6.has-text-weight-normal= "We charge a fee to real estate agents at the close of escrow. It is free to use for home buyers."
+        %h6.is-bold.is-size-5.m-b-md.m-t-lg= "What happens if a co-owner leaves or cannot pay their mortgage?"
+        %p.is-size-6.has-text-weight-normal= "Cher has partnered with some of the best insurance providers to make sure you and your homeowners are protected. Sign up today to learn if you qualify for our exclusive policies! If a homeowner wants to leave, Cher provides a flexible Market that takes care of everything from posting your ownership for sale to helping you close the deal! – at Cher you can,easily sell your ownership, rent out your share, or even buy out your other owners equity!"
+      .column.is-4.has-text-centered.is-offset-4
+        = link_to t('landing_page.body.get_started'), start_path, class: 'button is-primary is-centered is-fullwidth', 'data-target': 'mixpanel.link', 'data-link-message': 'clicked get started_2_about'

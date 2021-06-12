@@ -1,0 +1,41 @@
+.container
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-9-tablet.is-6-desktop.m-t-lg
+      %h1.is-size-2= "Registry new contact"
+      = form_with(model: @prospect, url: admin_prospect_path, local: true) do |f|
+        .field
+          = f.label :email, 'Email', class: 'label'
+          .control
+            = f.email_field :email, class: 'input', required: true
+        .columns.is-paddingless.is-flex
+        .field
+          = f.label :first_name, 'First name', class: 'label'
+          .control
+            = f.text_field :first_name, class: 'input'
+        .field
+          = f.label :last_name, 'Last name', class: 'label'
+          .control
+            = f.text_field :last_name, class: 'input'
+        .columns.is-paddingless.is-flex
+          .column.is-6
+            .field
+              = f.label :phone_number, 'Phone number', class: 'label'
+              .control
+                = f.text_field :phone_number, class: 'input', pattern: '[0-9]{10}'
+          .column.is-6
+            .field
+              = f.label :city, 'City', class: 'label'
+              .control
+                = f.text_field :city, class: 'input'
+        .field
+          = f.label :role, class: 'label'
+          .select
+            = f.select :role, Prospect.roles.keys.map{ |key| [ t("contact.status.#{key}"), key ] }, { required: true }
+        .field
+          = f.check_box :is_subscribed, class: 'is-checkradio', checked: false
+          = f.label :is_subscribed, 'Is subscribed?', class: 'is-purple is-bold'
+        .field
+          = f.check_box :marked_as_spam, class: 'is-checkradio', checked: false
+          = f.label :marked_as_spam, 'Marked spam?', class: 'is-purple is-bold'
+        .field
+          = f.button t("admin.contacts.upload"), class: "button is-primary", type: 'submit'

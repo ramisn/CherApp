@@ -1,0 +1,15 @@
+- title(t("meta.list_rental.title"))
+.container
+  .columns.is-mobile.is-marginless.is-fully-centered
+    .column.is-10-desktop.is-8-widescreen
+      .panel.m-t-lg.m-b-lg.is-fully-centered{ 'data-controller': 'numerical-inputs rental-house' }
+        .columns.is-marginless.is-fully-centered
+          .column.is-10-tablet.is-12-mobile.is-paddingless.m-t-lg
+            = form_for(@rental, url: co_borrower_rentals_path) do |f|
+              = render 'rental_general_information', f: f
+              = render 'rental_house_details', f: f
+              = render 'rental_house_amenities', f: f
+              = render 'rental_house_contact', f: f
+              .field
+                .control
+                  = f.button t('rental.list_rental'), class: 'button is-primary m-t-sm', type: 'submit'

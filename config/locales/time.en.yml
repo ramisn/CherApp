@@ -1,0 +1,34 @@
+en:
+  date:
+    formats:
+      month_and_year: '%b %Y'
+  time:
+    formats:
+      month_day_year: '%B %d, %Y'
+      numerical: '%m / %d / %y'
+      assessment: '%m / %d / %Y'
+      standar_hour: '%H:%M'
+  datetime:
+    distance_in_words:
+      only_hour:
+        x_months:
+          one: '%{count}mn'
+          other: '%{count}m'
+        x_days:
+          one: '%{count}d'
+          other: '%{count}d'
+        x_hours:
+          one: '%{count}h'
+          other: '%{count}h'
+        x_minutes:
+          one: '%{count}m'
+          other: '%{count}m'
+        about_x_hours:
+          one: '%{count}h'
+          other: '%{count}h'
+        about_x_months:
+          one: '%{count}m'
+          other: '%{count}m'
+        about_x_years:
+          one: '%{count}y'
+          other: '%{count}y'

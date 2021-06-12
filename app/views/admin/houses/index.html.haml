@@ -1,0 +1,39 @@
+- title(t("meta.admin.houses.title"))
+.container
+  .panel.m-t-lg.m-b-lg
+    %h2.has-text-centered
+      = t('sell.houses_for_sale')
+      .columns.is-marginless
+    .columns.is-marginless.is-justified-end
+      .buttons.is-justified-end.is-marginless
+        = link_to t("admin.professionals.all"), admin_houses_path, class: 'button is-info is-small'
+        = link_to t("house.status.approved"), admin_houses_path(filter: :approved), class: 'button is-warning is-small'
+        = link_to t("house.status.pending"), admin_houses_path(filter: :pending), class: 'button is-success is-small'
+        = link_to t("house.status.rejected"), admin_houses_path(filter: :rejected), class: 'button is-danger is-small'
+    .columns.is-marginless
+      .column
+        %table.table.has-full-width
+          %thead
+            %tr
+              %th
+                = t('generic.owner')
+              %th
+                = t('generic.address')
+              %th
+                = t('generic.status')
+              %th
+                = t('generic.actions')
+          %tbody
+            - @houses.each do |house|
+              %tr
+                %td
+                  = house.owner.full_name
+                %td
+                  = house.address
+                %td
+                  = t("house.status.#{house.status}")
+                %td
+                  = link_to edit_admin_house_path(house) do
+                    = fa_icon('edit')
+                  = link_to admin_house_path(house) do
+                    = fa_icon('eye')

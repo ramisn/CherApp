@@ -1,0 +1,9 @@
+%section#videoSection.section.has-height-unset
+  .container
+    .columns.is-centered.is-multiline.is-vcentered.is-marginless
+      .column.is-6.is-paddingless
+        = render 'shared/landing_page/video'
+      .column.is-12.is-fully-centered.m-t-md
+        .columns.is-marginless.is-centered
+          .column.is-one-fifth.is-full-mobile
+            = link_to 'How it works?', custom_page_path(page: 'about'), class: 'button is-primary is-outlined has-full-width'

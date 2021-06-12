@@ -1,0 +1,9 @@
+.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent' }
+      .column.is-11
+        .box.has-text-centered
+          %h3.is-size-4.m-b-lg= t('generic.please_sign_up_to_save')
+          = link_to t('generic.sign_up'), new_user_registration_path, class: 'button is-secondary'
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

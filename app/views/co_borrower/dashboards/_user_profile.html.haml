@@ -1,0 +1,27 @@
+.panel.has-shadow.is-paddingless{'data-controller': 'collapsible user-name-hidder', 'data-collapsible-is-active': 'true'}
+  %button.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold.has-regular-padding.has-text-black.is-down{ 'data-action': 'collapsible#toogleCollapsible user-name-hidder#toggleUserName', 'type': 'button' }
+    %span.is-hidden-tablet.is-hidden{ 'data-target': 'user-name-hidder.userName' }
+      = current_user.full_name.blank? ? current_user.email : current_user.full_name
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+
+  .profile-section.has-regular-padding.is-clipped.is-paddingless-mobile.has-full-height-tablet{'data-target': 'collapsible.container'}
+    = render 'shared/user_profile_picture'
+    - unless current_user.first_name.blank?
+      .profile-info.has-centered-text.m-b-md
+        .profile-name.has-text-left-mobile.p-l-md.p-r-md
+          = link_to fa_icon("edit"), edit_profile_path(current_user), class: "is-pulled-right is-hidden-tablet"
+          = current_user.full_name
+    = react_component("UserGallery", user: @user_serialized, isEditable: true)
+    %hr
+    .profile-item.m-t-md.m-l-md
+      = fa_icon('bell', type: "regular", class: 'img-action has-text-coborrower-blue')
+      = link_to notifications_path, class: 'is-flex has-items-centered has-text-coborrower-blue' do
+        = t('dashboard.quick_links.notifications')
+    .profile-item.m-l-md
+      = image_tag "cherapp-ownership-coborrowing-ico-home.svg", class: 'img-action has-text-coborrower-blue'
+      = link_to look_around_path, class: 'is-flex has-items-centered has-text-coborrower-blue' do
+        = t('dashboard.quick_links.search_homes')
+    .profile-item.m-l-md
+      = image_tag "cherapp-ownership-coborrowing-chatting.svg", class: 'img-action has-text-coborrower-blue'
+      = link_to social_networks_path, class: 'is-flex has-items-centered has-text-coborrower-blue' do
+        = t('dashboard.quick_links.messages')

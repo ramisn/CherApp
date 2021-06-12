@@ -1,0 +1,43 @@
+%h3.is-bold.is-size-4.m-t-md.has-text-left
+  = t('rental.amenities')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-narrow.is-12-mobile.m-t-md
+    .field
+      = f.check_box :ac, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :ac, t('rental.ac')
+    .field
+      = f.check_box :wheelchair_access, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :wheelchair_access, t('rental.wheelchair_access')
+    .field
+      = f.check_box :balcony_or_deck, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :balcony_or_deck, t('rental.balcony_or_deck')
+    .field
+      = f.check_box :off_street_parking, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :off_street_parking, t('rental.offstreet_parking')
+  .column.is-paddingless.is-narrow.is-12-mobile.is-offset-1.m-t-md
+    .field
+      = f.check_box :hardwood_floor, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :hardwood_floor, t('rental.hardwood_floor')
+    .field
+      = f.check_box :furnished, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :furnished, t('rental.furnished')
+    .field
+      = f.check_box :garage_parking, class: 'input is-checkradio', type: 'checkbox'
+      = f.label :garage_parking, t('rental.garage_parking')
+.m-t-lg
+  .columns.is-marginless.is-flex.is-multiline
+    .column.is-paddingless.is-12-mobile.is-12-tablet
+      .field
+        = f.label :additional_amenities, t('rental.additional_amenities'), class: 'label'
+        .control
+          = f.text_area :additional_amenities, class: 'input textarea'
+    .column.is-paddingless.is-12-mobile.is-12-tablet
+      .field
+        = f.label :about, t('rental.about_house'), class: 'label'
+        .control
+          = f.text_area :about, class: 'input textarea'
+    .column.is-paddingless.is-12-mobile.is-12-tablet
+      .field
+        = f.label :lease_summary, t('rental.lease_summary'), class: 'label'
+        .control
+          = f.text_area :lease_summary, class: 'input textarea'

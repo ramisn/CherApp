@@ -1,0 +1,49 @@
+%section.section
+  .container
+    .columns.is-marginless
+      .column.is-12.has-text-centered
+        %h3.is-size-3
+          = t('landing_page.body.join')
+    .columns.is-centered.is-vcentered.is-marginless
+      .column.is-4
+        .card
+          .card-content
+            .media
+              .media-left
+                %figure.image.is-64x64
+                  = image_tag('cherapp-ownership-coborrowing-testimonial-nicole.png', alt: t('img_alts.testimonial'), class: 'is-rounded')
+              .media-content
+                %p
+                  = t('landing_page.body.testimonials.nicole')
+            .content
+              %span.has-text-weight-bold= t('landing_page.body.testimonial_nicole')
+              %br
+              %span.is-italic= t('landing_page.body.testimonial_orange_city')
+      .column.is-4
+        .card
+          .card-content
+            .media
+              .media-left
+                %figure.image.is-64x64
+                  = image_tag('cherapp-ownership-coborrowing-testimonial-rachel.png', alt: t('img_alts.testimonial'), class: 'is-rounded')
+              .media-content
+                %p
+                  = t('landing_page.body.testimonials.rachel')
+            .content
+              %span.has-text-weight-bold= t('landing_page.body.testimonial_rachel')
+              %br
+              %span.is-italic= t('landing_page.body.testimonial_los_angeles')
+      .column.is-4
+        .card
+          .card-content
+            .media
+              .media-left
+                %figure.image.is-64x64
+                  = image_tag('cherapp-ownership-coborrowing-testimonial-charlie.png', alt: t('img_alts.testimonial'), class: 'is-rounded')
+              .media-content
+                %p
+                  = t('landing_page.body.testimonials.charlie')
+            .content
+              %span.has-text-weight-bold= t('landing_page.body.testimonial_charlie')
+              %br
+              %span.is-italic= t('landing_page.body.testimonial_seatle')

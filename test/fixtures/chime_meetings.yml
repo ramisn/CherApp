@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: chime_meetings
+#
+#  id                  :bigint           not null, primary key
+#  meeting_id          :string           not null
+#  external_meeting_id :string           not null
+#  active              :boolean          default("true"), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+inactive:
+  meeting_id: MyUUID4String
+  external_meeting_id: Chime1
+  active: false
+
+active:
+  meeting_id: MyUUID4String
+  external_meeting_id: Chime2
+  active: true

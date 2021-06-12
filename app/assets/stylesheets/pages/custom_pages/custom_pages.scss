@@ -1,0 +1,98 @@
+.custom-page {
+  background: $white;
+  &.full-width-container {
+    padding: 0;
+  }
+
+  .page-hero {
+    background: $violet;
+    background-position: center, 0 25%;
+    background-size: cover, cover;
+    color: $white;
+    height: 500px;
+    margin-bottom: 75px;
+    position: relative;
+    width: 100%;
+    @media (max-width: 769px) {
+      height: 250px;
+      margin-bottom: 25px;
+
+    }
+  }
+
+  &#who-we-are {
+    .page-hero {
+      background-image: linear-gradient(rgba($violet, 0.5),rgba($violet, 0.8)), image-url('cherapp-ownership-coborrowing-who_we_are.png');
+    }
+  }
+
+  &#why-we-do-it {
+    .page-hero {
+      background-image: linear-gradient(rgba($violet, 0.5),rgba($violet, 0.8)), image-url('cherapp-ownership-coborrowing-thinking.png');
+    }
+  }
+
+  &#partner-with-us {
+    .page-hero {
+      background-image: linear-gradient(rgba($violet, 0.5),rgba($violet, 0.8)), image-url('cherapp-ownership-coborrowing-partner_with_us.png');
+      background-position: center;
+    }
+  }
+
+  &#privacy {
+    .page-hero {
+      background-image: linear-gradient(rgba($violet, 0.5),rgba($violet, 0.8)), image-url('cherapp-ownership-coborrowing-privacy.png');
+      background-position: center, center;
+    }
+  }
+
+  &#terms {
+    .page-hero {
+      background-image: linear-gradient(rgba($violet, 0.5),rgba($violet, 0.8)), image-url('cherapp-ownership-coborrowing-terms.png');
+      background-position: center, center;
+    }
+  }
+
+  &#partner {
+    .page-hero {
+      background-image: linear-gradient(rgba($violet, 0.5),rgba($violet, 0.8)), image-url('cherapp-ownership-coborrowing-partner.png');
+      background-position: center, center;
+    }
+  }
+
+  .property-image {
+    filter: grayscale(1);
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.features-section {
+  .feature-item {
+    padding: 0 15px;
+    .feature-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .feature-image {
+      display: block;
+      height: 150px;
+      margin: 0 auto;
+      object-fit: contain;
+      width: 80%;
+    }
+
+    p {
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
+}

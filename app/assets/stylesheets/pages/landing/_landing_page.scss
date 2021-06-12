@@ -1,0 +1,221 @@
+.landing-page {
+
+  &.is-secondary {
+    ul.has-dot-style{
+      list-style-position: inside;
+    }
+
+    section.section {
+      padding: 40px 0;
+    }
+
+    .comparative-table {
+      .column {
+        @media (min-width: 769px) {
+          padding: 1rem .75rem;
+        }
+
+        @media (min-width: 1023px) {
+          padding: 1.5rem .75rem;
+        }
+
+        @media (min-width: 1216px) {
+          padding: 2rem .75rem;
+        }
+
+        @media (min-width: 1408px) {
+          padding: 2.5rem .75rem;
+        }
+
+        &:nth-child(1) {
+          border-bottom: 1px solid $white;
+          border-right: 1px solid $white;
+        }
+
+        &:nth-child(2) {
+          border-right: 1px solid $helper-blue;
+          border-bottom: 1px solid $helper-blue;
+        }
+
+        &:nth-child(3) {
+          border-left: 1px solid $helper-blue;
+          border-bottom: 1px solid $helper-blue;
+        }
+
+        &:nth-child(4) {
+          border-top: 1px solid $white;
+          border-right: 1px solid $white;
+        }
+
+        &:nth-child(5) {
+          border-right: 1px solid $helper-blue;
+          border-top: 1px solid $helper-blue;
+        }
+
+        &:nth-child(6) {
+          border-left: 1px solid $helper-blue;
+          border-top: 1px solid $helper-blue;
+        }
+      }
+    }
+
+    .has-height-unset {
+      min-height: unset !important;
+    }
+
+    .section.is-main {
+      min-height: 100vh !important;
+      background-image: image-url('landing/cherapp-ownership-coborrowing-landing-page-b-background.png');
+      background-color: $helper-blue;
+
+      &.has-second-background {
+        background-image: image-url('landing/cherapp-ownership-coborrowing-landing-page-b-background-secondary.png');
+      }
+    }
+
+    .has-gradient {
+      background: linear-gradient(180deg, #fff 24.62%, rgba(255, 255, 255, 0) 60.62%);
+    }
+
+    @media (max-width: 769px) {
+      $orders: (0, 1, 2, 3);
+      @each $order in $orders {
+        .has-order-#{$order}-mobile {
+          order: $order;
+        }
+      }
+
+      .section.is-main {
+        background-image: image-url('landing/cherapp-ownership-coborrowing-landing-page-mobile-bg.png');
+      }
+
+      .has-gradient {
+        background: linear-gradient(180deg, #fff 14.62%, rgba(255, 255, 255, 0) 60.62%);
+      }
+    }
+  }
+
+  .button {
+    height: 40px;
+  }
+
+  section.is-main {
+    background-image: image-url('cherapp-ownership-coborrowing-landing-page-house.png');
+    background-position: center;
+    min-height: calc(100vh - 100px);
+    height: auto;
+    background-size: cover;
+
+    .is-at-bottom {
+      position: absolute;
+      bottom: 10px;
+
+    }
+
+    .image.arrow {
+      color: $primary;
+      border-radius: 100%;
+      background-color: $white;
+      animation: zoom 2s infinite;;
+
+      .fas {
+        animation: zoom 2s infinite;;
+      }
+    }
+  }
+
+  @media (max-width: 769px) {
+    section.is-main {
+      min-height: calc(100vh - 90px);
+      height: auto;
+      padding: $regular-padding 0;
+    }
+
+    .central-menu {
+      .full-width-mobile {
+        width: 100%;
+      }
+
+      .second-option {
+        margin: 20px 0 0;
+      }
+    }
+  }
+}
+
+.main-container {
+  &.has-big-padding {
+    padding: 100px 15px;
+  }
+
+  @media (max-width: 769px) {
+    &.has-big-padding {
+      padding: 25px 15px;
+    }
+  }
+}
+
+.view-animation {
+  opacity: 0;
+
+  &.visible {
+
+    &.right {
+      animation: appear-right 1s forwards;
+    }
+
+    &.left {
+      animation: appear-left 1s forwards;
+    }
+
+    &.bottom {
+      animation: appear-bottom 1s forwards;
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .mobile-reduced {
+    .table th {
+      padding: 0.5rem;
+    }
+    padding: .75rem;
+  }
+}
+
+@keyframes appear-right {
+  0% {  opacity: 0; transform: translate(50px, 0); }
+
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes appear-left {
+  0% {  opacity: 0; transform: translate(-50px, 0); }
+
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes appear-bottom {
+  0% {  opacity: 0; transform: translate(0, 50px); }
+
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+
+@import 'how_it_works';
+@import 'ticker';
+@import 'infographic';
+
+
+@keyframes zoom {
+  0% {
+    transform: scale(.95);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(.95);
+  }
+}

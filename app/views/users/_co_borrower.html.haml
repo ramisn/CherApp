@@ -1,0 +1,53 @@
+- title(t("meta.user_profile.titile"))
+#dashboard.container.m-t-lg
+  .columns.is-marginless.is-multiline
+    .column.is-4
+      .panel.has-shadow.is-full
+        .profile-section
+          .profile-avatar.no-upload{ 'data-controller': 'users-profile-picture' }
+            = image_tag(@user.profile_image, class: "user-image", alt: t('img_alts.user_profile'), 'data-action': 'error->users-profile-picture#setDefaultPicture')
+        .profile-info.has-centered-text
+          .profile-name= @user.full_name
+        = react_component("UserGallery", user: @user_data[:user_json], isEditable: false)
+        - if current_user != @user
+          - if FriendRequest.users_are_friends?(current_user.id, @user.id)
+            .button.is-primary.m-t-md.has-full-width
+              = t('generic.friends')
+          - elsif FriendRequest.request_status(current_user.id, @user.id) == 'pending'
+            .button.is-primary.m-t-md.has-full-width
+              = t('generic.friend_request_pending')
+          - else
+            %button.button.is-primary.m-t-md.has-full-width{'data-controller': 'friend-request', 'data-action': 'friend-request#sendRequest', 'data-target': 'friend-request.buttonAction', 'data-user-id': @user.id}
+              = t('friend_request.send_request')
+          .m-t-sm
+            = link_to "Message #{@user.first_name}", conversation_path(@user), class: 'button is-secondary has-full-width'
+
+        %hr
+        .profile-completion.m-t-md.has-centered-text
+          .profile-item{class: "#{@user.validated? ? '' : 'incomplete'}"}
+            = image_tag 'cherapp-ownership-coborrowing-ico-identification.svg', alt: t('img_alts.card_id'), class: 'icon m-r-sm'
+            %label= t("customer_verifications.identity")
+          .profile-item.incomplete
+            = image_tag 'cherapp-ownership-coborrowing-ico-credit.svg', alt: t('img_alts.credit_card'), class: 'icon m-r-sm'
+            %label= t("customer_verifications.check")
+    .column.is-4
+      = render 'shared/properties_list', properties: @user_data[:properties]
+    .column.is-4
+      .panel.has-shadow.is-paddingless.network-list
+        %h2.is-size-5.p-t-md.p-l-md.m-b-none
+          = t("dashboard.mutual_friends")
+        %hr.mt-xs.m-b-xs
+        .has-regular-padding
+          %ul.items-list.has-rounded-items
+            = render  partial: 'shared/network_list_item', collection: @user_data[:mutual_friends]
+          - if @user_data[:mutual_friends].blank?
+            %p= t('generic.no_mutual_friends', user_name: @user.first_name)
+
+    .column.is-8
+      - if users_are_friends?(@user.id)
+        = render 'shared/newsfeed', publication: @publication, posting_in_friend_profile: true
+      - else
+        .panel.has-shadow.is-paddingless.activity-feed
+          %h2.is-size-5= t("newsfeed.title")
+          %hr.m-t-xs.m-b-xs
+          %p.p-l-md.p-b-md.p-t-sm= t('generic.private_newsfeed', user_name: @user.first_name)

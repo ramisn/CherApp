@@ -1,0 +1,5 @@
+- title(t("meta.admin.houses.title"))
+.container
+  .panel.m-t-lg.m-b-lg
+    %h1.m-t-md.m-b-md= 'Update house information'
+    = render 'shared/house_form', submit_text: 'Update house', submit_path: admin_house_path, method: :put

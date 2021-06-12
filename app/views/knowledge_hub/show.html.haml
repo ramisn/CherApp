@@ -1,0 +1,25 @@
+- title(t("meta.knowledge_hub.title"))
+- meta_tag(:description, t("meta.knowledge_hub.description"))
+.container.has-regular-padding-vertical
+  .columns.is-centered.is-vertically-centered.has-items-centered.is-marginless
+    .column.is-8.is-12-mobile
+      %h2= t("labels.search_topic")
+    .column.is-8.is-11-mobile.is-paddingless
+      = form_for(:topic, url: knowledge_hub_path, html: { method: :get }) do |f|
+        .field
+          .control.has-icons-right.is-flex
+            = f.text_field :message, placeholder: t("placeholders.type_something"), class: "input"
+            %span.icon.is-small.is-right
+              = fa_icon("search")
+          = f.submit "", class: "is-hidden"
+    .column.is-8.is-12-mobile.is-flex.has-space-between.is-wrapped.has-space-around
+      - ('a'...'z').each do |index|
+        = link_to index, knowledge_hub_path(index: index), class: "is-bold"
+    .column.is-8.is-12-mobile.is-paddingless
+      .columns.has-direction-column.has-items-centered.is-marginless
+        - @topics.each do |topic|
+          .column.is-12.m-b-lg
+            .is-size-5.has-red-border
+              .m-b-sm= topic.name
+            .is-size-6.panel.has-shadow.m-t-md= topic.rich_body
+

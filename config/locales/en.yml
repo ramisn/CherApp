@@ -1,0 +1,2053 @@
+en:
+  activerecord:
+    errors:
+      shapes:
+        maximum_saved: User can not save more than 16 shapes
+      messages:
+        taken: The email has already been taken
+  about:
+    as_housing_price_in_many_areas: As housing prices in many areas continue to rise, co-owning can make homeownership a lot more affordable as the mortgage will be shared between co-owners. With many of us adding roommates, moving back in with family, or hoping for more rent control, it is becoming difficult to save up for one or multiple homes. Co-owning provides many financial benefits to help you increase your buying power, improve credit score, and make consistent monthly payments that go directly towards your home investment.
+    at_cher_we_hope: "At Cher, we hope to make your road to co-ownership as simple as possible. The co-ownership process at Cher is broken down into 6 steps: complete profile, flag homes, add co-owners, get pre-qualified, find a real estate agent, and escrow chat. You can see which step you are currently at by looking at the checklist on your dashboard."
+    cher_as_partnered_up: Cher has partnered up with UWM and Quicken Wholesale Loans, two of the largest wholesale lenders in the country. These lenders offer competitive mortgages to our clients. Interest rates on loans are as low as 3%. Furthermore, Cher charges no closing costs, which can save users up to $10,000 and as low as 3% down payment that is shared between co-owners.
+    cher_is_an_all_in_one: Cher is an all-in-one platform that is designed to make the entire co-ownership process simple and secure for all aspiring homeowners. It allows user to find their dream home, add desired co-owners, obtain competitive loans, and connect with real estate professionals.
+    cher_has_a_built_in_social_network: Cher has a built-in social network that can help you meet other potential co-owner(s). Our system will match you up with other users that it deems to be a good fit based on a personality test. To ensure a secure experience, users have the option of going through a background check and identity validation.
+    cher_for_investors: Cher for investors
+    chers_interactive_map: "Cher’s interactive map is easy to use and allows filtered search by various traits, including location, price, bedrooms, and property type. The system also provides estimates on what monthly mortgage payments would look like for the number of co-owners added."
+    competitive_loans: Competitive Loans
+    consult_for_tax: "*Consult your tax advisor for details."
+    how_it_works: How it works
+    if_you_get_a_better_understanding: If you gain a better understanding of different terms related to homeownership, our knowledge hub is available to you.
+    interactive_map: Interactive map
+    investor_info: Investor Info
+    many_aspiring_homebuyers: Many aspiring homebuyers can be confused by different homeowning processes such as getting “pre-qualified” or “pre-approved”. Therefore, our team of experienced professionals is ready to help and guide you through the process and are easily accessible through either phone or chat support.
+    match_and_own: Match and Own with Other Aspiring Co-owners
+    mix_and_match: Mix and match Cher options
+    note: "Note: Certain steps require you to complete other steps in order to activate"
+    once_the_six_steps_are_completed: Once the six steps are completed, you are officially a homeowner!
+    professional_guidence: Professional Guidance Through Loan Process
+    residential_buyers: Residential buyers and real estate investors can combine resources for maximum savings on the purchase fees and interest rates. 
+    seasoned_real_state_buyers: Seasoned real estate buyers can co-invest funds to purchase residential properties at a fraction of the cost and risk of "buying solo".  Your shared property may benefit from the 1031 exchange plan.*
+    to_coown_is_to_share: To co-own a home is to share its equity and expenses with one or more people. To make it more simple, you are owning your home and sharing your loan.  Friends, family members, significant others, and even matches you find online can share your homeownership.
+    what_do_i_do: What do I do after I signed-up?
+    why_cher: Why Cher?
+    why_coown: Why Co-own?
+  admin:
+    inquiries:
+      label: Inquiries
+    topics:
+      label: Topics
+    professionals:
+      actions: Actions
+      all: All
+      label: Professionals
+      no_verified: No verified
+      license_number: License Number
+      only_verified: Only verified
+      only_no_verified: Pnly no verified
+      total_records: "Total records: %{number}"
+      unverify: Unverify
+      verify: Verify
+      verified: Verified
+      cities: Cities
+    contacts:
+      confirm_delete: Are you sure you want to delete this account?
+      deleted_successfully: User deleted successfully
+      all: All
+      bounce: Bounced D
+      choose_csv: Choose a csv...
+      created: Created A
+      dropped: Dropped B
+      deferred: Deferred C
+      blocked: Blocked E
+      groupunsubscribe: Group Unsubscribe H
+      spamreport: Spam Report F
+      email: Email
+      escrow_officer: Escrow Officer
+      estate_agent: Estate Agent
+      general_contractor: General Contractor
+      key_prospect_prospect: "%{key}1"
+      key_prospect_user: "%{key}2"
+      key_prospect_seller: "%{key}3"
+      key_prospect_landlord: "%{key}4"
+      key_prospect_tenant: "%{key}5"
+      key_prospect_loan_officer: "%{key}6"
+      key_prospect_escrow_officer: "%{key}7"
+      key_prospect_general_contractor: "%{key}8"
+      key_prospect_mortgage_broker: "%{key}9"
+      key_prospect_title_officer: "%{key}10"
+      key_prospect_other_rep: "%{key}11"
+      key_prospect_real_estate_agent: "%{key}12"
+      key_prospect_subscriber: "%{key}13"
+      key_user: "%{key}14"
+      key_loan_officer: "%{key}18"
+      key_escrow_officer: "%{key}19"
+      key_general_contractor: "%{key}20"
+      key_mortgage_broker: "%{key}21"
+      key_title_officer: "%{key}22"
+      key_other: "%{key}23"
+      key_prospect_customer_other: "%{key}23"
+      key_estate_agent: "%{key}24"
+      key_prospect_prospect_realtor: Prospect Realtor
+      key_prospect_realtor: "%{key} Prospect Realtor"
+      label: Contacts
+      loan_officer: Loan Officer
+      mortgage_broker: Mortgage Broker
+      only_spam: Only spam
+      only_bounced: Only bounced
+      only_unsubscribed: Only unsubscribed
+      other: Other
+      prospect_subscriber: Prospect Subscriber
+      prospect_prospect: Prospect
+      prospect_user: Prospect Co-Owner
+      prospect_customer_other: Prospect Customer Other
+      prospect_general_contractor: Prospect General Contractor
+      prospect_loan_officer: Prospect Loan Officer
+      prospect_mortgage_broken: Prospect Mortgage Broker
+      prospect_realtor: Prospect Realtor
+      prospect_title_officer: Prospect Title Officer
+      prospect_escrow_officer: Prospect Escrow Officer
+      prospect_other_rep: Prospect Other Rep
+      prospect_seller: Prospect Seller
+      prospect_landlord: Prospect Landlord
+      prospect_tenant: Prospect
+      role: Role
+      title_officer: Title Officer
+      total_records: "Showing: %{number} out of %{total}"
+      unsubscribe: Unsubscribed G
+      upload: Upload
+      upload_contacts: Upload contacts
+      user: Co-Owner
+    mailchimp_sync:
+      label: MailChimp Sync Manager
+  clique:
+    payment_email_subject:
+      lite: "Cher's Clique Monthly Subscription Confirmation"
+      extra: "Cher's Clique 6-Month Subscription Confirmation"
+      premium: "Cher's Clique Monthly Subscription Confirmation"
+    payment_mailer:
+      header_premium: THANK YOU FOR YOUR MONTHLY SUBSCRIPTION!
+      premium: "Your payment for a monthly subscription has been confirmed and we are thrilled to have you as a member of Cher's Clique. Here's what to expect next:"
+  feed:
+    flagged_property:
+      create: 'Following a new home. '
+      create_friend: ' start following a new home. '
+      destroy: 'Stopped following a home. '
+      destroy_friend: ' stopped following a home. '
+    friend_request:
+      create: 'Sent a friend request to '
+      responded: 'Friend request accepted by '
+      accepted: 'Accepted a friend request from '
+      received: 'Received a friend request from '
+    message_channel:
+      create: 'Started a conversation with '
+      received: 'Received a conversation invitation from '
+    post:
+      create: 'Cher added a new Blogpost: '
+      update: 'Cher updated a Blogpost: '
+    user:
+      unwatch_property: 'Stopped following a home. '
+      create: You joined Cher!
+      posted_in_your_profile: " posted in your profile"
+      profile: " profile"
+      search_city: 'Looking for properties in '
+      shared_post: " shared a post"
+      you_posted_in: "You posted in "
+      you_referred: "You referred "
+      you_shared: You shared a post
+      you_were_referred: "You were referred by "
+  pages:
+    partner_with_us:
+      email: cher@cher.app
+  ages:
+    infant: Infant
+    toddler: Toddler
+    young: Young
+    pre-teen: Pre-teen
+    teenager: Teenager
+  age_ranges:
+    18-24: 18-24
+    25-30: 25-30
+    31-39: 31-39
+    40-49: 40-49
+    more-than-50: 50+
+    age-range-not-to-say: Prefer not to say
+  buttons:
+    change_password: Change my password
+    click: Click
+    click_here: Click here
+    create_topic: Create topic
+    continue: Continue
+    finish: Finish
+    here: here
+    log_in: Sign in
+    new_account: New account
+    password_reset: Password Reset
+    personality_test_submit: Save answers
+    resend_confirmation_instructions: Resend confirmation instructions
+    send_message: Send message
+    send_me_instructions: Send me instructions
+    send_invitation: Send invitation
+    invite_them: Invite them!
+    skip: Skip test
+    sign_up: Sign up
+    submit: Submit
+    update_topic: Update topic
+    confirm_account: Confirm account
+  calls:
+    message: Thanks for contacting with Cher. Our next available representative will take your call.
+    new:
+      success: 'Thank you! A member of our team will call you back shortly!'
+      error: 'Invalid given phone number'
+  checkout:
+    one_month_subscription: 1 month subscription to Clique Premium
+    card_number: Card Number
+    complete_payment: Proceed
+    cvc: CVC
+    espiration_date: Expiration Date
+    title: Checkout
+    total: "Your total:"
+    support: "to speak with Cher's professionals in case you have a doubt."
+    note: "Note: By clicking proceed, you acknowledge you will be charged for Clique Premium service. Your card on file will be auto charged $199 every 30 days unless you change your settings or subscription service."
+  customer_verifications:
+    personality: Personality
+    identity: Identity verification
+    check: Verify Background
+    check_description: This helps you connect with other buyers who may be safer sharing homeownership with.
+    id_check: Scan Driver's License
+    id_check_description: This allows other Cher buyers to know this is your actual profile.
+  contacs:
+    status:
+      subscriber: Subscriber
+      prospect: Prospect
+      user: User
+      customer_other: Customer other
+      general_contractor: General contractor
+      loan_officer: Loan officer
+      mortgage_broker: Mortgage broker
+      realtor: Realtor
+      title_officer: Title Officer
+      escrow_officer: Escrow officer
+      other_rep: Other rep
+      seller: Seller
+      landlord: Landlord
+      tenant: Tenant
+      real_estate_agent: Real estate agent
+  dashboard:
+    buy_credits: Buy more credits
+    clique_settings: Clique settings
+    credits: message credits
+    credits_left: "%{credits} credits left"
+    no_suggested_leads_title: We're sorry, there are no new leads currently in your area.
+    no_suggested_leads_subtitle: Please add more areas that you specialize in!
+    not_message_credits_left: We're sorry, your account does not have any message credit left.
+    apr: "%{value}% APR"
+    blogs_feed: "Blog's Feed"
+    buyers_agents: Buyers Agents
+    cobows_news_feed: Cobos News Feed
+    co_owners: "Co-owners"
+    connect_or_invite_people: Search friends on Cher or invite them to join. Explore Cher together.
+    contact_realtor: Contact Realtor
+    delete_account: delele account
+    day_lock: "%{days} DAY LOCK"
+    days_left: "%{days} days left"
+    down: "%{value}% DOWN"
+    featured_cher: Featured by CHER
+    flagged_properties: "%{number} flagged properties"
+    homeowner_listing: HOMEOWNER LISTING
+    homeowner: Homeowner
+    homeowners_listing: "%{number} homeowners listing"
+    mutual_friends: Mutual friends
+    my_favorite_listings: My favorite listings
+    my_network: My Network
+    my_funding: "My Funding:"
+    my_top_cobows: "My Top Co-bo's"
+    new_active_properties: "%{number} new active properties"
+    note: 'Note: '
+    post_a_thought: Post a thought
+    post_cher_board: Post on Cher's board
+    posible_funding: "Possible funding:"
+    profile_completion: Profile Completion
+    profile_completion_note: To have full access, please complete your profile
+    profile_views: Profile views
+    properties: Flagged Properties
+    select_home: Select one of your flagged homes
+    say_congrats: Say congrats
+    see_all: See all
+    see_all_flagged: See all flagged
+    see_most_popular_loan: See most popular loan
+    see_preview_list_of_contacts: Here you can see your favorite contacts in your network
+    send_to_cobos: Send to COBOS
+    share_something: Share something
+    single_family: SINGLE FAMILY
+    speak_to_a_representative: Speak to a team representative to learn more
+    test_progress: Test progress
+    to_promote_services: to promote your services
+    valid_identity: Valid identity
+    view_all: View all
+    view_more_analytics: View more analytics
+    recent_messages_title: Recent messages
+    suggested_leads: Suggested leads
+    search:
+      by_name: Name
+      by_city: City
+      by_email: Email
+    cher_user: Cher User
+    basic_cher_location: Santa Monica, CA
+    lead_goal: "Lead’s goals"
+    refresh_list: Refresh list
+    looking_for_description:
+      flag: 'Encourage your buyer to connect with other co-owners in Cher.'
+      friends: 'Recommend co-owners to this buyer and make sure to connect with all co-owners.'
+      contact: 'Contact this buyer now to be their dedicated agent.'
+      joined: 'Get your leads to invite you to their network and track their homebuying progress.'
+      loan: 'Help answer any questions your  co-owners may have and user our escrow process to collaborate.'
+    looking_for:
+      flag: 'Flagging homes'
+      friends: 'Searching for Co-owners'
+      contact: 'Looking for agents'
+      joined: 'Just joined'
+      loan: 'Finalizing loan'
+    suggested_leads_clique: "Our homebuyer's profiles are protected and only show to Clique Premium members"
+    cher_agent: Clique Premium Agent
+    browse_contacts: Browse Contacts
+    professional_status: Professional status
+    hide_checklist: Hide Checklist
+    show_checklist: Show Checklist
+    flagged_by_html: "Flagged by <b>%{number}</b> others"
+    lastest_flagged_empty: The latest homes you add to your Flagged list will appear here
+    recent_messages:
+      professional_support: Professional Support
+      conversation: Conversation
+    messages:
+      empty_title: You haven't added any contacts
+      empty_subtitle: The contacts added to your list will appear here.
+      clique_join: Join Clique Premium to access to our buyers
+      try_clique: Try 1 month
+    quick_links:
+      search_homes: Search homes
+      messages: Messages
+      notifications: Notifications
+    progress_bar:
+      list_home: List Home
+      cher_verified: Get Cher Verified
+      select_coowner: Select co-owner
+      list_home_description: Complete your listing page
+      cher_verified_description: Verify your drivers license and background
+      select_coowner_description: Notify Cher Team after selecting a Co-owner
+      contact_realtor_description: Browse and find the realtor you like best
+      contact_realtor: Contact a Realtor
+      dream_home_description: Add homes to your Flagged Homes list
+      dream_home: Flag Homes
+      find_friends_description: Have the future co-owners join you in Cher
+      find_friends: Invite Co-owners
+      get_loan_description: You completed Cher’s loan process. Share the news!
+      get_loan_sell_description: Way to go! You've sold partial ownership!
+      get_loan: Get Loan
+      next_step: 'Next Step:'
+      title: Road To My Dream House
+      title_sell: How to sell fractional ownership
+      register_description: Provide your name and a profile picture
+      register: Complete profile
+      step: Step %{number}
+      steps_completed: '%{number} of 5 steps completed'
+      get_loan_congrats: Congratulations!
+  emails:
+    prospect:
+      subscribing:
+        subject: Thanks for subscribing to cherapp
+    weekly_drip:
+      types:
+        price_drops: Recent Price Drops
+        new_properties: New listing homes in your area
+        popular_properties: Most popular homes in your area
+  ethnicities:
+    asian: Asian
+    black-african-descent: Black/African descent
+    east-indian: East indian
+    latino-hispanic: Latino/Hispanic
+    middle-eastern: Middle Eastern
+    native-american: Native American
+    pacific-islander: Pacific Islander
+    white-caucasian: White/Caucasian
+    other-ethnicity: Other
+    not-to-say-ethnicity: Prefer not to say
+  flagged_properties:
+    my_flagged: My Flagged Homes
+    no_flagges: You haven't Flagged any homes
+    latest_homes: Flagging homes is the first way to connect with other vetted people to buy and share similar spots!
+  flashes:
+    message_credits:
+      not_clique: You need to be a Clique Premium Agent to buy credits
+      no_customer: Customer not available
+      paid_successfully: Credits paid successfully
+    activations:
+      create:
+        notice: You will receive an email with instructions for how to confirm your account
+        alert: Your account is already active
+        user_not_found: User not found. Plase verify the given email
+      update:
+        alert: Error activating account. No user found
+        notice: Account successfully activated. Sign in to continue
+    activities:
+      delete:
+        alert: Error deleting activity
+        notice: Activity successfully deleted
+    contacts:
+      create:
+        success: 'Thank you! A member of our team will contact you asap!'
+      create_csv:
+        alert: "Invalid prospect's file"
+        notice: Prospects uploaded successfully
+    comments:
+      create:
+        notice: Comment was sucessfully created
+        alert: Error creating comment
+      destroy:
+        notice: Comment successfully deleted
+        alert: Error deleting comment
+      update:
+        alert: Error updating comment
+        notice: Comment successfully updated
+    emails:
+      create:
+        success: Email sent
+        alert: Invalid email
+    errors:
+      access: You cannot access this section.
+      already_have_funding: You already have a funding
+      referral_agreement: You need to accept the referral agreement
+    friend_request:
+      accepted: Friend request accepted
+      rejected: Friend request rejected
+      create:
+        alert: Error responding to friend request
+        notice: Friend request sent
+      update:
+        alert: Error updating request
+        notice: "Request %{status}"
+    houses:
+      opened_draft:
+        notice: Draft opened correctly
+      save:
+        notice: Draft saved correctly
+      create:
+        alert: Error registering house
+        notice: House successfully registered
+      update:
+        alert: Error updating house
+        notice: House successfully updated
+    inquiries:
+      update:
+        alert: Error updating background check
+        notice: Background check now is under review
+        already_requested: You already requested an inquiry, which is under review
+        already_approved: Your background check was already approved
+        rejected: You background check was rejected. Please contact Cher support
+    invitation:
+      create:
+        error: "The invitation has been sent to %{email}, but hasn't yet been accepted"
+        notice: "Invitations successfully sent"
+        user_already_registered: User is already part of Cher
+    likes:
+      create:
+        notice: You liked a post
+        alert: Error liking a post
+      destroy:
+        alert: Error removing like
+        notice: Like sucessfully removed
+    loans:
+      create:
+        alert: Error saving loan
+        notice: Loan successfully saved
+      update:
+        notice: Loan sucessfully updated
+        alert: Error updating loan
+      participants:
+        notice: Loan process successfully accepted
+        alert: Error acepting loan process
+    multisearch:
+      error: "No results for %{search}"
+    notification:
+      create:
+        success: Notification successfully sent
+    notification_settings:
+      update:
+        alert: Error updating notification settings
+        notice: Notification settings successfully updated
+    payment:
+      create:
+        error: Invalid payment status
+        success: Payment succeeded
+      already_has_plan: You're already part of Cher Clique. Please wait untill %{end_date}
+      enjoy_trial: Enjoy your free trial
+      code_already_used: Promo code already used
+      invalid_promo_code: Invalid promo code
+    professional:
+      update:
+        alert: Error updating professional
+        notice: Professional successfully updated
+    profile:
+      update:
+        error: Error updating user data
+        success: User data successfully updated
+      destroy:
+        error: Error removing user data
+    publications:
+      create:
+        notice: Publication successfully created
+        alert: Error creating publication
+      destroy:
+        notice: Publication sucessfully deleted
+        alert: Error deleting publication
+      update:
+        alert: Error updating publication
+        notice: Publication sucessfully updated
+    rentals:
+      create:
+        alert: Error registering house
+        notice: House successfully registered
+      update:
+        alert: Error updating house data
+        notice: House successfully updated
+    user:
+      update:
+        alert: Error updating user config
+        notice: User config updated
+    reviews:
+      create:
+        alert: Error creating review
+        notice: Review sucessfully created
+        same_person_reviewing: You can not review your own profile
+      update:
+        alert: Error updating review
+        notice: Review sucessfully updated
+    sms:
+      create:
+        success: SMS sent
+        alert: Invalid phone number
+    subscriptions:
+      destroy:
+        notice: You unsubscribed from Clique Premium
+      update:
+        notice: Payment method successfully updated
+    topic:
+      create:
+        alert: Error saving the topic
+        success: Topic saved correctly
+      update:
+        alert: Error updating topic
+        success: Topic sucessfully saved
+      destroy:
+        alert: Error deleting topic
+        success: Topic sucessfully deleted
+    property_searches:
+      delete:
+        notice: Search successfully deleted
+        alert: Error deleting search
+    responses:
+      create:
+        notice: Personality test saved
+        alert: Error saving personality test
+      delete:
+        alert: Error deleting user responses
+        notice: Now you can complete the test again
+    prospect:
+      create:
+        error: Subscription failed, please review data
+        notice: You are subscribed now
+        already_subscribed: You are already subscribed
+    verifications:
+      already_validated: Your identity is already validated
+      alert: Error verificating profile
+      blocked_user: "Personality test is blocked till %{date}"
+      needs_validation: First you need to validate your identity
+      notice: Profile successfully verificated
+  frequencies:
+    always: Always
+    never:  Never
+    normally: Normally
+    ocasionally: Ocasionallyj
+    usually: Usually
+  genders:
+    male: Male
+    female: Female
+    x: X
+    not-say: Prefer not to say
+    resend_confirmation_instructions: Resend confirmation instructions
+  generic:
+    confirm: Confirm
+    save_draft: Save Draft
+    flag: Flag
+    a_friend: A friend
+    accept: Accept
+    access_buyers: Access buyers
+    account: Account
+    actions: Actions
+    activate_account: Activate account
+    add_friends: Add friends
+    additional_information: Additional information
+    address: Address
+    are_you_sure: Are you sure?
+    app_name: CHER
+    by_sign_up: 'By sign up you accept our '
+    chat_with_us: chat with us
+    cher: Cher
+    connect_with_cher: Connect with Cher
+    contact: Contact
+    create_account: Create your account
+    delete: Delete
+    date: Date
+    description: Description
+    details: Details
+    dicover: Discover
+    dont_show_again: Don't show me this again
+    download_csv: Download CSV
+    email: Email
+    edit: Edit
+    find_homes: Find homes
+    footer_landing_page: "730 Arizona Avenue Office 205, Santa Monica, CA 90401 O: (424) 330-1800 M: (949) 683-7472"
+    footer: PATENT PENDING - ©2018 CHER - ALL RIGHTS RESERVED
+    friends: Friends
+    friend_request_pending: Friend request pending
+    friends_you_sould_like_to_buy: Friends you'd like to buy with
+    general: General
+    give_me_review: Create your free account to leave %{user_name} a review
+    hello_user: Hello, %{user}
+    here: here
+    houses: Houses
+    home_not_found: Seems like this home is not available anymore
+    invite: Invite
+    invite_friends: Invite Friends
+    keep_track_of_properties: and keep track of all your flagged properties.
+    name: Name
+    no_flagged_properties: "%{user} has no flagged properties yet"
+    no_no_yet: No, no yet
+    last_name: Last Name
+    lets_do_it_again: Let's do it
+    list: LIST
+    list_rental_sell: List Rental
+    learn_more: Learn more
+    log_in: Log In
+    log_in_up: LOG IN
+    map: MAP
+    maybe_later: Maybe later
+    messages: Messages
+    name: Name
+    next: Next
+    new: NEW
+    next: Next
+    n_a: N/A
+    no_mutual_friends: 'You and %{user_name} have no mutual friends'
+    no_score: You will need to complete the personality test
+    no_pictures_attached: No pictures attached
+    no_i_wont: No, I won't
+    no_its_not: No, it's not
+    or: Or
+    owner: Owner
+    pending: Pending
+    percentage: "%{amount}%"
+    people_in_common: See people you and %{user} have in common
+    phone_number: Phone number
+    please_be_more_specific: Please be more specific
+    please_sign_up_to_save: Please sign up to save your search
+    previous: Previous
+    private_newsfeed: This newsfeed is private. Please add %{user_name} as a friend
+    price: Price
+    prev: Prev
+    prospects: Prospects
+    professional_contact: |
+      Hi, my name is %{name}. I am interested in co-owning %{address}. Thank you.
+    rentals: Rentals
+    read_more: Read more
+    read_less: Read less
+    reject: Reject
+    request_a_call: Request a call
+    return: Return
+    score: "Your actual score is: %{score}"
+    search_result: Search result
+    search_people: Search People
+    search_homes: Search Homes
+    someone: Someone
+    share: Share
+    share_something: Share something
+    share_post: Share post
+    share_property: Share property
+    share_video: Share video
+    share_with_leads: Share with your Leads
+    share_with_network: Share with your Network
+    sign_up: Sign Up
+    sign_up_up: SIGN UP
+    save: Save
+    show_more: Show more
+    sell_home: Sell Home
+    search_friends: Search Friends
+    status: Status
+    take_a_look_home: Take a look at this home
+    take_a_look_post: Take a look at this post
+    take_a_look_video: Take a look at this video
+    today: Today
+    to_see_home: ' to see the home'
+    to_see_post: ' to see post'
+    to_watch_video: ' to watch the video'
+    update: Update
+    upload_image: Upload image
+    validate_identity: You will need to verify your identity to complete your profile
+    view_profile: View profile
+    welcome: "Welcome %{user}"
+    yes_i_will: Yes I will
+    yes_it_is: Yes, it is
+    "no": "No"
+    "yes": "Yes"
+  hero:
+    average_cloding_cost: Average Closing Costs Are $11,000
+    dont_know_how: Don’t know who to buy a home with?
+    join: Join now
+    look_around: Look around
+    no_problem: No problem, find approved homebuyers here.
+    only_california: Currently, Cher is only available in California! Select look around and you can gain early access to your profile and other features in Cher.
+    place_to_buy: The place to buy homes together.
+    people_doing_it: Join 1.5 Million People Doing It Today
+    share_video: Share video
+    we_provide_flexibility: We provide you with the flexibility.
+    what_happens: What happens if you want to sell?
+    with_cher: 	With Cher, you pay ZERO.
+  house:
+    status:
+      pending: Pending
+      approved: Approved
+      rejected: Rejected
+    types:
+      residential: Residential
+      condo: Condo
+      mobile: Mobile
+      multifamily: Multifamily
+  how_long_owning_properties:
+    1yr: 1yr
+    2yrs: 2yrs
+    3yrs: 3yrs
+    4yrs: 4yrs
+    more: More
+  inquiry:
+    a_summary_of_all_information: A summary of all information contained in the ICRA’s file on you that is required to be provided by the California Civil Code will be provided to you via telephone, if you have made a written request, with proper identification, for telephone disclosure, and the toll charge, if any, for the telephone call is prepaid by or charged directly to you.
+    authorize_license_bodies: I authorize licensing bodies, courts, law enforcement agencies, governmental agencies, or departments to provide information about my background, including but not limited to court records and professional license records.
+    by_requesting_a_copy_be_sent: By requesting a copy be sent to a specified addressee by certified mail. ICRAs complying with requests for certified mailings shall not be liable for disclosures to third parties caused by mishandling of mail after such mailings leave the ICRAs.
+    california_background_check: CALIFORNIA BACKGROUND CHECK NOTICE
+    cher_hereby_dicloses: Cher (“Company”) hereby discloses to you that a consumer report, as defined by the Fair Credit Reporting Act, may be obtained for verification purposes by it, its affiliates, representatives, or agents.  The undersigned hereby authorizes the procurement of the consumer report.
+    cher_intends_to_obtain: Cher (“Company”) intends to obtain information about you for employment purposes from a consumer reporting agency. Thus, you can expect to be the subject of a background check, also known as a “investigative consumer reports” and “consumer credit reports” under California law, obtained for employment purposes. Such reports may include information about your character, general reputation, personal characteristics and mode of living. With respect to any investigative consumer report from an investigative consumer reporting agency (“ICRA”), the Company may investigate the information contained in your employment application and other background information about you, including but not limited to obtaining a criminal record report, verifying references, work history, your social security number, your educational achievements, licensure, and certifications, your driving record, and other information about you, and interviewing people who are knowledgeable about you. The results of this report may be used as a factor in making employment decisions. The source of any investigative consumer report (as that term is defined under California law) will be Barada Associates, Inc., 130 East Second St., Rushville, IN 46173, 800-616-5917, www.baradainc.com. The source of any credit report will be TransUnion / TransUnion Consumer Solutions, P.O. Box 2000, Chester, PA 19022-2000, 800-916-8800. The Company agrees to provide you with a copy of an investigative consumer report when required to do so under California law.
+    disclosure: Disclosure
+    error_requesting: Error requestign inquiry
+    feel_free_to_contact: Feel free to contact support if you have any additional questions.
+    general_info: General info
+    get_qualified: Get Qualified
+    information_from_the_customer: Information from the consumer report will not be used in violation of any applicable federal, state, or local equal employment opportunity law or regulation.  I understand that my date of birth will be used solely for identification purposes.
+    in_person_by_inspection: In person, by visual inspection of your file during normal business hours and on reasonable notice. You also may request a copy of the information in person. The ICRA may not charge you more than the actual copying costs for providing you with a copy of your file.
+    i_agreee_that_this: I agree that this Applicant Release Regarding Consumer Reports will be valid, now and at all times in the future, in original, faxed, copied or electronic form.
+    i_have_authorized_cher: I have authorized Cher (“Company”) to obtain a consumer report about me, for verification purposes, at any time to the extent allowed by law.
+    qualified_info: Our free credit check pre-qualifies and maximizes your loan amount with future co-owners. This
+    qualified_not_impact: will not
+    qualified_credit: impact your credit.
+    new: Background Check
+    optional_background_check: Optional background check is available for $4.99. A successfull background check will be reflected on your profile. If you want to meet potential co-owners through Cher, this is a great way to establish trust!
+    powered_by: Powered by
+    proper_identification: “Proper Identification” includes documents such as a valid driver’s license, social security account number, military identification card, and credit cards. Only if you cannot identify yourself with such information may the ICRA require additional information concerning your employment and personal or family history in order to verify your identity.
+    request: Request Check
+    successfully_requested: Inquiry successfully requested
+    the_icra_will_provide: The ICRA will provide trained personnel to explain any information furnished to you and will provide a written explanation of any coded information contained in files maintained on you. This written explanation will be provided whenever a file is provided to you for visual inspection.
+    under_california_civil_code: "Under California Civil Code section 1786.22, you are entitled to find out from an ICRA what is in the ICRA’s file on you with proper identification, as follows:"
+    validate_profile: Validate your profile by completing a background check!
+    you_may_be_accompanied: You may be accompanied by one other person of your choosing, who must furnish reasonable identification. An ICRA may require you to furnish a written statement granting permission to the ICRA to discuss your file in such person’s presence.
+  invest:
+    id_love_to: i'd love to
+    live: live
+    rent: rent
+    invest: invest
+    in: in
+    go_to_map: go to map →
+  labels:
+    contact_concierge: Contact Concierge
+    accept_terms_conditions: Accept Terms & conditions
+    accept_private_terms: Accept Privacy policy
+    accept_referral_agreement: Accept Referral Agreement
+    activate_account: Activate Account
+    add_another_picture: Add Another Picture
+    address: address *
+    already_have_an_account: Already have an account?
+    background_check_status: Background check status
+    card_number: Card number
+    complete_test: Personality Test
+    complete_profile: Complete your profile
+    property_type: What type of home are you looking for?
+    confirm_email: confirm email *
+    confirm_new_password: Confirm your new password
+    contact_history: Contact History
+    contact: Cher contact
+    confirm_account: Confirm Account
+    confirmation_instructions: Confirmation Instructions
+    create_inquiry: New inquiry
+    city_name: city name *
+    change_your_password: Change Your Password
+    current_past_address: Current or Past Address
+    cvc: CVC
+    date_of_birth: Date of birth
+    date_of_birth_up: Date of Birth
+    email: Email
+    edit_comment: Edit your comment
+    edit_post: Edit your post
+    expires_date: Expires date
+    first_name: First Name
+    first_name_titleized: First name
+    friends_email: Friend's email
+    fund: "User's fund"
+    general_info: general_info
+    how_did_customer_help_you: How did %{name} help you?
+    how_would_you_rate_customer: How would you rate %{name}?
+    i_agree: I AGREE with the terms above
+    i_have_read_consent: I certify that I have read and agreed to the Consent to Electronic Disclosures provided %{link}
+    intention: Intention
+    invite_a_friend: Invite a friend
+    invite_them: Invite them
+    message: "Message:"
+    middle_name: Middle Name
+    my_network: My network
+    my_friends: My friends
+    name: "Name:"
+    new_password: New password
+    new_topic: New topic
+    no_like_me: No like me
+    last_name: Last Name
+    last_name_titleized: Last name
+    license_number: License number
+    one_click_away: One click away
+    password: "Password:"
+    people_interested_in_this_property: People interested in this property
+    picture: Picture
+    phone: Phone
+    phone_number: phone number *
+    please_select_type_of_account: Please select the type of account
+    postcode: zipcode *
+    publish: Publish
+    activate_account: Activate account
+    role: "Role:"
+    select_your_role: Select your role
+    search_topic: Search topic
+    sign_in: Sign In
+    sign_up: Sign Up
+    state_name: state name *
+    social_number: social security number
+    social_number_confirm: confirm social security number
+    topic_description: Topic description
+    topic_name: Topic name
+    validate_identity: Validate Identity
+    very_much_like_me: Very much like me
+    your_email: your email
+    your_phone_number: Your phone number
+  landing_page:
+    body:
+      share_video: Share Video
+      a_better_way_to_buy: We've created a better way for your clients to buy their dream home.
+      already_buyers: Already have buyers
+      always_free: 100% free for you.
+      are_you_ready: Are you ready to take the next step?
+      become_their_agent: Become Their Agent
+      benefits_left_invite: Invite friends or family
+      benefits_left_shop: Shop houses
+      benefits_left_pre: Pre-qualify
+      benefits_left_choose: Choose agent
+      benefits_left_coowner: Become a co-owner
+      benefits_left_sell: Sell when you want
+      benefits_right_free: 100% Free to Use
+      benefits_right_view: View Thousands of Homes
+      benefits_right_loans: Competitive Loans
+      benefits_right_cost: Zero Closing Costs
+      benefits_right_verified: Meet Verified Co-Owners
+      benefits_right_patented: Patented Co-Owning Process
+      browse_thousand_of_homes: Browse thousands of homes, obtain competitive loans, and receive professional service, and meet aspiring co-owners through our all-in-one platform.
+      browse_leads: Browse Leads
+      buy_and_share: Build and sell your equity free with one platform
+      chers_dedicated_concern: Cher’s dedicated concierge team and one of a kind software helps you own any home and we help sell your partial ownership on your terms.
+      cher_makes_expensive: Cher makes home co-owning and co-investing simple! Own a home with friends, significant other, relatives, or someone you meet on Cher and share the loan.
+      cher_pre_apprroves_coowners: Cher Pre-approves Co-Owners
+      close_escrow: Close Escrow
+      close_large_transactions: Close Larger Transactions
+      clients_play_zero: Clients Pay Zero Closing Fees
+      create_your_profile: Create Your Profile
+      download_cher_guide: Download Cher's Resource Guide
+      default_home_price: $ 200,000
+      default_amount_without_cher: $ 858
+      default_amount_cher: $ 214
+      easier_together: Easier Together
+      estimated_monthly_loan: Estimated monthly loan payment
+      first_time_buyer: First time buyer? Our dedicated team is here to guide you through the co-owning process.
+      first_patent: First patented way to easily share homes and loans
+      from_our_blog: From our blog
+      get_started: Get Started
+      guided_path: Cher simplifies co-ownership
+      homeownership_is_expensive: Homeownership is expensive and inflexible.
+      hey_real_state_agents: Hey Real Estate Agents
+      how_much_dream_house_cost: How much does your dream home cost?
+      how_it_works: HOW IT WORKS
+      home_loans: Home Loans
+      home_price: Home price
+      in_mind: in mind?
+      invite_friends: Invite friends or meet vetted buyers looking to share homes
+      invite_clients_to_cher: Invite Clients to Cher
+      join_cher_clique: Join Clique Premium
+      join: Join the 1.5 million people sharing homes and loans today
+      journey: We break the journey down into small manageable steps and help the entire way
+      lets_talk_numbers: So, let's talk numbers
+      market_as_expert: Market as a Co-Owning Expert
+      meet_new_coowmners: Meet New Co-Owners
+      meet_prequalified_coowners: Meet Pre-qualified Co-Owners
+      need_competititve_edge: Need a competitive edge?
+      own_your_home: Own Your Home.
+      process: We streamlined the homebuying process saving you thousands on closing costs
+      professional_guidance: Professional Guidance
+      professional_refer: Refer 3 buyers, get 1 month free of Cher's Clique!
+      ready: Ready to get started?
+      read_more: Read More...
+      real_button: Sign Up
+      real_learn: Learn More
+      representing_multiple_buyers: Representing multiple buyers does not mean multiple work with Cher.
+      reduces_escrow_delay: Reduce Escrow Delays
+      saves: Cher saves you time and money
+      saving_you_and_your_clients_time: Saving Your Clients Money
+      search_homes: SEARCH HOMES
+      see_if_you_qualify: See If You Qualify
+      share_loan: Share Your Loan.
+      streamlines_the_entire_process: Streamline Co-owning
+      thats_why_theres_cher: That’s why there’s Cher.
+      testimonial_charlie: Charlie H.
+      testimonial_henry: Henry P.
+      testimonial_jordan: Jordan R.
+      testimonial_kalli: Kalli D.
+      testimonial_los_angeles: Los Angeles County, CA
+      testimonial_los_angeles_2: Los Angeles, CA
+      testimonial_loan: Loan Officer
+      testimonial_nicole: Nicole P.
+      testimonial_orange_city: Orange County, CA
+      testimonial_rachel: Rachel B.
+      testimonial_real_estate: Real Estate Agent
+      testimonial_seatle: Seattle, WA
+      testimonial_santa_monica: Santa Monica, CA
+      view_thousands_of_homes: View Thousands of Homes
+      we_get_it: We Get It!
+      we_make_shared_homeownership_simple: We make shared homeownership simple.
+      we_offer: We offer some of the most competitive rates in the industry with very little down.
+      with_cher_and_buyers:  With Cher + Buyers
+      why: Why?
+      you_can_own: You can own or invest in homes while sharing the expenses with one or more people.
+      zero_closing_cost: Zero Closing Cost
+      benefits:
+        access_top : Access Top Real Estate Agents
+        also_included: Also Included
+        appraisal_costs: Escrow, Title, Appraisal Costs Waived
+        buyer_background_check: Buyer Background Checks
+        competitive_loands: Competitive Loans
+        concierge_team: Concierge Team Helping You
+        customizable_newsfeed: Customizable News Feed
+        easily_sell: Easily Sell a Portion of Your Equity
+        homes_to_buy: Thousands of Homes to Buy and Share
+        patented_process: Patented Buying + Selling Process
+        personality_test: Buyer Personality Test
+        trending_homes: Follow + Share Trending Homes
+        verified_coowners: I.D Check to Verify Buyers
+        whats_included: What's Included
+      contact:
+        call_me: Call me
+        calendly: Calendly
+        cher_email: cher@cher.app
+        cher_number: (877) 311-3419
+        email_us: Email Us
+        form_living: Living Situation
+        form_message: Message
+        form_quiz: Please give us feedback in this
+        form_survey: quick survey
+        looking_to_buy: Looking to buy
+        looking_to_rent: Looking to rent
+        schedule_a_call: Schedule a Call
+        talk: Need help?
+        talk_call: Call Now
+        talk_chat: Live chat now
+        title: What best describes what you're looking for?
+        here: Here
+      infographic:
+        match: Match
+        match_text: Find qualified co-owners
+        fund: Fund
+        fund_text: Quickly calculate your loan
+        discover: Discover
+        discover_text: Find others who like the same home easily
+        exit: Exit
+        exit_text: Multiple ways to take your equity
+      testimonials:
+        charlie: “Real Estate and buying a home has a lot of complexities and this tool really helps individuals make better and informed decisions when buying a home.”
+        henry: “Cher provides an attractive option for clients with modest income and savings to collectively buy into high cost, high demand areas that would be otherwise unattainable.”
+        jordan: “My clients don't like renting and it  often takes a substantial amount of time to find something that fits within their budget. Cher has helped me and my clients co-own homes instead of renting.”
+        kalli: “I can't belive how streamlined Cher makes the home purchase process. Cher makes sure every document and step is legitimate and complete. It saves me from the headache and makes sure the client is fully covered and taken care of. Takes a lot off of my plate! I can't imagine closing withuot Cher.”
+        nicole: “Forward thinking and adds value to the whole process and makes it easier and understandable.”
+        rachel: “I am currently not in a financial situation where I can afford a home and I hate wasting money on rent. It’s like throwing my hard earned money away. Cher helps me become more financially independent.”
+    buttons:
+      create_free_account: Create free account
+      download_android: Download for Android
+      email: Email address
+      invite_friends: Invite friends +
+      invite_homebuyers: + Invite homebuyers
+      log_in_web: Log In On Web
+      submit: SUBMIT
+    headers:
+      buy_your_home: Buy your home, share the loan.
+      close_more_deals: Close more deals.
+      felxible_homeownership: Flexible homeownership to sell your equity.
+      live_or_invest: Live or invest in homes with friends or find someone here!.
+      save_time: Save time prospecting.
+      search_homes: Search Homes
+      still_curious: Still Curious?
+      zero_home_closing: 100% free to use with zero home closing costs.
+    collaborate_content: Never thought you could afford a house all on your own? We've got you covered. Cher is for everyone, even first-time home buyers. Our all-in-one platform will help connect you to our community of pre-approved co-owners based on your personal and financial needs. Our Cher Security program is here for your protection, giving you a range of opt-out alternatives just in case.
+    explore_content: Get matched, browse homes, find an agent and finalize contracts - all from the comfort of our app. It’s 100% safe and secure, for your peace of mind and ours. From finding your next home to funding it, our tools will simplify the house-hunting process.
+    learn_content: Buying a house is a HUGE step - so our goal is to help fill in all the gaps between you and the home of your dreams. Browse through our collection of resources and other educational material to help you in your journey. Our app will keep you informed throughout your journey to becoming a homeowner. Gain the confidence of experienced buyers by taking advantage of our comprehensive resources and streamlined platform.
+    about: About
+    buying_is_not_easy: Home buying is not easy. It's a huge investment and for the most part, can be very confusing.
+    can_i: If you've got a best friend or a special someone in mind to start your homeownership journey with - we dig it. We make it easier for qualified homebuyers to go through all the necessary steps online - our social network is an additional feature for those who are still looking for their clique. Otherwise, you can skip that option and go straight to the buying process.
+    can_anyone: Anyone can join Cher, whether you're ready to purchase a home or not. In fact we encourage it. Buying a home is a pretty big deal, so we want to help educate you on all aspects before you make that decision. When it comes to looking for co-owners though, we do go through a vetting process to make sure you are qualified and do various background checks for safety purposes.
+    contact: Contact
+    email: cher@cher.app
+    contact_us: Contact us
+    homeownership: Homeownership
+    inventors: Inventors
+    i_want_to: We stan an eager learner! Truth be told, many prospective home buyers know next to nothing about the home buying process. You're not alone! Even if you're not quite there yet, we offer Cher as a platform for a myriad of resources to help you learn more about the home buying process before you commit. So feel free to join in, hang out and browse until you're ready.
+    ios_available: IOS App available soon!
+    made_posible: Made Posible.
+    okay_cool: It is 100% free to join Cher and access all of our features.
+    privacy_policy: Privacy Policy
+    realtors: Realtors
+    slogan: The first social network for the modern homebuyer.
+    sign_up: Sign up below to get notified when we launch on the Apple store and for additional updates on our newest features! Plus, exclusive home buying guides and other hacks!
+    terms_and_policies: Terms + policies
+    what_happen: As with life, things don't always go the way you want it to. With the Cher Security program, you're protected. Even if it means your co-owner loses their job or if you decide it's just not all that great of a personality fit - we've got you covered. We have various opting out choices for all parties involved that make the home buying process risk-free.
+    what_if_i: We make it possible for you to pay a lower down payment (for qualified users). Still don't have enough? Be sure to browse our financial resources to learn more about saving, budgeting and what to expect when you are starting the home buying process.
+    who_we_are: Who we are
+    we_create_cher: We wanted to change that, so we created Cher.
+    how_it_works:
+      title: How it works
+      step_one_title: match
+      step_one_description: Enjoy the ability to meet and co-own with people outside of your current friends or family social groups. Cher’s patented algorithm, along with soft credit pulls, ID verification, and criminal background checks for every homebuyers creates the total package for co-borrowing like never before.
+      step_two_title: fund
+      step_two_description: Our lender partnerships provides us the ability to combine different co-owner loan amounts from your network in Cher to provide the loan to your dream home.
+      step_three_title: discover
+      step_three_description: Access hundreds of featured homes at your fingertips that are tailored to you. Wherever your dream home may be, we streamline this search process by presenting you with quality homes within your price range that will make living or investing with your co-owners be the perfect fit. Cher’s real estate professionals are here to help you through this escrow process.
+      step_four_title: exit
+      step_four_description: Whether our co-owners want to rent or sell their ownership, we provide them with the tools making this exit more effective than before. By partnering with experienced professionals and hosting an entire marketplace of buyers looking to co-own a part of the house, we are able to help our co-owners take their portion of equity and apply it to anywhere else.
+  leads:
+    dashboard: '< Dashboard'
+    filter_by_city: Filter by city
+    search_city: Search city...
+  loans:
+    about_home: About this home
+    cant_see_friends: Can't see your friends?
+    co_buyers: Co-buyers
+    found_dream_home: Found dream home?
+    first_home: First home?
+    hello_there: Hello there!
+    home_address: Home address...
+    how_much_cost: Do you know how much does it cost?
+    is_first_home: Is this your first home?
+    is_this_right_address: Is this the right address?
+    lets_talk_numbers: Let's talk about numbers
+    no_worries: No worries!
+    owners_email: Owner's email
+    owners_name: Owner's name
+    property_id: Property id
+    property_info: Property info
+    planning_to_live_there: Planning to live there?
+    title: Loans
+    tell_us_about_it: Tell us about it!
+    where_is_it: Where is it?
+    will_live_there: Will you live there?
+    who_are_you_buying_with: Who are you buying with?
+    you_can_always: You can always add later
+    statuses:
+      active: Active
+      finished: Finished
+      rejected: Rejected
+  friends:
+    connections: Connections
+    import_contacts: Import contacts
+    invitations: Invitations
+    matches: Suggested matches
+    your_connections: Your connections
+  friend_request:
+    add_user:
+      agent: +Add Professional
+      co_borrower: +Add Co-Owner
+    friend_requests: Friend requests
+    requests_received: Requests received
+    requests_sent: Requests sent
+    prospect_request: Prospect requests
+    friends: Friends
+    status:
+      approved: approved
+      rejected: rejected
+      pending: pending
+      already_friends: Already friends
+    wants_to_be_friends: "%{name} wants to be your friend"
+  navbar:
+    menu:
+      dashboard: Dashboard
+      edit_profile: Edit profile
+      go_to_dashboard: my profile
+      how_it_works: how it works?
+      is_this_for_me: is this for me?
+      settings: Edit profile
+      sign_in: log in
+      sign_out: Sign out
+      sign_up: become a co-owner
+      real_estate_agent: I'm an Agent
+      notification_settings: Notification settings
+  placeholders:
+    tell_us_your: Tell us your
+    where_to_buy: where do you want to buy
+    a_city_name: a city name
+    address: 123 Main Street
+    any: Any
+    mm_yy: MM/YY
+    define_topic_name: Define a topic name
+    email: email
+    email_address: Email Address
+    enter_email: Enter client email here
+    enter_your_note: Enter your note
+    first_name: first name
+    how_much: How much it is..
+    last_name: last name
+    license_number: Your license number
+    leave_a_comment: Leave a comment...
+    max: Max
+    min: Min
+    multisearch: Search people or agents...
+    name: name
+    password: password
+    password_confirmation: confirm password
+    phone_number: (651) 555-7889
+    phone_number2: phone name
+    price: $
+    select_an_option: Select an option
+    topic_description: Describe the topic
+    type_something: Type something
+    type_your_email:  Type your email
+    type_the_name_on_your_card: Type the name on your card
+    type_your_card_number: Type your card name
+    search_city: Search a city...
+    share_something: Share something...
+    url: www.sample.com
+    yard_fireplace: Yard, fireplace, etc...
+    your_name_here: Your name here...
+    your_email: Your email...
+    what_would_you_tell_about_customer: What would you tell other people about working with %{name}?
+    your_city: Your City...
+  personality_test:
+    about_me: About me
+    almost_done: Almost done
+    confirmation_reset_message: You have already completed Cher's Personality Test. If you retake the test, it will override any previous test taken. You will be limited to a maximum of 3 tests in a six (6) month period. All suggested matched maybe lost, however current connected matches will not be affected.
+    done: Awesome! You're one step closer to find your dream home!
+    label: Personality test
+    living_factors: Livin factors
+  providers:
+    google_oauth2: Google
+    facebook: Facebook
+    linkedin: LinkedIn
+  roles:
+    multiple_regular_user: Homebuyer | Seller | Owner | Renter
+    homebuyer: Homebuyer
+    real_estate_professional: Real estate professional
+    coowner: Co-Owner
+  sign_in:
+    agree: I agree to the
+    confirmation_instructions: No confirmation instructions?
+    forgot_password: Forgot password
+    connect_with: "Connect with:"
+    or: Or
+    terms: terms
+    existing_account: "Already have an account?"
+  password_complexity_error: "Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase and 1 digit"
+  sell:
+    additional_information: Additional information
+    address: Address
+    basement_area: Basement sq. ft.
+    beds: Beds
+    benefits_include: 'Benefits include:'
+    cher_to_send_you: Would you like Cher to send you our FREE competitive price analysis for your listing?
+    contact_information: Contact information
+    contact_information_note: Potential buyers and or renters may contact you through the email address registered with Cher. Please provide a contact number to be reached.
+    county: County
+    date: Date
+    describe_your_home: Describe your home
+    direct_email_outreach: Direct email outreach to 20K Cher Members
+    down_payment: What is the expected down payment?
+    edit_home: Edit home
+    end_time: End time
+    for_sale: For sale
+    full_baths: Full baths
+    garage_area: Garage sq. ft.
+    general_information: General information
+    half_baths: 1/2 baths
+    hands_on_help: Hands on help with your entire fractional sale
+    hoa_dues: HOA dues
+    home_facts: Home facts
+    home_for_sale: Home for sale
+    home_type: Home type
+    houses_for_sale: Houses for sale
+    interior_area: Interior sq. ft.
+    listed_in_multiple_platforms: Listed on multiple property platforms
+    lot_size: Lot size
+    monthly_mortgage: What are the monthly mortgage payments?
+    one_quarter_baths: 1/4 baths
+    open_house: Open house
+    open_house_note: Open house may not currently allow for social distancing or comply with public health orders.
+    own_porcentage: What % of this home do you own?
+    ownership_percentage: Ownership percentage
+    photos: Photos
+    per_month: Per month
+    post_for_sale: Post for sale by owner
+    posting_california_mls: Posting to California's MLS
+    reasons_to_love: Reasons to love this house
+    say_what_you_love: Say what you love about it and what makes it unique, talk about the neighborhood and the lifestyle it provides.
+    sale_note: Post once and your house will be listed on Cher.
+    selling_percentage: What % of this home are you selling?
+    set_your_price: Set your price
+    start_time: Start time
+    state: State
+    speak_with_professionals: to speak with Cher's professionals to help sell your fractional homeownership. Cher's fee are 3% of the sale amount.
+    three_quarters_baths: 3/4 baths
+    terms_of_user_1: "I agree to the following: (i) I am (or I have authority to act on behalf of) the owner if this home; (ii) I will not provide incorrect information or state a discriminatory preference; and (iii) I will comply with the Cher "
+    terms_and_conditions: Terms & conditions
+    what_i_love: What I love about this home
+    who_is_the_people: Who are the people or entities in title?
+    website: Website
+    year_built: Year built
+  social_network:
+    agents: Agents
+    agents_heading: Real Estate Agents Near You
+    add_user_type: + Add
+    friend_requests: Friend Requests
+    friend_request_sent: Friend request sent
+    import_contacts: Import Contacts
+    import_prospects: Import Prospects
+    invitable_emails: Invitable emails
+    no_notifications: You still don't have notifications
+    request_contacts: Request your contacts
+    send_friend_request: Send friend request
+    suggested_connections: Suggested Connections
+    suggested_friends: Suggested Friends
+    your_friends: Your friends
+  social_networks:
+    index:
+      title: "Results for: %{search}"
+      invite: Invite %{email} to cherapp
+      no_users_found: No users found
+  ticker:
+    featured: Featured in
+    trusted_by: Trusted by
+  footer:
+    about: About us
+    blog: Blog
+    contact_us: Team contact
+    cookie: Cookie policy
+    copyright: Patent Pending - ©2021 Cher Inc. All Rights Reserved
+    department: 'California Bureau of Real Estate #02094241'
+    faq: FAQ
+    help_center: Help center
+    knowledge_hub: Knowledge Hub
+    legal: Legal
+    news_update: Join our newsletter. We promise no spam!
+    nmls_number: 'NMLS Consumer Access #898741'
+    partner: Partner with us
+    private_terms: Privacy policy
+    subscribe: Stay updated
+    terms_conditions: Terms & conditions
+    who_we_are: Who we are
+    why_we_do_it: Why we do it
+  img_alts:
+    app_logo: Cher
+    aol_account: Aol account
+    askin_for_coowning: Asking for cowoning through a message
+    area: Area
+    badge: Badge
+    basic_house: Basic house
+    barada: Barada
+    bathroom: Bathroom
+    bedroom: Bedroom
+    blog_post: Blog post
+    building: Building
+    card_id: Card id
+    calendar: Calendar
+    camp_fire: Camp fire
+    credit_card: Credit card
+    cbs: Cbs
+    chart: Chart
+    chart_over_a_hang: Chart over a hang
+    certificate: Certificate
+    confetti: Confetti
+    conversation_globe: Conversation globe
+    copy_link: Copy link
+    confortable_bed: Confortable bed
+    crmls: Crmls
+    clipboard: Clipboard
+    dashboard: Dashboard
+    document: Document
+    equifax: Equifax
+    experian: Experian
+    envelope: Envelope
+    exit_door: Exit door
+    facebook_account: Facebook account
+    file_upload: File upload
+    flag: Flag
+    free: Free
+    friends: Friends
+    garage: Garage
+    gear: Gear
+    gmail_account: Gmail account
+    growth_money: Growth money
+    hand_shake: Hand shake
+    handing_keys: Handing keys
+    home_and_a_house: Home and a house
+    home_and_a_flag: Home and a flag
+    house: House
+    house_over_bills: House over bills
+    house_with_trees: House with trees
+    house_with_magnifying_glass: House with magnifying glass
+    house_over_a_hang: House over a hang
+    identification: Identification
+    innovation: Light bulb and braing fushioned
+    instragram_footer: Instagram account
+    info_sign: Info sign
+    left_arrow: Left arrow
+    linkedin_footer: LinkedIn account
+    magnifying_glass_over_book: Magnifying glass over a book
+    magnifying_glass: Magnifying glass with location mark
+    magnifying_glass_wit_question_mark: Magnifying glass with question mark
+    magnifiying_glass_with_code: Magnifying glass with code
+    magnifiying_glass_over_map: Magnifying glass over a map
+    map_marker: Map marker
+    mail_account: Mail account
+    menu: Menu
+    money: Money
+    muckle_lab: Mucke lab
+    national_assosiation_of_realtors: National assosiation of realtors
+    outlook_acocunt: Outlook account
+    phone_and_a_house: Phone and a house
+    plant_over_a_hang: Plant wroging over a hang
+    phone_ringing: Phone ringing
+    person_thinking: Person thinking with a 404 error
+    person_with_key: Person with key
+    person_with_tie: Person with tie
+    piechart: Piechart
+    pool: Pool
+    property: Cher house
+    profile: Profile
+    phone_and_web_browser: Phone and web browser
+    quicken_loans: Quicken loans
+    right_arrow: Right arrow
+    rss_footer: RSS feed
+    sell: Sell
+    shield: Shield
+    share: Share
+    suicase: Suitcase
+    svop: Svop
+    startuo_logo_color: Startup of the year
+    test: Tests
+    testimonial: Testimonial
+    techday: Techday
+    twitter_footer: Twitter account
+    upload_file: Upload file
+    user_profile: User profile
+    user_post: User post
+    uwm: Uwm
+    vuched: Vouched
+    wetside: Wetside
+    yahoo_account: Yahoo account
+    youtube_footer: Youtube account
+  faq:
+    show:
+      title: FAQ
+      description: If your questions are not shown below or available at www.cher.app, please submit your questions to
+      description_2: so we may add to the FAQ.
+      contact: cher@cher.app
+      subject: Hey!, I have a question
+  flagged_property:
+    flagged_by: Flagged by
+    to_see: ' to see'
+  meta:
+    about:
+      title: Cher | About
+    admin:
+      contacts:
+        title: Cher | Admin | Contacts
+      faq:
+        title: Cher | Admin | FAQ
+      houses:
+        title: Cher | Admin | Houses
+      inquiries:
+        title: Cher | Admin | Inquiries
+      professionals:
+        title: Cher | Admin | Professionals
+      rentals:
+       title: Cher | Admin | Rentals
+      loans:
+        title: Cher | Admin | Loans
+      mailchimp_sync:
+       title: Cher | Mailchimp Manager
+    account:
+      title: Cher | Profile Settings
+    background_check:
+      title: Cher | Background check
+    dashboard:
+      title: Cher | Dashboard
+    default:
+      description: Meet the first social network for the modern co-owners, Cher. Our all-in-one platform will help you afford a house all on your own. Seriously.
+      keywords: Homeownership, Co-owners
+      title: Homeownership Starts with Friends | Cher
+    conversations:
+      title: Cher | Conversations
+    video_call:
+      title: Cher | Video Call
+    faq:
+      description: Want to find out more about co-borrowing homes? Find out how it works and how to get started by contacting us here.
+      title: Cher | FAQ
+    identity:
+      title: Cher | Validate Identity
+    investors:
+      description: Are you an investor in search of new opportunities? Get started with Cher, the platform for home co-ownership.
+      title: Cher | Investors
+    knowledge_hub:
+      description: Want to learn about co-borrowing your next home? Search our knowledge hub here.
+      title: Cher | Knowledge Hub
+    know_more:
+      description: Find out more about our team at Cher, the co-borrowing service helping you find people to live with AND your next home.
+      title: Cher | Who We Are
+    list_rental:
+      title: Cher | List Rental | Sell
+    loans:
+      title: Cher | Loans
+    look_around:
+      title: Cher | Look Around
+    partner_with_us:
+      description: Find out more about our team at Cher, the co-borrowing service helping you find people to live with AND your next home.
+      title: Cher | Partner With Us
+    privacy:
+      description: At Cher, the platform for co-borrowing homes, your security is our priority. Read our Privacy Policy here.
+      title: Cher | Privacy Policy
+    property_overview:
+      title: Cher | Property Overview
+    sell_house:
+      title: Cher | Sell house
+    rental_house:
+      title: Cher | List Rental
+    sign_in:
+      title: Cher | Sign In
+    sign_up:
+      title: Cher | Sign Up
+    social_network:
+      title: Cher | My Friends
+    terms:
+      description: Interested in co-borrowing a home? Read about the extra perks and rewards by signing up with Cher, plus our terms and policies.
+      title: Cher | Terms and Conditions
+    personality_test:
+      title: Cher | Personality Test
+    pricing:
+      title: Cher | Pricing
+      description: Check how Cher compares with other options and get the best deal
+    professional_dashboard:
+      title: Cher | Real Estate Dashboard
+    professional_profile:
+      title: Cher | Professional Profile
+    shared_posts:
+      title: Cher | Shared Post
+    why_we_do_it:
+      title: Cher | Why We Do It
+    user_profile:
+      titile: Cher | User Profile
+  multisearch:
+    index:
+      title: "Results for: %{search}"
+      invite: Invite %{email} to cherapp
+      no_users_found: No users found
+  not_found:
+    body: "Not what you're looking for? Contact us at"
+    email_body: "I wasn't able to find..."
+  video_call:
+    full: The call is full
+    joined: Attendee joined meeting correctly
+    error: An error has occurred
+    not_working_title: We're sorry, this feature is not available on your phone
+    suggestion: Please try using Google Chrome in a computer or laptop
+  notifications:
+    property:
+      true: Notifications turned off correctly
+      false: Notifications turned on correctly
+    property_notifications_status:
+      false: Turn on notifications on this property
+      true: Turn off notifications on this property
+    accept_email: Accept email notifications
+    accept_in_app: Accept in-app notifications
+    accept_sms: Accept SMS notifications
+    complete_profile: Complete your profile by setting a name and updating your profile picture
+    complete_profile_city: Complete your profile by setting the city
+    confirm_account: Check your inbox to confirm your account and create your new password
+    conversation_request: " wants to chat with you"
+    flagged_property: " flagged a property in %{city}"
+    friend_request_received: " sent you a friend request"
+    message_received: " sent you a message"
+    review_requested: " requested your review"
+    share_property: " shared a property"
+    contact_realtor: " is interested in co-owning"
+    settings: Notification Settings
+    professional_lead: 'Cher Premium Agent: You’ve got a new lead! %{homebuyer} is interested in co-owning %{location}. Click %{link} to contact them within Cher.'
+    title: Notifications
+    name: Name
+    email: Email
+    sms: SMS
+    in_app: In-app
+    subscription: Subscription
+    flagged_home: Flagged Home
+    friend_request: Friend Request
+    home_share: Home Share
+    post_share: Post Share
+    review_share: Review Share
+    video_share: Video Share
+    delete_account: Delete Account
+    cher_clique: Cher Clique
+    clique_expiration: Clique Expiration
+    listing: Listing
+    background_check: Background Check
+    marketing_information: Marketing information and the latest Cher news
+    someone_flagged_a_property: Someone in your network has flagged a property
+    you_received_a_friend_request: You received a friend request
+    someone_shared_a_property: Someone shared a property with you
+    someone_shared_a_post: Someone shared a newsfeed post with you
+    a_realtor_request: A realtor is requesting your review
+    someone_shared_video: Someone shared the landing page video with you
+    deleting_account: Deleting your account
+    confirmation_clique: Confirmation for your Cher Clique
+    clique_expires: Your Clique is expiring in 72 hours
+    updates_in_properties: Updates regarding your properties on Cher
+    background_check_updates: Your background check request has an update
+    share_house: Share a house
+    share_house_modal: You can share a house since look around view
+  look_around:
+    search:
+      add_alias: Add an Alias for your search
+      any: Any
+      available_only_in: We couldn't find any home. Try with different filtering options or in another city.
+      bathrooms: Bathrooms
+      beds: Beds
+      budget: Budget
+      buyers_that_have: Buyers that have
+      city: "City:"
+      cher_buyers_who_share: Cher buyers who share this home together could earn you an avg. commission of %{commission}
+      co_own: co-own any of the %{number} homes today
+      condominium: Condo
+      days_on_cher: Days on Cher
+      done: Done
+      emd_time: End Time
+      flagged_similar_homes: flagged similar homes.
+      home_type: Home type
+      house_details: House details
+      id_love: I want to
+      invest: invest
+      keywords: Keywords
+      local_professionals: Local professionals to connect with
+      location: Location
+      lot_size: Lot size
+      max_hoa: Max HOA
+      mobile_home: Mobile
+      more: More
+      multifamily: Multifamily
+      must_have_open_house: Must have open house
+      next_batch: Show more
+      open_house: Open House
+      open_house_date: Open House Date
+      own: Own
+      price_range: Price Range
+      rent: Rent
+      rental: Rental
+      reset: Reset
+      residential: Residential
+      see_more: See more
+      start_time: Start Time
+      status: Status
+      save_search: Save search
+      saved_searches: Saved searches
+      save_your_search: Save your search
+      save_this_search: Save this search
+      search: Search
+      search_in_location: "%{search_type} in %{location}, %{minprice} - %{maxprice},"
+      search_in_amenities: "%{minbeds}+BD, %{minbaths}+BA"
+      select_a_search: Select a search
+      sing_up_to_know: Sign up to know how many co-owners you need to buy this home.
+      square_feed: Square Feet
+      showing_results: Showing %{current_properties} houses out of %{total_properties}
+      state: "State:"
+      status: Status
+      type: Type
+      year_built: Year Built
+      waterfront: Waterfront
+      waterfront_property: Waterfont Property
+      see_my_flagged_homes: See My Flagged Homes
+      see_my_saved_homes: See My Saved Homes
+      see_featured_homes: See Featured Homes
+    featured:
+      featured: Featured Homes
+      my_saved_homes: My Saved Homes
+      my_flagged_homes: My Flagged Homes
+      home:
+        bath: Bathrooms
+        bed: Bedrooms
+        stories: Stories
+        details: Home details
+        save : Save this home
+        favorite: Flag this home
+        flagged: Flagged
+        flag_and_share: Flag and share
+        flag_home: Flag home
+        saved: Saved
+        save_and_share: Save and share
+        unflag_home: Flagged
+      alts:
+        home: View of the home
+    next_batch: Next homes batch →
+    status:
+      active: Active
+      pending: Pending
+      sold: Sold
+    terrain_type: "%{name} view"
+    saved_searches: "Saved Searches (%{number})"
+    name_shape: Name your shape
+    show_my_areas: Show My Areas
+  newsfeed:
+    title: Newsfeed
+  onbording:
+    cher_contact: A member of our team will contact you asap!
+    complete_your_profile: Complete your profile
+    get_started_on_cher: Get started on Cher
+    hide_completed: Hide completed
+    lets_go: "Let's go"
+    remember_if_you_have_question: Remember that if you have any question,
+    skip_this: "Skip this, I'll figure it out on my own"
+    setup_my_dashboard: Setup my dashboard
+    track_journey: Where you can track your homeownership journey
+    welcome: Welcome!
+    we_prepared_a_list: "We prepared a list to help you get started on your homeownership journey."
+    we_recomend_this: We recomend this in order to better experience Cher
+    you_can_ask_us: ' you can ask us anytime'
+    you_created_your_account: You created your account
+    you_completed_profile: You completed your profile
+    where_to_buy: Where do you want to buy?
+    looking_to_buy: "Are you looking to buy in:"
+    start: Start
+    change_location: Change location
+    search_location: Search your location
+    skip: Skip
+  payment:
+    amount_paid: "Amount paid: $%{amount}"
+    card: "Card:"
+    complete_payment: Proceed
+    continue: Continue
+    full_name: Holder name
+    full_name_placeholder: Type the name on your card
+    paymnet_information: Payment information
+    transaction_id: "Transaction_id: %{id}"
+  pricing:
+    buy_credits: Buy 3 credits
+    credits:
+      html: '<b>3 Message credits</b> to target prospects'
+    free_month: Try 30 days free
+    join: Join now
+    message_credits:
+      html: '<b>5 Message credits </b> to target prospects'
+    preferred_agents:
+      html: 'Marketed as <b>Preferred Agent</b> to Buyers'
+    quality_leads:
+      html: '<b>Quality Leads</b> sent to your inbox'
+    chat_live:
+      html: '<b>Chat live in app</b> with new Buyers'
+    dedicated_manager:
+      html: '<b>Dedicated</b> Success Manager'
+    refer: Invite 3 buyers, get another month free of Clique Premium!!
+    invite: Invite them
+    appear_in_many_mls: Appear on many MLS listings
+    buy_now: Buy Now
+    buy_clique_premium: Buy Clique Premium
+    cher_clicle_profile: "Cher's Clique Profile Badge"
+    clique: "Clique "
+    cost: $%{price}
+    early_access: Early access to new features
+    enter_promo_code:  Enter Your Promo Code and get
+    extra: Extra
+    lite: Lite
+    live_connections:  Live connections to buyers
+    marteked_as: "Marketed as Cher's homebuying expert"
+    month_plan: "%{number} month plan"
+    monthly_plan: Monthly Plan
+    montly_pre_qualified: monthly pre-qualified leads
+    need_to_talk_to_specialist: Do you need to talk to a specialist?
+    on_first_month:  on your first month of Cher Clique
+    porcentage_off: "%{porcentage}% Off"
+    premium: Premium
+    priority_support: Priority Customer Support
+    profile_marketed_in_chat: Profile marketed in co-buyer chats
+    professional_check: Professional background check
+    schedule_a_call: Schedule a Call!
+    schedule_demo: Schedule Demo
+    need_leads: Need more leads?
+    need_leads_subtitle: By joining Clique Premium you can message 5 prospects each month to be your clients! Help them co-own their dream home using Cher.
+    banner_try: Try one month
+  property_overview:
+    annual_income: Annual Income
+    atm: "0 ATMs"
+    art_gallery: "0 Art galleries"
+    bar: "0 Bars"
+    beauty_salon: "0 Beauty salons"
+    buying_homes_take: "  buying this home takes a lot less"
+    cafe: "0 Cafes"
+    car_rental: "0 Car rentals"
+    car_repair: "0 Car repairs"
+    car_wash: "0 Car wash"
+    cher_score: 'Shared Score is our proprietary ranking system helping you know which homes may be better for shared ownership'
+    contact_name: "Name: "
+    contact_email: "Email: "
+    contact_phone: "Phone: "
+    contact_professional: Contact a professional
+    contact_agent: Contact Agent
+    congrats_on_owning: Congrats on owning you home!
+    schedule_tour: Schedule Tour
+    coown: Co-own
+    coowning_advantages: "Co-owning through Cher"
+    coowning_advantages_1: " lowers your monthly payments to:"
+    coowning_advantages_2: Co-owning allows you to dramatically reduce your mortgage payments while sharing profits.
+    closing_costs: Closing Costs
+    days_on_market: Days on market
+    down_payment: Down Payment
+    flag: Flag
+    flagged_by: 'Flagged by '
+    friends: "+%{number} Friends"
+    friend: "+%{number} Friend"
+    fitness: Fitness
+    food_and_drink: Food & drink
+    for_sale_by_owner: For sale by owner contact
+    gas_station: "0 Gas stations"
+    gym: "0 Gyms"
+    get_started: Get started
+    get_verified: Get Cher verified for loans plus meet Realtors who will be helping you and your co-owners with the paperwork
+    have_you_tried: Have you thought about buying this home with your friends?
+    here_wath_you_need: "Here's what you'll need"
+    hospital: "0 Hospitals"
+    if_you_coown: 'If you own this home with friends, your monthly mortgage lowers to:'
+    invite: Invite
+    invite_them: Invite them here
+    invite_friends: Invite friends to co-own homes with
+    join_free: join for FREE
+    loan: Your loan amount is
+    library: "0 Libraries"
+    lifestyle: Lifestyle
+    link_copied: Link copied
+    local_informarion: Local information
+    look_around: Look Around
+    looking_for_invite: Looking to invite friends to join Cher?
+    meal_delivery: "0 Delivery"
+    meal_takeaway: "0 Takeaways"
+    message_people: Message other people interested in the same flagged homes as you
+    multi: Multi
+    museum:  "0 Museums"
+    need_help: Need help? Talk to a professional
+    night_club: "0 Nightlife"
+    nightlife: "0 Nightlife"
+    others: ' others'
+    ownership: Ownership
+    park: "0 Parks"
+    parking: "0 Parking"
+    people_flagged_similar: Who's flagged this property
+    people_flagges_similar_sub: Connect with them to co-own!
+    property_tiles_1: 'Perfect for %{number} co-owners'
+    property_tiles_2: 'Terrific to buy with %{number} friends'
+    property_tiles_3: 'Amazing home for %{number} buyers'
+    property_tiles_4: 'Appealing for %{number} co-owners'
+    property_tiles_5: 'Classy home for %{number} co-owners'
+    property_tiles_6: 'Excellent to co-own with %{number} buyers'
+    property_tiles_7: 'Ideal home for %{number} co-owners'
+    property_tiles_8: 'Terrific to co-own with %{number} people'
+    property_tiles_9: 'Lovely home for %{number} co-owners'
+    property_tiles_10: 'Classic %{number} co-owner home'
+    property_tiles_11: 'Optimal home for %{number} co-owners'
+    property_tiles_12: 'Dream home for %{number} buyers'
+    property_tiles_13: 'Model home for %{number} co-owners'
+    property_tiles_14: 'Charming place for %{number} co-owners'
+    property_tiles_15: 'Radiant home to buy with %{number} co-owners'
+    property_tiles_16: 'Dream home for %{number} co-owners'
+    property_tiles_17: 'Superb for %{number} friends to co-own'
+    property_tiles_18: 'Home Complete for %{number} co-owners'
+    property_tiles_19: 'Special for %{number} co-owners '
+    property_tiles_20: 'Ultimate co-owner home for %{number}'
+    property_tiles_21: 'Wonderful home for %{number} co-owners'
+    property_tiles_default: 'A wonderful home'
+    property_agent_tiles_1: 'Perfect for %{number} owners'
+    property_agent_tiles_2: 'Terrific to buy with %{number} friends'
+    property_agent_tiles_3: 'Amazing home for %{number} buyers'
+    property_agent_tiles_4: 'Appealing for %{number} owners'
+    property_agent_tiles_5: 'Classy home for %{number} owners'
+    property_agent_tiles_6: 'Excellent to own with %{number} buyers'
+    property_agent_tiles_7: 'Ideal home for %{number} owners'
+    property_agent_tiles_8: 'Terrific to own with %{number} people'
+    property_agent_tiles_9: 'Lovely home for %{number} co-owners'
+    property_agent_tiles_10: 'Classic %{number} owner home'
+    property_agent_tiles_11: 'Optimal home for %{number} owners'
+    property_agent_tiles_12: 'Dream home for %{number} buyers'
+    property_agent_tiles_13: 'Model home for %{number} owners'
+    property_agent_tiles_14: 'Charming place for %{number} owners'
+    property_agent_tiles_15: 'Radiant home to buy with %{number} owners'
+    property_agent_tiles_16: 'Dream home for %{number} owners'
+    property_agent_tiles_17: 'Superb for %{number} friends to own'
+    property_agent_tiles_18: 'Home Complete for %{number} owners'
+    property_agent_tiles_19: 'Special for %{number} owners '
+    property_agent_tiles_20: 'Ultimate owner home for %{number}'
+    property_agent_tiles_21: 'Wonderful home for %{number} owners'
+    property_agent_tiles_default: 'A wonderful home'
+    restaurant: "0 Restaurants"
+    services: Services
+    selling_percentage: '%{percentage}%'
+    similar_homes: Similar homes
+    suggested_homes: Suggested homes
+    shop_and_dime: Shop & Dime
+    termns_and_conditions: By pressing "Contact", you agree that Cher and real estate professionals may email, message, text, or call you about your inquiry, which may involve use of automated prerecorded or artificial voices. You don't need to consent as a condition for buying any property. Message or data rates may apply. You also agree to our Terms of Use. Cher does not endorse any real estate professionals.
+    tourist_attraction: "0 Attractions"
+    things_to_do: Things to do
+    verified: Verified
+    want_to_sell_part_of: When you want to sell part of the home, select that option to notify our team of professional that will walk your though this process.
+    want_to_own: Want to own this home?
+    want_to_learn: Want to learn more?
+    welcome_home: Welcome home
+    with_cher_comma: "With Cher"
+    with_cher: "With Cher"
+    with_cher_qualify: " , qualify for as little as:"
+    without_cher: "Without Cher"
+    year_built: Year built
+    within_a_mile: Within a 1 mile radius
+    streetview: Streetview
+    overview: Overview
+    explore_neighborhood: Explore the Neighborhood
+    hospitals: Hospitals
+    schools: Schools
+    walk_score: Walk score
+    popular_nearby: Popular Nearby
+    mortgage_calculator: Mortgage Calculator
+    shared_score: Shared Score
+    reliability: Reliability
+    year_fixed_interest: "%{years} Year Fixed, %{interest}% Interest"
+    history: Property History
+    more_details: More details
+    zoning: Zoning
+    cooling: Cooling
+    heating: Heating
+    year_built: Year built
+    building_interior: Building interior
+    basement_size: Basement size
+    floors: Floors
+    parking_size: Parking size
+    parking_spaces: Parking spaces
+    date: Date
+    price_label: Price
+    show_less: Show less
+    sales_trend_label: Sales Trend
+    sales_trend:
+      sold_homes: "# Sold Homes"
+      avg_price: "Avg. Sale Price"
+      median_price: "Median Sale Price"
+    stats:
+      bedrooms:
+        zero: 'N/A bd'
+        one: '%{count} bd'
+        other: '%{count} bd'
+      bathrooms:
+        zero: 'N/A ba'
+        one:  '%{count} ba'
+        other: '%{count} ba'
+      area: sqft
+      garage: garage
+      pool: Pool
+      stories: Stories
+    price:
+      any: Any
+      k: $%{price}K
+      m: $%{price}M
+  professional_roles:
+    estate_agent: Real Estate Agent
+    loan_officer: Loan Officer
+    escrow_officer: Escrow Officer
+    general_contractor: General Contractor
+    mortgage_broker:  Mortgage Broker
+    title_officer: Title Officer
+    other: Other
+  profile:
+      edit:
+        confirm_delete: Are you sure you would like to delete your account?
+        upload_image: Upload a profile picture
+        data_usage: We are using your information to help you find more homes, connect with more co-owners, and share homeownership.
+        start_test: Start personality test
+        perfect_match: Want to find a perfect match?
+        delete_account: Delete Account
+        dont_sell_my_info: Sell My Personal Information
+        edit_profile: Edit Profile
+        save_profile: Save
+        where_to_buy: Where do you want to buy?
+        where_to_sell: Where are you selling?
+  property_searches:
+    errors:
+      size: You can only save up to 5 searches
+  publication:
+    errors:
+      same_owner: You can not publish to your own profile
+  referral:
+    cher_pays_your_mortgage: Cher pays your mortgage when you refer friends!
+    get_cash: Get $500 cash
+    referred_friend_get_cash: Referred friends get $500
+    cash_amount_received: Cash amout received after home purchase is closed through Cher.
+    limit_cash: Limit cash amount is $1,000 per home
+    you_are_beign_referred: You are beign referred. $500 for you and $500 for %{friend_name}
+  rental:
+    about_house: About house
+    ac: AC
+    additional_amenities: Additional amenities
+    amenities: Amenities
+    balcony_or_deck: Balcony or deck
+    contact_info: Contact info
+    date_available: Date available
+    for_rent_by: For rent by
+    furnished: Furnished
+    garage_parking: Garage parking
+    hide_address: Hide address
+    house_details: House details
+    houses_for_rent: Houses for rent
+    monthly_rent: Monthly rent
+    laundry: Laundry
+    lease_duration: Lease duration
+    lease_summary: Lease summary
+    list_rental: List Rental
+    offstreet_parking: Off-street parking
+    permit_pets: Permit pets
+    pets_allowed: What kind of pets are allowed?
+    permit_cats: Permit cats
+    permit_small_dogs: Permit small dogs
+    permit_large_dogs: Permit large dogs
+    security_deposit: Security deposit
+    square_feet: Square feet
+    wheelchair_access: Wheelchair access
+    status:
+      approved: Approved
+      pending: Pending
+      rejected: Rejected
+    laundry:
+      in_unit: In unit
+      no: No
+      shared: Shared or in-building
+  review:
+    address: Address
+    ask_for_reviews: Ask For Reviews
+    average: "%{number} Average"
+    brokerage: Brokerage
+    chers_clique: Cher's Clique Agent
+    cher_professional_review: Cher professional review
+    create_your_account: Create you free account to leave %{user_name} a review
+    company_contact: Company Contact
+    comment: Comment
+    default_message: Hi there! Would you mind taking 30 seconds to rate your experience with me?
+    direct_link: direct link
+    edit_review: Edit review
+    get_more_reviews: 'Get more reviews by sharing your page:'
+    have_you_worked_with: Have you worked with %{name}?
+    highly_likely_to_recoment: Highly Likely to recommend
+    license_number: License number
+    local_knowledge: Local knowledge
+    my_bio: My Bio
+    my_areas: My Areas
+    my_reviews: Ratings & Reviews
+    negotiation_skills: Negotiation skills
+    no_reviews: No ratings
+    note: 'Note: To receive a review, your client must create a free account.'
+    process_expertise: Process expertise
+    rating_and_reviews: Rating & Reviews
+    responsiveness: Responsiveness
+    send_client: 'Send client a '
+    show_more_reviews: Show more reviews
+    to_rate_your_service: ' to rate your services'
+    to_request_more_reviews: ' to request more reviews.'
+    view: View
+    write_a_review: Write a review
+    write_a_review!: Write a review!
+  search:
+    search_network: Search Network
+    profession_name: Profession Name
+  share:
+    share_modal: Do you want to share this home with your friends?
+    share_message: '%{identifier} shared a %{type} with you on Cher.'
+    share_ending: 'Click %{here_link} to check it out. Cher.app is a morden community for house co-owners. We help you afford a house all on your own.'
+    share_review: 'Cher: Hello %{recipient_name}, would you mind taking 30 seconds to rate your experience with %{user_name}? %{here_link}'
+    share_property: 'Hi %{recipient_name}! Your friend %{user_name} finds you a perfect house near %{location} at Cher'
+    share_video: 'Hi %{recipient_name}! Your friend %{user_name} wants to share you a video from Cher.'
+    share_post: 'Hi %{recipient_name}! Your friend %{user_name} is very active at Cher and wants you to check it out'
+    share_invitation: 'Hi %{recipient_name}! Your friend %{user_name} is thinking about owning a house at Cher and invites you to join in.'
+    share_ending_invitation: "Click %{here_link} to accept %{user_name}'s invitation."
+    share_new_chat_message: "Hello %{recipient_name}, you have received a new chat message from %{user_name} on Cher! Click %{here_link} to view and respond to the message."
+    type:
+      post: post
+      property: home
+      video: video
+  sign_up:
+    cta: "Just create your free account to check out all our exclusive listings plus:"
+    perks:
+      free_credit: Free Credit Report By Experian And Loans
+      pay_zero: Pay Zero Closing Costs At Escrow
+      meet_buyers: Meet Vetted Buyers To Buy Homes With
+      articles: Helpful Articles And Industry News
+    survey: Help us in our 2 minutes survey
+    spam: "*Check your spam! We might get lost in there*"
+  sms_notifications:
+    flagged_home: 'Cher: Hello %{friend_name} %{friend_last_name}, your friend, %{user_name} has recently flagged a home at %{address} in %{city}! Visit %{here_link} to see if you are interested in owning or investing in this home with %{friend_name}.'
+    friend_request: '%{user_name} has requested to connect with you on Cher'
+    reset_password: '%{user_name} has asked to reset the password for your account.'
+    clique_expire_soon: 'Cher Premium Agent: Hi %{user_name}, your Cher Clique Premium subscription will automatically renew on %{date}. If you have any questions, contact us at billing@cher.app or call at +1 (415) 862-2437.'
+    group_created: 'Cher: %{recipient}, %{inviter} is inviting you to join a chat on Cher. Click %{here_link} to check it out.'
+    cher_clique:
+      billing_canceled: 'Cher Premium Agent: your subscription to Cher Premium Agent has been canceled. We are sorry to see you go. We hope you will give us another chance to get it right. If you have any questions, contact us at billing@cher.app or call at +1 (415) 862-2437.'
+      payment_failed: 'Cher Premium Agent: Hi %{first_name}, we are having trouble processing payment for your subscription. To keep your subscription up to date, we invite you to go to https://cher.app/professionals and use a different payment method.'
+      lite: Thank you for your Cher monthly subscription.
+      extra: Thank you for your Cher 6 month subscription.
+      premium: 'Cher Premium Agent: Hi %{first_name}, your payment for a monthly subscription has been confirmed and we are thrilled to have you as a member of Cher Premium Agent! If you have any questions while using our services or want to provide feedback, please feel free to schedule a call with me here %{calendly_url}.'
+  status:
+    looking: Actively looking
+    ready: Ready to buy
+    process: In process
+    closing: Closing
+    user_status: "Status: %{user_status}"
+  subscriptions:
+    cancel_clique: Cancel my Clique Premium plan
+    are_your_sure: Are you sure you want to cancel your subscription?
+  users:
+    errors:
+      email_verification: We couldn't verify the email, please try again with a different one.
+      need_to_complete_profile: You need to complete you profile first
+      already_member_send_message: "This person is already a member of Cher's network. Send them a message"
+    background_check_status:
+      approved: Approved
+      no_requested: No requested
+      pending: Pending
+      rejected: Rejected
+    roles:
+      admin: Admin
+      co_borrower: Co-owner
+      customer: Customer
+      customer-prospect: Customer prospect
+      prospector: Prospect
+    show:
+      looking_into: LOOKING INTO...
+      interests: MY INTERESTS
+  "true": "Yes"
+  "false": "No"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="452px" height="513px" viewBox="0 0 452 513" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>ico-favorite</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-favorite" fill-rule="nonzero" fill="#4A4484">
+            <path d="M444.555,36.326 C442.719,34.842 398.797,0 329.391,0 C293.347,0 257.187,17.041 222.219,33.521 C189.807,48.796 159.193,63.224 132.108,63.224 C90.288,63.224 55.628,47.695 40.646,39.758 L40.646,0.171 L0.611,0.171 L0.611,512.603 L40.645,512.603 L40.645,343.813 C62.53,353.298 94.725,363.478 132.107,363.478 C168.205,363.478 204.387,346.203 239.377,329.497 C271.767,314.031 302.362,299.424 329.391,299.424 C383.227,299.424 418.055,325.821 419.437,326.89 L451.992,353.767 L451.992,42.335 L444.555,36.326 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

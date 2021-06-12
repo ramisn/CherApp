@@ -1,0 +1,63 @@
+.columns.is-marginless
+  .column.p-t-none.p-b-none.is-hidden-mobile
+    = render 'flag_property_button'
+.is-hidden-mobile{'data-controller': 'modal share-item'}
+  %button.is-link.has-full-width.is-fully-centered.m-t-md{ 'data-action': 'modal#toggleModal' }
+    = image_tag('cherapp-ownership-coborrowing-ico-share-blue.svg', alt: t('img_alts.share'), class: 'm-r-md')
+    %span.is-bold.has-text-essential-blue= current_user&.agent? ? t('generic.share_with_leads') : t('generic.share_with_network')
+  = render 'shared/share_general_item_modal', path: request.original_url, type: 'property', property_address: property_full_address(@property["address"]), fullNotification: true
+
+.columns.is-marginless.is-flex.is-multiline.is-paddingless
+  .column.is-12-mobile.is-12-tablet.p-b-none
+    .columns.is-marginless.is-mobile
+      .column.is-paddingless.m-r-sm
+        %p.is-caption.is-marginless
+          = t('generic.price')
+        %h2.is-marginless.has-text-left
+          = number_to_currency(@property["listPrice"], precision: 0) || 'N/A'
+  .column.is-12.is-marginless.is-12-mobile
+    %p.is-marginless.is-bold= property_location_addres1(@property["address"])
+    %p.is-marginless= property_location_city(@property["address"])
+    %p.is-marginless= property_location_state_and_zip(@property["address"])
+    %hr.m-b-none
+  .column.is-12.is-full-mobile.property-info.p-t-none
+    = render 'property_details'
+    %hr.is-marginless
+
+  .container.column.is-full.is-full-mobile
+    %h4.is-marginless= t('property_overview.people_flagged_similar')
+    %h5= t('property_overview.people_flagges_similar_sub')
+    .columns.is-marginless.is-flex.is-multiline
+      - @extra_data[:homebuyers].each do |homebuyer|
+        .column.is-narrow.is-narrow-mobile.has-alignment-center.has-direction-column
+          .rounded-image-container{ 'data-controller': 'users-profile-picture' }
+            = link_to image_tag(homebuyer.profile_image, class: 'bordered-image', 'data-action': 'error->users-profile-picture#setDefaultPicture'), user_path(homebuyer)
+          .is-size-7.has-text-centered
+            %span= homebuyer.first_name
+    %hr.m-b-none
+
+  - if user_signed_in?
+    .column{'data-controller': 'contact-professional'}
+      - if current_user.co_borrower?
+        - if current_user
+          %button.button.is-primary.has-full-width#contactProfessionalLink{ 'data-action': 'contact-professional#showModal' }
+            = t('property_overview.contact_agent')
+      - if @extra_data && @extra_data[:user_flagged_property]
+        = link_to "Start chat", new_chat_group_path(property_id: @property['listingId']), class: 'button is-primary is-outlined has-full-width m-t-md'
+      - else
+        = link_to new_chat_group_path(property_id: @property['listingId']), class: 'button is-primary is-outlined has-full-width m-t-md',
+          'data-controller': 'watched-property',
+          'data-target': 'watched-property.flagPropertyLink',
+          'data-action': 'watched-property#startChat',
+          'data-property-flag-status': 'unflagged',
+          'data-property-listing-id': @property['listingId'],
+          'data-property-city': @property['address']['city'] || '',
+          'data-property-price': @property['listPrice'],
+          'data-status': 'unflagged' do
+          %span= "Start chat"
+      - if current_user
+        = link_to property_notification_path(params[:id]), method: :put, class: "has-text-center is-flex m-t-md m-b-md is-bold is-size-7 is-fully-centered" do
+          = image_tag "cherapp-ownership-coborrowing-turn-#{current_user.accepts_property_notification?(params[:id]) ? "off" : "on"}-notifications.svg", class: 'm-r-sm'
+          = t("notifications.property_notifications_status.#{current_user.accepts_property_notification?(params[:id])}")
+
+

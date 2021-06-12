@@ -1,0 +1,16 @@
+%h3.is-size-3.has-text-centered.p-t-md.is-capitalized
+  = t('navbar.menu.edit_profile')
+.columns.is-marginless.is-mobile.has-text-centered
+  .column
+    =# link_to 'Basic info', edit_profile_path(current_user), class: "#{!params[:tab] ? 'link is-bold' : 'has-text-main-body'}"
+    %span.is-bold
+      Basic info
+  - unless current_user.agent?
+    .column
+      = link_to 'Personal info', edit_profile_path(current_user, tab: 'personal'), class: "#{params[:tab] == 'personal' ? 'link is-bold' : 'has-text-main-body'}"
+%hr.m-b-lg
+
+- if params[:tab] == 'personal' && current_user.co_borrower?
+  = render "personal"
+- else
+  = render "basic_info"

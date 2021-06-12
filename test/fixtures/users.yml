@@ -1,0 +1,265 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                          :bigint           not null, primary key
+#  email                       :string           default(""), not null
+#  encrypted_password          :string           default(""), not null
+#  reset_password_token        :string
+#  reset_password_sent_at      :datetime
+#  remember_created_at         :datetime
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  provider                    :string
+#  uid                         :string
+#  first_name                  :string
+#  image                       :text
+#  role                        :integer
+#  score                       :integer
+#  confirmation_token          :string
+#  confirmed_at                :datetime
+#  confirmation_sent_at        :datetime
+#  verification_type           :string
+#  discarded_at                :datetime
+#  last_question_reponded      :string
+#  last_name                   :string
+#  test_attempts               :integer          default("0"), not null
+#  test_blocked_till           :date
+#  test_reset_period           :date
+#  search_history              :string           default("{}"), is an Array
+#  search_intent               :string
+#  invitation_token            :string
+#  invitation_created_at       :datetime
+#  invitation_sent_at          :datetime
+#  invitation_accepted_at      :datetime
+#  invitation_limit            :integer
+#  invited_by_type             :string
+#  invited_by_id               :bigint
+#  invitations_count           :integer          default("0")
+#  needs_verification          :boolean          default("false"), not null
+#  accept_terms_and_conditions :boolean          default("true"), not null
+#  accept_privacy_policy       :boolean          default("true"), not null
+#  accept_referral_agreement   :boolean          default("false")
+#  sell_my_info                :boolean          default("true"), not null
+#  description                 :string
+#  company_name                :string
+#  address1                    :string
+#  areas                       :string           default("{}"), is an Array
+#  status                      :integer          default("0"), not null
+#  address2                    :string
+#  number_license              :string
+#  city                        :string
+#  state                       :string
+#  zipcode                     :string
+#  professional_role           :integer
+#  specialties                 :string           default("{}"), is an Array
+#  proffesional_verfied        :boolean          default("false")
+#  funding                     :integer
+#  co_borrowers                :integer
+#  end_of_clique               :date
+#  plan_type                   :string
+#  contact_professional        :boolean          default("false"), not null
+#  referral_code               :string
+#  discard_token               :string
+#  phone_number                :string
+#  mailchimp_updated_at        :datetime
+#  mailchimp_sync_status       :integer          default("0")
+#  skip_onbording              :boolean          default("false"), not null
+#  background_check_status     :integer          default("0")
+#  middle_name                 :string
+#  date_of_birth               :date
+#  slug                        :string           default(""), not null
+#  ssn                         :string
+#  used_promo_codes            :string           default("{}"), is an Array
+#  message_credits             :integer          default("0"), not null
+#  feedback_plan_step          :integer          default("0")
+#  uuid                        :uuid             not null
+#  track_share_a_sale          :boolean
+#  last_seen_at                :datetime
+#  gender                      :integer
+#  property_type               :integer
+#  budget_from                 :integer
+#  budget_to                   :integer
+#
+
+agent_user:
+  email: agent@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Agent User
+  last_name: User
+  role: 1
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  background_check_status: :pending
+  invited_by: co_borrower_user(User)
+  date_of_birth: 2020-09-13
+  plan_type: lite
+  slug: agent-user-user
+  feedback_plan_step: 5
+
+clique_agent:
+  email: clique@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Clique Agent User
+  last_name: User
+  role: 1
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  background_check_status: :pending
+  invited_by: co_borrower_user(User)
+  date_of_birth: 2020-09-13
+  plan_type: clique
+  end_of_clique: <%= 30.days.from_now %>
+  message_credits: 5
+  areas: ["Santa Monica"]
+  slug: clique-agent-user-user
+  feedback_plan_step: 5
+
+
+co_borrower_user:
+  email: borrower@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Borrower
+  last_name: User
+  role: 0
+  search_history: ['san francisco', 'santa monica']
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  city: "Santa Monica"
+  image: 'https://lh3.googleusercontent.com/a-/AOh14GizwUa7F9QHSI'
+  slug: borrower-user
+  feedback_plan_step: 5
+  last_seen_at: <%= 10.minutes.ago %>
+
+discarded_user:
+  email: discarded@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Discarded
+  last_name: User
+  role: 0
+  discarded_at: <%= Time.now %>
+  discard_token: <%= Devise.friendly_token[0, 20] %>
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  slug: discarded-user
+  feedback_plan_step: 5
+
+admin_user:
+  email: admin@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Admin
+  last_name: User
+  role: 2
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  slug: admin-user
+  feedback_plan_step: 5
+
+co_borrower_user_2:
+  email: borrower2@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Borrower
+  last_name: User
+  role: 0
+  search_history: ['san francisco']
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  image: 'https://lh3.googleusercontent.com/a-/AOh14GizwUa7F9QHSI'
+  slug: borrower2-user
+  feedback_plan_step: 5
+  phone_number: +523121234567
+
+user_without_role:
+  email: no_role_user@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: No role
+  last_name: User
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  slug: no-role-user
+  feedback_plan_step: 5
+
+user_without_responses:
+  email: no_responses@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: No responses
+  last_name: User
+  role: 0
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  slug: no-responses-user
+  phone_number: 12345677890
+  feedback_plan_step: 5
+
+verified_user:
+  email: verififed@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Verified
+  last_name: User
+  role: 0
+  verification_type: driver_license
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  image: 'https://lh3.googleusercontent.com/a-/AOh14GizwUa7F9QHSI'
+  slug: virified-user
+  feedback_plan_step: 5
+
+test_blocked_user:
+  email: test_blocked@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Blocked Test
+  last_name: User
+  role: 0
+  test_blocked_till: <%= Date.today + 1.day %>
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  slug: blocked-test-user
+  feedback_plan_step: 5
+
+co_borrower_user_3:
+  email: borrower3@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Borrower
+  last_name: User
+  role: 0
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  slug: borrower3-user
+  feedback_plan_step: 5
+
+co_borrower_user_invest:
+  email: investor@user.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1') %>
+  confirmed_at: <%= Time.now %>
+  first_name: Borrower
+  last_name: User
+  role: 0
+  accept_terms_and_conditions: true
+  accept_privacy_policy: true
+  accept_referral_agreement: true
+  search_intent: 'inv'
+  slug: investor-user
+  created_at: <%= 31.minutes.ago %>
+  feedback_plan_step: 0

@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: shapes
+#
+#  id          :bigint           not null, primary key
+#  name        :string           not null
+#  shape_type  :integer          default("0"), not null
+#  radius      :float            default("0.0")
+#  center      :jsonb
+#  coordinates :jsonb
+#  user_id     :bigint           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+shape_one:
+  coordinates: '[]'
+  shape_type: 'rectangle'
+  name: 'Santa Monica'
+  user: :co_borrower_user

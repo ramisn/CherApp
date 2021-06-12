@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: prospects
+#
+#  id                    :bigint           not null, primary key
+#  email                 :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  is_subscribed         :boolean          default("true"), not null
+#  marked_as_spam        :boolean          default("false"), not null
+#  bounced               :boolean          default("false"), not null
+#  role                  :integer          default("0")
+#  first_name            :string
+#  city                  :string
+#  mailchimp_updated_at  :datetime
+#  mailchimp_sync_status :integer          default("0")
+#  phone_number          :string
+#  last_name             :string
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+miguel:
+  email: 'miguel@cher.app'
+  role: 0

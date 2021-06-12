@@ -1,0 +1,25 @@
+.hover-container.is-centered.is-a-checkbox-group
+  = t('look_around.search.beds')
+  .column.is-paddingless.is-flex.m-b-md{ 'data-target': 'properties-search.propertiesMinBeds', 'data-min-beds': 0, 'data-min-baths': 0 }
+    = f.radio_button :minbeds, 'null', id: 'search_min_beds_any', class: "is-checkradio is-small is-group", checked: true, 'data-action': 'click->properties-search#updateMinBeds'
+    = f.label :min_beds_any, t('look_around.search.any'),  class: "label"
+    - (1..5).each do |index|
+      = f.radio_button :minbeds, index, id: "search_min_beds_#{index}", class: "is-checkradio is-small is-group", 'data-action': 'click->properties-search#updateMinBeds'
+      = f.label :"min_beds_#{index}", "#{index}+", class: "label"
+  = t('look_around.search.bathrooms')
+  .column.is-paddingless.is-flex
+    = f.radio_button :minbaths, 'null', id: 'search_min_baths_any', class: "is-checkradio is-small is-group", checked: true,'data-action': 'click->properties-search#updateMinBaths'
+    = f.label :min_baths_any, t('look_around.search.any'),  class: "label"
+    = f.radio_button :minbaths, 1, id: 'search_min_baths_1', class: "is-checkradio is-small is-group", 'data-action': 'click->properties-search#updateMinBaths'
+    = f.label :min_baths_1, '1+', class: "label"
+    = f.radio_button :minbaths, 1.5, id: 'search_min_baths_1_5', class: "is-checkradio is-small is-group", 'data-action': 'click->properties-search#updateMinBaths'
+    = f.label :"min_baths_1_5", '1.5+', class: "label"
+    = f.radio_button :minbaths, 2, id: 'search_min_baths_2', class: "is-checkradio is-small is-group", 'data-action': 'click->properties-search#updateMinBaths'
+    = f.label :min_baths_2, '2+', class: "label"
+    = f.radio_button :minbaths, 3, id: 'search_min_baths_3', class: "is-checkradio is-small is-group", 'data-action': 'click->properties-search#updateMinBaths'
+    = f.label :min_baths_3, '3+', class: "label"
+    = f.radio_button :minbaths, 4, id: 'search_min_baths_4', class: "is-checkradio is-small is-group", 'data-action': 'click->properties-search#updateMinBaths'
+    = f.label :min_baths_4, '4+', class: "label"
+  .column.is-paddingless.has-text-right.m-t-md
+    %button.button.is-primary{ 'data-action': 'properties-search#toggleHoverContainer' }
+      = t('look_around.search.done')

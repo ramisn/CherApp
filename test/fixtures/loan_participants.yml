@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: loan_participants
+#
+#  id               :bigint           not null, primary key
+#  user_id          :bigint
+#  loan_id          :bigint
+#  accepted_request :boolean          default("false"), not null
+#  token            :string
+#
+user_without_role_participant:
+  loan: co_borrower_loan
+  user: user_without_role
+  token: ka23knlawf-354tihbasd

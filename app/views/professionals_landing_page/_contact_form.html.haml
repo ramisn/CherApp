@@ -1,0 +1,17 @@
+.box.is-borderless.is-shadowless-mobile.m-t-xl.m-b-xxl.m-b-md-none.m-t-md-mobile.m-b-none-mobile{ 'data-controller': 'landing-page-registration' }
+  = form_with(model: @new_user, url: simpler_registration_path, local: true, class: 'm-b-md') do |f|
+    .field
+      = f.label :email, t('generic.email'), class: 'label has-text-left'
+      .control
+        = f.email_field :email, placeholder: t('placeholders.type_your_email'), 'data-target': 'landing-page-registration.input', class: 'input is-marginless is-primary'
+        - if @new_user.errors[:email]
+          %p.help.is-danger
+            = @new_user.errors[:email].first
+    = render 'landing_page/sign_up_role_pop_up', f: f
+    %button.button.is-lemon.has-full-width{ type: 'button', 'data-action': 'landing-page-registration#validateEmail' }
+      = t('generic.sign_up')
+  .columns.m-t-md.is-marginless.is-mobile
+    .column.is-5.is-justified-end.is-flex.has-items-centered.is-bold= t('sign_in.connect_with')
+    .column.is-7.is-flex.is-paddingless.has-items-centered
+      = render "devise/shared/links", resource_class: User, resource_name: :user
+  = link_to t('generic.learn_more'), 'https://calendly.com/joincher/agent', class: 'is-size-5 has-text-primary is-bold m-t-md is-block m-b-sm', rel: 'noopener', target: '_blank'

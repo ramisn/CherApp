@@ -1,0 +1,48 @@
+ul {
+  &.has-dot-style {
+    list-style-type: initial;
+    margin-bottom: 25px;
+    margin-left: 50px;
+  }
+
+  &.has-dashes > li::before {
+    content: '-';
+    margin-right: 50px;
+  }
+
+  &.has-ticks > li {
+    padding: 0 0 0 2rem;
+    position: relative;
+
+    &::before {
+      content: image-url('cherapp-ownership-coborrowing-tick.svg');
+      left: 0;
+      position: absolute;
+    }
+  }
+
+  &.has-stars > li {
+    padding: 0 0 0 2rem;
+    position: relative;
+
+    &::before {
+      content: image-url('cherapp-ownership-coborrowing-star.svg');
+      left: 0;
+      position: absolute;
+    }
+
+    &.is-size-5 {
+      &::before {
+        top: 1px;
+      }
+    }
+  }
+
+  &.has-space-between-items li {
+    margin: .5rem 0;
+  }
+}
+
+ol {
+  margin-left: 50px;
+}

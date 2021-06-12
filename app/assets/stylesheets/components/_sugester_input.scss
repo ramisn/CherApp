@@ -1,0 +1,95 @@
+
+.suggester-input {
+  display: flex;
+  flex-direction: column;
+
+  .field,
+  .input,
+  p {
+    margin: 0;
+  }
+
+  .control input {
+    border: 1px solid $grey;
+    font-family: $karla;
+    font-style: italic;
+    padding-left: .2rem;
+
+    &:focus {
+      border-color: $helper-blue;
+      box-shadow: 0 0 10px rgba($helper-blue, .8);
+    }
+
+    &:active {
+      border-color: $helper-blue;
+      box-shadow: 0 0 10px rgba($helper-blue, .5);
+    }
+  }
+
+  .options-container {
+    align-items: initial;
+    background-color: $white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: $darker-shadow;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+
+    .option {
+      align-items: center;
+      color: $black;
+      display: flex;
+      flex-direction: row;
+      font-size: 1rem;
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .option:not(:last-child) {
+      border-bottom: .5px solid $grey-lightest;
+    }
+  }
+
+  .user-image {
+    border-radius: 50%;
+    height: 25px;
+    margin: 5px;
+    overflow: hidden;
+    width: 25px;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    &.is-medium {
+      height: 35px;
+      width: 35px;
+    }
+  }
+
+  .selected-item {
+    align-items: center;
+    background-color: $helper-blue;
+    border-radius: 3px;
+    display: flex;
+    padding: 0 .5rem;
+    width: auto;
+
+    button {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      font-size: .75rem;
+      margin-left: .75rem;
+      padding: 0;
+    }
+  }
+}

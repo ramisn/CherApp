@@ -1,0 +1,19 @@
+- post.comments.each_with_index do |comment, index|
+  .comment-container.m-t-sm
+    = image_tag(comment.owner.profile_image, class: 'comment-owner-image')
+    %span=  comment.owner.full_name
+    %span.has-text-weight-normal
+      = comment.body
+    .options-container
+      = fa_icon('ellipsis-h', class: 'has-text-primary')
+      .is-relative
+        .options
+          - if post.is_a?(Publication)
+            %button.button{ 'data-post-edit-form': edit_publication_comment_path(post, comment), 'data-action': 'edit-comments#requestForm edit-comments#toggleModal'}
+              = t('generic.edit')
+            = link_to t('generic.delete'), publication_comment_path(post, comment), class: 'action is-blue', method: :delete, data: { confirm: t("generic.are_you_sure")}
+          - else
+            %button.button{ 'data-post-edit-form': edit_activity_comment_path(post, comment), 'data-action': 'edit-comments#requestForm edit-comments#toggleModal'}
+              = t('generic.edit')
+            = link_to t('generic.delete'), activity_comment_path(post, comment), class: 'action is-blue', method: :delete, data: { confirm: t("generic.are_you_sure")}
+= render 'shared/comment_form', post: post, path: path

@@ -1,0 +1,65 @@
+.look-around {
+  position: absolute;
+
+  .properties-wrapper {
+    height: calc(100vh - var(--nav-height) - var(--search-property-height));
+    overflow-y: scroll;
+  }
+
+  .map-wrapper {
+    height: calc(100vh - var(--nav-height) - var(--search-property-height));
+    left: 0;
+    position: relative;
+    top: 0;
+    z-index: 0;
+  }
+
+  .floaty-option {
+    position: absolute;
+    right: 5px;
+    top: 250px;
+    z-index: 1;
+
+  }
+
+  @media(max-width: 769px) {
+    .map-wrapper {
+      height: calc(100vh - var(--nav-height-mobile));
+    }
+  }
+}
+
+.map-container {
+  height: 100%;
+}
+
+
+.logged-user-wrapper {
+  bottom: 12px;
+  position: absolute;
+  right: 12px;
+  text-align: center;
+  z-index: 1;
+
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  .users-container {
+    display: flex;
+    justify-content: space-around;
+
+    .profile-user {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .bordered-image {
+    border-radius: 100%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}

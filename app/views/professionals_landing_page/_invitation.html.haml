@@ -1,0 +1,15 @@
+%section.section.is-divider-blue
+  .container
+    .columns.is-centered.is-marginless
+      .column.is-8.has-text-centered
+        %h3.is-size-3.is-size-4-mobile.has-text-black-ter.is-family-secondary
+          = t('pricing.refer')
+    .columns.is-centered.is-marginless
+      .column.is-12-mobile.is-7-tablet.is-6-desktop.is-5-widescreen.is-4-fullhd
+        = form_for(:user, url: user_invitation_path) do |f|
+          .field.has-addons
+            %p.control.is-expanded
+              = f.text_field :email, class: 'input is-primary has-border-blue', placeholder: 'Email', type: 'email', minlength: 10, maxlength: 50, required: true
+              = f.text_field :referral_url, value: "#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}", class: 'copy-input', "data-target": "share-item.linkInput"\
+            %p.control
+              = f.submit t('labels.invite_them'), class: 'button is-full-blue'

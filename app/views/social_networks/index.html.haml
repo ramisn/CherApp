@@ -1,0 +1,62 @@
+%input{ type: 'hidden', value: 'social network page', id: 'currentPageInput' }
+- title(t("meta.social_network.title"))
+.container#socialNetwork
+  .columns.is-marginless.is-fully-centered
+    .column
+      .columns.box-container{'data-controller': 'social-network'}
+        .column.is-12
+          - if current_user.co_borrower?
+            %h1.is-size-3.has-text-centered.m-b-none.m-l-md
+              &nbsp;
+              =# t('generic.friends_you_sould_like_to_buy')
+          %hr.is-marginless
+        .column
+          .columns.is-marginless
+            = render 'sidebar'
+            .column
+              .columns.has-direction-column.is-centered.is-marginless
+                .column.items-container.is-hidden{'data-target': 'social-network.importSection'}
+                  %h3.title= t('social_network.import_contacts')
+                  #importedUsersContainer.columns.is-marginless.is-multiline.is-flex
+                - if @users.present?
+                  .has-regular-padding
+                    %p.is-size-5.has-text-weight-bold.has-text-centered.is-purple
+                      = t(".title", search: @search_for)
+                  .columns.is-marginless.is-multiline.is-flex
+                    = render 'shared/user_card', users: @users
+                #messageChannelsContainer.is-hidden{'data-target': 'social-network.container'}
+                  #chatInvitationsContainer
+                #connectionsContainer{'data-target': 'social-network.container'}
+                  .column.items-container{ class: @friend_requests.any? ? '' : 'is-hidden' }
+                    %h3.title= current_user.agent? ? t('friend_request.prospect_request') :  t('social_network.friend_requests')
+                    - @friend_requests.each do |friend_request|
+                      .user-card-horizontal
+                        .user-info
+                          .user-image
+                            = image_tag(friend_request.requester.profile_image, alt: t('img_alts.user_profile'))
+                          .user-data
+                            %p.is-bold.is-size-6.is-marginless= friend_request.requester.full_name
+                            %p.is-size-7= friend_request.requester.email
+                        .card-options.is-flex
+                          = link_to t('generic.reject'), friend_request_path(friend_request, friend_request: { status: :rejected }), method: :put, class: 'button is-secondary m-r-sm'
+                          = link_to t('generic.accept'), friend_request_path(friend_request, friend_request: { status: :approved }), method: :put, class: 'button is-primary'
+
+                  .column.items-container
+                    #friendsContainer
+                      %h3.title= t('generic.friends')
+                      .column.items-container
+                        .columns.is-marginless.is-multiline.is-flex
+                          = render 'shared/user_card', users: @friends
+                #suggestedFriendsContainer.column.items-container.is-hidden{'data-target': 'social-network.container'}
+                  %h3.title= current_user.agent? ? t('social_network.suggested_connections') : t('social_network.suggested_friends')
+                  .column.items-container
+                    .columns.is-marginless.is-multiline.is-flex
+                      = render 'shared/user_card', users: @suggested_matches
+                
+                - if current_user.co_borrower?
+                  #agentsContainer.column.items-container.is-hidden{'data-target': 'social-network.container'}
+                    %h3.title= t('social_network.agents_heading')
+                    .column.items-container
+                      .columns.is-marginless.is-multiline.is-flex
+                        = render 'shared/user_card', users: @agents
+

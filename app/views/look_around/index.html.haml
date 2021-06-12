@@ -1,0 +1,137 @@
+%input{ type: 'hidden', value: 'look around page', id: 'currentPageInput' }
+- title(t("meta.look_around.title"))
+- if current_user&.co_borrower?
+  .is-coborrower-blue.has-text-centered.has-text-white.has-regular-padding.is-relative{'data-controller': 'clique-banner', 'data-target': 'clique-banner.cliqueContainer'}
+    %h4.is-size-3.is-bold.m-t-sm Do you need professional assistance?
+    %p.is-bold= 'Check our Real Estate Agent’s list and choose the one that suits you better.'
+    = link_to 'Contact Agent', social_networks_path(tab: 'agents'), class: 'm-b-sm button is-white has-text-coborrower-blue'
+
+    = link_to "#", class: "is-absolute to-right to-top m-r-md m-t-md", data: { action: "clique-banner#hide" } do
+      = fa_icon('times', class: 'has-text-white')
+#lookAround.full-width-container.look-around{ "data-controller": "properties-search numerical-inputs", 'data-properties-search-feature-properties': @properties_hash[:feature_properties].to_json, 'data-properties-search-flagged-feature-properties': @properties_hash[:flagged_properties_ids] }
+  = hidden_field_tag 'user_city', current_user&.city
+  = hidden_field_tag :user_id, current_user&.slug, 'data-target': 'properties-search.userId'
+  = hidden_field_tag :track_share_a_sale, current_user&.track_share_a_sale, 'data-target': 'properties-search.trackShareASale'
+  - if current_user&.track_share_a_sale?
+    .is-hidden
+      %img{src: "https://www.shareasale.com/sale.cfm?tracking={#{current_user.uuid}}&amount=0.00&merchantID=104474&transtype=lead", width:"1", height:"1"}
+      %script{ src: "https://www.dwin1.com/19038.js", type:"text/javascript", defer:"defer" }
+  .search-property.is-relative
+    .container
+      = form_for(:search, url: look_around_path(format: :json), remote: true, method: :get, html: { "data-target": "properties-search.form", "data-action": "ajax:success->properties-search#processPropertiesResponse submit->properties-search#mapOnLoading",}) do |f|
+        = f.text_field :points, class: "is-hidden", 'data-target': 'properties-search.shapeDataInput', value: ''
+        .living-options
+          .is-hidden
+            = f.select :search_type, [ ['City ', 'cities'], ['Street', 'q']  ], class: "is-hovered"
+          .segment.is-flex
+            - if user_signed_in? && current_user.agent?
+              .field.is-marginless
+                = f.label :status, t('look_around.search.status')
+                .control
+                  .select
+                    = f.select :status, [ [t('look_around.status.active'), 'Active'], [t('look_around.status.pending'), 'Pending'], [t('look_around.status.sold'), 'Closed'] ],{} , name: 'search[status][]', class: 'is-marginless is-primary'
+            .field.is-marginless
+              %label{ for: 'searchFor' }
+                =t('look_around.search.location')
+              .control.has-icons-right.is-fullwidth
+                = f.text_field :search_in, class: "input has-border-blue width-350", placeholder: "Search a city...", "data-target": "properties-search.cityNameInput google-auto-complete-input.searchInput", "data-controller": "google-auto-complete-input", value: params[:address] || params.dig(:search, :search_for), id: 'searchFor', required: true
+                %span.icon.is-small.is-right
+                  = fa_icon('search')
+          #propertiesContainer.segment
+            %div.is-mobile
+              %br
+            %label= t('look_around.search.house_details')
+            .control.multiple-buttons
+              .actions-container
+                %button.button.is-completed{ type: 'button', 'data-target': 'properties-search.rangePriceButton'}
+                  = t('look_around.search.budget')
+                = render 'form_price_range', f: f
+              .actions-container.is-hidden-mobile
+                %button.button.is-completed{ type: 'button', 'data-target': 'properties-search.rangeRoomButton'}
+                  Any BD, Any BA
+                = render 'form_beds_bathrooms', f: f
+              .actions-container
+                %button.button.is-completed.is-home-type{ type: 'button', 'data-target': 'properties-search.homeTypesButton'}
+                  = t('look_around.search.home_type')
+                = render 'form_home_types', f: f
+              .actions-container
+                %button.button.is-ligth-purple.more{ type: 'button', 'data-target': 'properties-search.moreFiltersButton'}
+                  = t('look_around.search.more')
+                = render 'form_more', f: f
+          .segment
+            = f.submit t('look_around.search.search'), class: "button is-primary is-marginless", 'data-target': 'properties-search.formSubmit', id: 'searchPropertySubmitButton'
+      .has-text-centered.is-size-5.has-full-width.m-t-xs{"data-target": "properties-search.requestResponse"}
+        = @response_message
+  #lookAroundBody.columns.is-marginless.is-relative.is-flex{ 'data-controller': 'scroll' }
+    %button.floaty-option.button.is-primary.is-hidden-tablet{ 'data-action': 'scroll#moveToItem', 'data-target': 'scroll.trigger',  'data-target-id': 'lookArounMapContainer', 'data-scroll-top': 'start' }
+      = fa_icon('map', alt: 'list', class: 'm-r-sm')
+      = t('generic.map')
+
+    .column.is-6.is-paddingless.is-relative.is-12-mobile{ 'data-controller': 'scroll' }
+      #lookArounMapContainer.map-wrapper.is-relative{'data-controller': 'visibility'}
+        .columns.is-marginless.is-absolute.is-above-container-mobile
+          .column.is-8-desktop.is-offset-1.is-offset-1-mobile.is-above-container
+            %div{'data-target': 'properties-search.myShapesContainer'}
+              %button.button.is-primary.is-square-icon{'data-action': 'properties-search#toggleDrawingActions'}
+                = image_tag "cherapp-ownership-coborrowing-pencil.svg"
+              .select{'data-target': ''}
+                = select_tag "mapTypeId", raw(saved_shapes_options), include_blank: t('look_around.saved_searches', number: current_user&.shapes&.count), class: 'is-primary', 'data-action': 'change->properties-search#drawUserShape', 'data-target': 'properties-search.selectShapeInput'
+
+            .field.has-addons.is-hidden{'data-target': 'properties-search.newShapeToolsContainer'}
+              .control
+                %button.button.is-primary.is-square-icon{'data-action': 'click->properties-search#toggleDrawingActions'}
+                  = image_tag "cherapp-ownership-coborrowing-times-ico.svg"
+              .control.is-white
+                %button.button.is-square-icon.m-r-xs.m-l-xs.is-marginless-mobile{'data-action': 'click->properties-search#setDrawingMode', 'data-drawing-mode': 'rectangle', type: 'button'}
+                  = image_tag "cherapp-ownership-coborrowing-cher-rectangle-shape.svg"
+                %button.button.is-square-icon.m-r-xs.m-l-xs.is-marginless-mobile{'data-action': 'click->properties-search#setDrawingMode', 'data-drawing-mode': 'circle', type: 'button'}
+                  = image_tag "cherapp-ownership-coborrowing-cher-circle-shape.svg"
+                %button.button.is-square-icon.m-l-xs.is-marginless-mobile{'data-action': 'click->properties-search#setDrawingMode', 'data-drawing-mode': 'polygon', type: 'button'}
+                  = image_tag "cherapp-ownership-coborrowing-cher-polygon-shape.svg"
+                .is-inline.is-vertical-divider
+                %button.link.is-primary.is-bold.m-t-sm.m-l-sm{'data-action': 'properties-search#toggleShapeModal'}= t('generic.save')
+                %button.button.is-square-icon.m-l-xs.is-marginless-mobile{'data-action': 'click->properties-search#deletePolygon'}
+                  = image_tag "cherapp-ownership-coborrowing-cher-polygon-delete-shape.svg"
+                %button.button.is-square-icon.m-r-xs.is-marginless-mobile{'data-action': 'click->properties-search#searchPolygon'}
+                  = image_tag "cherapp-ownership-coborrowing-ico-search-blue.svg"
+
+          .column.is-3.is-above-container.is-flex.is-paddingless
+            .column.is-fullwidth.is-7-mobile
+              .select.is-fullwidth
+                = select_tag "mapTypeId", map_terrain_types_options, 'data-action': 'change->properties-search#changeMapView', class: 'is-primary'
+            .column.is-hidden-tablet.has-text-right
+              %button.button.is-primary{ 'data-controller': 'scroll', 'data-action': 'scroll#moveToItem', 'data-target': 'scroll.trigger',  'data-target-id': 'lookAround' }
+                = fa_icon('list', alt: 'list', class: 'm-r-sm')
+                = t('generic.list')
+
+        .columns.is-absolute.is-marginless.is-fully-centered.is-hidden.is-above-container-mobile{"data-target": "properties-search.shapeModal"}
+          .column.is-6.columns.is-centered.is-marginless.p-t-xl{ 'data-target': 'modal.modalContent' }
+            .box.has-full-width.is-above-container
+              %button.link.is-link.is-pulled-right.is-large{"aria-label": "close", "data-action": "click->properties-search#toggleShapeModal"}
+                = fa_icon "times"
+
+              .is-size-6.is-bold.m-b-md.has-text-centered= t("look_around.name_shape")
+              .field
+                = text_field_tag :shape_name, '', 'data-target': 'properties-search.shapeNameInput'
+                %p.help.is-danger.is-hidden{'data-target': 'properties-search.errorShapeMessage'}
+              .field.is-fully-centered.is-marginless
+                %button.button.is-primary{'data-action': 'click->properties-search#savePolygon'}= t('generic.save')
+
+        - if user_signed_in? && current_user.agent?
+          .columns.is-marginless.is-absolute.to-bottom-1.is-above-container-mobile.is-fully-centered
+            .column.is-above-container.is-12-mobile.is-11-tablet.is-6-desktop
+              .select.is-fullwidth
+                = select_tag :search_in, options_for_select(current_user.areas), include_blank: t('look_around.show_my_areas'), class: 'is-primary essential-blue bold', 'data-action': 'change->properties-search#findMyArea'
+
+        .look-map#lookAroundMap{'data-target': 'properties-search.lookMap'}
+        - unless user_signed_in?
+          .signup-container.column.box.is-hidden{'data-target': 'visibility.fadeContainer'}
+            %button.delete{'data-action': 'visibility#toggleVisibility'}
+            %p= t('look_around.search.sing_up_to_know')
+            %ul
+              %li
+                = link_to t("navbar.menu.sign_up"), new_user_registration_path, class: 'button red is-bold is-size-6'
+    .column.is-6.is-paddingless.properties-wrapper.is-12-mobile
+      .searched-properties
+        .container{ "data-target": "properties-search.propertiesContainer" }
+          = render 'properties_container', title: look_around_title, properties: @properties_hash[:properties], flagged_properties_ids: @properties_hash[:flagged_properties_ids], can_save_search: false, total_results: [], next_batch_link: nil

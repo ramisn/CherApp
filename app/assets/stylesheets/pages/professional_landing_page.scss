@@ -1,0 +1,72 @@
+#professional-landing-page {
+  > section:first-of-type {
+    background-blend-mode: initial, saturation;
+    background-image: image-url('professional_landing/cherapp-ownership-coborrowing-hero.png');
+    background-position: center, center;
+    background-size: cover, cover;
+
+    @media (max-width: 769px) {
+      background-color: $landing-page-grey;
+      background-image: none;
+      padding: 0 0 1.5rem 0;
+    }
+  }
+
+  .icons-set {
+    margin: 0;
+
+     > .column {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    span {
+      margin: .75rem 0 0;
+      text-align: center;
+    }
+  }
+
+  .green-filter {
+    background-blend-mode: initial, saturation;
+    background-image: image-url('professional_landing/cherapp-ownership-coborrowing-agents-neighbornhood.png');
+    background-position: center, center;
+    background-size: cover, cover;
+  }
+
+  .double-cards-container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap-reverse;
+
+    .card {
+      border-radius: 3px;
+      box-shadow: 0 0 14px rgba(0, 0, 0, 0.07);
+      color: $main-body;
+      width: 50%;
+
+      @media (max-width: 769px) {
+        width: 100%;
+
+        &:first-of-type {
+          margin: 0 1rem;
+        }
+      }
+
+      &:first-of-type {
+        border-radius: 3px 0  0 3px;
+      }
+    }
+
+    hr {
+      margin: 1rem 0;
+    }
+  }
+
+  .custom-background-blur-image {
+    background-blend-mode: initial, saturation;
+    background-image: image-url('professional_landing/cherapp-ownership-coborrowing-subscribe.png');
+    background-position: center, center;
+    background-size: cover, cover;
+  }
+}

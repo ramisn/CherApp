@@ -1,0 +1,24 @@
+%section.section.has-height-unset
+  %h2.has-centered-text.has-text-black-ter= t('ticker.featured')
+  .landing-ticker.main-container
+    .container
+      .logo-container.is-fully-centered
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-realton.png", alt: t('img_alts.national_assosiation_of_realtors'), class: 'animated-image ')
+      .logo-container.is-fully-centered
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-cbs.svg", alt: t('img_alts.cbs'), class: 'animated-image')
+      .logo-container.is-fully-centered.is-small
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-mucker.png", alt: t('img_alts.mucker_lab'), class: 'animated-image')
+      .logo-container.is-fully-centered
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-svop.png", alt: t('img_alts.svop'), class: 'animated-image')
+      .logo-container.is-fully-centered
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-westside.png", alt: t('img_alts.wetside'), class: 'animated-image')
+      .logo-container.is-fully-centered
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-techday.png", alt: t('img_alts.techday'), class: 'animated-image')
+      .logo-container.is-fully-centered
+        = image_tag("landing/featured/cherapp-ownership-coborrowing-pitchglobal.png", alt: t('img_alts.pitchglobal'), class: 'animated-image')
+      .logo-container.is-fully-centered
+        = image_tag("partner/cherapp-ownership-coborrowing-startup_logo_color.png", alt: t('img_alts.startup_logo_color'), class: 'animated-image')
+
+  .columns.is-marginless.is-centered
+    .column.is-one-fifth
+      = link_to 'Know more about Us', "/about_us", class: 'button is-primary is-outlined is-fullwidth'

@@ -1,0 +1,9 @@
+.modal{ 'data-target': 'modal.modal' }
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless
+      .column.is-11.box{ 'data-target': 'modal.modalContent' }
+        %h4.is-size-3.has-text-centered= t('profile.edit.delete_account')
+        %p= t('profile.edit.confirm_delete')
+        = link_to t('generic.confirm'), user_registration_path(current_user), method: :delete, class: 'button is-coborrower-blue is-fullwidth'
+        %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

@@ -1,0 +1,36 @@
+.panel.has-shadow.is-paddingless{'data-controller': 'collapsible'}
+  %button.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold.has-regular-padding.has-text-black{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+    %span= t('flagged_properties.my_flagged')
+
+  .columns.is-marginless.has-overflow-hidden-desktop.is-clipped.is-paddingless-mobile.has-full-height-tablet{'data-target': 'collapsible.container'}
+    .columns.is-marginless.has-direction-column.has-full-height
+      .column.is-12.has-full-height.is-paddingless.is-relative
+        .columns.is-multiline.is-mobile.is-marginless
+          .column.is-12
+            .columns.is-marginless.is-flex.has-space-between.has-items-centered.is-multiline
+              .column.is-narrow.is-12-mobile.is-paddingless
+                %h2.is-size-5.is-marginless.has-text-left.is-paddingless.has-width-auto= t('flagged_properties.my_flagged')
+            %hr.is-marginless.has-full-width
+          .column.is-12
+            - if @flagged_properties.any?
+              .columns.is-marginless.is-mobile.is-multiline
+                - @flagged_properties.each do |property|
+                  = render "property_information", item: property, flag: false
+
+              .m-l-md.m-r-md
+                = paginate @flagged_properties
+            - else
+              .columns.is-maginless.has-content-centered
+                .column.is-12-mobile.is-6-tablet.is-5-desktop.is-4-fullhd.m-t-md
+                  .has-text-centered.is-lighter-blue
+                    .is-flex.is-fully-centered.has-full-with.m-b-sm
+                      = image_tag('cherapp-ownership-coborrowing-ico-flagged-house.svg', alt: 'Flagged house', class: 'image is-48x48')
+                    %p.is-bold.is-marginless= t('flagged_properties.no_flagges')
+                    %p= t('dashboard.lastest_flagged_empty')
+                    = link_to t('property_overview.look_around'), look_around_path, class: 'button is-coborrower-secondary'
+          - unless @suggested_properties.empty?
+            %h4.m-l-md.m-b-md.is-bold= t("property_overview.#{@flagged_properties.any? ? "similar" : "suggested"}_homes")
+            .columns.container-body.is-marginless.is-mobile
+              - @suggested_properties.each do |item|
+                = render "property_information", item: item, flag: true

@@ -1,0 +1,69 @@
+.container
+  .columns.is-centered.is-multiline.is-marginless
+    .column.is-12-mobile.is-10-tablet.is-12-widescreen.m-t-md
+      .panel.is-paddingless.has-shadow.is-pointed
+        .columns.is-multiline.is-mobile.is-marginless
+          .column.is-12
+            .m-b-sm
+              %h2.is-size-4.is-size-5-mobile.is-marginless.has-text-left= t('flagged_properties.my_flagged')
+            %hr.is-marginless.has-full-width
+          - if @flagged_properties.any?
+            - @flagged_properties.each do |property|
+              .column.is-6-mobile.is-4-tablet.is-3-widescreen.is-one-fifth-fullhd.property-card
+                %button.button.is-secondary.m-b-sm{ 'data-controller': 'watched-property',
+                  'data-target': 'watched-property.flagPropertyLink',
+                  'data-action': 'watched-property#toggleflagProperty',
+                  'data-property-flag-status': 'flagged',
+                  'data-property-listing-id': property['listingId'],
+                  'data-property-city': property['address']['city'] || '',
+                  'data-property-price': property['listPrice'],
+                  'data-status': 'flagged' }
+                  = image_tag('cherapp-ownership-coborrowing-ico-favorite.svg', alt: t('img_alts.flag'), class: 'm-r-md')
+                  %span=  t('look_around.featured.home.flagged')
+
+                = link_to property_path(property['listingId']) do
+                  = image_tag(sanitize_image(property['photos'].first), class: 'property-image')
+                .property-info
+                  %span.is-caption= t('generic.price')
+                  %h4.is-size-4.is-size-5-mobile= "#{number_to_currency(property.dig('listPrice'), locale: :en, precision: 0)}"
+                  %p.is-bold= property.dig('address', 'full')
+                  %p= property.dig('address', 'city')
+                  %p= "#{property.dig('address', 'state')} #{property.dig('address', 'postalCode')}"
+
+                .columns.centered
+                  .column.is-narrow
+                    %span.is-caption= t('property_overview.ownership')
+                    .is-flex.has-items-centered
+                      = image_tag("cherapp-ownership-coborrowing-ico-piechart.svg", alt: t('img_alts.piechart'), class: 'image is-16x16 m-r-xs')
+                      %span.is-bold= t('property_overview.selling_percentage', percentage: property['selling_percentage'] || '100')
+
+                  .column.is-12-touch.is-narrow.share-item{'data-controller': 'modal share-item'}
+                    %button.button.is-tertiary{ 'data-action': 'modal#toggleModal' }
+                      = image_tag('cherapp-ownership-coborrowing-ico-share-black.svg', alt: t('img_alts.share'), class: 'm-r-md')
+                      %span= t('generic.share')
+                    = render 'shared/share_general_item_modal', path: property_path(property['listingId']), type: 'property', property_address: property_full_address(property["address"])
+
+                  .flag-details-container
+                    - if property['users_who_flagged'].size > 1
+                      .column.is-12
+                        .details
+                          = image_tag('cherapp-ownership-coborrowing-ico-flag-secondary.svg', alt: t('img_alts.flag'), class: 'image is-16x16 m-r-sm')
+                          %span>
+                            %span.is-hidden-touch= t('property_overview.flagged_by')
+                            %span.is-bold= property['users_who_flagged'].size - 1
+                            %span.is-hidden-touch= t('property_overview.others')
+                  = render 'property_details', property: property
+                  %button.button.is-primary.m-t-sm.m-b-sm{ type: 'button', 'data-action': 'contactProfessional' }
+                    = t('property_overview.contact_agent')
+
+            %div{'data-controller': 'modal'}
+              = render 'shared/contact_professional_modal'
+          - else
+            .columns.is-maginless.has-content-centered
+              .column.is-12-mobile.is-6-tablet.is-5-desktop.is-4-fullhd.m-t-lg.m-b-xl
+                .has-text-centered.is-lighter-blue
+                  .is-flex.is-fully-centered.has-full-with.m-b-sm
+                    = image_tag('cherapp-ownership-coborrowing-ico-flagged-house.svg', alt: 'Flagged house', class: 'image is-48x48')
+                  %p.is-bold.is-marginless= t('flagged_properties.no_flagges')
+                  %p= t('flagged_properties.latest_homes')
+                  = link_to t('property_overview.look_around'), look_around_path, class: 'button is-secondary'

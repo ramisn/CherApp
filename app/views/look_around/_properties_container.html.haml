@@ -1,0 +1,58 @@
+- if can_save_search
+  %div{ 'data-target': 'properties-search.saveSearchContainer' }
+    .m-l-md.m-r-md
+      - if user_signed_in? && current_user.property_searches.any?
+        %label.label{ for: 'savedSearches' }
+          = t('look_around.search.saved_searches')
+        .select.has-full-width
+          %select#savedSearches{ 'data-action': 'properties-search#updateSearch', 'data-target': 'properties-search.savedSearches' }
+            %option{ disabled: 'disabled', selected: 'selected' }
+              = t('look_around.search.select_a_search')
+            - current_user.property_searches.each do |search|
+              %option{ value: search.id, selected: search == saved_search }
+                = search.alias
+      %hr
+    .columns.is-marginless.is-mobile
+      - if user_signed_in? && saved_search
+        .column.p-t-none
+          %span.is-bold.is-marginless
+            = t('generic.search_result')
+          .columns.is-marginless.is-mobile
+            .column.is-paddingless
+              %p.is-marginless= saved_search.alias
+              %p.is-marginless.is-caption.is-size-6= search_result_location(params[:search])
+              %p.is-marginless.is-caption.is-size-6= search_result_amenities(params[:search])
+            .column.is-paddingless.is-narrow.is-narrow-mobile
+              = link_to property_search_path(saved_search), method: :delete, class: 'button is-danger is-delete' do
+                = fa_icon('trash-alt', type: :regular)
+      - else
+        .column.p-t-none
+          %span.is-bold.is-marginless
+            = t('generic.search_result')
+          %p.is-marginless.is-caption.is-size-6= search_result_location(params[:search])
+          %p.is-marginless.is-caption.is-size-6= search_result_amenities(params[:search])
+        .column.is-narrow-mobile.is-narrow.is-flex.has-direction.is-aligned-end{ 'data-controller': 'modal' }
+          - if user_signed_in?
+            %button.button.is-secondary{ type: 'button', 'data-action': 'modal#toggleModal' }
+              = t('look_around.search.save_this_search')
+            = render 'save-search-modal'
+          - else
+            %div{ 'data-target': 'modal' }
+              %button.button.is-secondary{ type: 'button', 'data-action': 'modal#toggleModal' }
+                = t('look_around.search.save_this_search')
+              = render 'join_cher_modal'
+%h1.has-text-centered.is-size-3= title
+- if user_signed_in?
+  %a.is-flex.is-fully-centered{ href: params[:my_flagged_homes] ? look_around_url : look_around_url(my_flagged_homes: true) }
+    %span.is-flex
+      = image_tag('cherapp-ownership-coborrowing-ico-favorite.svg', alt: t('img_alts.flag'), class: 'is-is-16x16 m-r-sm')
+    %span.has-text-essential-blue.has-text-weight-bold
+      - if params[:my_flagged_homes]
+        =  t('look_around.search.see_featured_homes')
+      -else
+        = current_user.agent? ? t('look_around.search.see_my_saved_homes') : t('look_around.search.see_my_flagged_homes')
+#searchedPropertiesContainer
+  - if local_assigns.has_key?(:total_results) && !total_results.blank?
+    %span.has-regular-margin.is-caption.is-size-6{ 'data-target': 'properties-search.numberOfResults', 'data-current-results': 10 }
+      = t('look_around.search.showing_results', current_properties: properties.size, total_properties: total_results)
+  = render 'shared/properties_cards', properties: properties, flagged_properties_ids: flagged_properties_ids, next_batch_link: next_batch_link

@@ -1,0 +1,40 @@
+%input{ type: 'hidden', value: 'professionals landing page', id: 'currentPageInput' }
+#professional-landing-page
+  %section.is-grey-with-gradiant.is-family-secondary.p-t-lg.section.p-b-xxln.p-b-none-mobile
+    .container
+      .columns.is-centered.is-multiline.is-vcentered.is-marginless.central-menu
+        .column.is-full.has-text-centered
+          %h1.is-size-1.has-text-primary.is-marginless
+            Centralized Buyers Market
+        .column.is-full.has-text-centered.has-text-black.is-bold.is-hidden-mobile.m-b-lg
+          %span
+            Access Pre-screened Buyers
+          %span.m-l-md.m-r-md
+            •
+          %span
+            Multiply Your Commission
+          %span.m-l-md.m-r-md
+            •
+          %span
+            Clients With Higher Buying Power
+        .is-hidden-tablet
+          .columns.is-marginless.is-centered.is-flex
+            .column.is-narrow-mobile
+              %ul.has-dot-style.is-marginless
+                %li.is-bold
+                  Access Pre-screened Buyers
+                %li.is-bold
+                  Multiply Your Commission
+                %li.is-bold
+                  Clients With Higher Buying Power
+        .column.is-full.has-text-centered.is-paddingless
+          .columns.is-centered.is-marginless
+            .column.is-paddingless.image
+            .column.is-paddingless.is-8-tablet.is-6-desktop.is-5-widescreen.is-4-fullhd
+              = render 'contact_form'
+  = render 'co_owning_model'
+  = render 'competitive_edge'
+  = render 'shared/landing_page/trusted_by'
+  = render 'testimonial'
+  = render 'ticker'
+  = render 'subscribe'

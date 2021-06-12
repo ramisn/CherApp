@@ -1,0 +1,30 @@
+%section#benefitsSection.section.is-divider-blue
+  .container
+    .columns.is-centered.is-marginless
+      .column.is-3.has-text-centered.has-text-centered-mobile
+        = image_tag 'cherapp-ownership-coborrowing-handshake.svg', alt: t('img_alts.clipboard'), class: 'm-b-sm'
+        %h3.is-size-4.is-marginless.has-text-black
+          = "Simple Together"
+        %p.m-t-md.has-text-black
+          = "Cher’s interactive map and built-in social network makes everything easy.  Search, share and buy."
+      .column.is-3.has-text-centered.has-text-centered-mobile
+        = image_tag 'cherapp-ownership-coborrowing-papers.svg', alt: t('img_alts.phone_and_web_browser'), class: 'm-b-sm'
+        %h3.is-size-4.is-marginless.has-text-black
+          = "Competitive Loans"
+        %p.m-t-md.has-text-black
+          = "We offer some of the most competitve rates in the industry with very little down."
+      .column.is-3.has-text-centered.has-text-centered-mobile
+        = image_tag 'cherapp-ownership-coborrowing-certificate.svg', alt: t('img_alts.house_with_trees'), class: 'm-b-sm'
+        %h3.is-size-4.is-marginless.has-text-black
+          = "Professional Guidance"
+        %p.m-t-md.has-text-black
+          = "First time buyer? Our dedicated team is here to guide you through the co-owning process."
+    .columns.is-centered.is-marginless.is-multiline
+      .column.is-12.m-t-lg.has-text-centered
+        %h3.is-size-4.is-marginless.has-text-black
+          = "Are you ready to share your home?"
+        - if user_signed_in?
+          = link_to t('landing_page.body.get_started'), new_user_registration_path, class: 'button is-pastel m-t-lg is-uppercase has-full-width-mobile'
+        - else
+          = link_to t('landing_page.body.get_started'), new_user_registration_path, class: 'button is-salmon m-t-lg is-uppercase has-full-width-mobile'
+

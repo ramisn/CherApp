@@ -1,0 +1,20 @@
+.is-coral {
+  color: $melow-coral;
+}
+
+.is-breakable {
+  word-break: break-word;
+}
+
+.registered-sign {
+  font-size: .75rem;
+  vertical-align: super;
+
+  &.is-small {
+    font-size: .5rem;
+  }
+}
+
+.is-lighter-blue {
+  color: $lighter-blue !important;
+}

@@ -1,0 +1,1 @@
+= render 'shared/comment_form', post: @post, path: @post.is_a?(Publication) ? publication_comment_path(@post, @comment) : activity_comment_path(@post, @comment)

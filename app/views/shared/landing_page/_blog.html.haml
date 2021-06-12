@@ -1,0 +1,26 @@
+%section.section.is-divider-blue
+  .container
+    .columns.is-centered.has-text-centered.is-marginless
+      .column.is-12
+        %h3.is-size-3= t('landing_page.body.from_our_blog')
+    .columns.is-centered.is-multiline.is-marginless.is-flex
+      - @posts.each do |post|
+        .column.is-10-mobile.is-4-tablet.is-3-desktop
+          .card.has-full-height
+            .card-image
+              %figure.image.is-4by3
+                %a{ href: post['url'], rel: 'noopener', target: '_blank' }
+                  - if post['feature_image']
+                    %img{ alt: t('img_alts.blog_post'), src: post['feature_image'] }
+                  - else
+                    = image_tag('cherapp-ownership-coborrowing-property_placeholder.png', alt: t('img_alts.blog_post'))
+            %a{ href: post['url'], rel: 'noopener', target: '_blank', class: 'link has-no-style' }
+              .card-content
+                .content.is-breakable
+                  %time.is-caption.is-size-7= Date.parse(post['updated_at'])
+                  %p.is-size-5.has-text-weight-bold= post['title']
+                  %p
+                    = post['excerpt']
+                  %p.is-caption
+                    %a{ href: post['url'], target: '_blank', rel: 'noopener' }
+                      = t('lading_page.body.read_more')

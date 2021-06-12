@@ -1,0 +1,57 @@
+# == Schema Information
+#
+# Table name: houses
+#
+#  id                        :bigint           not null, primary key
+#  owner_id                  :bigint           not null
+#  address                   :string
+#  state                     :string
+#  county                    :string
+#  price                     :integer
+#  home_type                 :integer
+#  beds                      :integer
+#  full_baths                :integer
+#  half_baths                :integer
+#  interior_area             :decimal(, )
+#  lot_size                  :decimal(, )
+#  year_build                :integer
+#  hoa_dues                  :decimal(, )
+#  basement_area             :decimal(, )
+#  garage_area               :decimal(, )
+#  description               :text
+#  details                   :text
+#  date_for_open_house       :date
+#  start_hour_for_open_house :time
+#  end_hour_for_open_house   :time
+#  website                   :string
+#  phone_contact             :string
+#  email_contact             :string
+#  status                    :integer          default("0"), not null
+#  accept_terms              :boolean
+#  ownership_percentage      :decimal(, )
+#  receive_analysis          :boolean          default("false"), not null
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  selling_percentage        :integer          default("0"), not null
+#  down_payment              :integer          default("0"), not null
+#  monthly_mortgage          :integer          default("0"), not null
+#  mlsid                     :string
+#  draft                     :boolean          default("false")
+#
+
+co_borrower_house:
+  owner: co_borrower_user
+  address: 123 Main Street
+  state: CA
+  county: Alabama
+  price: 200_000
+  home_type: residential
+  beds: 1
+  full_baths: 1
+  half_baths: 0
+  interior_area: 100
+  lot_size: 120
+  phone_contact: 2553742263
+  email_contact: co_borrower@user.com
+  accept_terms: true
+  ownership_percentage: 100

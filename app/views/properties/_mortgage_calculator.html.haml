@@ -1,0 +1,59 @@
+.mortgage_calculator.m-t-md
+  .container{ 'data-controller': 'home-price-slider'}
+    .columns.is-centered.is-marginless.is-paddingless
+      .column.is-8.is-relative.is-marginless.is-paddingless
+        #full-animation{ 'data-target': 'home-price-slider.fullAnimation'}
+        %div{ 'data-target': 'home-price-slider.background'}
+      .column.is-4.is-hidden-mobile.p-l-xl.hoverable-info-container
+        .is-flex.has-space-between.has-items-centered.m-b-md
+          %h4.is-size-5.is-line-height-one
+            %span= t('property_overview.shared_score')
+          %span.is-size-7
+            .info-sign
+              = fa_icon('info-circle')
+              .info-content
+                %p.is-marginless>
+                  %span= t('property_overview.cher_score')
+
+        .columns.is-marginless
+          .column.is-paddingless.is-5-tablet.is-3-widescreen.has-text-centered.m-r-sm
+            = image_tag("cherapp-ownership-coborrowing-property_reliability.svg")
+          .column.is-paddingless.is-7-tablet.is-9-widescreen
+            %h3.is-paddingless.is-marginless.is-line-height-one= cher_score(@property)
+            %p.is-caption.is-size-6= t('property_overview.reliability')
+
+    .columns.is-marginless
+      .column.is-9.columns.is-marginless.is-paddingless
+        .column.is-half-tablet.is-full-mobile.is-paddingless.m-r-md
+          %p.is-bold.is-marginles.is-size-6-half= t('landing_page.body.home_price')
+          %input.input{value: property_cost || t('landing_page.body.default_home_price'), 'data-action': 'input->home-price-slider#updateAnimation', 'data-target': 'home-price-slider.homePrice'}
+          .columns.is-marginless
+            .column.is-flex.has-items-centered.is-paddingless
+              %input.custom-slider-primary.is-marginless{ 'data-target': 'home-price-slider.animationSlider', 'data-action': 'input->home-price-slider#updateAnimation', max: 30, min: 2, step: 0.05, type: 'range', value: property_cost / 100000, id: ""}
+        .column.is-half-tablet.is-full-mobile.is-paddingless.m-l-md
+          .columns.is-half-tablet.is-full-mobile.is-paddingless.m-t-2-85.is-block
+            .columns.is-marginless.slider-icons.is-flex
+              .column.is-paddingless.is-relative
+                = image_tag 'landing/cherapp-ownership-coborrowing-slider-1.svg', class: 'has-custom-position single-person'
+                %p= ' '
+              .column.is-paddingless.is-relative
+                = image_tag 'landing/cherapp-ownership-coborrowing-slider-2.svg', class: 'has-custom-position two-persons'
+                = image_tag 'landing/cherapp-ownership-coborrowing-slider-3.svg', class: 'has-custom-position three-persons'
+                %p= ' '
+              .column.is-paddingless.is-relative
+                = image_tag 'landing/cherapp-ownership-coborrowing-slider-4.svg', class: 'has-custom-position four-persons'
+                = ' '
+            %input.m-t-lg.custom-slider-primary{ 'data-target': 'home-price-slider.numberOfFriends', 'data-action': 'input->home-price-slider#updateMonthlyMortgage input->home-price-slider#updateFriendsSliderStyle', max: 4, min: 1, type: 'range', value: 4, step: 1 }
+    .m-t-lg
+      %h3.is-family-secondary.has-text-weight-bold.is-marginless
+        = t('property_overview.year_fixed_interest', years: 10, interest: 3.290)
+      .columns.is-marginless.is-multiline.is-flex.m-t-md
+        .column.is-paddingless.is-3.is-12-mobile
+          %p.is-marginless.is-italic.is-size-6-half= t('property_overview.without_cher')
+          %h4.has-text-left-mobile{ 'data-target': 'home-price-slider.amountWithoutCher' }
+            = t('landing_page.body.default_amount_without_cher')
+        .column.is-paddingless.is-6.is-12-mobile
+          %p.is-marginless.is-italic.is-size-6-half= t('landing_page.body.with_cher_and_buyers')
+          %h4.has-text-left-mobile{ 'data-target': 'home-price-slider.amountWithCher' }
+            = t('landing_page.body.default_amount_cher')
+%hr.is-marginless

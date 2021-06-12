@@ -1,0 +1,199 @@
+- title(t("meta.admin.loans.title"))
+.container
+  %h2.is-size-2.has-text-centered.m-t-xl= "#{@user.full_name} loan request"
+  .columns.is-marginless.is-centered
+    .column.box.is-10-mobile.is-8-tablet.is-6-desktop
+      .columns.is-marginless.is-mobile.is-multiline
+        .column.is-12
+          - if !@user.profile_completed? || @user.date_of_birth.blank? || @user.ssn.blank? || @user.phone_number.blank?
+            %h4.is-size-4.is-bold= "User's missing data"
+            = form_with(model: @user, url: admin_user_path(@user), local: true) do |f|
+
+              - if @user.email.blank?
+                .field
+                  = f.label :email, class: 'label'
+                  .control
+                    = f.email_field :email, class: 'input', required: true
+              - if @user.first_name.blank?
+                .field
+                  = f.label :first_name, class: 'label'
+                  .control
+                    = f.text_field :first_name, class: 'input', required: true
+              - if @user.last_name.blank?
+                .field
+                  = f.label :last_name, class: 'label'
+                  .control
+                    = f.text_field :last_name, class: 'input'
+
+              - if @user.phone_number.blank?
+                .field
+                  = f.label :phone_number, class: 'label'
+                  .control
+                    = f.phone_field :phone_number, class: 'input', maxlength: 10, minlength: 10
+
+              - if @user.date_of_birth.blank?
+                .field{ 'data-controller': 'date-picker' }
+                  = f.label :date_of_birth, class: 'label'
+                  .control
+                    = f.date_field :date_of_birth, class: 'input', required: true, 'data-target': 'date-picker.picker', type: 'date'
+              - if @user.ssn.blank?
+                .field
+                  = f.label :ssn, 'SSN', class: 'label'
+                  .control
+                    = f.text_field :ssn, class: 'input', required: true
+              = f.button 'Update user data', class: 'button is-primary', type: 'submit'
+
+        .column.is-paddingless.is-6
+          %p.is-marginless.is-bold
+            = t('loans.owners_name')
+          %p.is-marginless
+            = @loan.user.full_name
+        .column.is-paddingless.is-6
+          %p.is-marginless.is-bold
+            = t('loans.owners_email')
+          %p.is-marginless
+            = @loan.user.email
+        - unless @property.blank?
+          .column.is-paddingless.is-12.m-t-md
+            %p.is-marginless.is-bold
+              = t('loans.property_info')
+            .is-flex
+              %figure.image.is-128x128
+                = image_tag(sanitize_image(@property.dig('photos').first))
+              .m-l-md
+                %p.is-marginless.is-bold{ 'data-target': 'loans.propertyPrice' }
+                  = "#{number_to_currency(@property.dig('listPrice'), locale: :en, precision: 0)}"
+                %p.is-caption.is-marginless
+                  = @property['address']['full']
+                %p.is-caption.is-marginless
+                  = "#{@property['address']['city']}, #{@property['address']['state']}"
+        .column.is-paddingless.is-6.m-t-md
+          %p.is-marginless.is-bold
+            = t('loans.first_home')
+          %p.is-marginless
+            = t(@loan.first_home)
+        .column.is-paddingless.is-6.m-t-md
+          %p.is-marginless.is-bold
+            = t('loans.planning_to_live_there')
+          %p.is-marginless
+            = t(@loan.live_there)
+        .column.is-paddingless.is-6.m-t-md
+          %p.is-marginless.is-bold
+            = 'Requested on'
+          %p.is-marginless
+            = l(@loan.created_at, format: :long)
+
+      - unless @loan.property_street.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property street'
+          %p.is-marginless
+            = @loan.property_street
+
+      - unless @loan.property_city.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property city'
+          %p.is-marginless
+            = @loan.property_city
+
+      - unless @loan.property_state.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property state'
+          %p.is-marginless
+            = @loan.property_state
+
+      - unless @loan.property_zipcode.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property zipcode'
+          %p.is-marginless
+            = @loan.property_zipcode
+
+      - unless @loan.property_county.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property county'
+          %p.is-marginless
+            = @loan.property_county
+
+      - unless @loan.property_type.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property type'
+          %p.is-marginless
+            = @loan.property_type
+
+      - unless @loan.property_occupied.blank?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = 'Property occupied'
+          %p.is-marginless
+            = @loan.property_occupied
+
+      - if @loan.participants.any?
+        .m-t-md
+          %p.is-marginless.is-bold
+            = t('loans.co_buyers')
+        %hr
+        .columns.is-mobile.is-marginless.is-multiline
+          - @loan.participants.each do |cobuyer|
+            .column.is-paddingless.is-6
+              %p.is-marginless.is-bold
+                = t('loans.name')
+              %p.is-marginless
+                = cobuyer.full_name
+            .column.is-paddingless.is-6
+              %p.is-marginless.is-bold
+                = t('generic.email')
+              %p.is-marginless
+                = cobuyer.email
+
+      - if @user.profile_completed? && !@user.date_of_birth.blank? && !@user.ssn.blank? && !@user.phone_number.blank?
+        = form_with(model: @loan, url: admin_co_borrower_loan_path(@user, @loan), local: true) do |f|
+          .field.is-horizontal.m-t-md
+            .field-body
+              .field
+                = f.label :status, 'Status', class: 'label'
+                .control
+                  .select
+                    = f.select :status, Loan.statuses.keys.map { |status| [t("loans.statuses.#{status}"), status] }, { disabled: ['active'], selected: 'finished'}
+              .field
+                = f.label :unique_code, 'Unique key', class: 'label'
+                .control
+                  = f.text_field :unique_code, placeholder: 'Given key', class: 'input is-marginless'
+                  - if @loan.errors[:unique_code]
+                    %p.help.is-danger
+                      = @loan.errors[:unique_code].first
+          - if @loan.property_street.blank?
+            .field
+              = f.label :property_street, "Property's street",  class: 'label'
+              .control
+                = f.text_field :property_street, class: 'input'
+          - if @loan.property_state.blank?
+            .field
+              = f.label :property_state, "Property's state",  class: 'label'
+              .control
+                = f.text_field :property_state, class: 'input'
+          - if @loan.property_zipcode.blank?
+            .field
+              = f.label :property_zipcode, "Property's zipcode",  class: 'label'
+              .control
+                = f.text_field :property_zipcode, class: 'input'
+          - if @loan.property_county.blank?
+            .field
+              = f.label :property_county, "Property's county",  class: 'label'
+              .control
+                = f.text_field :property_county, class: 'input'
+          - if @loan.property_type.blank?
+            .field
+              = f.label :property_type, "Property's type",  class: 'label'
+              .control
+                = f.text_field :property_type, class: 'input'
+          - if @loan.property_occupied.nil?
+            .field
+              = f.check_box :property_occupied, class: 'is-checkradio'
+              = f.label :property_occupied, 'Is property occupied?', class: 'is-purple is-bold'
+
+          = f.submit 'Update', class: 'button is-primary m-t-sm'

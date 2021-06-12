@@ -1,0 +1,26 @@
+%tr
+  %th
+    = t('notifications.listing')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.updates_in_properties')
+  %th
+    = notification_check_box_input('listing_email')
+    %label{ for: 'notification_settings_listing_email' }
+  %th
+    = notification_check_box_input('listing_sms')
+    %label{ for: 'notification_settings_listing_sms' }
+  %th
+    = notification_check_box_input('listing_in_app')
+    %label{ for: 'notification_settings_listing_in_app' }
+%tr
+  %th
+    = t('notifications.background_check')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.background_check_updates')
+  %th
+    = notification_check_box_input('background_check_email')
+    %label{ for: 'notification_settings_background_check_email' }
+  %th
+    = notification_check_box_input('background_check_sms')
+    %label{ for: 'notification_settings_background_check_sms' }
+  %th
+    = notification_check_box_input('background_check_in_app')
+    %label{ for: 'notification_settings_background_check_in_app' }

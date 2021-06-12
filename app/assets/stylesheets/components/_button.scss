@@ -1,0 +1,370 @@
+
+button {
+  font-family: $karla;
+
+  &:not(.button).is-delete {
+    background-color: $red;
+    border-radius: 100%;
+    color: $white;
+    font-size: .75rem;
+    height: 15px;
+    padding: 0;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 15px;
+
+    * {
+      pointer-events: none;
+    }
+  }
+
+  &.is-link {
+    background-color: transparent;
+    border: 0;
+    color: $essential-blue;
+    cursor: pointer;
+    height: auto;
+    padding: 0;
+
+    &:active,
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      outline: 0;
+      text-decoration: underline;
+
+    }
+  }
+
+  &.is-underlined {
+    text-decoration: underline;
+  }
+}
+
+.button {
+  border: 0;
+  border-radius: 3px;
+  font-family: $karla;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 38px;
+  line-height: 1;
+  padding: 10px 30px;
+  transition: all 300ms ease-in;
+
+  &:not(.has-no-style) {
+    img {
+      max-height: 20px;
+      max-width: 20px;
+      object-fit: contain;
+    }
+  }
+
+  &.has-no-style {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    display: block;
+    font-weight: initial;
+    height: auto;
+    padding: 0;
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.has-pading-small {
+    height: auto;
+    padding: 5px 30px;
+  }
+
+  &.is-square-icon {
+    padding: 10px;
+  }
+
+  &.is-circle-icon {
+    border-radius: 30px;
+  }
+
+  &.is-coral {
+    background-color: $coral;
+    color: $white;
+
+    &:hover {
+      color: rgba($white, .6);
+    }
+  }
+
+  &.is-full-blue {
+    background-color: $primary;
+    color: $green-lime;
+
+
+    &:hover {
+      color: rgba($white, .6);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 10px rgba(254, 254, 254, .3);
+    }
+  }
+
+  &.is-lemon {
+    background-color: $mint;
+    color: $primary;
+  }
+
+  &.is-pastel {
+    background-color: $pastel-blue;
+    color: $white;
+
+    &:hover {
+      color: rgba($white, .6);
+    }
+  }
+
+  &.is-outlined-pastel {
+    background-color: $white;
+    border: 1px solid $pastel-blue;
+    color: $pastel-blue;
+
+    &:hover {
+      color: rgba($pastel-blue, .6);
+    }
+  }
+
+  &.is-salmon {
+    background-color: $salmon;
+    color: $white;
+
+    &:hover {
+      color: rgba($white, .6);
+    }
+  }
+
+  &.is-melow-coral {
+    background-color: $melow-coral;
+    color: $white;
+  }
+
+  &.is-disabled {
+    filter: grayscale(1);
+    opacity: .5;
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  &.is-fullwidth {
+    width: 100%;
+  }
+
+  &.is-primary {
+    background-color: $essential-blue;
+    color: $white;
+
+    &:hover {
+      color: rgba($white, .6);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 10px rgba(254, 254, 254, .3);
+    }
+
+    &.has-text-mint {
+      color: $mint-green;
+    }
+
+    &.has-text-gold {
+      color: $gold;
+    }
+  }
+
+  &.is-mint {
+    background-color: $mint-green;
+    color: $primary;
+
+    &:hover {
+      color: rgba($primary, .6);
+    }
+  }
+
+  &.is-tag-primary {
+    background-color: $white;
+    border: 2px solid $primary;
+    border-radius: 15px;
+    color: $primary;
+    font-size: .75rem;
+    height: auto;
+    padding: 7px 15px;
+    width: 85px;
+
+    .fas {
+      color: $primary;
+    }
+
+    &.has-regular-border {
+      border: 1px solid $primary;
+      border-radius: 3px;
+    }
+  }
+
+  &.is-tag-secondary {
+    background-color: $white;
+    border: 2px solid $helper-blue;
+    border-radius: 15px;
+    color: $helper-blue;
+    font-size: .75rem;
+    height: auto;
+    padding: 7px 15px;
+    width: 85px;
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      border: 2px solid $primary;
+      color: $primary;
+    }
+
+    .fas {
+      color: $helper-blue;
+      transition: color .3s ease-in;
+    }
+
+    &.has-regular-border {
+      border-radius: 3px;
+    }
+  }
+
+  &.is-tag-secondary:hover .fas {
+    color: $primary;
+  }
+
+  &.is-secondary {
+    background-color: $helper-blue;
+    color: $essential-blue;
+
+    &:hover {
+      color: rgba(22, 0, 255, .6);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 10px var(--primary-button-shadow);
+    }
+  }
+
+  &.is-small {
+    font-size: 14px;
+    padding: 6px 15px;
+  }
+
+  &.is-small-mobile {
+    @media (max-width: 769px) {
+      font-size: 14px;
+      padding: 6px 15px;
+    }
+  }
+
+  &.is-outlined {
+    background-color: transparent;
+    border: solid 1px $white;
+    color: $white;
+  }
+
+  &.is-outlined-melow-coral {
+    background-color: transparent;
+    border: solid 1px $melow-coral;
+  }
+
+  &.is-tertiary {
+    background-color: $white;
+    color: $main-body;
+
+    &:hover {
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 10);
+      color: rgba($main-body, .6);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 3px rgba($main-body, .3);
+    }
+
+    &.is-outlined {
+      border: 1px solid $primary;
+      color: $primary;
+    }
+
+    &.is-loading::after {
+      border-color: $primary;
+      border-right-color: transparent;
+      border-top-color: transparent;
+    }
+  }
+
+  &.is-white {
+    background-color: $white;
+    color: $primary;
+  }
+
+  &.social-button {
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+
+    &.facebook-button {
+      background-image: image-url('cherapp-ownership-coborrowing-facebook.svg');
+    }
+
+    &.linkedin-button {
+      background-image: image-url('cherapp-ownership-coborrowing-ico-linkedin.svg');
+    }
+
+    &.google_oauth2-button,
+    &.google-oauth2-button {
+      background-image: image-url('cherapp-ownership-coborrowing-google.svg');
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+
+  &.is-coborrower-blue {
+    background-color: $coborrower-blue;
+    color: $white;
+
+    &:hover {
+      color: rgba($white, .6);
+    }
+  }
+
+  &.is-coborrower-secondary {
+    background-color: $light-coborrower-blue;
+    color: $coborrower-blue;
+
+    &:hover {
+      color: rgba(0, 115, 255, .6);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 10px var(--primary-button-shadow);
+    }
+  }
+
+  &.is-outlined-coborrower-blue {
+    background-color: transparent;
+    border: solid 1px $coborrower-blue;
+    color: $coborrower-blue;
+  }
+
+}

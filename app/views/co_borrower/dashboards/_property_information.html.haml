@@ -1,0 +1,44 @@
+.column.is-one-third-desktop.is-full-mobile.property-card.p-t-none.p-l-md.p-r-md.p-b-md
+  - if flag
+    %button.button.is-coborrower-blue.has-full-width{ 'data-controller': 'watched-property',
+                  'data-target': 'watched-property.flagPropertyLink',
+                  'data-action': 'watched-property#toggleflagProperty',
+                  'data-property-flag-status': 'unflagged',
+                  'data-property-listing-id': item['listingId'],
+                  'data-property-city': item['address']['city'] || '',
+                  'data-property-price': item['listPrice'],
+                  'data-status': 'unflagged' }
+      = image_tag('cherapp-ownership-coborrowing-ico-favorite-white.svg', alt: t('img_alts.flag'), class: 'm-r-md')
+      %span= t('generic.flag')
+
+  .is-relative
+    - unless flag
+      = image_tag "cherapp-ownership-coborrowing-flagged-properties-star.svg", class: 'is-absolute m-r-sm to-right is-above-container'
+    .carousel-container.m-t-md{'data-controller': 'carousel'}
+      .carousel.coborrower.has-no-pagination{ 'data-target': 'carousel.imageContainer', class: (item.dig("photos").size > 1 ? '' : 'has-no-arrows') }
+        - item.dig("photos").each_with_index do |image, index|
+          %div{ class: "item-#{item['listingId']}-#{index + 1}", 'data-target': 'carousel.images' }
+            = link_to image_tag(sanitize_image(image), alt: t('look_around.featured.alts.home'), "loading": "lazy"), property_path(item['listingId'])
+
+  .columns.is-marginless.is-flex.is-multiline
+    %h3.has-full-width.has-text-left= number_to_currency(item["listPrice"], precision: 0) || 'N/A'
+
+    .column.is-12.is-marginless.is-12-mobile.is-paddingless{'data-controller': 'modal share-item'}
+      %p.has-text-black.is-marginless.is-bold= property_location_addres1(item["address"])
+      %p.has-text-black.is-marginless= property_location_city(item["address"])
+      %p.has-text-black.is-marginless= property_location_state_and_zip(item["address"])
+      = render 'shared/share_general_item_modal', path: request.original_url, type: 'property', property_address: property_full_address(item["address"])
+  - if number_of_people_who_also_flagged(item) > 0
+    .flagged-by.columns.is-marginless.p-t-sm.p-b-sm.is-centered.is-mobile
+      = image_tag('cherapp-ownership-coborrowing-ico-favorite-grey.svg', alt: t('img_alts.flag'), class: 'has-margin-auto m-l-none m-r-md image is-16x16')
+      %span.is-hidden-tablet.is-bold
+        = number_of_people_who_also_flagged(item)
+      %span.is-hidden-mobile= t('dashboard.flagged_by_html', number: number_of_people_who_also_flagged(item))
+
+  .m-t-md.has-border-bottom.is-hidden-mobile{'data-controller': 'collapsible'}
+    %button.has-text-main-body.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-size-6.has-text-weight-bold.image{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+      = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'is-8x8 m-t-sm m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+      %span= "Details"
+    %hr.is-marginless.has-full-width
+    .is-clipped{'data-target': 'collapsible.container'}
+      = render "/properties/property_details", property: item, hide_price: true

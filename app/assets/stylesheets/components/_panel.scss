@@ -1,0 +1,58 @@
+.panel {
+  background: $white;
+  border-radius: 5px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 15px;
+  width: 100%;
+
+  &.has-fixed-width {
+    border-radius: 15px;
+    margin: 30px auto;
+    max-width: 480px;
+  }
+
+  &.has-shadow {
+    box-shadow: $regular-shadow;
+  }
+
+  hr {
+    --margin: 10px;
+    background-color: $divider-blue;
+    margin: var(--margin);
+    width: calc(100% - var(--margin) * 2);
+
+    &.has-no-margin-y {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+
+  .description {
+    padding: 0 $regular-padding;
+
+    em {
+      font-style: italic;
+    }
+  }
+
+  .title {
+    color: $dark-grey;
+    font-weight: bold;
+    margin: 0;
+    padding: 15px 15px 0;
+  }
+
+  &.is-pointed {
+    border-radius: 0;
+  }
+
+  .carousel {
+    .slider-navigation-previous,
+    .slider-navigation-next {
+      height: 30px;
+      margin-top: -15px;
+      width: 30px;
+    }
+  }
+}

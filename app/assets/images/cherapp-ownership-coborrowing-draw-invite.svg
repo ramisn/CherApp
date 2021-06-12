@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="77px" height="85px" viewBox="0 0 77 85" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Group 17</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="35.7444285" height="67.9008746" rx="3.92141878"></rect>
+        <filter x="-24.2%" y="-9.8%" width="148.3%" height="125.4%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="1.63265306" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <polygon id="path-4" points="3.67618897 17.4524066 21.2511488 2.8846953 38.6503153 17.4524066 38.6503153 49.4244462 3.67618897 49.4244462"></polygon>
+        <filter x="-4.3%" y="-3.2%" width="108.6%" height="106.4%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="0.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="2" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <rect id="path-6" x="17.3944538" y="33.2701525" width="7.53759666" height="14.4234765"></rect>
+        <filter x="-46.4%" y="-17.3%" width="192.9%" height="148.5%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-8" x="23.9656919" y="14.6157895" width="7.53759666" height="7.50020778"></rect>
+        <filter x="-46.4%" y="-33.3%" width="192.9%" height="193.3%" filterUnits="objectBoundingBox" id="filter-9">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-10" x="28.9907564" y="33.2701525" width="7.53759666" height="7.50020778"></rect>
+        <filter x="-46.4%" y="-33.3%" width="192.9%" height="193.3%" filterUnits="objectBoundingBox" id="filter-11">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-12" x="5.79815127" y="33.2701525" width="7.53759666" height="7.50020778"></rect>
+        <filter x="-46.4%" y="-33.3%" width="192.9%" height="193.3%" filterUnits="objectBoundingBox" id="filter-13">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-14" x="10.4366723" y="14.6157895" width="7.53759666" height="7.50020778"></rect>
+        <filter x="-46.4%" y="-33.3%" width="192.9%" height="193.3%" filterUnits="objectBoundingBox" id="filter-15">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-16" x="0" y="0" width="38.9115646" height="73" rx="11.2149533"></rect>
+        <filter x="-22.2%" y="-9.1%" width="144.4%" height="123.7%" filterUnits="objectBoundingBox" id="filter-18">
+            <feMorphology radius="1.63265306" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <polygon id="path-19" points="4.0019178 18.7630231 23.1341075 3.10132613 42.0749276 18.7630231 42.0749276 53.1360544 4.0019178 53.1360544"></polygon>
+        <filter x="-3.9%" y="-3.0%" width="107.9%" height="106.0%" filterUnits="objectBoundingBox" id="filter-20">
+            <feGaussianBlur stdDeviation="0.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="2" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <rect id="path-21" x="18.9356899" y="35.7686281" width="8.20546562" height="15.5066307"></rect>
+        <filter x="-42.7%" y="-16.1%" width="185.3%" height="145.1%" filterUnits="objectBoundingBox" id="filter-22">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-23" x="26.0891727" y="15.7133857" width="8.20546562" height="8.06344795"></rect>
+        <filter x="-42.7%" y="-31.0%" width="185.3%" height="186.8%" filterUnits="objectBoundingBox" id="filter-24">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-25" x="31.5594832" y="35.7686281" width="8.20546562" height="8.06344795"></rect>
+        <filter x="-42.7%" y="-31.0%" width="185.3%" height="186.8%" filterUnits="objectBoundingBox" id="filter-26">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-27" x="6.31189663" y="35.7686281" width="8.20546562" height="8.06344795"></rect>
+        <filter x="-42.7%" y="-31.0%" width="185.3%" height="186.8%" filterUnits="objectBoundingBox" id="filter-28">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-29" x="11.3614139" y="15.7133857" width="8.20546562" height="8.06344795"></rect>
+        <filter x="-42.7%" y="-31.0%" width="185.3%" height="186.8%" filterUnits="objectBoundingBox" id="filter-30">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Cherapp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="desktop_property-logged-out_modal" transform="translate(-145.000000, -380.000000)">
+            <g id="Padding-Group-16" transform="translate(42.000000, 357.000000)">
+                <g id="Group-17" transform="translate(109.000000, 27.000000)">
+                    <g id="Group-16" transform="translate(29.000000, 2.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Mask">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                            <rect stroke="#DAE0FF" stroke-width="1.63265306" fill="#EEEEEE" fill-rule="evenodd" x="-0.816326531" y="-0.816326531" width="37.3770816" height="69.5335277" rx="3.92141878"></rect>
+                        </g>
+                        <path d="M-16.9353165,40.1457726 C-11.4334829,40.1457726 -6.97336562,44.5837663 -6.97336562,50.058309 C-6.97336562,52.1083765 -7.59880741,54.0130888 -8.67018295,55.5938284 C-8.21458847,57.0548869 -7.96956071,58.6083002 -7.96956071,60.2186589 L-7.97170598,59.9707726 L9.07720991,59.9716979 C9.01727519,59.5754682 8.98091082,59.1715565 8.96958297,58.7614217 L8.96575579,58.483965 C8.96575579,53.0094223 13.4258731,48.5714286 18.9277067,48.5714286 C23.2494791,48.5714286 26.9284776,51.3098204 28.3078398,55.1379604 C28.8218244,55.056852 29.348877,55.0145773 29.8858526,55.0145773 C35.3876862,55.0145773 39.8478035,59.452571 39.8478035,64.9271137 C39.8478035,70.4016564 35.3876862,74.8396501 29.8858526,74.8396501 C26.6266019,74.8396501 23.7329208,73.2822245 21.9154564,70.8744952 L-12.1923233,70.8744593 C-15.0559443,73.9243729 -19.1340319,75.8309038 -23.6596333,75.8309038 C-32.3250212,75.8309038 -39.349706,68.8410637 -39.349706,60.2186589 C-39.349706,52.1517123 -33.200934,45.5137648 -25.3124489,44.6920048 C-23.5389503,41.9565181 -20.4496487,40.1457726 -16.9353165,40.1457726 Z" id="Combined-Shape" fill="#0A2799" mask="url(#mask-2)"></path>
+                        <g mask="url(#mask-2)">
+                            <g transform="translate(-16.711681, 12.043395)">
+                                <rect id="Rectangle" fill="#CECECE" fill-rule="evenodd" x="31.5032886" y="7.11558174" width="4.63852102" height="8.26945986"></rect>
+                                <polygon id="Path" fill="#0A2799" fill-rule="evenodd" points="21.2676838 1.36646619e-15 41.9399609 17.3081718 40.4869442 18.9762949 21.2676838 2.8846953 1.778293 19.0391813 0.386543418 17.3081718"></polygon>
+                                <g id="Rectangle-Copy-11" fill="none">
+                                    <use fill="#D0D0D0" fill-rule="evenodd" xlink:href="#path-4"></use>
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                                </g>
+                                <rect id="Rectangle" fill="#ECECEC" fill-rule="evenodd" x="1.35290196" y="29.2315791" width="39.6207004" height="1.9231302"></rect>
+                                <path d="M36.528353,47.693629 L35.7552662,47.693629 L35.7552662,42.8858035 L34.5956359,42.8858035 L34.5956359,47.693629 L33.8225491,47.693629 L33.8225491,42.8858035 L32.8561906,42.8858035 L32.8561906,47.693629 L32.0831037,47.693629 L32.0831037,42.8858035 L30.9234735,42.8858035 L30.9234735,47.693629 L30.1503866,47.693629 L30.1503866,42.8858035 L29.1840281,42.8858035 L29.1840281,47.693629 L28.4109412,47.693629 L28.4109412,42.8858035 L27.4445827,42.8858035 L27.4445827,47.693629 L26.2849524,47.693629 L26.2849524,31.1547093 L27.4445827,31.1547093 L27.4445827,42.1165514 L37.4947116,42.1165514 L37.4947116,31.1547093 L38.6543418,31.1547093 L38.6543418,47.693629 L37.4947116,47.693629 L37.4947116,42.8858035 L36.528353,42.8858035 L36.528353,47.693629 Z M4.83179273,31.1547093 L4.83179273,42.1165514 L14.8819216,42.1165514 L14.8819216,31.1547093 L16.0415519,31.1547093 L16.0415519,47.693629 L14.8819216,47.693629 L14.8819216,42.8858035 L13.9155631,42.8858035 L13.9155631,47.693629 L13.1424762,47.693629 L13.1424762,42.8858035 L11.982846,42.8858035 L11.982846,47.693629 L11.2097591,47.693629 L11.2097591,42.8858035 L10.2434006,42.8858035 L10.2434006,47.693629 L9.47031375,47.693629 L9.47031375,42.8858035 L8.31068349,42.8858035 L8.31068349,47.693629 L7.53759666,47.693629 L7.53759666,42.8858035 L6.57123811,42.8858035 L6.57123811,47.693629 L5.79815127,47.693629 L5.79815127,42.8858035 L4.83179273,42.8858035 L4.83179273,47.693629 L3.67216247,47.693629 L3.67216247,31.1547093 L4.83179273,31.1547093 Z" id="Combined-Shape" fill="#DBDADA" fill-rule="evenodd"></path>
+                                <g id="Rectangle-Copy-16" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-6"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-17" fill="#484848" fill-rule="evenodd" x="18.2989654" y="34.2317176" width="5.72857346" height="13.4619114"></rect>
+                                <polygon id="Rectangle-Copy-12" fill="#0A2799" fill-rule="evenodd" transform="translate(21.163252, 27.404605) scale(1, -1) translate(-21.163252, -27.404605) " points="-1.0642922e-13 25.5776317 42.3265043 25.5776317 38.6543418 29.2315791 3.67216247 29.2315791"></polygon>
+                                <g id="Rectangle" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                                    <use fill="#E6E6E6" fill-rule="evenodd" xlink:href="#path-8"></use>
+                                </g>
+                                <g id="Rectangle-Copy-21" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-11)" xlink:href="#path-10"></use>
+                                    <use fill="#E6E6E6" fill-rule="evenodd" xlink:href="#path-10"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-19" fill="#262626" fill-rule="evenodd" x="25.0286863" y="15.7696676" width="5.41160786" height="5.19245154"></rect>
+                                <rect id="Rectangle-Copy-22" fill="#262626" fill-rule="evenodd" x="30.0537508" y="34.4240306" width="5.41160786" height="5.19245154"></rect>
+                                <g id="Rectangle-Copy-24" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-13)" xlink:href="#path-12"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-12"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-23" fill="#484848" fill-rule="evenodd" x="6.86114567" y="34.4240306" width="5.41160786" height="5.19245154"></rect>
+                                <g id="Rectangle-Copy-18" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-15)" xlink:href="#path-14"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-14"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-20" fill="#484848" fill-rule="evenodd" x="11.4996667" y="15.7696676" width="5.41160786" height="5.19245154"></rect>
+                                <rect id="Rectangle" fill="#262626" fill-rule="evenodd" x="3.67216247" y="47.693629" width="34.9821794" height="1.73081718"></rect>
+                            </g>
+                        </g>
+                    </g>
+                    <circle id="Oval" fill="#DAE0FF" cx="47.5" cy="6.5" r="1"></circle>
+                    <g id="Group-16">
+                        <mask id="mask-17" fill="white">
+                            <use xlink:href="#path-16"></use>
+                        </mask>
+                        <g id="Mask">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-18)" xlink:href="#path-16"></use>
+                            <rect stroke="#DAE0FF" stroke-width="1.63265306" fill="#F6F6F6" fill-rule="evenodd" x="-0.816326531" y="-0.816326531" width="40.5442177" height="74.6326531" rx="11.2149533"></rect>
+                        </g>
+                        <line x1="15.4972465" y1="3.22789116" x2="22.9089731" y2="3.22789116" id="Line-5-Copy" stroke="#DAE0FF" stroke-width="1.63265306" stroke-linecap="round" mask="url(#mask-17)"></line>
+                        <path d="M12.6336249,42.2108844 C18.2155116,42.2108844 22.7405248,46.65758 22.7405248,52.1428571 C22.7405248,54.1965079 22.1062523,56.1045803 21.0197112,57.6882207 C21.4811754,59.1527378 21.7298348,60.7093974 21.7298348,62.3231293 L21.7271001,62.0738844 L39.0244869,62.0746815 C38.9637715,61.6779961 38.9269305,61.2736278 38.9154475,60.8630347 L38.9115646,60.585034 C38.9115646,55.0997569 43.4365778,50.6530612 49.0184645,50.6530612 C53.4032517,50.6530612 57.1358731,53.3969873 58.5352072,57.2328144 C59.0560493,57.1512404 59.5910135,57.1088435 60.1360544,57.1088435 C65.7179411,57.1088435 70.2429543,61.5555392 70.2429543,67.0408163 C70.2429543,72.5260934 65.7179411,76.9727891 60.1360544,76.9727891 C56.8298176,76.9727891 53.8943715,75.412722 52.0504177,73.0008155 L17.4449474,73.0005412 C14.5396945,76.0560163 10.4025581,77.9659864 5.81146744,77.9659864 C-2.98000408,77.9659864 -10.1068999,70.9624407 -10.1068999,62.3231293 C-10.1068999,54.2399649 -3.86804374,47.5887433 4.13579209,46.7659085 C5.93366738,44.0253187 9.06802225,42.2108844 12.6336249,42.2108844 Z" id="Combined-Shape" fill="#1600FF" mask="url(#mask-17)"></path>
+                        <g mask="url(#mask-17)">
+                            <g transform="translate(10.612245, 12.414966)">
+                                <rect id="Rectangle" fill="#DBDADA" fill-rule="evenodd" x="34.2946384" y="7.6499378" width="5.04951731" height="8.89046825"></rect>
+                                <polygon id="Path" fill="#1600FF" fill-rule="evenodd" points="23.1521076 1.46908317e-15 45.6560523 18.6079568 44.074291 20.4013503 23.1521076 3.10132613 1.9358587 20.4689592 0.420793109 18.6079568"></polygon>
+                                <g id="Rectangle-Copy-11" fill="none">
+                                    <use fill="#DBDADA" fill-rule="evenodd" xlink:href="#path-19"></use>
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-20)" xlink:href="#path-19"></use>
+                                </g>
+                                <rect id="Rectangle" fill="#FFFFFF" fill-rule="evenodd" x="1.47277588" y="31.4267715" width="43.1312937" height="2.06755076"></rect>
+                                <path d="M39.7649488,51.2752587 L38.9233626,51.2752587 L38.9233626,46.1063819 L37.6609832,46.1063819 L37.6609832,51.2752587 L36.819397,51.2752587 L36.819397,46.1063819 L35.7674142,46.1063819 L35.7674142,51.2752587 L34.925828,51.2752587 L34.925828,46.1063819 L33.6634487,46.1063819 L33.6634487,51.2752587 L32.8218625,51.2752587 L32.8218625,46.1063819 L31.7698797,46.1063819 L31.7698797,51.2752587 L30.9282935,51.2752587 L30.9282935,46.1063819 L29.8763107,46.1063819 L29.8763107,51.2752587 L28.6139314,51.2752587 L28.6139314,33.4943222 L29.8763107,33.4943222 L29.8763107,45.2793616 L40.8169316,45.2793616 L40.8169316,33.4943222 L42.0793109,33.4943222 L42.0793109,51.2752587 L40.8169316,51.2752587 L40.8169316,46.1063819 L39.7649488,46.1063819 L39.7649488,51.2752587 Z M5.25991386,33.4943222 L5.25991386,45.2793616 L16.2005347,45.2793616 L16.2005347,33.4943222 L17.462914,33.4943222 L17.462914,51.2752587 L16.2005347,51.2752587 L16.2005347,46.1063819 L15.1485519,46.1063819 L15.1485519,51.2752587 L14.3069657,51.2752587 L14.3069657,46.1063819 L13.0445864,46.1063819 L13.0445864,51.2752587 L12.2030002,51.2752587 L12.2030002,46.1063819 L11.1510174,46.1063819 L11.1510174,51.2752587 L10.3094312,51.2752587 L10.3094312,46.1063819 L9.04705184,46.1063819 L9.04705184,51.2752587 L8.20546562,51.2752587 L8.20546562,46.1063819 L7.15348285,46.1063819 L7.15348285,51.2752587 L6.31189663,51.2752587 L6.31189663,46.1063819 L5.25991386,46.1063819 L5.25991386,51.2752587 L3.99753453,51.2752587 L3.99753453,33.4943222 L5.25991386,33.4943222 Z" id="Combined-Shape" fill="#FFFFFF" fill-rule="evenodd"></path>
+                                <g id="Rectangle-Copy-16" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-22)" xlink:href="#path-21"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-21"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-17" fill="#484848" fill-rule="evenodd" x="19.9203458" y="36.8024035" width="6.23615387" height="14.4728553"></rect>
+                                <polygon id="Rectangle-Copy-12" fill="#1600FF" fill-rule="evenodd" transform="translate(23.038423, 29.462598) scale(1, -1) translate(-23.038423, -29.462598) " points="-1.15859384e-13 27.4984251 46.0768454 27.4984251 42.0793109 31.4267715 3.99753453 31.4267715"></polygon>
+                                <g id="Rectangle" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-24)" xlink:href="#path-23"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-23"></use>
+                                </g>
+                                <g id="Rectangle-Copy-21" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-26)" xlink:href="#path-25"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-25"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-19" fill="#484848" fill-rule="evenodd" x="27.2463538" y="16.9539162" width="5.89110352" height="5.58238704"></rect>
+                                <rect id="Rectangle-Copy-22" fill="#484848" fill-rule="evenodd" x="32.7166642" y="37.0091585" width="5.89110352" height="5.58238704"></rect>
+                                <g id="Rectangle-Copy-24" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-28)" xlink:href="#path-27"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-27"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-23" fill="#484848" fill-rule="evenodd" x="7.46907768" y="37.0091585" width="5.89110352" height="5.58238704"></rect>
+                                <g id="Rectangle-Copy-18" fill="none">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-30)" xlink:href="#path-29"></use>
+                                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-29"></use>
+                                </g>
+                                <rect id="Rectangle-Copy-20" fill="#484848" fill-rule="evenodd" x="12.518595" y="16.9539162" width="5.89110352" height="5.58238704"></rect>
+                                <rect id="Rectangle" fill="#484848" fill-rule="evenodd" x="3.99753453" y="51.2752587" width="38.0817763" height="1.86079568"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

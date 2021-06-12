@@ -1,0 +1,24 @@
+.panel.has-shadow.m-t-md.m-b-md.is-paddingless{'data-controller': 'collapsible'}
+  .has-regular-padding.m-t-sm.m-b-sm.is-hidden-tablet
+    %button.has-no-style.is-link.has-full-width.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+      = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+      %span= t('dashboard.recent_messages_title')
+
+  .is-clipped.has-full-height-tablet{'data-target': 'collapsible.container'}
+    #recentMessages.is-marginless.is-paddingless
+      %h4.is-size-4.has-text-primary.is-bold.is-hidden-mobile.p-l-md.p-t-md
+        = t('dashboard.recent_messages_title')
+      %hr.p-l-md.p-r-md
+      .p-b-md
+        = react_component('chat/CustomerConversations')
+      - if current_user.part_of_clique?
+        .columns.is-marginless.is-fully-centered
+          .column.is-12-mobile.is-10-tablet.is-6-desktop
+            .has-text-centered.p-t-sm.p-b-sm
+              = link_to t("dashboard.browse_contacts"), social_networks_path, class: 'button is-mint has-full-width'
+      - else current_user.part_of_clique?
+        .clique-join.has-text-centered.p-t-lg.p-b-lg.m-t-lg
+          .is-size-4.m-b-lg.has-text-primary.has-text-weight-bold= t('dashboard.messages.clique_join')
+          .columns.is-marginless.is-fully-centered
+            .column.is-12-mobile.is-10-tablet.is-6-desktop
+              = link_to t('dashboard.messages.try_clique'), "/pricing", class: "button is-primary has-full-width"

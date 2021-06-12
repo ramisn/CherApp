@@ -1,0 +1,28 @@
+- title(t("meta.admin.faq.title"))
+.container.has-regular-padding-vertical
+  .columns.is-centered.is-marginless
+    .column.is-12
+      %h2
+        Topics
+      %table.table.has-full-width
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Content
+            %th
+              Actions
+        %body
+          - @topics.each do |topic|
+            %tr
+              %th
+                =topic.name
+              %td
+                =topic.body
+              %td
+                = link_to admin_topic_path(topic), method: :delete, data: { confirm: t("generic.are_you_sure")} do
+                  = fa_icon "trash-alt"
+                = link_to edit_admin_topic_path(topic) do
+                  = fa_icon "edit"
+  = link_to t("labels.new_topic"), new_admin_topic_path

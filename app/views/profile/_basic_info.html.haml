@@ -1,0 +1,110 @@
+.column.edit-profile{'data-controller': 'city-map-selecter'}
+  .profile-section.has-regular-padding.is-clipped.is-paddingless-mobile.has-full-height-tablet{'data-target': 'collapsible.container'}
+    .is-bold.is-size-6.has-text-centered.m-b-md
+      = t("profile.edit.upload_image")
+    = render 'shared/user_profile_picture'
+    - unless current_user.first_name.blank?
+      .profile-info.has-centered-text.m-b-md
+        .profile-name.has-text-left-mobile.p-l-md.p-r-md
+          = link_to fa_icon("edit"), edit_profile_path(current_user), class: "is-pulled-right is-hidden-tablet"
+    = react_component("UserGallery", user: @user_serialized, isEditable: true)
+
+  = form_for current_user, url: profile_path(current_user) do |f|
+    - unless current_user.skip_onbording
+      = f.hidden_field :skip_onbording, value: true
+
+    .columns.is-marginless
+      .column.is-half
+        .field
+          .field-label.has-text-left
+            = f.label :first_name, class: 'has-text-main-body is-capitalized is-bold'
+          %p.control.is-expanded.is-marginless
+            = f.text_field :first_name, class: 'input field is-marginless', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.first_name')}", required: true, minlength: 3
+            - if current_user.errors[:first_name].any?
+              %p.help.is-danger
+                = current_user.errors[:first_name].first
+
+      .column.is-half
+        .field
+          .field-label.has-text-left
+            = f.label :last_name, class: 'has-text-main-body is-capitalized is-bold'
+          .field
+            %p.control.is-expanded.is-marginless
+              = f.text_field :last_name, class: 'input field is-marginless', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.last_name')}", required: true, minlength: 3
+              - if current_user.errors[:last_name].any?
+                %p.help.is-danger
+                  = current_user.errors[:last_name].first
+
+    .columns.is-marginless
+      - unless current_user.agent?
+        .column.is-half
+          .field
+            .field-label.has-text-left
+              = f.label :email, class: 'has-text-main-body is-capitalized is-bold'
+            .field
+              %p.control.is-expanded.is-marginless
+                = f.text_field :email, class: 'input field is-marginless', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.email')}", required: true, minlength: 3, format: 'email'
+                - if current_user.errors[:email].any?
+                  %p.help.is-danger
+                    = current_user.errors[:email].first
+
+      .column.is-half
+        .field
+          .field-label.has-text-left
+            = f.label :phone_number, class: 'has-text-main-body is-capitalized is-bold'
+          .field
+            %p.control.is-expanded.is-marginless
+              = f.text_field :phone_number, class: 'input field is-marginless', placeholder: "#{t("placeholders.tell_us_your")} #{t('placeholders.phone_number2')}", minlength: 10, maxlength: 13
+              - if current_user.errors[:phone_number].any?
+                %p.help.is-danger
+                  = current_user.errors[:phone_number].first
+
+    .columns.is-marginless.is-centered.p-t-md
+      .column.is-two-thirds
+        .field
+          .field-label.has-text-left
+            = f.label :city, value: t("profile.edit.#{current_user.agent? ? "where_to_sell" : "where_to_buy"}"), class: 'has-text-main-body is-bold'
+          .field
+            %p.control.is-expanded.is-marginless
+              = f.text_field :city, class: "input field is-marginless", placeholder: "#{t('placeholders.tell_us_your')} #{t('placeholders.where_to_buy')}", 'data-controller': 'google-auto-complete-input', 'data-target': 'google-auto-complete-input.searchInput city-map-selecter.searchInput', 'data-action': 'keydown->city-map-selecter#setCity', type: 'text'
+              %p.help.is-danger{'data-target': 'city-map-selecter.errorMessage'}
+
+        #locationMapContainer.map.m-b-lg.is-relative
+
+        - if current_user.agent?
+          %div{ 'data-controller': 'user-profile' }
+            .field
+              = f.label t('labels.license_number'), class: 'has-text-main-body is-bold'
+              .control
+                = f.text_field :number_license, class: 'input has-text-black', placeholder: t('placeholders.license_number'), minLength: '8', maxLength: '8'
+
+            - if current_user.professional_role.blank? ||  agent_needs_to_accept_referral?(current_user)
+              .field.is-horizontal
+                .field-label.is-normal
+                  = f.label :professional_role, class: 'has-text-main-body is-bold'
+                .select
+                  = f.select :professional_role, User.professional_roles.keys.map{ |role| [t("professional_roles.#{role}"), role] },
+                    { selected: current_user.professional_role ? current_user.professional_role : '',
+                      prompt: 'Select a role', disabled: '' },
+                    { 'data-target': 'user-profile.professionalRoleInput',
+                      'data-action': 'user-profile#requireEstateAgentAgreement',
+                    }
+
+              .field.m-t-md.m-b-md{ 'data-target': 'user-profile.professionalEstateAgentContainer', class: agent_needs_to_accept_referral?(current_user) ? '' : 'is-hidden'  }
+                = f.check_box :accept_referral_agreement, class: 'is-checkradio', required:  agent_needs_to_accept_referral?(current_user), 'data-target': 'user-profile.professionalAgreementInput', checked: current_user.accept_referral_agreement
+                = f.label :accept_referral_agreement, class: 'label has-text-essential-blue' do
+                  = link_to t('labels.accept_referral_agreement'), "#{root_url}/docs/Referral_Agreement.pdf", { target: '_blank', class: 'has-text-essential-blue'}
+                - if agent_needs_to_accept_referral?(current_user)
+                  %p.help.is-danger
+                    You need to accept this referral agreement
+
+        - if current_user.co_borrower?
+          .is-size-7.is-italic.m-b-md= t("profile.edit.data_usage")
+
+        .column.is-paddingless.has-text-centered
+          = f.submit t('profile.edit.save_profile'), class: 'button is-coborrower-blue is-fullwidth', 'data-target': 'user-profile.submitButton city-map-selecter.changeLocationButton'
+
+  .columns.is-marginless
+    .column.is-paddingless.has-text-centered.m-b-md-mobile{'data-controller': 'modal'}
+      = render "delete_confirmation.html"
+      %button.link.is-bold.has-text-coborrower-blue{'data-action': 'click->modal#toggleModal', type: 'button'}= t('profile.edit.delete_account')

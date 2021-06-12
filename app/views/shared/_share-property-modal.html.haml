@@ -1,0 +1,21 @@
+.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent' }
+      .column.is-12-mobile.is-9-tablet.is-8-desktop
+        .box.has-regular-padding
+          .is-bold.has-text-centered.m-t-lg= t('share.share_modal')
+          .control.has-icons-right.is-fullwidth.m-t-md.m-b-md
+            - if current_user
+              = react_component("UserSugesterModal",
+                                userNotificationPreferences: current_user.notification_settings&.preferences,
+                                userId: current_user.slug,
+                                users: current_user.friends,
+                                isChecked: !user_accept_notification_type?('share_house_modal_in_app'),
+                                propertyUrl: property_url,
+                                propertyAddress: property_address,
+                                userName: current_user.full_name || current_user.email)
+              %span.icon.is-small.is-right.is-primary
+                = image_tag('cherapp-ownership-search-icon.svg')
+          %button.button.has-no-style.close-modal{"aria-label": "close", "data-action": "modal#toggleModal"}
+            = image_tag('cherapp-ownership-close-icon.svg')

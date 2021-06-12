@@ -1,0 +1,8 @@
+%input{ type: 'hidden', value: 'edit profile page', id: 'currentPageInput' }
+- title(t("meta.account.title"))
+.full-width-container.is-paddingless-mobile
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-9-tablet.is-8-desktop.is-6-fullhd.m-t-lg.panel.has-shadow.m-b-lg.is-paddingless-mobile.is-marginless-mobile
+      .columns.is-marginless.is-centered
+        .column.is-paddingless-mobile
+          = render current_user.role ? 'profile' : 'new_user'

@@ -1,0 +1,14 @@
+.rebrand.full-width-container
+  .container.is-family-secondary
+    .panel.has-fixed-width.is-centered
+      .columns.is-centered.is-multiline.is-marginless
+        .column.is-11
+          %h3= t('labels.activate_account')
+
+        .column.is-11{ "data-controller": "password"}
+          = form_for(:activation, url: activations_path) do |f|
+            .field
+              = f.label :email, class: "label"
+              .control
+                = f.email_field :email, class: "input field is-marginless", placeholder: t("placeholders.your_email"), required: true
+            = f.submit t('buttons.send_me_instructions'), class: "button is-primary is-fullwidth"

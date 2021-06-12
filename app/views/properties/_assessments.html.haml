@@ -1,0 +1,100 @@
+- if assessment
+  - if assessment.dig('market').present? && assessment.dig('assessed').present?
+    %p.is-bold.is-size-5 Assessments
+    %table.has-no-style
+      %thead.is-without-background
+        %th
+        %th Assessed
+        %th Market
+      %tbody
+        %tr
+          %td Impr Value
+          %td= number_to_currency_from_data(assessment.dig('assessed', 'assdImprValue'))
+          %td= number_to_currency_from_data(assessment.dig( 'market', 'mktImprValue'))
+        %tr
+          %td Land Value
+          %td= number_to_currency_from_data(assessment.dig('assessed', 'assdLandValue'))
+          %td= number_to_currency_from_data(assessment.dig( 'market', 'mktLandValue'))
+        %tr
+          %td Total Value
+          %td= number_to_currency_from_data(assessment.dig('assessed', 'assdTtlValue'))
+          %td= number_to_currency_from_data(assessment.dig( 'market', 'mktTtlValue'))
+
+  - unless assessment.dig('tax').blank?
+    %hr
+    %p.is-bold.is-size-5 Tax
+    %table.has-no-style
+      %thead
+        %th Year
+        %th Amount
+        %th Exemption
+        %th.is-hidden-touch Type
+        %th.is-hidden-touch  Owner
+      %tbody
+        %tr
+          %td= field_data(assessment.dig('tax', 'taxYear')).to_i
+          %td= number_to_currency_from_data(assessment.dig('tax', 'taxAmt'))
+          %td= number_to_currency_from_data(assessment.dig('tax', 'exemption', 'ExemptionAmount1'))
+          %td.is-hidden-touch= exemption_type(assessment.dig('tax', 'exemptiontype'))
+          %td.is-hidden-touch= tax_owner(assessment.dig('owner', 'owner1'))
+  - unless assessment.dig('mortgage', "FirstConcurrent", "amount" ).blank?
+    %hr
+    %p.is-bold.is-size-5.is-marginless Mortgage
+    %table.has-no-style
+      %tbody
+        %tr
+        %td= number_to_currency_from_data(assessment.dig('mortgage', 'FirstConcurrent', 'amount'))
+        %td= lender_name(assessment.dig('mortgage', 'FirstConcurrent'))
+        - unless assessment.dig('mortgage', "SecondConcurrent", "amount" ).blank?
+          %tr
+            %td= number_to_currency_from_data(assessment.dig('mortgage', 'SecondConcurrent', 'amount'))
+            %td= lender_name(assessment.dig('mortgage', 'SecondConcurrent'))
+    %hr
+    %p.is-bold.is-size-5 Preforeclosure details
+    .columns
+      .column.is-12-touch.is-7-desktop
+        - if preforeclosure_details_is_empty?(preforeclosure_details["Default"])
+          %p.m-b-xs Not Available
+        - else
+          - preforeclosure_details["Default"].each_with_index do |data, index|
+            - next unless exist_data?(data)
+            - auction = preforeclosure_details.dig('Auction')[index]
+            .columns.is-mobile
+              .column.is-7
+                %p.m-b-xs= field_data(data.dig('borrowerNameOwner'))
+                %p.m-b-xs= date(data.dig('foreclosureRecordingDate'))
+                %p.m-b-xs= field_data(data.dig('lenderNameFullStandardized'))
+              .column
+                %p.m-b-xs= field_data(data.dig('defaultAmount'))
+                %p.m-b-xs= field_data(data.dig('judgmentAmount'))
+                %p.m-b-xs= percentage(data.dig('loanBalance'))
+
+            .columns.is-multiline.m-l-xs
+              .column.is-12.is-paddingless.m-b-xs.is-size-5 Auction
+              .column.is-7.is-paddingless.m-b-xs= field_data(auction.dig('auctionAddress'))
+              .column.is-paddingless.m-b-xs= field_data(auction.dig('auctionCity'))
+              .column.is-7.is-paddingless.m-b-xs= date(auction.dig('auctionDate'))
+              .column.is-paddingless.m-b-xs= field_data(auction.dig('auctionTime'))
+            -unless index + 1 == preforeclosure_details["Default"].size
+              %hr
+
+      - if user_signed_in? && !current_user.agent?
+        .column.m-t-md-mobile
+          %p What's your goal?
+          %p
+            %span Let Us help You achieve your goals.
+            %span.is-bold
+              = link_to "Here is our path tracker.", co_borrower_dashboard_path
+
+  %hr
+  %p.is-bold.is-size-5 Listing Details
+
+  - unless @property['office'].blank?
+    %p.is-size-5.is-marginless Listing Office Name
+    %p= @property.dig("office", "name")
+  - unless @property['agent'].blank?
+    %p.is-size-5.is-marginless Agent Name
+    %p= "#{@property.dig('agent', 'firstName')} #{@property.dig('agent', 'lastName')}"
+  - unless @property.dig("sale", "closeDate").blank?
+    %p.is-size-5.is-marginless Sold date
+    %p= @property.dig("sale", "closeDate")

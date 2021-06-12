@@ -1,0 +1,68 @@
+.columns.is-marginless.has-overflow-hidden-desktop.has-regular-padding.is-paddingless-mobile{'data-controller': 'collapsible coborrower-stepper', 'data-collapsible-is-active': 'true', 'data-collapsible-collapsed-message': t('dashboard.show_checklist'), 'data-collapsible-expanded-message': t('dashboard.hide_checklist') }
+  .column.is-12.panel.has-shadow
+    .columns.is-marginless.p-l-md.p-r-md
+      .column.is-paddingless.has-text-right.is-hidden-tablet
+        %button.has-no-style.is-link.m-t-sm.m-b-sm.has-text-left.is-size-6.has-text-coborrower-blue.image.is-flex{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+          %span{'data-target': 'collapsible.messageContainer'}= t("dashboard.hide_checklist")
+          = image_tag('cherapp-ownership-coborrowing-up-arrow-coborrower.svg', class: 'image is-8x8 has-margin-y-auto m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+
+      .column.is-paddingless
+        %button.has-no-style.is-link.m-t-sm.m-b-sm.has-text-left.is-size-6.is-pulled-right.is-hidden-mobile.has-text-coborrower-blue.image.is-flex{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+          %span{'data-target': 'collapsible.messageContainer'}= t("dashboard.hide_checklist")
+          = image_tag('cherapp-ownership-coborrowing-up-arrow-coborrower.svg', class: 'image is-8x8 has-margin-y-auto m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+
+        %span.is-size-7.is-italic.has-text-left
+          = t('dashboard.progress_bar.steps_completed', number: user_current_step_number(current_user))
+        .has-text-left.is-bold.is-size-6.is-hidden-tablet
+          %button.link.is-link.is-bold.has-text-coborrower-blue.is-pulled-right{'data-action': 'coborrower-stepper#showHowToSellContainerMobile', 'data-target': 'coborrower-stepper.roadStepsButtonMobile'}= "Sell >"
+          %button.link.is-link.is-bold.has-text-coborrower-blue.is-pulled-right.is-hidden{'data-action': 'coborrower-stepper#showRoadStepsContainerMobile', 'data-target': 'coborrower-stepper.howToSellButtonMobile'}= "Buy >"
+
+
+          .has-text-main-body{'data-target': 'coborrower-stepper.buyTitleMobile'}= t('dashboard.progress_bar.title')
+          .has-text-main-body.is-hidden{'data-target': 'coborrower-stepper.sellTitleMobile'}= t('dashboard.progress_bar.title_sell')
+
+        .has-text-left.is-bold.is-size-6.is-hidden-mobile
+          .is-inline
+            %button.link.is-link.is-bold.has-text-main-body{'data-action': 'coborrower-stepper#showRoadStepsContainer', 'data-target': 'coborrower-stepper.roadStepsButton'}=  t('dashboard.progress_bar.title')
+          .is-vertical-divider.is-inline.m-l-md.m-r-md.p-b-sm.p-t-sm
+          .is-inline
+            %button.link.is-link.is-bold.has-text-coborrower-blue{'data-action': 'coborrower-stepper#showHowToSellContainer', 'data-target': 'coborrower-stepper.howToSellButton'}=  t('dashboard.progress_bar.title_sell')
+    %hr
+    .is-clipped.is-paddingless-mobile{'data-target': 'collapsible.container'}
+      %div.is-hidden.p-b-lg{'data-target': 'coborrower-stepper.howToSellContainer'}
+        %ul.steps.is-hollow.is-small.is-horizontal.has-content-centered.is-marginless.p-t-md
+          = create_progress_item(t('dashboard.progress_bar.register'), t('dashboard.progress_bar.register_description'), "cherapp-ownership-coborrowing-cher-approved", status: :completed)
+          = create_progress_item(t('dashboard.progress_bar.list_home'), t('dashboard.progress_bar.list_home_description'), "cherapp-ownership-coborrowing-cher-step-list-home", status: current_user.houses.count.positive?, path: new_co_borrower_house_path, image_target_id: 'listHomeDescription')
+          = create_progress_item(t('dashboard.progress_bar.cher_verified'), t('dashboard.progress_bar.cher_verified_description'), "cherapp-ownership-coborrowing-step-cher_verified", status: current_user.verified?, path: edit_profile_path(current_user), image_target_id: 'cherVerifiedDescription')
+
+          - if current_user.contact_professional_progress_status == :active && @flagged_properties.any?
+            = create_progress_item(t('dashboard.progress_bar.select_coowner'), t('dashboard.progress_bar.select_coowner_description'), "cherapp-ownership-coborrowing-step-select-coowner", status: current_user.flag_property_progress_status, path: social_networks_path, image_target_id: 'coownerDescription')
+          - else
+            = create_progress_item(t('dashboard.progress_bar.select_coowner'), t('dashboard.progress_bar.select_coowner_description'), "cherapp-ownership-coborrowing-step-select-coowner", status: current_user.flag_property_progress_status, path: social_networks_path, image_target_id: 'coownerDescription')
+
+          - if current_user.active_loan_request.blank?
+            = create_progress_item(t('dashboard.progress_bar.get_loan_congrats'), t('dashboard.progress_bar.get_loan_sell_description'), "cherapp-ownership-coborrowing-step-congratulations", image_target_id: 'sellCongratulationsDescription', path: new_co_borrower_loan_path)
+          - else
+            = create_progress_item(t('dashboard.progress_bar.get_loan_congrats'), t('dashboard.progress_bar.get_loan_sell_description'), "cherapp-ownership-coborrowing-step-congratulations", image_target_id: 'sellCongratulationsDescription', path: co_borrower_loan_path(current_user.active_loan_request))
+        .is-hidden-tablet.m-t-sm
+          = mobile_step_details(t('dashboard.progress_bar.list_home'), t('dashboard.progress_bar.list_home_description'), look_around_path, container_id: 'listHomeDescription', show: true)
+          = mobile_step_details(t('dashboard.progress_bar.cher_verified'), t('dashboard.progress_bar.cher_verified_description'), social_networks_path, container_id: 'cherVerifiedDescription')
+          = mobile_step_details(t('dashboard.progress_bar.select_coowner'), t('dashboard.progress_bar.select_coowner_description'), social_networks_path, container_id: 'coownerDescription')
+          = mobile_step_details(t('dashboard.progress_bar.get_loan_congrats'), t('dashboard.progress_bar.get_loan_congrats_description'), new_co_borrower_loan_path, container_id: 'sellCongratulationsDescription')
+
+      %div.p-b-lg{'data-target': 'coborrower-stepper.roadStepsContainer'}
+        %ul.steps.is-hollow.is-small.is-horizontal.has-content-centered.is-marginless.p-t-md
+          = create_progress_item(t('dashboard.progress_bar.register'), t('dashboard.progress_bar.register_description'), "cherapp-ownership-coborrowing-cher-approved", status: :completed)
+          = create_progress_item(t('dashboard.progress_bar.dream_home'), t('dashboard.progress_bar.dream_home_description'), "cherapp-ownership-coborrowing-cher-step-flag-homes", status: current_user.flag_property_progress_status, path: look_around_path, image_target_id: 'dreamHomeDescription')
+          = create_progress_item(t('dashboard.progress_bar.find_friends'), t('dashboard.progress_bar.find_friends_description'), "cherapp-ownership-coborrowing-step-invite-friends", status: current_user.friends_progress_status, path: social_networks_path, image_target_id: 'fiendFriendsDescription')
+          = create_progress_item(t('dashboard.progress_bar.contact_realtor'), t('dashboard.progress_bar.contact_realtor_description'), "cherapp-ownership-coborrowing-step-contact-realtor", status: current_user.contact_professional_progress_status, path: social_networks_path, id: 'contactProfessionalLink', image_target_id: 'contactRealtorDescription')
+
+          - if current_user.active_loan_request.blank?
+            = create_progress_item(t('dashboard.progress_bar.get_loan_congrats'), t('dashboard.progress_bar.get_loan_description'), "cherapp-ownership-coborrowing-step-congratulations-coown", path: new_co_borrower_loan_path, image_target_id: 'getLoanDescription')
+          - else
+            = create_progress_item(t('dashboard.progress_bar.get_loan_congrats'), t('dashboard.progress_bar.get_loan_description'), "cherapp-ownership-coborrowing-step-congratulations-coown", path: co_borrower_loan_path(current_user.active_loan_request), image_target_id: 'getLoanDescription')
+        .is-hidden-tablet.m-t-sm
+          = mobile_step_details(t('dashboard.progress_bar.dream_home'), t('dashboard.progress_bar.dream_home_description'), look_around_path, container_id: 'dreamHomeDescription', show: true)
+          = mobile_step_details(t('dashboard.progress_bar.find_friends'), t('dashboard.progress_bar.find_friends_description'), social_networks_path, container_id: 'fiendFriendsDescription')
+          = mobile_step_details(t('dashboard.progress_bar.contact_realtor'), t('dashboard.progress_bar.contact_realtor_description'), social_networks_path, id: 'contactProfessionalLink', container_id: 'contactRealtorDescription')
+          = mobile_step_details(t('dashboard.progress_bar.get_loan'), t('dashboard.progress_bar.get_loan_description'), new_co_borrower_loan_path, container_id: 'getLoanDescription')

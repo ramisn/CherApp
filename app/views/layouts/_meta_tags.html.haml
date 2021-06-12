@@ -1,0 +1,20 @@
+%meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }
+%meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+- unless Rails.env.production?
+  %meta{ name: 'robots', content: 'noindex,nofollow' }
+%meta{ name: 'description', content: yield_meta_tag(:description, t("meta.default.description")) }
+%meta{ name: 'keywords', content: yield_meta_tag(:keywords, t("meta.default.keywords")) }
+%meta{ property: 'fb:app_id', content: '516703312244212' }
+%meta{ property: 'og:url', content: yield_meta_tag(:'og:url') }
+%meta{ property: 'og:type', content: yield_meta_tag(:'og:type') }
+%meta{ property: 'og:title', content: yield_meta_tag(:'og:title') }
+%meta{ property: 'og:image', content: yield_meta_tag(:'og:image') }
+%meta{ property: 'og:description', content: yield_meta_tag(:'og:description') }
+%meta{ name: 'twitter:creator', content: '@Cher_App' }
+%meta{ name: 'twitter:card', content: yield_meta_tag(:'twitter:card') }
+%meta{ name: 'twitter:title', content: yield_meta_tag(:'twitter:title') }
+%meta{ name: 'twitter:description', content: yield_meta_tag(:'twitter:description') }
+%meta{ name: 'twitter:image', content: yield_meta_tag(:'twitter:image') }
+%meta{ name: 'twitter:image:alt', content: yield_meta_tag(:'twitter:image:alt') }
+%meta{ name: 'author', content: 'Cher' }
+%title= content_for?(:title) ? yield(:title) : t("meta.default.title")

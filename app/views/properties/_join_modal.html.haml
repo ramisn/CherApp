@@ -1,0 +1,40 @@
+#autoPopUpModal.modal{"data-controller": "modal", "data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .box{ 'data-target': 'modal.modalContent' }
+      .columns.is-multiline.is-centered.is-marginless
+        .column.is-four-fifths.has-text-weight-bold.is-size-5.is-paddingless
+          = t('sign_up.cta')
+        .column.is-four-fifths.has-text-left.is-paddingless.m-t-md
+          %p= fa_icon("check", text: t('sign_up.perks.free_credit'))
+          %p= fa_icon("check", text: t('sign_up.perks.pay_zero'))
+          %p= fa_icon("check", text: t('sign_up.perks.meet_buyers'))
+          %p= fa_icon("check", text: t('sign_up.perks.articles'))
+          %p.is-caption.is-family-secondary= t("sign_up.spam")
+      .columns.is-vcentered.is-multiline.is-centered.m-t-md.is-marginless
+        .column.is-four-fifths.is-full-mobile.is-paddingless.has-divider.m-t-lg
+          %h3.is-size-5= t("sign_in.connect_with")
+          .columns.is-vcentered.is-marginless.is-mobile
+            .column.is-two-fifths.has-text-right
+              .is-family-secondary= t("sign_in.connect_with")
+            .column
+              - User.omniauth_providers.each do |provider|
+                = link_to " ", omniauth_authorize_path(User, provider), {class: "button #{provider}-button social-button"}
+      .columns.is-multiline.is-centered.is-marginless.m-t-md
+        .column.is-four-fifths.margin-auto.is-paddingless{ "data-controller": "password"}
+          = form_for(@new_user, url: registration_path(@new_user)) do |f|
+            = f.label :email, class: "is-bold is-family-secondary"
+            = f.email_field :email, autofocus: true, autocomplete: "off", placeholder: t("placeholders.email"), type: 'text', class: 'email input field is-family-secondary'
+            = f.label :password, class: "is-family-secondary is-bold"
+            .control.has-icons-right
+              = f.password_field :password, autocomplete: "off", placeholder: t("placeholders.password"), type: 'password', class: 'password input field is-family-secondary',"data-target": "password.password"
+              %span.icon.is-right.is-clickable{ 'data-action': 'click->password#seePassword' }
+                = fa_icon('eye-slash')
+            = f.label :password_confirmation, class: "is-family-secondary is-bold"
+            .control.has-icons-right
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "input field password is-family-secondary", placeholder: t("placeholders.password_confirmation"),"data-target": "password.passwordConfirmation"
+              %span.icon.is-right.is-clickable{ 'data-action': 'click->password#seePasswordConfirmation' }
+                = fa_icon('eye-slash')
+            = f.submit t("buttons.sign_up"), class: "button is-secondary is-fullwidth", id: "signUpButton"
+            = link_to t("sign_in.existing_account"), user_session_path, class: 'is-caption has-text-essential-blue'
+      %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

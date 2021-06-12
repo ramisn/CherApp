@@ -1,0 +1,107 @@
+.steps {
+  color: $lighter-blue;
+
+  &.is-hollow {
+    .steps-marker {
+      border: .1rem solid $lighter-blue;
+    }
+  }
+
+  &.has-border {
+    .steps-segment {
+      border-top: 1px solid $lighter-blue;
+      padding: $regular-padding;
+
+      &:not(:last-child)::after {
+        background-color: $lighter-blue;
+        left: 1.9rem;
+        top: 0;
+        width: .1rem;
+      }
+
+      &::after {
+        background-color: $lighter-blue;
+        bottom: 5rem;
+        content: ' ';
+        display: block;
+        left: 1.9rem;
+        position: absolute;
+        top: 0;
+        width: .1rem;
+      }
+    }
+
+    .step-done {
+      background-color: $dim;
+
+      .steps-marker {
+        border: .1rem solid $green-check;
+      }
+
+      &::after {
+        background-color: $lighter-blue;
+        bottom: 0;
+        left: 1.9rem;
+        top: 0;
+        width: .1rem;
+      }
+    }
+
+    .steps-marker {
+      border: .1rem solid $lighter-blue;
+    }
+
+    .steps-content {
+      padding-bottom: 0;
+    }
+  }
+
+  .steps-segment::after,
+  .steps-segment.is-active ~ .steps-segment::after {
+    background-color: $lighter-blue;
+  }
+
+  .steps-segment.is-active > .steps-marker {
+    background-color: $lighter-blue;
+    border-color: $lighter-blue;
+    color: $white;
+  }
+
+  .steps-segment.is-completed {
+    .fa-check {
+      color: $coborrower-blue;
+    }
+
+    .steps-marker {
+      border-color: $coborrower-blue;
+    }
+  }
+
+  .steps-marker {
+    background-color: $white;
+  }
+
+  .steps-content {
+    color: $main-body;
+    margin-top: 0;
+  }
+
+  .title {
+    font-size: .75rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 768px) {
+  .steps.is-small.is-horizontal.has-content-centered {
+    .steps-content {
+      margin-top: 2rem;
+    }
+
+    img {
+      display: initial !important;
+    }
+  }
+}
+

@@ -1,0 +1,20 @@
+#coownersContainer.is-hidden
+  %h2.is-size-3.has-text-centered.has-text-blue= t('loans.tell_us_about_it')
+  %h5.is-size-5.has-text-centered.is-bold.m-b-md= t('loans.who_are_you_buying_with')
+  .columns.is-centered
+    .column.is-8-tablet.is-6-widescreen
+      .suggester-input
+        = react_component('UsersSuggester', fieldName: 'loan[participants_attributes][][user_id]', extraClass: 'has-border-blue', position: 'bottom')
+      %p.has-text-centered.is-size-0.m-t-md<
+        %span.is-size-6
+          Can't see your friends?
+        %span.is-size-6.link{ 'data-action': 'click->loans#toggleModal' }
+          = ' Invite them'
+        %span.is-size-6
+          = "."
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-8-tablet.is-flex.has-space-between.m-t-lg
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#previousItem', 'data-previous-item': 'calculatorContainer', 'data-current-item': 'coownersContainer' }
+        = t('generic.previous')
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#nextItem', 'data-next-item': 'firstHomeContainer', 'data-current-item': 'locationContainer' }
+        = t('generic.next')

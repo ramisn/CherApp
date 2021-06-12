@@ -1,0 +1,63 @@
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-8-mobile.is-5-tablet
+    .field{ 'data-controller': 'google-auto-complete-input' }
+      = f.label :address, t('sell.address'), class: 'label'
+      .control.m-r-md
+        = f.text_field :address, class: 'input', placeholder: t('placeholders.address'), 'data-target': 'google-auto-complete-input.searchInput', 'data-type': 'address', value: @house.address
+  .column.is-paddingless.is-4-mobile.is-2-tablet.is-1-widescreen
+    .field.m-r-md
+      = f.label :state, t('sell.state'),  class: 'label'
+      .select.has-full-width.is-disabled
+        = f.select :state, @states.map, { selected: 'CA' }, { readonly: true }
+  .column.is-paddingless.is-8-mobile.is-3
+    .field.m-r-md
+      = f.label :county, t('sell.county'), class: 'label'
+      .control
+        = f.text_field :county, class: 'input', required: true
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-5-tablet.is-4-desktop
+    .field
+      = f.label :price, t('sell.set_your_price'), class: 'label'
+      .control
+        = f.text_field :price, class: 'input has-width-auto', placeholder: t('placeholders.price'), 'data-target': 'numerical-inputs.input', value: @house.price, required: true
+  .column.is-paddingless.is-12-mobile.is-5-tablet.is-4-desktop.ha-offset-1
+    .field
+      = f.label :ownership_percentage, t('sell.own_porcentage'), class: 'label'
+      .control
+        = f.number_field :ownership_percentage, class: 'input has-width-auto', 'data-target': 'numerical-inputs.input', max: 100, min: 0
+
+  .column.is-paddingless.is-12-mobile.is-5-tablet.is-4-desktop.ha-offset-1
+    .field
+      = f.label :selling_percentage, t('sell.selling_percentage'), class: 'label'
+      .control
+        = f.number_field :selling_percentage, class: 'input has-width-auto', 'data-target': 'numerical-inputs.input', min: 0, max: 100
+  .column.is-paddingless.is-12-mobile.is-5-tablet.is-4-desktop
+    .field
+      = f.label :down_payment, t('sell.down_payment'), class: 'label'
+      .control
+        = f.number_field :down_payment, class: 'input has-width-auto', 'data-target': 'numerical-inputs.input', min: 0
+  .column.is-paddingless.is-12-mobile.is-6-tablet.is-5-desktop.ha-offset-1
+    .field
+      = f.label :monthly_mortgage, t('sell.monthly_mortgage'), class: 'label'
+      .control
+        = f.number_field :monthly_mortgage, class: 'input has-width-auto', 'data-target': 'numerical-inputs.input', min: 0
+  .column.is-paddingless.is-12-mobile.is-6-tablet.is-5-desktop.ha-offset-1
+    .field
+      %label.label{ for: 'suggestedUsers' }
+        = t('sell.who_is_the_people')
+      .control.suggester-input
+        - if @house.users.any?
+          .m-b-md
+            - @house.users.each do |user|
+              .tag.is-primary.m-r-sm
+                %span= user.full_name
+        - else
+          = react_component('UsersSuggester')
+
+  .column.is-paddingless.is-12
+    = t('sell.cher_to_send_you')
+    .field
+      = f.radio_button :receive_analysis, true, class: "is-checkradio is-small has-width-auto"
+      = f.label :receive_analysis_true, t('generic.yes'),  class: "label"
+      = f.radio_button :receive_analysis, false, class: "is-checkradio is-small has-width-auto"
+      = f.label :receive_analysis_false, t('generic.no'), class: "label", checked: @house.receive_analysis

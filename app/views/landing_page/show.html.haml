@@ -1,0 +1,59 @@
+%input{ type: 'hidden', value: 'landing page', id: 'currentPageInput' }
+.rebrand.is-family-secondary.landing-page.is-secondary.p-t-md
+  %section.section.is-main.is-relative{ class: user_signed_in? ? 'has-second-background' : '' }
+    .has-gradient.p-t-md.p-b-md
+      .container.p-t-lg
+        .columns.is-centered.is-multiline.is-vcentered.is-marginless.central-menu
+          .column.is-full.has-text-centered
+            %h1.is-size-biggest.has-text-dark-black.is-marginless.is-size-2-mobile.has-regular-padding
+              Everyone can be a homeowner
+          .column.is-full.has-text-centered.has-text-black.is-bold.m-b-lg.m-b-xxl-mobile
+            %span.is-size-4
+              Shared homeownership now made affordable and simple.
+          .column.is-full.has-text-centered
+            .columns.is-centered.is-marginless
+              - if user_signed_in?
+                .column.is-paddingless.is-12-mobile.is-4-tablet.is-4-dektop{ 'data-controller': 'look-around-redirecter' }
+                  %h4.is-size-4.is-bold
+                    Search your new home
+                  .field.has-submit-beside.is-salmon
+                    %input.input{ type: 'text', 'data-target': 'look-around-redirecter.input', placeholder: 'Search' }
+                    .control
+                      %button.button{ 'data-action': 'look-around-redirecter#redirectUser' }
+                        = image_tag('cherapp-ownership-coborrowing-magnifier-white.svg')
+
+              - else
+                .column.is-12-mobile.is-5-tablet.is-5-dektop{ 'data-controller': 'modal' }
+                  .panel.is-pointed.has-shadow.p-l-lg.p-r-lg.p-t-lg.p-b-lg{ 'data-controller': 'landing-page-registration' }
+                    = form_with(model: @new_user, url: simpler_registration_path, local: true) do |f|
+                      = f.hidden_field :role, value: :co_borrower
+                      .field
+                        = f.label :email, 'Find Your New Home Today', class: 'label has-text-center'
+                        .control.m-t-md
+                          = f.email_field :email, placeholder: 'Sign up with your Email', 'data-target': 'landing-page-registration.input', class: 'input is-marginless is-primary', required: true
+                          - if @new_user.errors[:email]
+                            %p.help.is-danger
+                              = @new_user.errors[:email].first
+                      = f.submit "Start Now", class: 'button is-primary has-full-width'
+                    .m-t-md.m-b-md
+                      %p.has-text-centered.is-marginless.is-caption.is-size-6
+                        or sign up with:
+                    .columns
+                      .column.is-12
+                        = render "devise/shared/links", resource_class: User, resource_name: :user
+                    %p.is-marginless
+                      = link_to 'We care about your privacy', "/privacy", { target: '_blank', class: 'has-text-essential-blue is-size-6'}
+                    %p.is-marginless
+                      %span.is-size-7= 'By signing up you accept our '
+                      = link_to 'terms & conditions.', "#{root_url}/docs/Terms_Of_Service.pdf", { target: '_blank', class: 'has-text-essential-blue is-size-7'}
+                    %p.m-t-sm.is-bold.is-size-5
+                      Always 100% free
+
+  = render 'landing_page/how_it_works'
+  = render 'landing_page/suggested_properties'
+  = render 'landing_page/slider_cost'
+  = render 'landing_page/video'
+  = render 'shared/contact'
+  = render 'shared/landing_page/trusted_by'
+  = render 'shared/landing_page/ticker'
+  = render 'shared/landing_page/subscribe'

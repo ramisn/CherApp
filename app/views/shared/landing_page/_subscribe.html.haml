@@ -1,0 +1,11 @@
+#subscribe
+  .columns.form-container
+    .column.is-6.p-b-lg
+      %h2.is-size-2.is-size-4-mobile.has-text-primary.has-centered-text.is-marginless= t("footer.news_update")
+    .column.is-10-mobile.is-8-tablet.is-5-desktop.is-5-widescreen.is-4-fullhd
+      = form_for(:prospect, url: prospect_path) do |f|
+        .field.has-addons
+          %p.control.is-expanded
+            = f.email_field :email, autocomplete: "off", placeholder: t("placeholders.email").capitalize, type: 'email', class: 'input', required: true
+          %p.control
+            = f.submit t("footer.subscribe"), class: "has-width-auto has-height-auto button is-primary"

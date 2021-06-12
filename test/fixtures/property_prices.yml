@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: property_prices
+#
+#  id          :bigint           not null, primary key
+#  property_id :string           not null
+#  price       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  property_id: '94106826'
+  price: 2_000_000

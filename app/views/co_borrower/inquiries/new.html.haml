@@ -1,0 +1,69 @@
+- title(t("meta.background_check.title"))
+.container{ 'data-controller': 'collapsible', 'data-collapsible-collapsed-message': t('generic.read_more'), 'data-collapsible-expanded-message': t('generic.read_less') }
+  .columns.is-centered.has-regular-padding-vertical.is-marginless
+    .column.is-12-mobile.is-3-tablet.is-2-widescreen
+      .columns.is-marginless
+        .column.is-paddingless.is-8-mobile.is-12-tabletr
+          %span.is-caption= t('inquiry.powered_by')
+          = image_tag('cherapp-ownership-coborrowing-barada-associates.png')
+      %h5.is-size-6.is-bold.m-t-sm.m-b-sm= t('inquiry.validate_profile')
+      %p= t('inquiry.optional_background_check')
+      %p= t('inquiry.feel_free_to_contact')
+    .column.is-12-mobile.is-8-tablet.is-9-widescreen.is-offset-1
+      .card.is-borderless
+        .card-content
+          = form_for(:inquiry, url: co_borrower_inquiries_path) do |f|
+            .columns.is-marginless.is-mobile.has-space-between
+              .column.is-paddingless.is-narrow.is-narrow-mobile
+                %p.is-bold.is-marginless=t('inquiry.disclosure')
+              .column.is-paddingless.is-narrow.is-narrow-mobile
+                %button.has-no-style.is-link.is-fully-centered{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+                  %span{ 'data-target': 'collapsible.messageContainer' }
+                    = t('generic.read_less')
+                  = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+            .columns.is-marginless.is-multiline
+              .column.is-3-desktop.is-6-tablet
+                .field
+                  = f.label :first_name, t('labels.first_name'), class: 'label'
+                  .control
+                    = f.text_field :first_name, class: "input", required: true, value: current_user.first_name
+              .column.is-3-desktop.is-6-tablet
+                .field
+                  = f.label :middle_name, t('labels.middle_name'), class: 'label'
+                  .control
+                    = f.text_field :middle_name, class: "input"
+              .column.is-3-desktop.is-6-tablet
+                .field
+                  = f.label :last_name, t('labels.last_name'), class: 'label'
+                  .control
+                    = f.text_field :last_name, class: "input", required: true, value: current_user.last_name
+              .column.is-3-desktop.is-6-tablet{ 'data-controller': 'date-picker' }
+                .field
+                  = f.label :date_of_birth, t('labels.date_of_birth_up'), class: 'label'
+                  .control
+                    = f.date_field :date_of_birth, type: 'date', required: true, 'data-target': 'date-picker.picker', 'data-is-required': 'true'
+            .is-collapsible.is-active{ 'data-target': 'collapsible.container' }
+              %p= t('inquiry.cher_hereby_dicloses')
+              .field
+                = f.check_box :accepttos, class: "is-checkradio", required: true
+                = f.label :accepttos, t("labels.i_agree")
+              %p= t('inquiry.i_have_authorized_cher')
+              %p= t('inquiry.authorize_license_bodies')
+              %p= t('inquiry.i_agreee_that_this')
+              %p= t('inquiry.information_from_the_customer')
+              .field
+                = f.check_box :accepterms, class: "is-checkradio", required: true
+                = f.label :accepterms, t("labels.i_agree")
+              %p.is-bold= t('inquiry.california_background_check')
+              %p= t('inquiry.cher_intends_to_obtain')
+              %p= t('inquiry.under_california_civil_code')
+              %ul.has-dot-style
+                %li= t('inquiry.in_person_by_inspection')
+                %li= t('inquiry.a_summary_of_all_information')
+                %li= t('inquiry.by_requesting_a_copy_be_sent')
+              %p= t('inquiry.proper_identification')
+              %p= t('inquiry.the_icra_will_provide')
+              %p= t('inquiry.you_may_be_accompanied')
+            .field.m-t-md
+              .control
+                = f.submit t("inquiry.request"), class: "button is-primary"

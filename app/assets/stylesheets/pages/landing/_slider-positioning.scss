@@ -1,0 +1,33 @@
+#full-animation {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.slider-icons {
+  .has-custom-position {
+    --thumb-border: 2px;
+    --thumb-heigh: 15px;
+    --icon-size: 32px;
+    height: var(--icon-size);
+    position: absolute;
+    width: var(--icon-size);
+
+    &.single-person {
+      left: 0;
+    }
+
+    &.two-persons {
+      left: calc((-1 * var(--icon-size) / 2 ) + var(--thumb-border));
+    }
+
+    &.three-persons {
+      right: calc((-1 * var(--icon-size) / 2 ) + var(--thumb-border));
+    }
+
+    &.four-persons {
+      right: 0;
+    }
+  }
+}
+

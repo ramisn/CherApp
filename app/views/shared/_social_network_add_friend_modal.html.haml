@@ -1,0 +1,46 @@
+#addFriendModal.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content.column.is-3-full-hd.is-4-widescreen.is-5-desktop
+    .box{ 'data-target': 'modal.modalContent', 'data-controller': 'invitations' }
+      .is-size-4.is-bold.m-b-md.has-text-centered-mobile= t('generic.invite_friends')
+      = form_for :user, url: user_invitation_path, remote: true, html: { 'data-action': 'submit->invitations#handleInviteEmail', autocomplete: 'off' } do |f|
+        = f.text_field :user_email, class: 'is-hidden', id: 'userContactInput', 'data-target': 'invitations.userContactInput', value: current_user.email
+        = f.text_field :user_first_name, class: 'is-hidden', id: 'userFirstName', 'data-target': 'invitations.userFirstNameInput', value: current_user.first_name
+        = f.text_field :user_last_name, class: 'is-hidden', id: 'userLastName', 'data-target': 'invitations.userLastNameInput', value: current_user.last_name
+
+        .field
+          .control
+            = react_component('UserSuggester', scopeName: "recipient", controllerName: 'invitations')
+
+
+        .field.is-hidden{'data-target': 'invitations.recipientFullNameInputs'}
+          .field-body
+            .field
+              .control
+                = f.text_field :recipient_first_name, class: 'input is-primary is-marginless', placeholder: "Recipient's First Name", 'data-target': 'invitations.recipientFirstNameInput', minlength: 2, id: 'recipientFirstNameInput', required: true
+            .field
+              .control
+                = f.text_field :recipient_last_name, class: 'input is-primary is-marginless', placeholder: "Recipient's Last Name", 'data-target': 'invitations.recipientLastNameInput', minlength: 2, id: 'recipientLastNameInput', required: true
+
+
+        %p.help.is-danger.is-hidden{'data-target': 'invitations.errorsMessage'}
+        %p.help.is-success.is-hidden{'data-target': 'invitations.resultMessage'}
+
+        #inviteSendMessage.field.is-hidden.link{'data-target': 'invitations.sendMessage', 'data-action': 'click->invitations#sendMessageToUser'}
+
+        .field.m-t-md
+          .control
+            = f.text_area :body, class: 'textarea has-fixed-size input is-primary', placeholder: "What's your message?", required: true, 'data-target': 'invitations.messageInput'
+        = f.submit 'Send', class: 'button is-primary is-fullwidth'
+      %hr
+      .share-links
+        = image_tag('cherapp-ownership-coborrowing-ico-link.svg', alt: t('img_alts.copy_link'), class: 'icon', 'data-action': 'click->invitations#copyLink')
+        %a{ href: "https://twitter.com/share?url=#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}", target: '_blank', rel: 'noopener' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-twitter-basic.svg', alt: t("img_alts.twitter_footer"), class: 'icon'
+        %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}", target: '_blank', rel: 'noopener' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-facebook-basic.svg', alt: t("img_alts.facebook_account"), class: 'icon'
+        %a{href: "https://www.linkedin.com/shareArticle?url=#{ENV['APP_URL']}/users/sign_up?referral_code=#{current_user&.referral_code}&source=LinkedIn", target: '_blank', rel: 'noopener' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-linkedin-basic.svg', alt: t("img_alts.linkedin_footer"), class: 'icon'
+      %p.help.is-hidden.is-marginless{'data-target': 'invitations.linkMessage'}
+        = t('property_overview.link_copied')
+      %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal invitations#cleanModal"}

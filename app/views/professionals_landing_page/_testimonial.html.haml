@@ -1,0 +1,50 @@
+%section.section
+  .container
+    %h2.is-size-3.has-text-centered.has-text-black-ter.is-family-secondary
+      = 'Testimonials'
+    .columns.is-centered.is-vcentered.is-marginless
+      .column.is-4
+        .card.is-secondary
+          .card-header
+            .media
+              .media-left
+                %figure.image.is-64x64
+                  = image_tag('cherapp-ownership-coborrowing-testimonial-jordan.png', alt: t('img_alts.testimonial'), class: 'is-rounded')
+              .media-content
+                %p.has-text-weight-bold= t('landing_page.body.testimonial_jordan')
+                .m-t-sm
+                  %p.has-text-weight-bold.has-text-grey-light.m-t-sm= t('landing_page.body.testimonial_real_estate')
+                  %p.has-text-grey-light= t('landing_page.body.testimonial_santa_monica')
+          .card-content
+            .content.p-b-xl
+              %p= t('landing_page.body.testimonials.jordan')
+      .column.is-4
+        .card.is-secondary.m-t-xl.is-marginless-mobile
+          .card-header
+            .media
+              .media-left
+                %figure.image.is-64x64
+                  = image_tag('cherapp-ownership-coborrowing-testimonial-henry.png', alt: t('img_alts.testimonial'), class: 'is-rounded')
+              .media-content
+                %p.has-text-weight-bold= t('landing_page.body.testimonial_henry')
+                .m-t-sm
+                  %p.has-text-weight-bold.has-text-grey-light.m-t-sm= t('landing_page.body.testimonial_loan')
+                  %p.has-text-grey-light= t('landing_page.body.testimonial_orange_city')
+          .card-content
+            .content.p-b-xl
+              %p= t('landing_page.body.testimonials.henry')
+      .column.is-4
+        .card.is-secondary
+          .card-header
+            .media
+              .media-left
+                %figure.image.is-64x64
+                  = image_tag('cherapp-ownership-coborrowing-testimonial-kalli.png', alt: t('img_alts.testimonial'), class: 'is-rounded')
+              .media-content
+                %p.has-text-weight-bold= t('landing_page.body.testimonial_kalli')
+                .m-t-sm
+                  %p.has-text-weight-bold.has-text-grey-light.m-t-sm= t('landing_page.body.testimonial_loan')
+                  %p.has-text-grey-light= t('landing_page.body.testimonial_los_angeles_2')
+          .card-content
+            .content
+              %p= t('landing_page.body.testimonials.kalli')

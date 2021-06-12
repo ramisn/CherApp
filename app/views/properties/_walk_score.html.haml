@@ -1,0 +1,29 @@
+.m-l-md
+  .is-paddingless.m-b-md
+    %h3= t('property_overview.within_a_mile')
+  .m-t-md.is-paddingless
+    %h4= t('property_overview.walk_score')
+.columns.is-marginless.is-mobile.is-wrapped
+  -if score_data['walkscore']
+    .column.is-6-mobile.is-4-tablet.columns.is-marginless.is-flex
+      .column.is-paddingless.is-3.m-r-sm
+        = image_tag("cherapp-ownership-coborrowing-walkers_paradise.svg")
+      .column.is-paddingless.is-8
+        %a.is-size-3.has-text-dark.is-line-height-one{ href: score_data['help_link'], rel: 'noopenner', target: '_blank' }
+          = score_data['walkscore']
+        %p.is-caption.is-size-6-half= score_data['description']
+  -if score_data['transit']
+    .column.is-6-mobile.is-4-tablet.columns.is-marginless.is-flex
+      .column.is-paddingless.is-3.m-r-sm
+        = image_tag("cherapp-ownership-coborrowing-riders_paradise.svg")
+      .column.is-paddingless.is-8
+        %a.is-size-3.has-text-dark.is-line-height-one{ href: score_data['help_link'], rel: 'noopenner', target: '_blank' }
+          = score_data.dig('transit', 'score')
+        %p.is-caption.is-size-6-half= score_data.dig('transit', 'description')
+  -if score_data['bike']
+    .column.is-6-mobile.is-4-tablet.columns.is-marginless.is-flex
+      .column.is-paddingless.is-3.m-r-sm
+        = image_tag("cherapp-ownership-coborrowing-bikeable.svg")
+      .column.is-paddingless.is-8
+        %p.is-size-3.is-paddingless.is-marginless.is-line-height-one= score_data.dig('bike', 'score')
+        %p.is-caption.is-size-6-half= score_data.dig('bike', 'description')

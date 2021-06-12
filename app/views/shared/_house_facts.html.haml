@@ -1,0 +1,67 @@
+.is-size-4.is-bold.m-b-md.m-t-md
+  = t('sell.home_facts')
+.columns.is-marginless
+  .column.is-5.is-paddingless
+    .field
+      = f.label :home_type, t('sell.home_type'),  class: 'label'
+      .select
+        = f.select :home_type, House.home_types.keys.map { |type| [ t("house.types.#{type}"), type] }, selected: params.dig(:property, :type)
+    .field
+      = f.label :beds, t('sell.beds'), class: 'label'
+      .control
+        = f.number_field :beds, class: 'input', min: 0, max: 10, 'data-target': 'numerical-inputs.input', value: @house.beds
+    .columns.is-marginless.is-flex.is-multiline
+      .column.is-paddingless.is-6-mobile.is-6-tablet
+        .field.m-r-md
+          = f.label :full_baths, t('sell.full_baths'), class: 'label'
+          .control
+            = f.number_field :full_baths, class: 'input', min: 0, max: 10, 'data-target': 'numerical-inputs.input', value: @house.full_baths
+      .column.is-paddingless.is-6-mobile.is-6-tablet
+        .field.m-l-md
+          = f.label :half_baths, t('sell.half_baths'), class: 'label'
+          .control
+            = f.number_field :half_baths, class: 'input', min: 0, max: 10, 'data-target': 'numerical-inputs.input', value: @house.half_baths
+  .column.is-6.is-paddingless.is-offset-1
+    .columns.is-marginless.is-flex.is-multiline
+      .column.is-.is-paddingless
+        .field.m-r-md
+          = f.label :hoa_dues, t('sell.hoa_dues'), class: 'label'
+          .control
+            = f.number_field :hoa_dues, class: 'input is-marginless', placeholder: t('placeholders.price'), 'data-target': 'numerical-inputs.input'
+          %p.helpt= t('sell.per_month')
+      .column.is-.is-paddingless
+        .field
+          = f.label :basement_area, t('sell.basement_area'), class: 'label'
+          .control.m-r-md
+            = f.number_field :basement_area, class: 'input', min: 0, max: 10000, 'data-target': 'numerical-inputs.input'
+      .column.is-.is-paddingless
+        .field
+          = f.label :garage_area, t('sell.garage_area'), class: 'label'
+          .control
+            = f.number_field :garage_area, class: 'input', min: 0, max: 10000, 'data-target': 'numerical-inputs.input'
+    .field
+      = f.label :description, t('sell.describe_your_home'), class: 'label'
+      .control
+        = f.text_area :description, class: 'textarea has-fixed-size'
+
+
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-5-tablet
+    .columns.is-marginless.is-flex.is-multiline
+      .column.is-paddingless.is-6
+        .field.m-r-md
+          = f.label :interior_area, t('sell.interior_area'), class: 'label'
+          .control
+            = f.number_field :interior_area, class: 'input', min: 0, max: 10000, 'data-target': 'numerical-inputs.input', value: @house.interior_area
+      .column.is-paddingless.is-6
+        .field.m-l-md
+          = f.label :lot_size, t('sell.lot_size'), class: 'label'
+          .control
+            = f.number_field :lot_size, class: 'input', min: 0, max: 100000, 'data-target': 'numerical-inputs.input', value: @house.lot_size
+  .column.is-paddingless.is-6-mobile.is-5-widescreen.is-offset-1
+    .columns.is-marginless.is-flex.is-multiline
+      .column.is-paddingless.is-6
+        .field.m-r-md
+          = f.label :year_build, t('sell.year_built'), class: 'label'
+          .control
+            = f.number_field :year_build, class: 'input', min: 1900, max: 2025, 'data-target': 'numerical-inputs.input', value: @house.year_build

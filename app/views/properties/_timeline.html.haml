@@ -1,0 +1,42 @@
+- if history
+  %hr.is-marginless
+  .columns.is-marginless
+    .column.is-9
+      %h3= t('property_overview.history')
+      .timeline{ 'data-controller': 'collapsible' }
+        .history
+          %h4.is-marginless.p-l-lg.p-sm
+          .description.p-l-lg
+            .columns.p-b-lg.is-mobile
+              .column.is-4-mobile.is-4-tablet.p-l-none
+                %p.is-marginless.is-caption= t('property_overview.date')
+                %p.is-bold= l(@property['listDate'].to_date, format: :long)
+              .column.is-4-mobile.is-4-tablet
+                %p.is-marginless.is-caption= "Action"
+                %p.is-bold= "Listed (active)"
+              .column.is-4-mobile.is-4-tablet
+                %p.is-marginless.is-caption= t('property_overview.price_label')
+                %p.is-bold= number_to_currency(@property['listPrice'], locale: :en, precision: 0)
+        .is-collapsible.is-active{ 'data-target': 'collapsible.container' }
+          - history.each do |record|
+            - if record['salesearchdate']
+              .history
+                %h4.is-marginless.p-l-lg= history_message(record)
+                .description.p-l-lg
+                  .columns.is-mobile.p-b-lg
+                    .column.is-4-mobile.is-4-tablet.p-l-none
+                      %p.is-marginless.is-caption= t('property_overview.date')
+                      %p.is-bold= l(record['salesearchdate'].to_date, format: :long)
+                    .column.is-4-mobile.is-4-tablet
+                      %p.is-marginless.is-caption= "Action"
+                      %p.is-bold= record['amount']['saletranstype']
+                    .column.is-4-mobile.is-4-tablet
+                      %p.is-marginless.is-caption= t('property_overview.price_label')
+                      %p.is-bold= history_sold_price(record)
+        .history.show-less
+          %button.has-no-style.is-link.is-fully-centered.p-l-lg.p-t-lg.m-r-sm{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+            - if history.size > 1
+              %span{ 'data-target': 'collapsible.messageContainer' }
+                = t('property_overview.show_less')
+              = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+  %hr

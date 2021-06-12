@@ -1,0 +1,12 @@
+.box
+  %p
+    - if user_signed_in? && current_user.agent?
+      = t('look_around.search.local_professionals')
+    - else
+      = t('look_around.search.buyers_that_have')
+      = image_tag("cherapp-ownership-coborrowing-ico-favorite.svg", class: "is-text-icon", alt: t('img_alts.flag'))
+      = t('look_around.search.flagged_similar_homes')
+  .users-container
+    - @homebuyers.each do |homebuyer|
+      .profile-user{ 'data-controller': 'users-profile-picture' }
+        = link_to image_tag(homebuyer.profile_image, class: 'bordered-image', 'data-action': 'error->users-profile-picture#setDefaultPicture'), user_path(homebuyer)

@@ -1,0 +1,32 @@
+.container.m-t-md.is-marginless-mobile
+  .container.is-family-secondary
+    .columns.is-marginless.has-content-centered
+      .column.is-12-mobile.is-10-tablet.is-paddingless-mobile
+        .panel.p-l-lg.p-r-lg.p-t-sm.p-b-sm.is-paddingless-mobile
+          .columns.is-vcentered.is-mobile.is-marginless.p-md.is-paddingless-tablet
+            %h2.column.is-size-3.has-text-left.has-text-dark-blue.is-marginless.is-paddingless-desktop= t('notifications.notifications')
+            = link_to(edit_notification_settings_path(current_user), class: "is-pulled-right is-flex m-auto m-l-sm notifications-settings has-width-auto") do
+              %span.is-hidden-mobile= t('navbar.menu.notification_settings')
+              = image_tag("cherapp-ownership-coborrowing-ico-settings.svg", class: 'm-l-sm')
+            
+          - @received_notifications.each do |notification|
+            .columns.has-divider.is-paddingless.in-app-notification-card.is-mobile.is-marginless{ 'data-controller': 'notifications', 'data-notifications-notification-id': notification.id }
+              = link_to redirect_notification_path(notification), 'data-action': 'notifications#updateNotificationStatus', class: 'column is-paddingless is-11-tablet is-10-mobile' do
+                .in-app-notification{'class': "#{ "is-read" if notification.readed? }"}
+                  %figure.image.is-48x48
+                    = image_tag(notification_image(notification), alt: 'Notification', class: 'is-rounded')
+                  %span.has-full-width.m-l-md
+                    = notification_message(notification)
+                  .time
+                    %span= formated_hour(notification.created_at)
+                  - if notification.pending?
+                    .badge= t('generic.new')
+              = link_to notification_path(notification), id: "notification-#{notification.id}", method: :delete, class: 'column is-paddingless is-fully-centered' do
+                = image_tag("ico-delete-outline.svg", class: "m-auto")
+
+          .m-t-md.is-flex.has-space-between
+            %span
+              = link_to_previous_page @received_notifications, t('generic.prev'), class: 'has-text-black is-underlined'
+            %span
+              = link_to_next_page @received_notifications, t('generic.next'), class: 'has-text-black is-underlined'
+

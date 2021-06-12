@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="391px" height="271px" viewBox="0 0 391 271" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Graph</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polyline id="path-1" points="11 257 112.5 144 186.5 206 383.5 1.5"></polyline>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Graph" transform="translate(0.000000, 2.000000)">
+            <circle id="Oval" fill="#A6B9C5" cx="11.5" cy="257.5" r="11.5"></circle>
+            <circle id="Oval" fill="#A6B9C5" cx="112.5" cy="145.5" r="11.5"></circle>
+            <circle id="Oval" fill="#A6B9C5" cx="185.5" cy="205.5" r="11.5"></circle>
+            <g id="Path" stroke-linecap="round" stroke-linejoin="bevel" stroke="#A6B9C5">
+                <use stroke-width="5" xlink:href="#path-1"></use>
+                <use stroke-width="1" xlink:href="#path-1"></use>
+            </g>
+            <polyline id="Path-2" stroke="#A6B9C5" stroke-width="5" stroke-linecap="round" points="363.5 0.5 383.5 0.5 388 23.5"></polyline>
+        </g>
+    </g>
+</svg>

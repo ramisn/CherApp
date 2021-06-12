@@ -1,0 +1,116 @@
+.flash {
+  color: $white;
+  height: auto;
+  padding: $regular-padding;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 15;
+
+  &.alert {
+    background: $melow-coral;
+  }
+
+  &.notice {
+    background: $ultra-violet;
+  }
+
+  &.hide {
+    animation: hide-notice 1s forwards;
+
+    &.fast {
+      animation-duration: .5s;
+    }
+  }
+
+  > .delete {
+    top: 1rem;
+  }
+}
+
+.in-app-notification-card {
+  .in-app-notification {
+    color: $black;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 100px 10px 10px;
+    position: relative;
+
+    @media (max-width: 600px) {
+      padding-right: 50px;
+    }
+
+    &:hover {
+      background-color: $divider-blue;
+    }
+
+    .image {
+      flex: none;
+    }
+
+    .badge {
+      background-color: $coral;
+      border-radius: 5px;
+      color: $white;
+      font-size: .75rem;
+      font-style: italic;
+      font-weight: bold;
+      height: auto;
+      padding: 2px 5px;
+      position: absolute;
+      right: 10px;
+      text-align: center;
+      top: 5px;
+      width: auto;
+
+      @media (min-width: 600px) {
+        min-width: 85px;
+      }
+    }
+
+    .time {
+      bottom: 5px;
+      font-size: .75rem;
+      font-style: italic;
+      height: auto;
+      position: absolute;
+      right: 10px;
+      width: auto;
+    }
+
+    .notification-message {
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .in-app-notification-message {
+      max-width: calc(100% - 85px);
+    }
+
+    .in-app-notification-description {
+      width: calc(100% - 100px);
+
+      @media (max-width: 600px) {
+        width: calc(100% - 80px);
+      }
+    }
+
+    &.is-read {
+      color: $grey-light;
+
+      img {
+        opacity: .5;
+      }
+    }
+  }
+
+  .delete-ico {
+    margin: auto;
+  }
+
+  &.small {
+    max-width: 300px;
+  }
+
+}

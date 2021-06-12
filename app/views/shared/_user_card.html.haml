@@ -1,0 +1,22 @@
+- users.each do |user|
+  .column.is-6-tablet.is-12-mobile.is-4-widescreen.card-container{ 'data-controller': 'users-profile-picture friend-request' }
+    .user-panel
+      .panel-top-section
+        = link_to user_path(user) do
+          = image_tag(user.profile_image, class: 'profile-image', alt: t('img_alts.user_profile'), 'data-action': 'error->users-profile-picture#setDefaultPicture')
+          .panel-text-content
+            %span.is-flex.has-items-centered
+              = user.full_name
+              - if user.part_of_clique?
+                %i.image.is-16x16.m-l-sm
+                  = image_tag('cherapp-ownership-coborrowing-ico-approved.svg')
+      .panel-bottom-section
+        - if FriendRequest.users_are_friends?(current_user.id, user.id)
+          .option-button
+            = link_to "Message #{user.first_name}", conversation_path(user)
+        - elsif FriendRequest.request_status(current_user.id, user.id) == 'pending'
+          .option-button
+            = t('generic.pending')
+        - else
+          %button.option-button{'data-user-id': user.id, 'data-controller': 'friend-request', 'data-target': 'friend-request.buttonAction', 'data-action': 'click->friend-request#sendRequest'}
+            = t("friend_request.add_user.#{user.role}")

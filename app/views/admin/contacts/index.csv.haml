@@ -1,0 +1,5 @@
+- headers = [ 'Email', 'Role', 'Status' ]
+= CSV.generate do |csv|
+	- csv << headers
+	- @contacts.each do |contact|
+		- csv << [contact.contactable.email, contact.role, contact.status ]

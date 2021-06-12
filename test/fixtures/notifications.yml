@@ -1,0 +1,19 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id           :bigint           not null, primary key
+#  owner_id     :bigint
+#  recipient_id :bigint           not null
+#  key          :string           not null
+#  status       :integer          default("0"), not null
+#  params       :json
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+santa_monica_flagged_property_notification:
+  owner: co_borrower_user
+  recipient: user_without_responses
+  params: { property_id: '123asd' }
+  key: 'flagged_property'

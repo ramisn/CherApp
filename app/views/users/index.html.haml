@@ -1,0 +1,26 @@
+.container.m-t-lg
+  .columns.search-network.is-marginless
+    .column.menu.is-4-tablet.is-12-mobile.is-4-desktop
+      .options
+        %p.is-size-5.is-bold
+          = t("search.search_network")
+      = react_component("UserSugesterInput")
+    .column
+      - if @users.present?
+        .has-regular-padding
+          %p.is-size-5.has-text-weight-bold.has-text-centered.is-purple
+            = t(".title", search: @search_for)
+        .columns.is-marginless.is-multiline.is-flex
+          = render 'shared/user_card', users: @users
+      - else
+        .has-regular-padding
+          %p.is-size-5.has-text-weight-bold.has-text-centered.is-purple
+            = t(".no_users_found")
+          %p.is-size-5.has-text-weight-bold.has-text-centered.is-purple
+            = t("friends.suggested_friends")
+          .columns.is-marginless.is-multiline.is-flex
+            = render 'shared/user_card', users: @suggested_matches
+      - if @receiver.present?
+        .has-regular-padding
+          %p.is-size-5.has-text-weight-bold.has-text-centered.is-purple
+            = link_to t(".invite", email: @receiver ), invite_path( email: @receiver ), method: :post

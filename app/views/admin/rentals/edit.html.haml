@@ -1,0 +1,150 @@
+- title(t("meta.admin.rentals.title"))
+.container
+  .columns.is-mobile.is-marginless.is-fully-centered
+    .column.is-10-desktop.is-8-widescreen
+      .panel.m-t-lg.m-b-lg.is-fully-centered{ 'data-controller': 'numerical-inputs rental-house' }
+        .columns.is-marginless.is-fully-centered
+          .column.is-10-tablet.is-12-mobile.is-paddingless.m-t-lg
+            = form_for(@rental, url: admin_rental_path(@rental)) do |f|
+              .field.m-r-md.m-b-md
+                = f.label :status, t('generic.status'),  class: 'label'
+                .select
+                  = f.select :status, Rental.statuses.keys.map{ |key| [ t("rental.status.#{key}"), key ] }, { required: true }
+              .columns.is-marginless.is-flex.is-multiline
+                .column.is-paddingless.is-12-mobile
+                  .field{ 'data-controller': 'google-auto-complete-input' }
+                    = f.label :address, t('sell.address'), class: 'label'
+                    .control.m-r-md
+                      = f.text_field :address, class: 'input', placeholder: t('placeholders.address'), required: true, 'data-target': 'google-auto-complete-input.searchInput', 'data-type': 'address'
+                .column.is-paddingless.is-narrow.is-narrow-mobile
+                  .field
+                    = f.label :state, t('sell.state'),  class: 'label'
+                    .select.has-full-width.is-disabled
+                      = f.select :state, @states.map, { required: true, selected: 'CA' }, { readonly: true }
+              .m-t-md
+                .columns.is-marginless.is-flex.is-multiline
+                  .column.is-paddingless.is-6-mobile.is-6-tablet
+                    .field
+                      = f.label :monthly_rent, t('rental.monthly_rent'),  class: 'label'
+                      .control.m-r-md
+                        = f.number_field :monthly_rent, class: 'input', min: 1, required: true
+                  .column.is-paddingless.is-6-mobile.is-6-tablet
+                    .field
+                      = f.label :security_deposit, t('rental.security_deposit'), class: 'label'
+                      .control
+                        = f.text_field :security_deposit, class: 'input'
+                  .column.is-paddingless.is-6-mobile.is-6-tablet
+                    .field
+                      = f.label :date_available, t('rental.date_available'), class: 'label'
+                      .control.m-r-md{ 'data-controller': 'date-picker' }
+                        = f.date_field :date_available, type: 'date', 'data-target': 'date-picker.picker'
+                  .column.is-paddingless.is-6-mobile.is-6-tablet
+                    .field
+                      = f.label :lease_duration, t('rental.lease_duration'), class: 'label'
+                      .control
+                        .select.has-full-width
+                          = f.select :lease_duration, Rental.lease_durations.keys.map{ |duration| [t("rental.duration.#{duration}"), duration] }, { requiered: true }, { readonly: current_user.admin? }
+              .field.m-t-sm
+                = f.check_box :hide_address, class: 'input is-checkradio', type: 'checkbox'
+                = f.label :hide_address, t('rental.hide_address')
+
+              %h3.is-bold.is-size-4.m-t-md.has-text-left
+                = t('rental.house-details')
+              .columns.is-marginless.is-flex.is-multiline
+                .column.is-paddingless.is-6-mobile
+                  .field
+                    = f.label :bedrooms, t('look_around.featured.home.bed'), class: 'label'
+                    .control.m-r-md
+                      = f.number_field :bedrooms, class: 'input', min: 1, required: true, 'data-target': 'numerical-inputs.input'
+                .column.is-paddingless.is-6-mobile
+                  .field
+                    = f.label :bathrooms, t('look_around.featured.home.bath'), class: 'label'
+                    .control.m-r-md
+                      = f.number_field :bathrooms, class: 'input', min: 1, required: true, 'data-target': 'numerical-inputs.input'
+                .column.is-paddingless.is-6-mobile
+                  .field
+                    = f.label :square_feet, t('rental.square_feet'), class: 'label'
+                    .control.m-r-md
+                      = f.number_field :square_feet, class: 'input', 'data-target': 'numerical-inputs.input'
+                .column.is-paddingless.is-6-mobile.is-narrow
+                  .field
+                    = f.label :laundry, t('rental.laundry'), class: 'label'
+                    .control
+                      .select
+                        = f.select :laundry, Rental.laundries.keys.map{ |laundry_type| [t("rental.laundry.#{laundry_type}"), laundry_type] }
+
+              .field
+                = f.check_box :permit_pets, class: 'input is-checkradio', type: 'checkbox', 'data-action': 'rental-house#togglePetsOptions'
+                = f.label :permit_pets, t('rental.permit_pets')
+              .is-collapsible.m-b-md{ 'data-target': 'rental-house.petsContainer' }
+                %h4.is-size-5.is-bold
+                  = t('rental.pets_allowed')
+                .columns.is-marginless.is-flex.is-multiline
+                  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+                    .field
+                      = f.check_box :permit_cats, class: 'input is-checkradio', type: 'checkbox'
+                      = f.label :permit_cats, t('rental.permit_cats')
+                  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+                    .field
+                      = f.check_box :permit_small_dogs, class: 'input is-checkradio', type: 'checkbox'
+                      = f.label :permit_small_dogs, t('rental.permit_small_dogs')
+                  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+                    .field
+                      = f.check_box :permit_large_dogs, class: 'input is-checkradio', type: 'checkbox'
+                      = f.label :permit_large_dogs, t('rental.permit_large_dogs')
+
+              %h4.is-size-5.is-bold
+                = t('sell.photos')
+              .file{ 'data-controller': 'image-preview' }
+                %label.file-label
+                  = f.file_field :images, multiple: true, class: 'file-input', accept: 'image/jpeg, image/jpg, image/png', 'data-action': 'image-preview#setPreviews'
+                  .file-cta.is-tag
+                    = fa_icon('image')
+                    %span.file-label= t('labels.picture')
+              #houseImagesContainer.columns.is-marginless.is-flex.is-multiline
+
+
+              %h3.is-bold.is-size-4.m-t-md.has-text-left
+                = t('rental.amenities')
+              .columns.is-marginless.is-flex.is-multiline
+                .column.is-paddingless.is-narrow.is-12-mobile.m-t-md
+                  .field
+                    = f.check_box :ac, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :ac, t('rental.ac')
+                  .field
+                    = f.check_box :wheelchair_access, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :wheelchair_access, t('rental.wheelchair_access')
+                  .field
+                    = f.check_box :balcony_or_deck, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :balcony_or_deck, t('rental.balcony_or_deck')
+                  .field
+                    = f.check_box :off_street_parking, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :off_street_parking, t('rental.offstreet parking')
+                .column.is-paddingless.is-narrow.is-12-mobile.is-offset-1.m-t-md
+                  .field
+                    = f.check_box :hardwood_floor, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :hardwood_floor
+                  .field
+                    = f.check_box :furnished, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :furnished, t('rental.furnished')
+                  .field
+                    = f.check_box :garage_parking, class: 'input is-checkradio', type: 'checkbox'
+                    = f.label :garage_parking, t('rental.garage_parking')
+              .m-t-lg
+                .columns.is-marginless.is-flex.is-multiline
+                  .column.is-paddingless.is-12-mobile.is-12-tablet
+                    .field
+                      = f.label :additional_amenities, t('rental.aditional_amenities'), class: 'label'
+                      .control
+                        = f.text_area :additional_amenities, class: 'input textarea'
+                  .column.is-paddingless.is-12-mobile.is-12-tablet
+                    .field
+                      = f.label :about, t('rental.about_house'), class: 'label'
+                      .control
+                        = f.text_area :about, class: 'input textarea'
+                  .column.is-paddingless.is-12-mobile.is-12-tablet
+                    .field
+                      = f.label :lease_summary, t('rental.lease_summary'), class: 'label'
+                      .control
+                        = f.text_area :lease_summary, class: 'input textarea'
+              = f.button 'Update', type: 'submit', class: 'button is-primary'

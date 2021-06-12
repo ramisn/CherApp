@@ -1,0 +1,15 @@
+.search-network {
+  .input-container {
+    box-shadow: $regular-shadow;
+    width: 100%;
+
+    .field {
+      align-items: baseline;
+      display: flex;
+    }
+
+    label {
+      flex: 1;
+    }
+  }
+}

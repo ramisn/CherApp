@@ -1,0 +1,33 @@
+.section.collapsible {
+  margin: 30px;
+  padding: 0;
+  position: relative;
+
+  .section-tittle {
+    cursor: pointer;
+    padding-right: 30px;
+
+    .field-icon {
+      position: absolute;
+      right: 0;
+      top: calc(50%);
+      transform: rotate(-90deg) translate(50%, 0);
+      width: 20px;
+    }
+  }
+
+  .section-body {
+    display: none;
+  }
+
+  &.is-open {
+    .section-tittle .field-icon {
+      top: 0;
+      transform: rotate(90deg) translate(0, 25%);
+    }
+
+    .section-body {
+      display: block;
+    }
+  }
+}

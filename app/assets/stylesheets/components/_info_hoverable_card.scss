@@ -1,0 +1,22 @@
+.hoverable-info-container {
+  position: relative;
+
+  .info-sign {
+    &:hover .info-content {
+      display: block;
+    }
+
+    .info-content {
+      --padding: 15px;
+      background-color: $white;
+      border-radius: 3px;
+      box-shadow: $darker-shadow;
+      display: none;
+      left: 0;
+      padding: var(--padding);
+      position: absolute;
+      right: 0;
+      transform: translate(calc(100% - var(--padding)), 0);
+    }
+  }
+}

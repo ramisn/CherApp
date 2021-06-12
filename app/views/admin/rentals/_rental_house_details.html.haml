@@ -1,0 +1,31 @@
+%h3.is-bold.is-size-4.m-t-md.m-b-md.has-text-left
+  = t('rental.house_deatils')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-6-mobile
+    %p.is-marginless.is-bold= 'Bedrooms'
+    = @rental.bedrooms
+  .column.is-paddingless.is-6-mobile
+    %p.is-marginless.is-bold= 'Bathrooms'
+    = @rental.bathrooms
+  .column.is-paddingless.is-6-mobile
+    %p.is-marginless.is-bold= 'Square feet'
+    = @rental.square_feet || t('generic.n_a')
+  .column.is-paddingless.is-6-mobile.is-narrow
+    %p.is-marginless.is-bold= 'Laundry'
+    = t("rental.laundry.#{@rental.laundry}")
+
+.field
+  %p.is-marginless.is-bold= 'Permit pets'
+  = t(@rental.permit_pets)
+%h4.is-size-5.is-bold.m-t-md
+  = t('rent.pets_allowed')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+    %p.is-marginless.is-bold= 'Permit cats'
+    = t(@rental.permit_cats)
+  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+    %p.is-marginless.is-bold= 'Permit small dogs'
+    = t(@rental.permit_small_dogs)
+  .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+    %p.is-marginless.is-bold= 'Permit large dogs'
+    = t(@rental.permit_large_dogs)

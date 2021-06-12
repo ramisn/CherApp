@@ -1,0 +1,90 @@
+- title(t("meta.admin.contacts.title"))
+.container
+  %h2.has-text-centered
+    - label = params[:filter].present? ? contact_role_translation(params[:subfilter], params[:filter]) : 'aa'
+    - label = params[:filter] == 'all' ? params[:filter] : label
+    - label = params[:subfilter].present? ? label : params[:filter]
+    = "#{t("admin.contacts.label")} - #{label}"
+  .columns.is-marginless
+    .column
+      .columns.is-marginless
+        .column.is-paddingless.is-half-tablet.is-one-third-desktop
+          = form_with url: admin_contacts_path, method: :get, class: 'columns is-marginless', data: { remote: false } do |f|
+            = f.text_field :search, class: 'm-r-md input is-primary column is-half', placeholder: 'Type a name or email', value: params[:search]
+            = f.submit t('look_around.search.search'), class: 'is-paddingless button is-primary column is-half'
+        .column.is-paddingless
+          .buttons.is-justified-end.is-marginless
+            = link_to t("admin.contacts.all"), admin_contacts_path(filter: 'all'), class: 'button is-info'
+            = link_to t("admin.contacts.created"), admin_contacts_path(filter: 'created', subfilter: params[:subfilter]), class: 'button is-warning'
+            = link_to t("admin.contacts.others"), admin_contacts_path(filter: 'others', subfilter: params[:subfilter]), class: 'button is-danger'
+      .buttons.is-justified-end.is-marginless
+        - Contact.all_roles.each do |subfilter|
+          - unless subfilter == 'prospect_realtor'
+            = link_to contact_role_translation(subfilter, params[:filter]), admin_contacts_path(filter: params[:filter], subfilter: subfilter), class: 'button is-success'
+      %div{ "data-controller": "modal" }
+        = image_tag("cherapp-ownership-coborrowing-ico-upload.svg", alt: t("img_alts.upload_file"), class: "icon is-medium", "data-action": "click->modal#toggleModal")
+        .modal{ "data-target": "modal.modal" }
+          .modal-background
+          .modal-content
+            .box{ 'data-target': 'modal.modalContent' }
+              .columns.is-marginless.has-direction-column
+                .column.has-centered-text.is-size-5.is-bold
+                  = t("admin.contacts.upload_contacts")
+                .column
+                  = form_for([:admin, Contact.new], format: :csv) do |f|
+                    .field
+                      .file.is-small
+                        %label.sile-label
+                          = f.file_field :file, class: "file-input", accept: "text/csv", required: true
+                          %span.file-cta
+                            %span.file-icon
+                              = fa_icon("upload")
+                            %span.file-label= t("admin.contacts.choose_csv")
+                    .field
+                      = f.submit t("admin.contacts.upload"), class: "button is-primary"
+                    = link_to 'Add single contact', new_admin_prospect_path
+                %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}
+        = link_to image_tag("cherapp-ownership-coborrowing-ico-download.svg", alt: t("generic.download_csv")), admin_contacts_path(format: :csv, filter: params[:filter], subfilter: params[:subfilter]), class: "icon is-medium m-b-xs"
+        = link_to 'Mailchimp sync Manager', admin_mailchimp_sync_index_path, class: 'button is-success'
+
+
+
+      .column
+        .has-text-left
+          = t("admin.contacts.total_records", number: @contacts.count, total: @contacts.total_count)
+      .column
+        = paginate @contacts
+      .columns
+        %table.table.has-full-width
+          %thead
+            %tr
+              %th
+                = t("admin.contacts.email")
+              %th
+                = t("admin.contacts.status")
+              %th
+                = t("admin.contacts.role")
+              %th
+                = t("admin.contacts.synced_with_mailchimp")
+              %th
+                = t("admin.contacts.mailchimp_updated_at")
+              %th
+                = t("generic.actions")
+
+
+          %tbody
+            - @contacts.each do |contact|
+            - next unless contact.contactable
+              %tr
+                %td
+                  = contact.contactable.email
+                %td
+                  = contact.status
+                %td
+                  = contact.condition
+                %td
+                  = contact.mailchimp_sync_status
+                %td
+                  = contact.mailchimp_updated_at&.to_formatted_s(:short)
+                %td
+                  = link_to t('generic.delete'), admin_contact_path(contact), method: :delete, class: 'button is-danger', data: {confirm: t('admin.contacts.confirm_delete')}

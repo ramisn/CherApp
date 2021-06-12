@@ -1,0 +1,85 @@
+.modal {
+  .arrow-left {
+    color: $grey-lightest;
+    height: 100%;
+    left: 0;
+    padding: $regular-padding;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .arrow-right {
+    color: $grey-lightest;
+    height: 100%;
+    padding: $regular-padding;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    &::after,
+    &::before {
+      background-color: $dark-grey;
+    }
+  }
+
+  .suggester-input .input.has-border-blue {
+    border: 1px solid $primary;
+  }
+
+  .friend-name {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 80%;
+  }
+
+  .close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .card-container {
+    &.is-disabled {
+      filter: brightness(.9);
+      opacity: .4;
+      text-decoration: none;
+    }
+  }
+
+  .icon {
+    &.is-primary {
+      background-color: $essential-blue;
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      height: 38px;
+    }
+  }
+
+  .profile-image {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+  .box {
+    padding: 30px 15px 15px;
+    position: relative;
+  }
+}

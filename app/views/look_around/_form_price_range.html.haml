@@ -1,0 +1,25 @@
+.hover-container.is-centered{'data-controller': 'element-switcher'}
+  = t('look_around.search.price_range')
+  .m-t-md.m-b-md
+    %p.is-paddingles.is-marginless.is-inline{'data-target': 'element-switcher.priceTitle'} Price
+    .field.is-inline.m-l-md
+      %input.switch.is-rounded{id: 'switchBudget', type: 'checkbox', 'data-action': 'change->element-switcher#toggle'}
+      %label{for: 'switchBudget'}
+    %p.is-paddingless.is-marginless.is-inline.has-text-weight-normal.is-lighter-blue{'data-target': 'element-switcher.monthlyTitle'} Monthly Payment
+  .field.is-horizontal.price-range.m-t-xs
+    .field-body
+      .field
+        .control
+          .select
+            = f.select :minprice, valid_prices, { selected: '100000' }, { 'data-target': 'properties-search.inputMinPrice element-switcher.minPrice', 'data-action': 'properties-search#updateMaxPrice' }
+      .field
+        .control
+          .select
+            = f.select :maxprice, valid_prices, { selected: '5000000' }, { 'data-target': 'properties-search.inputMaxPrice element-switcher.maxPrice', 'data-action': 'properties-search#updateMinPrice' }
+  .is-hidden
+    = f.select :monthly_minprice, valid_monthly_prices, { selected: '0' }, {'data-target': 'element-switcher.helperMinPrice' }
+    = f.select :monthly_maxprice, valid_monthly_prices, { selected: '500' }, {'data-target': 'element-switcher.helperMaxPrice' }
+  .columns.is-marginless
+    .column.is-paddingless.has-text-right.m-t-md
+      %button.button.is-primary{ 'data-action': 'properties-search#toggleHoverContainer' }
+        = t('look_around.search.done')

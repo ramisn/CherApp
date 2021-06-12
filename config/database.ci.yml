@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  user: postgres
+  password: postgres
+  host: postgres
+
+development:
+  <<: *default
+  database: development_cherapp
+
+test:
+  <<: *default
+  database: test_cherapp
+
+production:
+  <<: *default
+  database: production_cherapp

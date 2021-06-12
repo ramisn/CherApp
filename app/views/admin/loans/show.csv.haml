@@ -1,0 +1,4 @@
+- headers = [ 100, 117, 101, 112, 139, 21, 31, 33, 34, 35, "Property Type", 108, 118, 8602]
+= CSV.generate do |csv|
+  - csv << headers
+  - csv << [@user.first_name, @user.middle_name, @user.last_name, @user.email, @user.phone_number, @loan.property_street, @loan.property_city, @loan.property_state, @loan.property_zipcode, @loan.property_county, @loan.property_type, @user.ssn, @user.date_of_birth, @loan.property_occupied]

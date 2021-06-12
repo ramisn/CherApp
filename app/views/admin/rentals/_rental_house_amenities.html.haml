@@ -1,0 +1,30 @@
+%h3.is-bold.is-size-4.m-t-md.has-text-left
+  = t('rental.amenities')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-narrow.is-12-mobile.m-t-md
+    %p.is-marginless.is-bold= 'Permit Ac'
+    = t(@rental.ac)
+    %p.is-marginless.is-bold= 'Wheelchairs access'
+    = t(@rental.wheelchair_access)
+    %p.is-marginless.is-bold= 'Balcony or deck'
+    = t(@rental.balcony_or_deck)
+    %p.is-marginless.is-bold= 'Off-street parking'
+    = t(@rental.off_street_parking)
+  .column.is-paddingless.is-narrow.is-12-mobile.is-offset-1.m-t-md
+    %p.is-marginless.is-bold= 'Hardwood floor'
+    = t(@rental.hardwood_floor)
+    %p.is-marginless.is-bold= 'Furnished'
+    = t(@rental.furnished)
+    %p.is-marginless.is-bold= 'Garage parking'
+    = t(@rental.garage_parking)
+  .m-t-lg
+    .columns.is-marginless.is-flex.is-multiline
+      .column.is-paddingless.is-12-mobile.is-12-tablet
+        %p.is-marginless.is-bold= 'Additional amenities'
+        = @rental.additional_amenities.blank? ? t('generic.n_a') : @rental.additional_amenities
+      .column.is-paddingless.is-12-mobile.is-12-tablet
+        %p.is-marginless.is-bold= 'About house'
+        = @rental.about.blank? ? t('generic.n_a') : @rental.about
+      .column.is-paddingless.is-12-mobile.is-12-tablet
+        %p.is-marginless.is-bold= 'Lease summary'
+        = @rental.lease_summary.blank? ? t('generic.n_a') : @rental.lease_summary

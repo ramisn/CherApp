@@ -1,0 +1,53 @@
+.panel.has-shadow.m-t-md.m-b-md{'data-controller': 'collapsible'}
+  %button.has-no-style.is-link.has-full-width.m-t-sm.m-b-sm.has-text-left.is-hidden-tablet.is-size-6.has-text-weight-bold{ 'data-action': 'collapsible#toogleCollapsible', 'type': 'button' }
+    = image_tag('cherapp-ownership-coborrowing-up-arrow.svg', class: 'image is-16x16 m-l-sm icon arrow-up is-pulled-right', alt: 'Arrow up', 'data-target': 'collapsible.arrow')
+    %span= t('dashboard.clique_setings')
+
+  .is-clipped.has-full-height-tablet{'data-target': 'collapsible.container'}
+    %h4.is-size-4.has-text-primary.is-bold.is-hidden-mobile.p-l-md
+      = t('dashboard.clique_settings')
+    %hr
+    = link_to new_customer_message_credit_path, class: 'is-pulled-right is-bold is-flex m-r-sm' do
+      = image_tag "cherapp-ownership-coborrowing-buy-credits.svg", class: 'm-r-sm'
+      = t('dashboard.buy_credits')
+    .columns.is-centered.is-marginless
+      .column.is-12-mobile.is-9-tablet.is-8-desktop
+        .columns.is-marginless.has-items-centered.has-direction-column.p-b-md
+          .column.is-full{'data-controller': 'billing-info'}
+            = form_with(scope: :billing, url: customer_billing_info_path(current_user), remote: true, method: :put) do |f|
+              .is-size-5.is-bold.m-b-md= 'Payment method'
+              .columns.is-mobile.is-marginless
+                .column.is-half.p-t-none.p-l-none.p-b-none
+                  .field
+                    = f.label :first_name, t('labels.first_name_titleized'),  class: 'label'
+                    .control
+                      = f.text_field :first_name, class: 'input is-primary', placeholder: t('placeholders.type_the_name_on_your_card'), required: true, value: current_user.first_name
+                .column.is-half.p-t-none.p-r-none.p-b-none
+                  .field
+                    = f.label :last_name, t('labels.last_name_titleized'), class: 'label'
+                    .control
+                      = f.text_field :last_name, class: 'input is-primary', placeholder: t('placeholders.type_the_name_on_your_card'), required: true, value: current_user.last_name
+
+              .field.m-t-md.m-b-md
+                = f.label :card_number, t('labels.card_number'), class: 'label'
+                .control.has-icons-right
+                  = f.text_field :card_number, class: 'input is-primary', placeholder: t('placeholders.type_your_card_number'), value: card_number(@card), required: true, minlength: 16, maxlength: 16
+                  = image_tag('cherapp-ownership-coborrowing-visa.svg', alt: '', class: 'icon is-small is-right m-r-sm')
+
+              .columns.is-mobile.is-marginless
+                .column.is-half.p-t-none.p-l-none.p-b-none
+                  .field
+                    = f.label :expires_date, t('labels.expires_date'), class: 'label'
+                    .control
+                      = f.text_field :expires_date, class: 'input is-primary', placeholder: t('placeholders.mm_yy'), value: card_expires_date(@card), required: true, 'data-target': 'billing-info.dateInput', maxlength:5, minlength: 5
+                .column.is-half.p-t-none.p-r-none.p-b-none
+                  .field
+                    = f.label :cvc, t('labels.cvc'), class: 'label'
+                    .control
+                      = f.text_field :cvc, class: 'input is-primary', required: true, minlength: 3, maxlength: 3
+              .columns.is-marginless.is-justified-center
+                .column.is-paddingless.is-10.has-text-centered
+                  .is-fully-centered.m-t-md.m-b-sm
+                    = f.button t('generic.save'), class: 'button is-mint has-full-width', type: 'submit'
+                  - if @subscription_id
+                    = link_to t('subscriptions.cancel_clique'), customer_billing_info_path(@subscription_id), method: :delete, class: 'link is-bold', data: { confirm: t('subscriptions.are_your_sure') }

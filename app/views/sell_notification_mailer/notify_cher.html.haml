@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }
+  %body
+    %h2
+      A user posted a house for sale
+    %p
+      = "#{@user_name} just posted a house for sale. Login as admin and"
+      %span
+        = link_to 'click here', admin_house_url(@house_id)
+      to access and validate the house data.

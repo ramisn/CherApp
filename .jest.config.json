@@ -1,0 +1,23 @@
+{
+  "roots": [
+    "test/javascript"
+  ],
+  "moduleDirectories": [
+    "<rootDir>/node_modules",
+    "<rootDir>/app/javascript"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/test/javascript/setupTests.js"
+  ],
+  "testMatch": [
+    "**/test/javascript/**/*.test.js",
+    "**/test/javascript/**/*.test.js.jsx"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "jsx"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/"
+  ]
+}

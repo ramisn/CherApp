@@ -1,0 +1,41 @@
+%header{ class: user_is_in_conversation? ? 'is-hidden-mobile' : ''}
+  %nav.navbar
+    .container
+      .columns.is-multiline.is-mobile.is-marginless.has-items-centered.has-space-between
+        .column.cher-brand.is-6-mobile.is-paddingless-desktop
+          - if user_signed_in? && current_user.agent?
+            = link_to professionals_path, {"data-turbolinks": "false"} do
+              = image_tag("cherapp-ownership-coborrowing-cher-icon-2.svg", alt: t('img_alts.app_logo'), class: 'cher-logo')
+          - else
+            = link_to root_path, {"data-turbolinks": "false"} do
+              = image_tag("cherapp-ownership-coborrowing-cher-icon-2.svg", alt: t('img_alts.app_logo'), class: 'cher-logo')
+        - if user_signed_in?
+          - if params[:controller] == 'social_networks' && !current_user.agent?
+            .column.is-narrow.is-paddingless.m-r-md{ 'data-controller': 'modal' }
+              %button.button.is-coral.is-size-7-mobile{ 'data-action': 'modal#toggleModal' }
+                = t('generic.invite_friends')
+              = render 'shared/social_network_add_friend_modal'
+        - else
+          %ul.is-flex.column.is-6-mobile.is-justified-end
+            %li.has-separator
+              = link_to t("generic.log_in"), user_session_path, class: 'is-size-6 gtm-navbar-log-in has-text-black is-size-7-mobile'
+            %li.is-marginless
+              %div{ 'data-controller': 'modal' }
+                %buton.button.is-primary.gtm-navbar-sign-up.is-size-7-mobile{ 'data-action': 'click->modal#toggleModal', type: 'button' }
+                  = t("generic.sign_up")
+                = render 'shared/sign_up_modal'
+      - if user_signed_in?
+        .nav-menu
+          - if params[:controller] == 'users/conversations'
+            = link_to new_conversation_path, class: 'chat-button' do
+              = image_tag('cherapp-ownership-coborrowing-new-message.svg')
+          - else
+            = react_component('chat/ChatConversationsIndicator')
+          %button.menu-button
+            = image_tag("cherapp-ownership-coborrowing-menu.svg", alt: t('img_alts.menu'))
+          %ul
+            - if current_user.agent? && !current_user.part_of_clique?
+              %li.is-hidden-mobile
+                = link_to t('generic.access_buyers'), '/pricing', class: 'button is-primary m-r-md'
+            %li.is-marginless
+              = render('shared/profile_dropdown')

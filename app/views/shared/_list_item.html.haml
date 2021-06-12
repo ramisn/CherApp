@@ -1,0 +1,8 @@
+%li
+  .item-image
+    %img{ src: image, onerror: "this.src='#{asset_path("cherapp-ownership-coborrowing-property_placeholder.png")}';this.onerror='';" }
+  .item-info
+    .info
+      = info
+    .info
+      = link_to( t('look_around.featured.property.details'), property_path(property['listingId']))

@@ -1,0 +1,28 @@
+.datetimepicker {
+  z-index: 5;
+}
+
+.datetimepicker-dummy.is-primary::before {
+  background-color: transparent;
+}
+
+.datetimepicker-dummy .datetimepicker-dummy-wrapper {
+  border: 1px solid $divider-blue;
+  border-radius: 3px;
+
+  .datetimepicker-dummy-input {
+    max-width: 100%;
+
+    &:first-child {
+      padding-left: calc(0.625em - 1px);
+      text-indent: 0;
+    }
+
+    &:focus,
+    &:active {
+      box-shadow: none;
+    }
+  }
+}
+
+

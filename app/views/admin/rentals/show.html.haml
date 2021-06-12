@@ -1,0 +1,21 @@
+- title(t("meta.admin.rentals.title"))
+.container
+  .columns.is-mobile.is-marginless.is-fully-centered
+    .column.is-10-desktop.is-8-widescreen
+      .panel.m-t-lg.m-b-lg.is-fully-centered{ 'data-controller': 'numerical-inputs rental-house' }
+        .columns.is-marginless.is-fully-centered
+          .column.is-10-tablet.is-12-mobile.is-paddingless.m-t-lg
+            = render 'rental_general_information'
+            %hr
+            = render 'rental_house_details'
+            %hr
+            %h4.is-size-5.is-bold.m-t-md
+              = t('sell.pictures')
+            .columns.is-marginless
+              - @rental.images.each do |image|
+                = image_tag(image.variant(resize: '200x200'), class: 'image is-96x96 has-regular-margin')
+            %hr
+            = render 'rental_house_amenities'
+            %hr
+            = render 'rental_house_contact'
+            = link_to 'Edit House', edit_admin_rental_path(@rental), class: 'button is-primary m-t-md'

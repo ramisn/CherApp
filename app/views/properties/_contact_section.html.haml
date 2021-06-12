@@ -1,0 +1,29 @@
+%button.button.is-tertiary.is-outlined{ 'data-action': 'click->modal#toggleModal' }
+  = t('property_overview.join_free')
+.modal.join-cher-modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .column.is-11{ 'data-target': 'modal.modalContent' }
+      .box
+        .columns.is-multiline.is-centered.is-paddingless.is-marginless
+          .column.is-3.has-text-centered
+            = image_tag("cherapp-ownership-coborrowing-draw-invite.svg", alt: t('img_alts.home_and_a_house'))
+            %h4= t('generic.invite')
+            %p.is-size-6= t('property_overview.invite_friends')
+          .column.is-3.has-text-centered
+            = image_tag("cherapp-ownership-coborrowing-draw-flag.svg", alt: t('img_alts.and_and_a_flag'))
+            %h4= t('property_overview.flag')
+            %p.is-size-6= t('property_overview.message_people')
+          .column.is-3.has-text-centered
+            = image_tag("cherapp-ownership-coborrowing-draw-verified.svg", alt: t('img_alts.magnifying_glass_over_a_map'))
+            %h4= t('property_overview.verified')
+            %p.is-size-6= t('property_overview.get_verified')
+          .column.is-3.has-text-centered
+            = image_tag("cherapp-ownership-coborrowing-draw-co-own.svg", alt: t('img_alts.exit_door'))
+            %h4= t('property_overview.coown')
+            %p.is-size-6= t('property_overview.congrats_on_owning')
+            %p= t('property_overview.welcome_home')
+            %p= t('property_overview.want_to_sell_part_of')
+          .column.is-6.has-text-centered
+            = link_to t('property_overview.get_started'), new_user_registration_path, class: 'button is-primary m-t-md'
+        %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

@@ -1,0 +1,67 @@
+#sharePublicationModal.modal{ 'data-controller': 'share-item', 'data-target': 'share-post.modal' }
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent share-post.modalContent' }
+      .column.is-11
+        .box.has-regular-padding{'data-controller': 'share-item'}
+          .is-size-4.is-bold.m-b-md.has-text-centered= t("generic.share_post")
+          = form_for :email, url: email_path, remote: true, html: { 'data-action': 'submit->share-item#handleSubmit', 'autofill': 'off' } do |f|
+            - if !current_user
+              .field.is-marginless
+                .label= "From"
+                .control
+                  = react_component('UserSuggester', scopeName: "user")
+            - else
+              = f.text_field :user_email, class: 'is-hidden', id: 'userContactInput', 'data-target': 'share-item.userContactInput', value: current_user.email
+              - unless current_user.full_name.blank?
+                = f.text_field :user_first_name, class: 'is-hidden', id: 'userFirstName', 'data-target': 'share-item.userFirstNameInput', value: current_user.first_name
+                = f.text_field :user_last_name, class: 'is-hidden', id: 'userLastName', 'data-target': 'share-item.userLastNameInput', value: current_user.last_name
+
+            - if !current_user || current_user.full_name.blank?
+              .field.is-marginless{'data-target': 'share-item.userFullNameInputs', class: "#{ "is-hidden" if !current_user }"}
+                - if !current_user
+                  .label.has-text-centered.is-italic.has-text-weight-light
+                    and
+                .field-body
+                  .field
+                    .control
+                      = f.text_field :user_first_name, class: 'input is-marginless', placeholder: 'Your First Name', 'data-target': 'share-item.userFirstNameInput', minlength: 2, id: 'userFirstNameInput', required: true
+                  .field
+                    .control
+                      = f.text_field :user_last_name, class: 'input is-marginless', placeholder: 'Your Last Name', 'data-target': 'share-item.userLastNameInput', minlength: 2, id: 'userLastNameInput', required: true
+
+            .field.m-t-md
+              .label= "To"
+              .control
+                = react_component('UserSuggester', scopeName: "recipient")
+
+            .field.is-hidden{'data-target': 'share-item.recipientFullNameInputs'}
+              .label.has-text-centered.is-italic.has-text-weight-light
+                and
+              .field-body
+                .field
+                  .control
+                    = f.text_field :recipient_first_name, class: 'input is-marginless', placeholder: "Recipient's First Name", 'data-target': 'share-item.recipientFirstNameInput', minlength: 2, id: 'recipientFirstNameInput', required: true
+                .field
+                  .control
+                    = f.text_field :recipient_last_name, class: 'input is-marginless', placeholder: "Recipient's Last Name", 'data-target': 'share-item.recipientLastNameInput', minlength: 2, id: 'recipientLastNameInput', required: true
+            %p.help.is-danger.is-hidden{'data-target': 'share-item.errorMessage'}
+            %p.help.is-success.is-hidden{'data-target': 'share-item.successMessage'}
+            .field.m-t-md
+              .control
+                = f.text_area :body, class: 'textarea has-fixed-size input', placeholder: "Message", required: true, 'data-target': 'share-item.messageInput', maxlemgth: 140
+            = f.text_field :link, value: request.original_url, class: 'copy-input', "data-target": "share-item.linkInput share-post.shareLink"
+            = f.hidden_field :type, value: 'post', 'data-target': 'share-item.typeInput'
+            = f.submit 'Share', class: 'button is-primary is-fullwidth'
+          %hr
+          .share-links
+            = image_tag('cherapp-ownership-coborrowing-ico-link.svg', alt: t('img_alts.copy_link'), class: 'icon', 'data-action': 'click->share-item#copyLink')
+            %a{ href: "https://twitter.com/share?url=#{request.original_url}", target: "_blank", rel: 'noopenner', 'data-target': 'share-post.twitterUrl'}
+              = image_tag 'cherapp-ownership-coborrowing-ico-twitter-basic.svg', alt: t("img_alts.twitter_footer"), class: 'icon'
+            %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: "_blank", rel: 'noopenner', 'data-target': 'share-post.facebookUrl'}
+              = image_tag 'cherapp-ownership-coborrowing-ico-facebook-basic.svg', alt: t("img_alts.facebook_account"), class: 'icon'
+            %a{href: "https://www.linkedin.com/shareArticle?url=#{request.original_url}&source=LinkedIn", target: "_blank", rel: 'noopenner', 'data-target': 'share-post.linkedInUrl'}
+              = image_tag 'cherapp-ownership-coborrowing-ico-linkedin-basic.svg', alt: t("img_alts.linkedin_footer"), class: 'icon'
+          %p.help.is-hidden.is-marginless{'data-target': 'share-item.linkMessage'}
+            = t('property_overview.link_copied')
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "share-post#toggleModal"}

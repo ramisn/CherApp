@@ -1,0 +1,24 @@
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile
+    %p.is-marginless.is-bold= t('sell.address')
+    = @rental.address
+  .column.is-paddingless.is-narrow.is-narrow-mobile
+    %p.is-marginless.is-bold= t('sell.state')
+    = @rental.state
+.m-t-md
+  .columns.is-marginless.is-flex.is-multiline
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      %p.is-marginless.is-bold= 'Monthly rent'
+      = @rental.monthly_rent
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      %p.is-marginless.is-bold= 'Security deposit'
+      = @rental.security_deposit || t('generic.n_a')
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      %p.is-marginless.is-bold= 'Date available'
+      = @rental.date_available || t('generic.n_a')
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      %p.is-marginless.is-bold= 'Lease duration'
+      = @rental.lease_duration
+    .field.m-t-sm
+      %p.is-marginless.is-bold= 'Hide address'
+      = t(@rental.hide_address)

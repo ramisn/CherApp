@@ -1,0 +1,62 @@
+.watch-property__form {
+  display: flex;
+  height: 50px;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  top: 150px;
+  z-index: 3;
+
+  a {
+    background-color: $white;
+    background-image: image-url('cherapp-ownership-coborrowing-ico-favorite.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    border: 3px solid $violet;
+    border-radius: 100%;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    &.unflag {
+      background-color: $violet;
+      background-image: image-url('cherapp-ownership-coborrowing-ico-favorite-white.svg');
+    }
+  }
+}
+
+.cobuyers__form {
+  display: flex;
+  height: 50px;
+  justify-content: flex-end;
+  left: 0;
+  outline: none;
+  position: absolute;
+  top: 150px;
+  z-index: 3;
+  &:focus{
+    outline: none;
+  }
+
+  a {
+    background-color: $white;
+    background-image: image-url('cherapp-ownership-coborrowing-3friends-purple.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    border: 3px solid $violet;
+    border-radius: 100%;
+    cursor: pointer;
+    height: 50px;
+    outline: none;
+    width: 50px;
+    &:focus{
+      outline: none;
+    }
+
+    &.unflag {
+      background-color: $violet;
+      background-image: image-url('cherapp-ownership-coborrowing-3friends-white.svg');
+    }
+  }
+}

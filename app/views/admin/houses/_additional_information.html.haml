@@ -1,0 +1,17 @@
+.is-size-4.is-bold
+  = t('sell.additional_information')
+.columns.is-marginless
+  .column
+    .is-size-5.is-bold
+      = t('sell.website')
+    - if @house.website.blank?
+      = t('generic.n_a')
+    - else
+      = @house.website
+  .column
+    .is-size-5.is-bold
+      = t('sell.reasons_to_love')
+    - if @house.details.blank?
+      = t('generic.n_a')
+    - else
+      = @house.details

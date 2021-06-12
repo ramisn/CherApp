@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: loans
+#
+#  id                :bigint           not null, primary key
+#  user_id           :bigint
+#  property_id       :string
+#  property_street   :string
+#  property_city     :string
+#  property_state    :string
+#  property_zipcode  :string
+#  property_county   :string
+#  property_type     :string
+#  property_occupied :string
+#  first_home        :boolean          not null
+#  live_there        :boolean          not null
+#  status            :integer          default("0"), not null
+#  unique_code       :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+co_borrower_loan:
+  user: co_borrower_user
+  property_id: 123asd
+  property_street: '123 Main street'
+  property_city: 'Santa Monica'
+  property_state: 'CA'
+  property_type: 'RES'
+  first_home: false
+  live_there: false

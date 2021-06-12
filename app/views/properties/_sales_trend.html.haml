@@ -1,0 +1,27 @@
+- if sales_trend
+  .container
+    .columns.is-marginless.is-mobile.is-multiline
+      .column.is-12-mobile.is-12-tablet
+        %h2.has-text-left.m-b-sm= t('property_overview.sales_trend_label')
+        .m-b-sm
+          %h3= "Real Estate Sales around #{@property['address']['streetName']} from last year"
+      .column.is-12-mobile.is-4-tablet.is-3-desktop
+        .map.is-small#salesTrentMap
+      .column.is-12-mobile.is-6-tablet.is-4-desktop
+        .column.is-full.columns.p-b-none.is-marginless.is-mobile
+          .column.is-6
+            = t("property_overview.sales_trend.sold_homes")
+          .column.is-6.has-text-right
+            %span.is-bold= sales_trend['homesalecount']
+        %hr.is-marginless
+        .column.is-full.columns.p-b-none.p-t-none.is-marginless.is-mobile
+          .column.is-6
+            = t("property_overview.sales_trend.avg_price")
+          .column.is-6.has-text-right
+            %span.is-bold= formated_price(sales_trend['avgsaleprice'])
+        %hr.is-marginless
+        .column.is-full.columns.p-b-none.p-t-none.is-marginless.is-mobile
+          .column.is-6
+            = t("property_overview.sales_trend.median_price")
+          .column.is-6.has-text-right
+            %span.is-bold= formated_price(sales_trend['medsaleprice'])

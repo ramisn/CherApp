@@ -1,0 +1,56 @@
+#pricing {
+  .panel {
+    border-radius: 5px;
+    padding: 0;
+
+    &.is-darker {
+      box-shadow: 0 6px 10px 10px rgba(0.1, 0, 0.1, 0.1);
+    }
+
+    .is-corder-logo {
+      height: 3.5rem;
+      left: 5px;
+      position: absolute;
+      top: 5px;
+      width: 3.5rem;
+      z-index: 2;
+    }
+
+    h3 {
+      background: $gold;
+      border-radius: 5px 5px 0 0;
+      color: $primary;
+      font-family: $karla;
+      font-weight: 400;
+      margin: 0;
+      padding: 14px 40px;
+      text-align: center;
+      width: 100%;
+
+      strong {
+        color: inherit;
+      }
+
+      @media(max-width: 550px) {
+        border-radius: 0;
+      }
+    }
+
+    &.secondary {
+      h3 {
+        background: $primary;
+        color: $mint-green;
+      }
+    }
+  }
+
+  .bordered-input {
+    border: 1px solid $primary;
+  }
+
+  form {
+    > .field {
+      width: 60%;
+    }
+  }
+}

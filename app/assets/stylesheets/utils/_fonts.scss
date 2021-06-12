@@ -1,0 +1,153 @@
+em {
+  font-size: 13px;
+  font-style: normal;
+}
+
+p,
+.is-size-6 {
+  font-family: $karla;
+}
+
+p {
+  &.is-caption {
+    margin-bottom: 0;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &.m-b-xs {
+    margin-bottom: .25rem;
+  }
+}
+
+.is-size-biggest {
+  font-size: 3.75rem;
+}
+
+.has-centered-text {
+  text-align: center;
+}
+
+.has-text-divider-blue {
+  color: $divider-blue;
+}
+
+.has-text-essential-blue {
+  color: $essential-blue;
+}
+
+.has-text-gradient-blue {
+  color: $gradient-blue;
+}
+
+.has-text-helper-blue {
+  color: $helper-blue;
+}
+
+.has-text-dark-blue {
+  color: $strong-blue !important;
+}
+
+.has-bullets {
+  padding-left: 25px;
+
+  li {
+    list-style: initial;
+  }
+}
+
+.has-red-border {
+  border-bottom: 5px solid $red;
+}
+
+.is-bold {
+  font-weight: bold !important;
+}
+
+.is-caption {
+  font-family: $family-secondary;
+  font-size: $size-7;
+  font-style: italic;
+  margin-bottom: 0;
+
+  &.is-danger {
+    color: $danger;
+  }
+
+  &.is-link {
+    color: $essential-blue;
+  }
+}
+
+.is-dark-purple {
+  color: $dark-violet;
+}
+
+.is-purple {
+  color: $violet;
+}
+
+.is-salmon {
+  color: $salmon;
+}
+
+.is-underlined {
+  text-decoration: underline;
+}
+
+.is-disabled,
+.has-line-through {
+  text-decoration: line-through;
+}
+
+.has-text-blue {
+  color: $darker-blue !important;
+}
+
+.is-size-0 {
+  font-size: 0 !important;
+}
+
+.has-overflow-elipsed {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.has-text-main-body {
+  color: $main-body !important;
+}
+
+.has-text-blue-grey {
+  color:  $recent-message-tag-blue;
+}
+
+.has-text-mint {
+  color: $mint;
+}
+
+.has-text-coborrower-blue {
+  color: $coborrower-blue !important;
+}
+
+.has-letter-spacing-normal {
+  letter-spacing: normal !important;
+}
+
+@media screen and (min-width: 1024px) {
+  .is-size-5-half-desktop {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .is-size-5-half-touch {
+    font-size: 18px;
+  }
+
+  .is-size-6-half-touch {
+    font-size: 14px !important;
+  }
+}

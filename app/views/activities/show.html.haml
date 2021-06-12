@@ -1,0 +1,28 @@
+- title(t("meta.shared_posts.title"))
+- meta_tag(:'og:url', request.original_url)
+- meta_tag(:'og:type', 'website')
+- meta_tag(:'og:title', 'Cher post')
+- meta_tag(:'og:description', t("feed.#{@activity.key}_friend"))
+- meta_tag(:'og:app_id', '516703312244212')
+- meta_tag(:'twitter:creator', '@Cher_App')
+- meta_tag(:'twitter:card', 'summary_large_image')
+- meta_tag(:'twitter:site', '@Cher_App')
+- meta_tag(:'twitter:title', 'Cher post')
+- meta_tag(:'twitter:description', t("feed.#{@activity.key}_friend"))
+- meta_tag(:'twitter:image:alt', 'Cher post')
+
+.container.m-t-lg.m-b-lg
+  .columns.is-marginless.is-fully-centered
+    .column.is-12-mobile.is-10-tablet.is-8-desktop
+      .panel.activity-feed
+        %ul.m-t-md.is-paddingless{ 'data-controller': 'edit-publications share-post' }
+          %li{class: @activity.key.gsub(/\./, '_').to_s}
+            - if user_can_delete_activity?(@activity)
+              .options-container
+                = fa_icon('ellipsis-h') if @activity.owner_id == current_user.id
+                .is-relative
+                  .options
+                    = link_to t('generic.delete'), activity_path(@activity), class: 'action is-blue', method: :delete, data: { confirm: t("generic.are_you_sure")}
+            = activity_message(@activity)
+            = render 'shared/comments', path: activity_comments_path(@activity), post: @activity
+          = render 'shared/share_post_modal'

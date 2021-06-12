@@ -1,0 +1,19 @@
+.hover-container.is-home-type{ 'data-action': 'click->properties-search#completeHomeTypes' }
+  = t('look_around.search.type')
+  .columns.is-marginless.has-direction-column.m-t-xs
+    .column.is-paddingless.m-t-xs
+      = f.check_box :type, { class: 'is-checkradio is-small', id: 'search_residential_type', multiple: true, checked: true, 'data-action': 'properties-search#verifyMultifamilyHomeType' }, 'residential', nil
+      = f.label :residential_type, 'House'
+    .column.is-paddingless.m-t-xs
+      = f.check_box :type, { class: 'is-checkradio is-small', id: 'search_condominium_type', multiple: true, checked: true, 'data-action': 'properties-search#verifyMultifamilyHomeType' }, 'condominium', nil
+      = f.label :condominium_type, t('look_around.search.condominium')
+    .column.is-paddingless.m-t-xs
+      = f.check_box :type, { class: 'is-checkradio is-small', id: 'search_mobile_type', multiple: true, checked: true, 'data-action': 'properties-search#verifyMultifamilyHomeType' }, 'mobilehome', nil
+      = f.label :mobile_type, t('look_around.search.mobile_home')
+    .column.is-paddingless.m-t-xs
+      = f.check_box :type, { class: 'is-checkradio is-small', id: 'search_multifamily_type', multiple: true, checked: true, 'data-action': 'properties-search#verifyMultifamilyHomeType' }, 'multifamily', nil
+      = f.label :multifamily_type, t('look_around.search.multifamily')
+  .columns.is-marginless
+    .column.is-paddingless.has-text-right
+      %button.button.is-primary{ 'data-action': 'properties-search#toggleHoverContainer' }
+        = t('look_around.search.done')

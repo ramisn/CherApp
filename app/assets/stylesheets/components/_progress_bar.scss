@@ -1,0 +1,7 @@
+.progress {
+  height: 5px;
+
+  &.is-bordered {
+    border-radius: 5px;
+  }
+}

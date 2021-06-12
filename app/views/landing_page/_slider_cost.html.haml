@@ -1,0 +1,75 @@
+%section.section.has-background-white.has-height-unset
+  .container{ 'data-controller': 'home-price-slider'}
+    .columns.is-centered.has-text-centered.is-marginless
+      .column.is-12
+        %h3.is-size-3
+          Let's talk numbers first
+    .columns.is-centered.is-marginless.is-multiline.is-mobile
+      .column.is-12-mobile.is-5-tablet.has-order-0-mobile.p-b-none
+        .is-relative
+          #full-animation{ 'data-target': 'home-price-slider.fullAnimation'}
+          %div{ 'data-target': 'home-price-slider.background'}
+        .form-control
+          %p.has-text-centered.is-marginless= t('landing_page.body.home_price')
+          %p.is-size-3.has-text-black-ter.has-text-centered{ 'data-target': 'home-price-slider.homePrice'}
+            = t('landing_page.body.default_home_price')
+      .column.is-12-mobile.is-6-tablet.is-5-desktop.is-offset-1-tablet.has-order-2-mobile.p-b-none
+        .columns.is-multiline.is-mobile.is-marginless.comparative-table
+          .column.is-4-mobile.is-4-tablet.is-divider-blue.is-fully-centered.has-direction-column
+            %h4.is-bold.is-size-5.is-marginless.has-text-dark-blue
+              = "Without"
+            %h4.is-bold.is-size-5.is-marginless.has-text-dark-blue
+              = "Cher"
+          .column.is-4-mobile.is-4-tablet.has-text-centered
+            %p.is-marginless
+              Monthly Loan
+            %span.is-size-4.is-bold.has-text-black{ 'data-target': 'home-price-slider.amountWithoutCher' }
+              = t('landing_page.body.default_amount_without_cher')
+          .column.is-4-mobile.is-4-tablet.has-text-centered
+            %p.is-marginless
+              Closing Fees
+            %span.is-size-4.is-bold.has-text-black
+              = "$ 5,000"
+          .column.is-4-mobile.is-4-tablet.is-divider-blue.is-fully-centered.has-direction-column
+            %h4.is-bold.is-size-5.is-marginless.has-text-dark-blue
+              = 'With'
+            %h4.is-bold.is-size-5.is-marginless.has-text-dark-blue
+              = 'Cher'
+          .column.is-4-mobile.is-4-tablet.has-text-centered
+            %p.is-marginless
+              Monthly Loan
+            %span.is-size-4.is-bold.has-text-black{ 'data-target': 'home-price-slider.amountWithCher' }
+              = t('landing_page.body.default_amount_cher')
+          .column.is-4-mobile.is-4-tablet.has-text-centered
+            %p.is-marginless
+              No Fees
+            %span.is-size-4.is-bold.has-text-black
+              = "$ 0"
+
+      .column.is-12-mobile.is-5-tablet.is-flex.has-items-centered.has-order-1-mobile
+        .is-size-6.m-r-md
+          $
+        %input.custom-slider-primary.is-marginless{ 'data-target': 'home-price-slider.animationSlider', 'data-action': 'input->home-price-slider#updateAnimation', max: 30, min: 2, step: 0.05, type: 'range', value: 2, id: ""}
+        .is-size-3.m-l-md
+          $
+      .column.is-11-mobile.is-6-tablet.is-5-desktop.is-offset-1-tablet.has-order-3-mobile
+        %p.is-bold.is-size-5.is-marginless
+          How many people will own this home?
+        %input.custom-slider-primary.is-marginless{ 'data-target': 'home-price-slider.numberOfFriends', 'data-action': 'input->home-price-slider#updateMonthlyMortgage input->home-price-slider#updateSelectedIcon', max: 4, min: 1, type: 'range', value: 4, step: 1 }
+        .columns.is-marginless.slider-icons.is-flex
+          .column.is-paddingless.is-relative
+            = image_tag 'landing/cherapp-ownership-coborrowing-person-1-blue.svg', class: 'has-custom-position single-person is-clickable', id: 'personIcon1', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 1, 'data-target': 'home-price-slider.personIcon'
+            = image_tag 'landing/cherapp-ownership-coborrowing-person-1-solid-blue.svg', class: 'has-custom-position single-person is-hidden', id: 'solidPersonIcon1', 'data-target': 'home-price-slider.solidPersonIcon'
+          .column.is-paddingless.is-relative
+            .image.is-is-24x24
+              = image_tag 'landing/cherapp-ownership-coborrowing-person-2-blue.svg', class: 'has-custom-position two-persons is-clickable', id: 'personIcon2', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 2, 'data-target': 'home-price-slider.personIcon'
+              = image_tag 'landing/cherapp-ownership-coborrowing-person-2-solid-blue.svg', class: 'has-custom-position two-persons is-hidden', id: 'solidPersonIcon2', 'data-target': 'home-price-slider.solidPersonIcon'
+            .image.is-is-24x24
+              = image_tag 'landing/cherapp-ownership-coborrowing-person-3-blue.svg', class: 'has-custom-position three-persons is-clickable', id: 'personIcon3', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 3, 'data-target': 'home-price-slider.personIcon'
+              = image_tag 'landing/cherapp-ownership-coborrowing-person-3-solid-blue.svg', class: 'has-custom-position three-persons is-hidden', id: 'solidPersonIcon3', 'data-target': 'home-price-slider.solidPersonIcon'
+          .column.is-paddingless.is-relative
+            .image.is-is-24x24
+              = image_tag 'landing/cherapp-ownership-coborrowing-person-4-blue.svg', class: 'has-custom-position four-persons is-hidden is-clickable', id: 'personIcon4', 'data-action': 'click->home-price-slider#updateSlider', 'data-slider-value': 4, 'data-target': 'home-price-slider.personIcon'
+              = image_tag 'landing/cherapp-ownership-coborrowing-person-4-solid-blue.svg', class: 'has-custom-position four-persons', id: 'solidPersonIcon4', 'data-target': 'home-price-slider.solidPersonIcon'
+    .is-fully-centered.m-t-xl.p-l-md.p-r-md
+      = link_to 'Get my offer', new_co_borrower_loan_path, class: 'button is-primary has-full-width-mobile'

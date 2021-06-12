@@ -1,0 +1,43 @@
+.columns.is-marginless
+  .column.is-4.is-paddingless.m-t-md{'data-controller': 'modal'}
+    .modal{"data-target": "modal.modal"}
+      .modal-background
+      .modal-content.column.is-4
+        .box{ 'data-target': 'modal.modalContent' }
+          .is-size-4.m-b-lg.is-bold
+            = t('labels.contact')
+            = form_for(:call, remote: true, url: calls_path, html: { 'data-controller': 'calls', 'data-action': 'ajax:success->calls#processResponse' } ) do |f|
+              .field
+                = f.label :phone_number, t('labels.your_phone_number'), class: 'label'
+                .control
+                  = f.text_field :phone_number, placeholder: t('placeholders.phone_number'), 'data-target': 'calls.phoneNumber', class: 'input',  pattern: "[0-9]{10}", maxlength: 10
+                  %p.help.is-caption{ 'data-target': 'calls.requestMessage'}
+                  = f.submit t('landing_page.body.contact.call_me'), class: 'button is-primary m-t-md'
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}
+    .is-flex.has-items-centered.is-clickable{'data-action': 'click->modal#toggleModal'}
+      = image_tag("landing/cherapp-ownership-coborrowing-ico-phone.svg", id: "callWithUsButton", alt: t('img_alts.phone_ringing'), class: 'icon m-r-sm', data: {action: 'click->modal#toggleModal'})
+      %p.is-marginless.is-flex.has-direction-column.is-aligned-start{'data-action': 'click->modal#toggleModal'}
+        %span.has-text-weight-bold.is-size-6
+          = t('landing_page.body.contact.talk_call')
+        %button.is-paddingless.has-no-style.link.is-size-6.has-text-primary
+          = t('landing_page.body.contact.cher_number')
+  .column.is-4.is-paddingless.m-t-md
+    = mail_to t('landing_page.body.contact.cher_email'), cc: ApplicationHelper::TEAM_MEBERS_EMAIL.join(", "), class: "has-no-style link", target: '_blank' do
+      .is-flex.has-items-centered
+        = image_tag 'landing/cherapp-ownership-coborrowing-ico-chat.svg', alt: t('img_alts.conversation_globe'), class: 'icon m-r-sm'
+        %p.is-marginless.is-flex.has-direction-column.is-aligned-start
+          %span.has-text-weight-bold.is-size-6
+            = t('landing_page.body.contact.email_us')
+          %span.has-text-primary
+            = t('landing_page.body.contact.cher_email')
+
+  .column.is-4.is-paddingless.m-t-md
+    = link_to 'https://calendly.com/joincher/free-one-on-one-with-cher', rel: 'noopener', target: '_blank', class: 'has-no-style link' do
+      .is-flex.has-items-centered.is-clickable
+        = image_tag 'cherapp-ownership-coborrowing-ico-date.svg', alt: t('img_alts.calendar'), class: 'icon m-r-sm'
+        %p.is-marginless.is-flex.has-direction-column.is-aligned-start
+          %span.has-text-weight-bold.is-size-6
+            = t('landing_page.body.contact.schedule_a_call')
+          %span.is-size-6.has-text-primary
+            = t('landing_page.body.contact.here')
+            

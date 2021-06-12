@@ -1,0 +1,9 @@
+.is-size-4.is-bold
+  = t('sell.pictures')
+- if @house.images.any?
+  .columns.is-marginless
+    - @house.images.each do |image|
+      = image_tag(image.variant(resize: '200x200'), class: 'image is-96x96 has-regular-margin')
+- else
+  .m-l-md
+    = t('generic.no_pictures_attached')

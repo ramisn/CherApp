@@ -1,0 +1,101 @@
+body {
+  padding-top: $header-size;
+
+  @media (max-width: 769px) {
+    padding-top: $header-size-mobile;
+  }
+}
+
+html,
+body {
+  background: $dim;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+hr {
+  background-color: $divider-blue;
+}
+
+h1,
+h2 {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h1,
+h2,
+h3,
+.is-size-3,
+.is-size-2,
+.is-size-1 {
+  font-family: $montserrat;
+  font-weight: bold;
+}
+
+h4,
+h5,
+.is-size-5,
+.is-size-4,
+.caption,
+.is-size-7 {
+  font-family: $karla;
+}
+
+label,
+.label {
+  font-family: $family-secondary;
+}
+
+li {
+  font-family: $family-secondary;
+}
+
+.container {
+  width: 100%;
+}
+
+.is-family-montserrat {
+  font-family: $montserrat !important;
+}
+
+@media (max-width: 769px) {
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .is-size-4-mobile,
+  .is-size-5-mobile {
+    font-family: $karla;
+  }
+}
+

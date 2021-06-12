@@ -1,0 +1,83 @@
+.profile-avatar {
+  cursor: pointer;
+  height: 150px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 150px;
+
+
+  &.no-upload {
+    cursor: auto;
+
+    .image::before {
+      display: none;
+    }
+  }
+
+  .image {
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+
+    &::before {
+      align-items: center;
+      background: $black;
+      background-image: image-url('cherapp-ownership-coborrowing-camera.svg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 35px;
+      border-radius: 100%;
+      color: $white;
+      content: 'Upload photo';
+      display: none;
+      font-size: 12px;
+      font-weight: bold;
+      height: 100%;
+      justify-content: center;
+      left: 0;
+      opacity: .8;
+      padding-top: 65px;
+      pointer-events: none;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &:hover::before {
+      display: flex;
+    }
+
+    &.is-agent {
+      border: 2px solid $mint-green;
+
+      &.premium {
+        border-color: $gold;
+      }
+    }
+  }
+
+  img {
+    border-radius: 100%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .button {
+    bottom: 10px;
+    height: 30px;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    z-index: 2;
+
+    img {
+      max-height: 12px;
+      max-width: 12px;
+    }
+  }
+}

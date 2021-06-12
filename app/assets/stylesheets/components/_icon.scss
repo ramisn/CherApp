@@ -1,0 +1,47 @@
+.icon {
+  &.is-disabled {
+    filter: grayscale(1);
+    opacity: 50%;
+    pointer-events: none;
+  }
+
+  &.arrow-up {
+    &.is-down {
+      transform: rotate(180deg);
+      transition: .2s;
+    }
+  }
+
+  &.arrow {
+    transition: all .4s ease;
+
+    &.rotate-down {
+      transform: rotateZ(-180deg);
+    }
+  }
+}
+
+.control .icon.is-clickable {
+  pointer-events: auto;
+}
+
+i {
+  &.fas.fa-check {
+    color: $green-check;
+  }
+
+  &.fas.fa-star {
+    color: $yellow;
+  }
+
+  &.far.fa-star {
+    color: $helper-blue;
+   }
+}
+
+.logged-in-ico {
+  background-color: $logged-in-green;
+  border-radius: 4px;
+  height: 8px;
+  width: 8px;
+}

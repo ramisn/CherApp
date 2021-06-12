@@ -1,0 +1,26 @@
+%input{ type: 'hidden', value: 'notification settings page', id: 'currentPageInput' }
+.container.m-t-md
+  .container.is-family-secondary
+    .columns.is-marginless.has-content-centered
+      .column.is-12-mobile.is-10-tablet.is-7-fullhd
+        .panel
+          %h2.is-size-4.has-text-left
+            = t('notifications.settings')
+          = form_for @notification_settings, url: notification_settings_path(current_user), class: 'has-full-width' do |f|
+            .columns.is-marginless
+              .column.is-fully-centered.is-paddingless
+                %table.table.is-primary.has-full-width
+                  %thead
+                    %tr
+                      %th= t('notifications.name')
+                      %th= t('notifications.email')
+                      %th= t('notifications.sms')
+                      %th= t('notifications.in_app')
+                  %tbody
+                    = render 'general_options', f: f
+                    - if current_user.agent?
+                      = render 'professional_options', f: f
+                    - if current_user.co_borrower?
+                      = render 'coborrower_options', f: f
+            .has-text-right
+              = f.button t('profile.edit.save_profile'), class: 'button is-primary', type: 'submit'

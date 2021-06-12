@@ -1,0 +1,12 @@
+.panel.has-shadow.is-paddingless.has-full-height
+  %h2.has-regular-padding.is-marginless= t("dashboard.properties")
+  - if properties.any?
+    %ul.items-list.has-regular-padding
+      - properties.each do |property|
+        - image = property["photos"].first || asset_path('cherapp-ownership-coborrowing-property_placeholder.png')
+        = render 'shared/list_item', image: sanitize_image(image), info: property.dig('address', 'full' ), rank: rand(1..5), property: property
+  - else
+    .has-regular-padding
+      .note-empty
+        %p
+          = t('generic.no_flagged_properties', user: @user.first_name)

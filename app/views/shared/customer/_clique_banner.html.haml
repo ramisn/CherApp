@@ -1,0 +1,13 @@
+.column.is-marginless.has-regular-padding.is-paddingless-mobile{'data-controller': 'clique-banner'}
+  .clique-banner{'data-target': 'clique-banner.cliqueContainer'}
+    %h3.is-size-3.has-text-primary.has-regular-margin.is-family-secondary.has-width-auto
+      = t("pricing.need_leads")
+    %p.is-size-5.subtitle.has-full-width-mobile= t("pricing.need_leads_subtitle")
+    = image_tag "cherapp-ownership-coborrowing-clique-group.svg", class: "m-t-md"
+    %h4.is-size-4.has-text-weight-bold.m-t-md.m-b-md
+      =t("pricing.banner_try")
+    = link_to t("landing_page.body.join_cher_clique"), "/pricing", class: "button is-primary has-full-width-mobile"
+
+    = image_tag "cherapp-ownership-coborrowing-phonemssg.png", class: 'phonemssg is-hidden-touch'
+    = link_to "#", class: "close-button", data: { action: "clique-banner#hide" } do
+      = fa_icon('times', class: 'has-text-primary')

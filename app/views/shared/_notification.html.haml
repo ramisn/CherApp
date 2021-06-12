@@ -1,0 +1,17 @@
+- unless notice.nil?
+  %p.flash.notice.notification{ 'data-controller': 'flashes', 'data-target': 'flashes.flash'}
+    %button.delete{'data-action': 'flashes#deleteFlash'}
+    = notice
+- unless alert.nil?
+  %p.flash.alert.notification{'data-controller': 'flashes', 'data-target': 'flashes.flash'}
+    %button.delete{'data-action': 'flashes#deleteFlash'}
+    = alert
+
+- if user_signed_in? && current_user.agent? && controller_name == 'dashboards' && notice.nil?
+  %div{ 'data-controller': 'modal' }
+    %p.flash.notice{'data-controller': 'flashes', 'data-target': 'flashes.flash'}
+      %button.is-size-6.is-link.is-underlined.has-text-white{ 'data-action': 'modal#toggleModal', type: 'button' }
+        = t('buttons.click_here')
+      %span
+        = t('dashboard.to_promote_services')
+    = render 'shared/promote_services_modal'

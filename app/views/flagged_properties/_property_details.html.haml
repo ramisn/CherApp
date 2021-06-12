@@ -1,0 +1,44 @@
+.is-hidden-touch
+  .m-t-sm{ 'data-controller': 'collapsible', 'data-collapsible-collapsed-message': t('generic.details'), 'data-collapsible-expanded-message': t('generic.details') }
+    .is-flex.has-space-between
+      %span.is-bold{ 'data-target': 'collapsible.messageContainer' }
+        = t('generic.details')
+      = image_tag('cherapp-ownership-coborrowing-ico-arrow-small.svg', class: 'icon is-small is-clickable arrow-up', 'data-action': 'click->collapsible#toogleCollapsible', 'data-target': 'collapsible.arrow' )
+    %hr.is-marginless.has-full-width
+    .is-collapsible.m-t-sm{ 'data-target': 'collapsible.container' }
+      .columns.is-marginless.is-multiline.is-mobile.m-r-lg
+        .column.is-paddingless.is-6-tablet.is-4-widescreen.mb-20
+          %p.is-caption.is-marginless
+            %span=property_beds(property)
+          = image_tag("cherapp-ownership-coborrowing-icon-bedrooms.svg", alt: t('img_alts.bedroom'))
+
+        .column.is-paddingless.is-6-tablet.is-4-widescreen.mb-20
+          %p.is-caption.is-marginless
+            %span=property_baths(property)
+          = image_tag("cherapp-ownership-coborrowing-icon-bathrooms.svg", alt: t('img_alts.bathroom'))
+
+        .column.is-paddingless.is-6-tablet.is-4-widescreen.mb-20
+          %p.is-caption.is-marginless
+            %span=property["property"]["area"] || 'N/A'
+            = t('property_overview.stats.area')
+          = image_tag("cherapp-ownership-coborrowing-icon-area.svg", alt: t('img_alts.area'))
+
+        .column.is-paddingless.is-6-tablet.is-4-widescreen.mb-20
+          %p.is-caption.is-marginless
+            %span=property["property"]["lotSize"] || 'N/A'
+            = t('property_overview.stats.area')
+          = image_tag("cherapp-ownership-coborrowing-ico-lot-size.svg", alt: t('img_alts.area'), class: 'image is-32x32')
+
+        .column.is-paddingless.is-6-tablet.is-4-widescreen.mb-20
+          %p.is-caption.is-marginless
+            %span=property["property"]["garage"] || 'N/A'
+            = t('property_overview.stats.garage')
+          = image_tag("cherapp-ownership-coborrowing-icon-garage.svg", alt: t('img_alts.garage'))
+
+        .column.is-paddingless.is-6-tablet.is-4-widescreen.mb-20
+          %p.is-caption.is-marginless
+            %span=property["property"]["pool"] || 'N/A'
+            = t('property_overview.stats.pool')
+          = image_tag("cherapp-ownership-coborrowing-icon-pool.svg", alt: t('img_alts.pool'))
+      .m-t-md
+        %hr.is-marginless.has-full-width

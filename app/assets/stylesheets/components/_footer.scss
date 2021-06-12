@@ -1,0 +1,41 @@
+.footer {
+  background-color: $gradient-blue;
+  color: $white;
+  font-size: 14px;
+  padding: 2rem;
+
+  .footer-links a {
+    color: $white;
+  }
+
+  .column {
+    padding: 0;
+  }
+
+  .right-aligned-section-desktop {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+
+    img {
+      --size: 20px;
+      height: var(--size);
+      width: var(--size);
+    }
+  }
+
+  @media (max-width: 769px) {
+    padding: 1.5rem;
+
+    .right-aligned-section-desktop {
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .m-t-md-mobile {
+      margin-top: 1rem;
+    }
+  }
+
+}

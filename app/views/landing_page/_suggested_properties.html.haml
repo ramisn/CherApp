@@ -1,0 +1,7 @@
+%section.is-divider-blue.has-text-centered.p-t-lg
+  = react_component "SuggestedProperties", { suggestedProperties: @suggested_properties }
+
+  %h5.is-bold.is-size-4.is-marginless Join Free Now and Find Your Dream Home
+  .columns.is-marginless.is-fully-centered.p-t-md.p-b-lg
+    .column.is-one-fifth
+      = link_to "Join Now", new_registration_path(User), class: 'button is-primary has-full-width'

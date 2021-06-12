@@ -1,0 +1,9 @@
+.full-width-container.is-paddingless.is-gradient-blue
+  .container
+    %input{ type: 'hidden', value: 'conversations page', id: 'currentPageInput' }
+    - title(t("meta.conversations.title"))
+    .columns.is-marginless
+      = render 'user_card'
+      .column.is-8-tablet.is-9-widescreen.is-12-mobile.is-paddingless-mobile
+        .box.is-borderless.is-paddingless
+          = react_component('chat/NewChatGroup', friends: @friends, flaggedProperties: @flagged_properties, userName: current_user.first_name, userEmail: current_user.email )

@@ -1,0 +1,46 @@
+%header
+  %nav.navbar.is-secondary
+    .container
+      .columns.is-marginless.is-mobile
+        .column.cher-brand.is-12-tablet
+          .columns.is-marginless.is-flex
+            - unless user_signed_in?
+              .column.is-paddingless.is-4-mobile.is-4-tablet.is-flex.has-items-centered.is-hidden-mobile
+                = link_to "About Us", "/who_we_are", class: 'link has-text-primary is-bold'
+                = link_to "How it works", "/about", class: 'm-l-md link has-text-primary is-bold'
+            .column.is-paddingless.is-4-mobile.is-4-tablet.is-fully-centered
+              - if user_signed_in? && current_user.agent?
+                = link_to professionals_path, {"data-turbolinks": "false"} do
+                  = image_tag("cherapp-ownership-coborrowing-cher-icon-2.svg", alt: t('img_alts.app_logo'), class: 'cher-logo')
+              - else
+                = link_to root_path, {"data-turbolinks": "false"} do
+                  = image_tag("cherapp-ownership-coborrowing-cher-icon-2.svg", alt: t('img_alts.app_logo'), class: 'cher-logo')
+            .column.is-paddingless.is-4-mobile.is-4-tablet.is-flex.has-items-centered.has-direction-row-reversed.is-8-mobile
+              - unless user_signed_in?
+                = link_to "Log In", new_user_session_path, class: 'link has-text-primary is-bold m-l-md'
+                - if current_page?(controller: 'professionals_landing_page', action: 'show')
+                  = link_to "I'm a Buyer", root_path, class: 'link has-text-primary is-bold'
+                - else
+                  = link_to "I'm an Agent", professionals_path, class: 'link has-text-primary is-bold m-l-md'
+      - if user_signed_in?
+        .nav-menu
+          = react_component('chat/ChatConversationsIndicator')
+          %button.menu-button
+            = image_tag("cherapp-ownership-coborrowing-menu.svg", alt: t('img_alts.menu'))
+          %ul
+            - if current_user.agent? && !current_user.part_of_clique?
+              %li.is-hidden-mobile
+                = link_to t('generic.access_buyers'), '/pricing', class: 'button is-primary m-r-md'
+            %li.is-marginless
+              = render('shared/profile_dropdown')
+      - else
+        .nav-menu.m-l-md
+          %button.menu-button
+            = image_tag("cherapp-ownership-coborrowing-menu.svg", alt: t('img_alts.menu'))
+          %ul.is-hidden-tablet
+            %li.is-marginless
+              .go-profile.is-white{'data-controller': 'modal'}
+                .drop-down
+                  .drop-container
+                    = link_to('About Us', '/who_we_are', class: 'has-text-primary m-b-md is-marginless-mobile')
+                    = link_to "How it works", "/about", class: 'has-text-primary m-b-md is-marginless-mobile'

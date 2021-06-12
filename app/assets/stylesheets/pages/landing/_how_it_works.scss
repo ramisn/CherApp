@@ -1,0 +1,23 @@
+#subscribe {
+  background-blend-mode: initial, saturation;
+  background-image: image-url('cherapp-ownership-coborrowing-news_subscribe-two.png');
+  background-position: center, center;
+  background-size: cover, cover;
+  color: $white;
+
+  // TODO: Refactor and delete this
+  .form-container {
+    align-items: center;
+    background-color: rgba(234, 241, 249, .2);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 65px 0;
+  }
+
+  .input {
+    background-color: $white;
+    border-color: $essential-blue;
+    border-radius: 1px;
+  }
+}

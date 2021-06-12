@@ -1,0 +1,26 @@
+#firstHomeContainer.is-hidden
+  %h2.is-size-3.has-text-centered.has-text-blue= t('loans.about_home')
+  %h5.is-size-5.has-text-centered.m-b-md= t('loans.is_first_home')
+  .columns.is-marginless.is-mobile
+    .column.is-6.is-mobile.is-6-tablet
+      .is-flex.has-items-centered.has-direction-column
+        = image_tag('mortgage/cherapp-ownership-coborrowing-house-price-blue.svg', alt: t('img_alts.basic_house'), class: 'image is-64x64 has-text-primary', id: 'houseBlue')
+        = image_tag('mortgage/cherapp-ownership-coborrowing-house-price-grey.svg', alt: t('img_alts.basic_house'), class: 'image is-64x64 has-text-primary is-hidden', id: 'houseGrey')
+        .field.m-t-md
+          = f.radio_button :first_home, true, class: 'is-checkradio', checked: true, id: 'loan_first_home_true', 'data-action': 'loans#updateIcon', 'data-disable-image': ['towerBlue', 'houseGrey'].to_json, 'data-enable-image': ['houseBlue', 'towerGrey'].to_json
+          = f.label :first_home_true, t('generic.yes_it_is')
+
+    .column.is-6.is-mobile.is-6-tablet
+      .is-flex.has-items-centered.has-direction-column
+        = image_tag('mortgage/cherapp-ownership-coborrowing-tower-grey.svg', alt: t('img_alts.building'), class: 'image is-64x64', id: 'towerGrey')
+        = image_tag('mortgage/cherapp-ownership-coborrowing-tower-blue.svg', alt: t('img_alts.building'), class: 'image is-64x64 is-hidden', id: 'towerBlue')
+        .field.m-t-md
+          = f.radio_button :first_home, false, class: 'is-checkradio', id: 'loan_first_home_false', 'data-action': 'loans#updateIcon', 'data-disable-image': ['houseBlue', 'towerGrey'].to_json, 'data-enable-image': ['towerBlue', 'houseGrey'].to_json
+          = f.label :first_home_false, t('generic.no_its_not')
+
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-8-tablet.is-flex.has-space-between.m-t-lg
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#previousItem', 'data-previous-item': 'coownersContainer', 'data-current-item': 'firstHomeContainer' }
+        = t('generic.previous')
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#nextItem', 'data-next-item': 'liveThereContainer', 'data-current-item': 'firstHomeContainer' }
+        = t('generic.next')

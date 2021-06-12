@@ -1,0 +1,30 @@
+- title(t("meta.admin.inquiries.title"))
+.container
+  .columns.is-marginless.is-centered
+    .column.box.is-10-mobile.is-8-tablet.is-6-desktop.m-t-xl
+      .has-text-centered.is-size-4.is-bold.m-b-md
+        = "#{@user.first_name}'s inquiry"
+      %p.is-marginless
+        %span.is-bold
+          First name:
+        %span= @user.first_name
+      %p.is-marginless
+        %span.is-bold
+          Middle Name:
+        %span= @user.middle_name
+      %p.is-marginless
+        %span.is-bold
+          Last Name:
+        %span= @user.last_name
+      %p.ismarginless
+        %span.is-bold
+          Date of birth:
+        %span= @user.date_of_birth.strftime('%m/%d/%y')
+      = form_for(@user, url: admin_inquiry_path) do |f|
+        .field.m-b-md
+          = f.label :background_check_status, t('labels.background_check_status'), class: 'label'
+          .control
+            .select
+              = f.select :background_check_status, User.background_check_statuses.keys.map { |status| [t("users.background_check_status.#{status}"), status] }, { disabled: ['no_requested', 'pending'], selected: 'approved'}
+        .field.m-t-lg
+          = f.submit t('generic.update'), class: "button is-primary"

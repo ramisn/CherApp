@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: flagged_properties
+#
+#  id          :bigint           not null, primary key
+#  property_id :string           not null
+#  user_id     :bigint           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  city        :string           default(""), not null
+#
+
+flagged_property:
+  user: co_borrower_user
+  property_id: "ASDF1234"
+  city: 'san francisco'
+  price_on_flag: 3000
+
+flagged_property_2:
+  user: co_borrower_user_2
+  property_id: "ASDF1234"
+  city: 'venice'
+  price_on_flag: 3000
+
+flagged_property_3:
+  user: co_borrower_user
+  property_id: "94106826"
+  city: 'san francisco'
+  price_on_flag: 3000

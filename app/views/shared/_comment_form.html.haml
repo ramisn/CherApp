@@ -1,0 +1,7 @@
+= form_for(@comment, url: path, html: { id: "form#{post.class.name}#{post.id}", 'data-controller': 'comments', 'data-target': 'comments.form' }) do |f|
+  .field.has-border.m-t-sm
+    .control.has-full-width
+      = f.text_area :body, class: 'input is-transparent is-marginless', placeholder: t('placeholders.leave_a_comment'), minlength: 1, maxlength: 1000, required: true, 'data-target': 'comments.messageInput', id: "#{post.class.name}#{post.id}"
+  - if @comment.persisted?
+    %button.button.is-primary{ 'type': 'submit' }
+      = t('generic.update')

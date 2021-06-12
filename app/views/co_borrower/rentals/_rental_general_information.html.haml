@@ -1,0 +1,38 @@
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile
+    .field{ 'data-controller': 'google-auto-complete-input' }
+      = f.label :address, t('sell.address'), class: 'label'
+      .control.m-r-md
+        = f.text_field :address, class: 'input', placeholder: t('placeholders.address'), required: true, 'data-target': 'google-auto-complete-input.searchInput', 'data-type': 'address'
+  .column.is-paddingless.is-narrow.is-narrow-mobile
+    .field
+      = f.label :state, t('sell.state'),  class: 'label'
+      .select.has-full-width.is-disabled
+        = f.select :state, @states.map, { required: true, selected: 'CA' }, { readonly: true }
+.m-t-md
+  .columns.is-marginless.is-flex.is-multiline
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      .field
+        = f.label :monthly_rent, t('rental.monthly_rent'),  class: 'label'
+        .control.m-r-md
+          = f.number_field :monthly_rent, class: 'input', min: 1, required: true
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      .field
+        = f.label :security_deposit, t('rental.security_deposit'), class: 'label'
+        .control
+          = f.text_field :security_deposit, class: 'input'
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      .field
+        = f.label :date_available, t('rental.date_available'), class: 'label'
+        .control.m-r-md{ 'data-controller': 'date-picker' }
+          = f.date_field :date_available, type: 'date', 'data-target': 'date-picker.picker'
+    .column.is-paddingless.is-6-mobile.is-6-tablet
+      .field
+        = f.label :lease_duration, t('rental.lease_duration'), class: 'label'
+        .control
+          .select.has-full-width
+            = f.select :lease_duration, Rental.lease_durations.keys.map{ |duration| [t("rental.duration.#{duration}"), duration] }, { requiered: true }, { readonly: current_user.admin? }
+.field.m-t-sm
+  = f.check_box :hide_address, class: 'input is-checkradio', type: 'checkbox'
+  = f.label :hide_address, t('rental.hide_address')
+

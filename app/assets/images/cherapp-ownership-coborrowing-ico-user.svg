@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="385px" height="385px" viewBox="0 0 385 385" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="385" height="385"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <g id="Shape-+-Shape-Mask">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#CFD2FC" xlink:href="#path-1"></use>
+                <path d="M52.5,384.5 C83.400621,426.726125 140.086471,400 192.414358,400 C244.742245,400 296.599379,426.726125 327.5,384.5 C314.081382,322.093975 256.247293,233.014175 192.414358,233 C128.581423,233.014175 65.9186183,322.093975 52.5,384.5 Z" id="Shape" fill="#5153FF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                <path d="M260,164.5 C260,201.78132 229.78132,232 192.5,232 C155.21868,232 125,201.78132 125,164.5 C125,127.21868 155.21868,97 192.5,97 C229.78132,97 260,127.21868 260,164.5 Z" id="Shape" fill="#8690FA" fill-rule="nonzero" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

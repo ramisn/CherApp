@@ -1,0 +1,53 @@
+!!!
+%html{ lang: 'en-US' }
+  %head
+    = render "layouts/meta_tags"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag asset_path('favicon.ico')
+    - if Rails.env.production?
+      = render "layouts/analytics"
+    %link{ rel:"canonical", href: 'https://www.cher.app'}
+    %script{ src: "https://static.vouched.id/widget/vouched.js" }
+    %script{ src: "https://media.twiliocdn.com/sdk/js/chat/v3.3/twilio-chat.min.js" }
+    %script{ crossorigin: "anonymous", src: "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.8/lottie.js", type: "text/javascript" }
+    %script{src: "https://apis.google.com/js/api.js"}
+    %script{ async: "", defer: "defer", src: "https://connect.facebook.net/en_US/sdk.js"}
+    %script{ src: "https://www.google.com/recaptcha/api.js", async: "async", defer: "defer" }
+
+  %body{ 'data-environment': Rails.env,
+         'stripe_key': ENV['STRIPE_PUBLIC_KEY'],
+         'google_key': ENV['GOOGLE_MAPS_KEY'],
+         'twilio-account-sid': ENV['TWILIO_ACCOUNT_SID'],
+         'google-client-id': ENV['GOOGLE_CLIENT_ID'],
+         'google_places_key': ENV['GOOGLE_PLACES_API'],
+         'facebook-app-id': ENV['FACEBOOK_CLIENT_ID'],
+         'data-controller': 'mixpanel',
+         'data-mixpanel-token': ENV['MIXPANEL_TOKEN'],
+         class: user_is_in_conversation? ? 'is-paddingless-mobile' : '' }
+    - if user_signed_in?
+      %input{ type: 'hidden', value: current_user.email, id: 'currentUserEmailInput' }
+      = hidden_field_tag :concierge_sms_message_link, conversation_url(current_user)
+
+    - if current_user != User.concierge_contact
+      / = react_component('chat/ConciergeChat', userEmail: current_user&.email,
+      /                                         isHidden: false,
+      /                                         userProfilePicture: url_for(current_user&.profile_image),
+      /                                         conciergeSlug: User.concierge_contact.slug,
+      /                                         signedIn: user_signed_in?)
+    - else
+      = react_component('chat/ConciergeSideChat', userEmail: current_user&.email,
+                                                  userProfilePicture: url_for(current_user&.profile_image),
+                                                  conciergeSlug: User.concierge_contact.slug,
+                                                  signedIn: user_signed_in?)
+
+    = render 'shared/navbar_regular'
+    = render 'shared/notification'
+    = yield
+    = render 'shared/footer'
+
+    %noscript
+      %iframe{ height: "0", src: "https://www.googletagmanager.com/ns.html?id=GTM-5MD5SHF", style: "display:none;visibility:hidden", width: "0"}
+

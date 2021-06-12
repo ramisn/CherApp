@@ -1,0 +1,13 @@
+.is-size-4.is-bold.m-b-md.m-t-md
+  = t('sell.photos')
+.file{ 'data-controller': 'image-preview' }
+  %label.file-label
+    = f.file_field :images, multiple: true, class: 'file-input', accept: 'image/jpeg, image/jpg, image/png', 'data-action': 'image-preview#setPreviews'
+    .file-cta.is-tag
+      = fa_icon('image')
+      %span.file-label= t('labels.picture')
+
+#houseImagesContainer.columns.is-marginless.is-flex.is-multiline
+  - @house.images.each do |image|
+    = image_tag(image.variant(resize: '200x200'), class: 'image is-96x96 has-regular-margin')
+

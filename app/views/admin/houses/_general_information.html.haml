@@ -1,0 +1,23 @@
+.is-size-4.is-bold
+  = t('sell.general_information')
+.columns.is-marginless.is-multiline.is-flex
+  .column
+    .m-b-sm
+      .is-size-5.is-bold
+        = t('generic.address')
+      = @house.address
+    .m-b-sm
+      .is-size-5.is-bold
+        = t('generic.price')
+      = number_to_currency(@house.price, precisions: 0)
+    .is-size-5.is-bold
+      = t('sell.ownership_percentage')
+    = t('generic.percentage', amount: @house.ownership_percentage)
+  .column
+    .m-b-sm
+      .is-size-5.is-bold
+        = t('sell.state')
+      = @house.state
+    .is-size-5.is-bold
+      = t('sell.county')
+    = @house.county

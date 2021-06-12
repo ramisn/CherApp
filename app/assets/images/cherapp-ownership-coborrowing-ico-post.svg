@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="368px" height="364px" viewBox="0 0 368 364" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>ico-post</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-post" fill-rule="nonzero" fill="#4431F4">
+            <path d="M368,319.929688 L368,0 L355.792969,1.023438 C306.835938,5.070312 258.816406,16.773438 213.488281,35.710938 L192,44.632812 L192,363.296875 L207.648438,356.792969 C254.554688,337.277344 304.21875,325.203125 354.847656,321 L368,319.929688 Z" id="Shape"></path>
+            <path d="M12.207031,1.023438 L0,0 L0,319.953125 L14.199219,321.160156 C64.796875,325.390625 114.417969,337.539062 161.246094,357.160156 L176,363.296875 L176,44.632812 L154.535156,35.71875 C109.203125,16.777344 61.175781,5.070312 12.207031,1.023438 L12.207031,1.023438 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

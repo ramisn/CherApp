@@ -1,0 +1,26 @@
+- title(t('meta.admin.loans.title'))
+.container
+  .panel.m-t-lg.m-b-lg
+    %h2.has-text-centered
+      = 'Users who requested loan'
+    .columns.is-marginless
+      .column
+        %table.table.has-full-width
+          %thead
+            %tr
+              %th
+                = t('generic.owner')
+              %th
+                = 'Number of requests'
+              %th
+                = t('generic.actions')
+          %tbody
+            - @users_who_requested.each do |user|
+              %tr
+                %td
+                  = user.full_name
+                %td
+                  = user.requested_loans.size
+                %td
+                  = link_to admin_co_borrower_loans_path(user) do
+                    = fa_icon('eye')

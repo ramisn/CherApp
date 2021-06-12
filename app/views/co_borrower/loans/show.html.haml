@@ -1,0 +1,104 @@
+- title(t("meta.loans.title"))
+.container
+  .columns.is-mobile.is-marginless.is-fully-centered
+    .column.is-10-desktop.is-8-widescreen.is-6-fullhd
+      .panel.m-t-lg.m-b-lg.is-fully-centered
+        .columns.is-marginless.is-fully-centered.is-multiline
+          .column.is-10-tablet.is-12-mobile.is-paddingless
+            .columns.is-marginless.is-mobile.is-multiline
+              - if params[:process_finished]
+                = render 'contact_cher'
+              - else
+                .column.is-12-mobile.is-12-tablet.is-paddingless
+                  %h1.is-size-2.has-text-blue
+                    Active loan request
+                .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                  %p.is-marginless.is-bold
+                    = t('loans.owners_name')
+                  %p.is-marginless
+                    = @loan.user.full_name
+                .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                  %p.is-marginless.is-bold
+                    = t('loans.owners_email')
+                  %p.is-marginless
+                    = @loan.user.email
+                - unless @property.blank?
+                  .column.is-paddingless.is-12.m-t-md
+                    %p.is-marginless.is-bold
+                      = t('loans.property_info')
+                    .is-flex
+                      %figure.image.is-128x128
+                        = image_tag(sanitize_image(@property.dig('photos').first))
+                      .m-l-md
+                        %p.is-marginless.is-bold{ 'data-target': 'loans.propertyPrice' }
+                          = "#{number_to_currency(@property.dig('listPrice'), locale: :en, precision: 0)}"
+                        %p.is-caption.is-marginless
+                          = @property['address']['full']
+                        %p.is-caption.is-marginless
+                          = "#{@property['address']['city']}, #{@property['address']['state']}"
+                .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                  %p.is-marginless.is-bold
+                    = t('loans.first_home')
+                  %p.is-marginless
+                    = t(@loan.first_home)
+                .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                  %p.is-marginless.is-bold
+                    = t('loans.planning_to_live_there')
+                  %p.is-marginless
+                    = t(@loan.live_there)
+                - unless @loan.property_street.blank?
+                  .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                    %p.is-marginless.is-bold
+                      = "Property street"
+                    %p.is-marginless
+                      = @loan.property_street
+                - unless @loan.property_city.blank?
+                  .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                    %p.is-marginless.is-bold
+                      = "Property city"
+                    %p.is-marginless
+                      = @loan.property_city
+
+                - unless @loan.property_state.blank?
+                  .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                    %p.is-marginless.is-bold
+                      = "Property state"
+                    %p.is-marginless
+                      = @loan.property_state
+                - unless @loan.property_zipcode.blank?
+                  .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                    %p.is-marginless.is-bold
+                      = "Property zipcode"
+                    %p.is-marginless
+                      = @loan.property_zipcode
+
+                - unless @loan.property_county.blank?
+                  .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                    %p.is-marginless.is-bold
+                      = "Property county"
+                    %p.is-marginless
+                      = @loan.property_county
+
+
+                - if @loan.participants.any?
+                  .m-t-md
+                    %hr.is-marginless.has-full-width
+                    %h4.is-size-4.is-bold.m-t-md
+                      = t('loans.co_buyers')
+                  .columns.is-mobile.is-marginless.is-multiline
+                    - @loan.participants.each do |cobuyer|
+                      .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                        %p.is-marginless.is-bold
+                          = t('loans.name')
+                        %p.is-marginless
+                          = cobuyer.full_name
+                      .column.is-paddingless.is-6-tablet.is-12-mobile.m-t-md
+                        %p.is-marginless.is-bold
+                          = t('generic.email')
+                        %p.is-marginless
+                          = cobuyer.email
+                .column.is-12-mobile.is-12-tablet.is-paddingless.m-t-md{ 'data-controller': 'modal' }
+                  %span.is-size-7= 'Need to edit your request?'
+                  %button.is-link.is-size-7{ 'data-action': 'modal#toggleModal' }
+                    Contact Cher
+                  = render 'shared/contact_cher'

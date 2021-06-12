@@ -1,0 +1,25 @@
+- if @extra_data && @extra_data[:user_flagged_property]
+  %button.button.is-secondary.has-full-width{ 'data-controller': 'watched-property',
+                'data-target': 'watched-property.flagPropertyLink',
+                'data-action': 'watched-property#toggleflagProperty',
+                'data-is-user-professional': current_user&.agent? ? '1' : '' ,
+                'data-property-flag-status': 'flagged',
+                'data-property-listing-id': @property['listingId'],
+                'data-property-city': @property['address']['city'] || '',
+                'data-property-price': @property['listPrice'],
+                'data-status': 'flagged' }
+    = image_tag('cherapp-ownership-coborrowing-ico-favorite.svg', alt: t('img_alts.flag'), class: 'm-r-md')
+    %span= current_user&.agent? ? t('look_around.featured.home.saved') : t('look_around.featured.home.flagged')
+- else
+  %button.button.is-primary.has-full-width{ 'data-controller': 'watched-property',
+                'data-target': 'watched-property.flagPropertyLink',
+                'data-action': 'watched-property#toggleflagProperty',
+                'data-is-user-professional': current_user&.agent? ? '1' : '' ,
+                'data-property-flag-status': 'unflagged',
+                'data-property-listing-id': @property['listingId'],
+                'data-property-city': @property['address']['city'] || '',
+                'data-property-price': @property['listPrice'],
+                'data-status': 'unflagged' }
+    = image_tag('cherapp-ownership-coborrowing-ico-favorite-white.svg', alt: t('img_alts.flag'), class: 'm-r-md')
+    %span= current_user&.agent? ? t('look_around.featured.home.save') : t('look_around.featured.home.favorite')
+

@@ -1,0 +1,21 @@
+- title(t("meta.admin.mailchimp_sync.title"))
+.container
+  %h2.has-text-centered
+    = t("admin.mailchimp_sync.label")
+  .columns
+    .column.is-half.is-offset-one-quarter
+      = form_tag("/admin/mailchimp_sync", method: "post", class: 'form-horizontal') do
+        - @conditions.each_with_index do |c, i|
+          .field.is-inline-block
+            = check_box_tag('conditions[]', c, false, { multiple: true, class: ' is-checkradio', id: "id_#{i}" })
+            = label_tag "id_#{i}", c
+        .field
+          .control.is-inline-block
+            = button_tag 'Sent to mailchimp', class: 'button is-info'
+  .columns
+    .column.is-half.is-offset-one-quarter
+      %hr
+
+      = link_to 'Back to contacts', admin_contacts_path, class: 'button is-success'
+      = link_to 'Archive all in mailchimp', new_admin_mailchimp_archive_path, class: 'button is-danger', data: {confirm: 'Are you sure you want to archive everything?'}
+      %hr

@@ -1,0 +1,15 @@
+.is-size-4.is-bold.m-t-md
+  = t('sell.contact_information')
+.columns.is-marginless.is-multiline.is-flex
+  .column.is-narrow.m-r-md
+    .is-size-5.is-bold.is-inline
+      = t('generic.email')
+    %p= @house.email_contact
+  .column.is-narrow.m-r-md
+    .is-size-5.is-bold.is-inline
+      = t('generic.phone_number')
+    %p= @house.phone_contact
+  .column.is-narrow.m-r-md
+    .is-size-5.is-bold.is-inline
+      = t('generic.owner')
+    %p= @house.owner.full_name

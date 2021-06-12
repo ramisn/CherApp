@@ -1,0 +1,19 @@
+%input{ type: 'hidden', value: 'customer dashboard page', id: 'currentPageInput' }
+- title(t("meta.professional_dashboard.title"))
+.is-light-purple
+  #dashboard.dashboard-content
+    .customer-navbar
+    .container
+      - unless current_user.part_of_clique?
+        .columns.is-marginless.m-t-xl
+          = render "shared/customer/clique_banner"
+      .columns.is-marginless.is-flex.has-direction-column
+        .columns.is-marginless
+          .column.is-marginless.is-3.is-paddingless-mobile
+            = render "shared/customer/user_profile"
+            = render "shared/customer/user_info"
+            = render "shared/customer/reviews"
+          .column.is-marginless-tablet.is-9.is-12-mobile.is-paddingless-mobile.m-t-md
+            = render "recent_messages"
+            = render "shared/customer/invite_user"
+            = render "suggested_leads"

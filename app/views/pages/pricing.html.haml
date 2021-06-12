@@ -1,0 +1,35 @@
+%input{ type: 'hidden', value: 'Clique pricing page', id: 'currentPageInput' }
+- title(t("meta.pricing.title"))
+- meta_tag(:description, t("meta.partnet_with_us.description"))
+#pricing
+  .full-width-container.is-fully-centered.is-paddingless-mobile.p-b-xl
+    .container.p-t-md
+      .columns.is-marginless.has-content-centered
+        .panel.has-shadow.column.is-11-tablet.is-8-widescreen
+          %h3
+            = t('pricing.clique')
+            %strong= t('pricing.premium')
+          .columns.is-marginless.is-paddingless
+            .column.is-6.is-fully-centered
+              .has-centered-text
+                .columns.is-fully-centered.is-marginless.has-full-height.m-t-md-mobile.is-mobile.is-multiline.p-t-md.is-paddingless-mobile
+                  %span.has-centered-text.is-fully-centered.image
+                    = image_tag 'cherapp-ownership-coborrowing-ico-date-darkgrey.svg', class: 'icon m-r-md is-3rem-tablet', alt: t('img_alts.calendar')
+                  .is-size-1.is-size-3-mobile.has-text-weight-bold.is-marginless= t('pricing.cost', price: '199')
+                  %span.is-12.column.is-size-4.is-size-6-mobile.is-paddingless= t('pricing.monthly_plan')
+                  .column.is-full.m-t-md.is-paddingless-mobile.m-t-lg-mobile
+                    = link_to t('pricing.buy_clique_premium'), customer_checkout_index_path, class: 'button is-fullwidth is-primary has-text-gold'
+                  .column.is-full
+                    = link_to t('pricing.schedule_demo'), 'https://calendly.com/joincher/agent', target: :blank, class: 'link is-fullwidth is-primary is-bold'
+            .column.is-6.is-fully-centered.p-t-none
+              %ul.has-stars.has-space-between-items.has-full-width
+                %li.is-size-5.is-size-6-mobile
+                  %span= t('pricing.message_credits.html')
+                %li.is-size-5.is-size-6-mobile
+                  %span= t('pricing.preferred_agents.html')
+                %li.is-size-5.is-size-6-mobile
+                  %span= t('pricing.quality_leads.html')
+                %li.is-size-5.is-size-6-mobile
+                  %span= t('pricing.chat_live.html')
+                %li.is-size-5.is-size-6-mobile
+                  %span= t('pricing.dedicated_manager.html')

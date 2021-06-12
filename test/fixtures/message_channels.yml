@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: message_channels
+#
+#  id           :bigint           not null, primary key
+#  sid          :string
+#  participants :string           default("{}"), is an Array
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  status       :integer          default("0")
+#  purpose      :string           default("conversation")
+#  image_url    :string
+#
+borrowers_channel:
+  sid: CH90a65f0fc0a04191901b7f71cd6b53cc
+  participants: "{borrower@user.com,borrower2@user.com}"
+  status: 0
+  purpose: conversation

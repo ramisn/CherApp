@@ -1,0 +1,74 @@
+.column.is-6-desktop.is-12-tablet{ id: "property#{property['listingId']}", 'data-controller': 'watched-property' }
+  .panel.has-shadow.property-preview.is-marginless
+    = link_to image_tag(property_image(property),
+                            alt: t('look_around.featured.alts.home'),
+                            class: "property-image",
+                            "data-controller": "property-default-image",
+                            "data-action": "error->property-default-image#setDefaultPropertyImage"),
+                  property_path(property['listingId'])
+    .property-content
+      .columns.is-marginless.is-mobile.has-space-between.is-multiline
+        .column.is-paddingless.is-12-deskop.is-7-widescreen.m-r-md
+          %span.is-bold= property.dig('address', 'full')
+          %h3.is-bold.is-marginless.has-text-left.is-size-3
+            = "#{number_to_currency(property.dig('listPrice'), locale: :en, precision: 0)}"
+          .columns.is-marginless.is-paddingless.is-multiline.is-mobile.m-r-lg
+            .column.is-paddingless.is-narrow.m-r-lg
+              .is-caption= property_beds(property)
+              = image_tag("cherapp-ownership-coborrowing-icon-bedrooms.svg", alt: t('img_alts.bedroom'), class: 'm-t-sm')
+            .column.is-paddingless.is-narrow
+              .is-caption= property_baths(property)
+              = image_tag("cherapp-ownership-coborrowing-icon-bathrooms.svg", alt: t('img_alts.bathroom'), class: 'm-t-sm')
+    %hr
+    .property-content
+      - if user_signed_in? && current_user.agent?
+        = t('look_around.search.cher_buyers_who_share', commission: commission_value(property.dig('listPrice')))
+        .has-text-centered.is-bold.m-t-sm.m-b-sm
+          = property_agent_random_message(property.dig('property', 'bedrooms'))
+        %hr
+        .property-links
+          %button.button.has-no-style{ 'data-action': 'modal#toggleModal look-around-properties-share#updatePropertyUrl', 'data-url': property_url(property['listingId']) }
+            = image_tag('cherapp-ownership-coborrowing-ico-share.svg', 'data-url': property_url(property['listingId'])) + t('generic.share')
+          %button.button.has-no-style{ 'data-controller': 'watched-property',
+                     'data-target': 'watched-property.flagPropertyLink',
+                     'data-is-user-professional': 'true',
+                     'data-action': 'watched-property#toggleflagProperty',
+                     'data-property-flag-status': flagged_properties_ids.include?(property['listingId']) ? 'flagged' : 'unflagged',
+                     'data-property-listing-id': property['listingId'],
+                     'data-property-city': params.dig(:search, :search_for) || '',
+                     'data-property-status': property['status'],
+                     'data-status': property['watchingProperty'] ? 'flagged' : 'unflagged',
+                     class: property['watchingProperty'] ? 'unflag' : 'flag' }
+            = image_tag(property_flag_icon(flagged_properties_ids, property['listingId']), alt: t('img_alts.flag'))
+            %span= property_save_status(flagged_properties_ids, property['listingId'])
+
+      - else
+        - if property.dig('property', 'type') == 'RES'
+          .is-bold= t'property_overview.if_you_coown'
+          %table.table
+            %tbody
+              %tr
+                %td= t('property_overview.friend', number: 1)
+                %td= anual_income_with_friends(property, 2)
+              %tr
+                %td= t('property_overview.friends', number: 2)
+                %td= anual_income_with_friends(property, 3)
+              %tr
+                %td= t('property_overview.friends', number: 3)
+                %td= anual_income_with_friends(property, 5)
+          .has-text-centered.is-bold.m-t-sm.m-b-sm
+            = property_random_message(property.dig('property', 'bedrooms'))
+        %hr
+        .property-links
+          = link_to( image_tag('cherapp-ownership-coborrowing-ico-details.svg') + t('look_around.featured.home.details'), property_path(property['listingId']))
+          %button.button.has-no-style{ 'data-controller': 'watched-property',
+                  'data-target': 'watched-property.flagPropertyLink',
+                  'data-action': 'watched-property#toggleflagProperty',
+                  'data-property-flag-status': flagged_properties_ids.include?(property['listingId']) ? 'flagged' : 'unflagged',
+                  'data-property-listing-id': property['listingId'],
+                  'data-property-city': params.dig(:search, :search_for) || '',
+                  'data-property-status': property['status'],
+                  'data-status': property['watchingProperty'] ? 'flagged' : 'unflagged',
+                  class: property['watchingProperty'] ? 'unflag' : 'flag' }
+            = image_tag(property_flag_icon(flagged_properties_ids, property['listingId']), alt: t('img_alts.flag'))
+            %span= property_card_action(current_user, flagged_properties_ids, property['listingId'])

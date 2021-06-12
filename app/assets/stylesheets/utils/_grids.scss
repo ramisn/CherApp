@@ -1,0 +1,16 @@
+.grid-container {
+  display: inline-grid;
+  grid-column-gap: 0;
+  width: 100%;
+  &.has-2-columns {
+    grid-template-columns: 50% 50%;
+  }
+
+  &.has-4-rows {
+    grid-template-rows: 25% 25% 25% 25%;
+  }
+
+  .grid-block {
+    width: 100%
+  }
+}

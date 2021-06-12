@@ -1,0 +1,35 @@
+.m-l-md.m-r-md
+  - if current_user.property_searches.any?
+    %label.label{ for: 'savedSearches' }
+      = t('look_around.search.saved_searches')
+    .select.has-full-width
+      %select#savedSearches{ 'data-action': 'properties-search#updateSearch', 'data-target': 'properties-search.savedSearches' }
+        %option{ disabled: 'disabled', selected: 'selected' }
+          = t('look_around.search.select_a_search')
+        - current_user.property_searches.each do |search|
+          %option{ value: search.id, selected: search == saved_search }
+            = search.alias
+  %hr
+  .columns.is-marginless.is-mobile
+    - if saved_search
+      .column.p-t-none
+        %span.is-bold.is-marginless
+          = t('generic.search_result')
+        .columns.is-marginless.is-mobile
+          .column.is-paddingless
+            %p.is-marginless= saved_search.alias
+            %p.is-marginless.is-caption.is-size-6= search_result_location(params[:property_search])
+            %p.is-marginless.is-caption.is-size-6= search_result_amenities(params[:property_search])
+          .column.is-paddingless.is-narrow.is-narrow-mobile
+            = link_to property_search_path(saved_search), method: :delete, class: 'button is-danger is-delete' do
+              = fa_icon('trash-alt', type: :regular)
+    - else
+      .column.p-t-none
+        %span.is-bold.is-marginless
+          = t('generic.search_result')
+        %p.is-marginless.is-caption.is-size-6= search_result_location(params[:property_search])
+        %p.is-marginless.is-caption.is-size-6= search_result_amenities(params[:property_search])
+      .column.is-narrow-mobile.is-narrow.is-flex.has-direction.is-aligned-end{ 'data-controller': 'modal' }
+        %button.button.is-secondary{ type: 'button', 'data-action': 'modal#toggleModal' }
+          = t('look_around.search.save_this_search')
+        = render 'save-search-modal'

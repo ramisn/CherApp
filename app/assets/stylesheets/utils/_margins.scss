@@ -1,0 +1,129 @@
+.has-margin-auto {
+    margin: auto;
+}
+
+.has-margin-y-auto {
+    margin: auto 0;
+}
+
+.has-big-margin-y {
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.m-t-2-85 {
+  margin-top: 2.85rem
+}
+
+.m-l-2-2 {
+  margin-left: 2.2rem;
+}
+
+.is-paddingless-desktop {
+  padding: 0 !important;
+  @media (max-width: 769px) {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 1407px) {
+  .m-l-lg-fullhd {
+    margin-left: 2rem;
+  }
+}
+
+@media (max-width: 1215px) {
+  .m-l-1-5-widescreen {
+    margin-left: 1.5rem;
+  }
+}
+
+@media (max-width: 769px) {
+  .is-marginless-mobile {
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .is-marginless-tablet {
+    margin: 0 !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .is-marginless-desktop {
+    margin: 0 !important;
+  }
+
+  .has-margin-auto-desktop {
+    margin: auto;
+  }
+}
+
+
+
+$sizeUnit: rem;
+$marginKey: 'm';
+$paddingKey: 'p';
+$separator: '-';
+$sizes: (
+    ('none', 0),
+    ('xxs', 0.125),
+    ('xs', 0.25),
+    ('sm', 0.5),
+    ('md', 1),
+    ('lg', 2),
+    ('xl', 4),
+    ('xxl', 8),
+);
+$positions: (
+    ('t', 'top'),
+    ('r', 'right'),
+    ('b', 'bottom'),
+    ('l', 'left')
+);
+
+@function sizeValue($key, $value) {
+    @return if($key == 'none', 0, $value + $sizeUnit);
+}
+
+@each $size in $sizes {
+  $sizeKey: nth($size, 1);
+  $sizeValue: nth($size, 2);
+  .#{$marginKey}#{$separator}#{$sizeKey} {
+    margin: sizeValue($sizeKey, $sizeValue);
+  }
+
+  .#{$paddingKey}#{$separator}#{$sizeKey} {
+    padding: sizeValue($sizeKey, $sizeValue);
+  }
+
+  @each $position in $positions {
+    $posKey: nth($position, 1);
+    $posValue: nth($position, 2);
+
+    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+
+        margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+    }
+
+    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+
+        padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+    }
+
+    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey}-mobile {
+
+      @media (max-width: 769px) {
+        padding-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+      }
+    }
+
+    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey}-mobile {
+
+      @media (max-width: 769px) {
+        margin-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+      }
+    }
+  }
+}

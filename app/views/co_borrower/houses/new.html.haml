@@ -1,0 +1,25 @@
+- title(t("meta.list_rental.title"))
+.container
+  .panel.m-t-lg.m-b-lg
+    %span.is-size-6
+      = link_to t('buttons.click_here'), 'https://calendly.com/joincher/free-one-on-one-with-cher', rel: 'noopener', target: '_blank', class: 'link'
+      = t('sell.speak_with_professionals')
+    .is-size-4.is-bold.m-t-xs.m-b-md
+      = t('sell.benefits_include')
+    %ul
+      .columns.is-marginless.is-multiple
+        .column.is-paddingless
+          %li.m-b-sm.is-bold
+            = fa_icon('home', text: t('sell.posting_california_mls'), class: 'has-text-primary m-r-sm')
+          %li.m-b-sm.is-bold
+            = fa_icon('broadcast-tower', text: t('sell.listed_in_multiple_platforms'), class: 'has-text-primary m-r-sm')
+        .column.is-paddingless
+          %li.m-b-sm.is-bold
+            = fa_icon('hands-helping', text: t('sell.hands_on_help'), class: 'has-text-primary m-r-sm')
+          %li.m-b-sm.is-bold
+            = fa_icon('envelope', text: t('sell.direct_email_outreach'), class: 'has-text-primary m-r-sm')
+    %hr
+    .is-size-4.is-bold.m-t-md.m-b-md
+      = t('sell.for_sale')
+    %p.help= t('sell.sale_note')
+    = render 'shared/house_form', submit_text: t('sell.post_for_sale'), submit_path: co_borrower_houses_path, method: :post

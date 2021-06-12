@@ -1,0 +1,95 @@
+%input{ type: 'hidden', value: 'Clique checkout page', id: 'currentPageInput' }
+- title(t("meta.pricing.title"))
+- meta_tag(:description, t("meta.partnet_with_us.description"))
+#checkout.full-width-container.is-paddingless{"data-controller": "payment", 'data-payment-user-email': current_user&.email }
+  %h3.is-size-3.is-size-4-mobile.has-text-centered.m-b-lg= t("checkout.title")
+  .banner.p-t-lg.p-b-lg
+    %p.is-size-6.title.has-text-centered.is-marginless= t("checkout.one_month_subscription")
+    .has-text-centered.amount.is-bold.columns.is-marginless.is-centered.p-t-md.is-mobile
+      = image_tag "cherapp-ownership-checkout-badge.svg", class: 'm-r-md'
+      %input#paymentValueInput{ type: 'hidden', value: @price }
+      %p#paymentValueText= number_to_currency(@price, precision: 0, unit: "$")
+
+  .container
+    .columns.is-centered.is-marginless
+      .column.is-10-tablet.is-12
+        .columns.is-marginless.is-justified-center.m-t-md.p-t-lg.p-b-lg.is-paddingless-mobile.is-reversed-mobile
+          .column.is-half.is-paddingless-mobile
+            .has-shadow
+              %div{'data-target': 'payment.formContainer'}
+                .columns.is-mobile.is-marginless
+                  .column.is-half.p-t-none.p-l-none.p-b-none
+                    .field
+                      %label.label{ for: 'firstName'}
+                        = t('labels.first_name_titleized')
+                      .control
+                        %input.input.is-white.is-primary{placeholder: t("payment.full_name_placeholder"), type: 'text', value: current_user&.first_name, id: 'firstName' }
+                  .column.is-paddingless
+                    .field
+                      %label.label{ for: 'lastName'}
+                        = t('labels.last_name_titleized')
+                      .control
+                        %input.input.is-white.is-primary{placeholder: t("payment.full_name_placeholder"), type: 'text', value: current_user&.last_name, id: 'lastName' }
+                .field
+                  %label.label= t('checkout.card_number')
+                  .control
+                    #card-number
+                .columns.is-mobile.is-marginless
+                  .column.is-half.p-t-none.p-l-none.p-b-none
+                    .field
+                      %label.label= t('checkout.expiration_date')
+                      .control
+                        #card-expiry
+                  .column.is-paddingless
+                    .field
+                      %label.label= t('checkout.cvc')
+                      .control
+                        #card-cvc
+                - unless current_user
+                  .field.m-t-md
+                    %label.label= t('labels.email')
+                    .control
+                      %input.input.is-white.is-primary{placeholder: t("placeholders.type_your_email"), type: 'text', value: current_user&.email, id: 'email'}
+              #card-errors.m-t-xs.is-size-6{role: "alert", "data-target": "payment.errorsContainer"}
+              %button#submit.button.is-primary.is-fullwidth.m-t-lg.has-text-mint{"data-action": "payment#handleSubmit", "data-target": "payment.submitButton", "plan-type": params[:plan] }
+                = t('checkout.complete_payment')
+              .m-t-xs.is-size-6.has-text-centered{role: "alert", "data-target": "payment.sucessMessage"}
+              %a.button.is-fullwidth.m-t-md.is-hidden.is-mint{ href: "#", "data-target": "payment.buttonContinue" }
+                = t('payment.continue')
+            %p.is-size-7.m-t-md.has-text-centered
+              = t('checkout.note')
+            .is-hidden-tablet{ 'data-controller': 'coupons' }
+              %label.label{ for:  'promo_code', 'data-target': 'coupons.label'}
+                I have a promo code
+              %span.is-hidden.is-block{ 'data-target': 'coupons.succesMessage' }
+                Promo code applied! You've received 50% off your first month of Cher® Clique Premium
+              .field.has-addons.has-full-width-mobile{ 'data-target': 'coupons.inputWrapper' }
+                %p.control.is-expanded.is-marginless
+                  %input.input.is-primay.is-marginless{ id: 'promo_code', placeholder: 'Type your promo code', 'data-target': 'coupons.couponInput'}
+                %p.control
+                  %button.has-width-auto.has-height-auto.button.is-secondary.is-tag-secondary.has-regular-border.has-text-mint{ type: 'button', 'data-action': 'coupons#applyCoupon', 'data-input-target': 'couponInput2' }
+                    = image_tag "cherapp-ownership-coborrowing-checkout-promo.svg"
+              %p.help.is-danger.is-hidden{ 'data-target': 'coupons.errorMessage' }
+                Invalid code
+              %span.is-hidden{ 'data-target': 'coupons.notifier' }
+                = 'Your code is only valid for one month'
+          .column.is-half.is-centered.columns.is-marginless.is-multiline.is-paddingless-mobile
+            = image_tag "cherapp-ownership-checkout-card.svg", class: "column is-10 is-12-mobile is-paddingless-mobile m-b-md"
+            - if current_user
+              %input#couponDiscountInput{ type: 'hidden' }
+              .is-hidden-mobile.has-full-width.p-l-md.p-r-md{ 'data-controller': 'coupons' }
+                .has-text-left
+                  %label.label{ for: 'coupon', 'data-target': 'coupons.label'}
+                    I have a promo code
+                  %span.is-hidden.is-block{ 'data-target': 'coupons.succesMessage' }
+                    Promo code applied! You've received 50% off your first month of Cher® Clique Premium
+                .field.has-addons.has-full-width-mobile{ 'data-target': 'coupons.inputWrapper' }
+                  %p.control.is-expanded.is-marginless
+                    %input.input.is-primay.is-marginless#couponInput2{ id: 'coupon', placeholder: 'Type your promo code', 'data-target': 'coupons.couponInput' }
+                  %p.control
+                    %button.has-width-auto.has-height-auto.button.is-secondary.is-tag-secondary.has-regular-border.has-text-mint{ type: 'button', 'data-action': 'coupons#applyCoupon', 'data-input-target': 'couponInput2' }
+                      = image_tag "cherapp-ownership-coborrowing-checkout-promo.svg"
+                %p.help.is-danger.is-hidden{ 'data-target': 'coupons.errorMessage' }
+                  Invalid code
+                %span.is-hidden{ 'data-target': 'coupons.notifier' }
+                  = 'Your code is only valid for one month'

@@ -1,0 +1,95 @@
+[data-tooltip] {
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+
+  > span::after {
+    border-bottom: 5px solid  $essential-blue;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    content: ' ';
+    font-size: 0;
+    left: 50%;
+    line-height: 0;
+    margin-left: -5px;
+    position: absolute;
+    top: 127%;
+    width: 0;
+    z-index: 1;
+  }
+
+  &.is-up {
+    > span::after {
+      border-bottom: 0;
+      border-top: 5px solid  $essential-blue;
+      top: -30%;
+    }
+
+    &::before {
+      bottom: 110%;
+      top: unset;
+    }
+
+    &::after {
+      border-bottom: 0;
+      border-top: 5px solid  $divider-blue;
+      top: -32%;
+    }
+  }
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after,
+[data-tooltip] > span::after {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+[data-tooltip]::before {
+  background-color: $divider-blue;
+  border: 1px solid $essential-blue;
+  border-radius: 3px;
+  color: $main-body;
+  content: attr(data-tooltip);
+  font-size: 14px;
+  font-style: italic;
+  left: 50%;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  margin-left: -180px;
+  padding: 7px;
+  position: absolute;
+  text-align: center;
+  top: 145%;
+  width: 360px;
+  z-index: 3;
+
+  @media(max-width: 768px) {
+    margin-left: -140px;
+    top: 135%;
+    width: 200px;
+  }
+}
+
+[data-tooltip]::after {
+  border-bottom: 5px solid  $divider-blue;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  content: ' ';
+  font-size: 0;
+  left: 50%;
+  line-height: 0;
+  margin-left: -5px;
+  position: absolute;
+  top: 130%;
+  width: 0;
+  z-index: 4;
+}
+
+[data-tooltip]:hover span::after,
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

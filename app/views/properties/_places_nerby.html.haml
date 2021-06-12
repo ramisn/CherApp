@@ -1,0 +1,12 @@
+- if places && places.any?
+  .column.is-5.is-marginless
+    %h3.m-b-xs= title
+    - places.take(3).each do |place|
+      .m-b-md{ 'data-controller': 'places-property', 'data-places-property-place-id': place['place_id'] }
+        %div{ 'data-target': 'places-property.placeContainer' }
+        .m-b-xs
+          %p.is-marginless.is-bold
+            = place['name']
+        %p.is-marginless
+          = place['address'].gsub(/, .*/, '')
+        %p.is-marginless{ 'data-target': 'places-property.placePhoneNumber' }

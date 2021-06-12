@@ -1,0 +1,54 @@
+%h3.is-bold.is-size-4.m-t-md.has-text-left
+  House Details
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-6-mobile
+    .field
+      = f.label :bedrooms, 'Bedrooms', class: 'label'
+      .control.m-r-md
+        = f.number_field :bedrooms, class: 'input', min: 1, required: true, 'data-target': 'numerical-inputs.input'
+  .column.is-paddingless.is-6-mobile
+    .field
+      = f.label :bathrooms, 'Bathrooms', class: 'label'
+      .control.m-r-md
+        = f.number_field :bathrooms, class: 'input', min: 1, required: true, 'data-target': 'numerical-inputs.input'
+  .column.is-paddingless.is-6-mobile
+    .field
+      = f.label :square_feet, 'Square feet', class: 'label'
+      .control.m-r-md
+        = f.number_field :square_feet, class: 'input', 'data-target': 'numerical-inputs.input'
+  .column.is-paddingless.is-6-mobile.is-narrow
+    .field
+      = f.label :laundry, 'Laundry', class: 'label'
+      .control
+        .select
+          = f.select :laundry, Rental.laundries.keys.map{ |laundry_type| [t("rental.laundry.#{laundry_type}"), laundry_type] }
+
+.field
+  = f.check_box :permit_pets, class: 'input is-checkradio', type: 'checkbox', 'data-action': 'rental-house#togglePetsOptions'
+  = f.label :permit_pets, 'Permit pets'
+.is-collapsible.m-b-md{ 'data-target': 'rental-house.petsContainer' }
+  %h4.is-size-5.is-bold
+    What kind of pets are allowed?
+  .columns.is-marginless.is-flex.is-multiline
+    .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+      .field
+        = f.check_box :permit_cats, class: 'input is-checkradio', type: 'checkbox'
+        = f.label :permit_cats, 'Permit cats'
+    .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+      .field
+        = f.check_box :permit_small_dogs, class: 'input is-checkradio', type: 'checkbox'
+        = f.label :permit_small_dogs, 'Permit small dogs'
+    .column.is-paddingless.is-12-mobile.is-4-tablet.is-3-fullhd.m-t-sm
+      .field
+        = f.check_box :permit_large_dogs, class: 'input is-checkradio', type: 'checkbox'
+        = f.label :permit_large_dogs, 'Permit large dogs'
+
+%h4.is-size-5.is-bold
+  = t('sell.photos')
+.file{ 'data-controller': 'image-preview' }
+  %label.file-label
+    = f.file_field :images, multiple: true, class: 'file-input', accept: 'image/jpeg, image/jpg, image/png', 'data-action': 'image-preview#setPreviews', required: true
+    .file-cta.is-tag
+      = fa_icon('image')
+      %span.file-label= t('labels.picture')
+#houseImagesContainer.columns.is-marginless.is-flex.is-multiline

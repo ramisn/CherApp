@@ -1,0 +1,38 @@
+- title(t('meta.admin.loans.title'))
+.container
+  .panel.m-t-lg.m-b-lg
+    %h2.has-text-centered
+      = "#{@user.full_name} loans"
+    .columns.is-marginless.is-justified-end
+      .buttons.is-justified-end.is-marginless
+        = link_to t("admin.professionals.all"), admin_co_borrower_loans_path, class: 'button is-info is-small'
+        = link_to 'Active', admin_co_borrower_loans_path(filter: :active), class: 'button is-success is-small'
+        = link_to 'Finished', admin_co_borrower_loans_path(filter: :finished), class: 'button is-info is-small'
+        = link_to t("house.status.rejected"), admin_co_borrower_loans_path(filter: :rejected), class: 'button is-danger is-small'
+    .columns.is-marginless
+      .column
+        %table.table.has-full-width
+          %thead
+            %tr
+              %th
+                = t('generic.owner')
+              %th
+                = "Request date"
+              %th
+                = "Status"
+              %th
+                = t('generic.actions')
+          %tbody
+            - @requested_loans.each do |loan|
+              %tr
+                %td
+                  = loan.user.full_name
+                %td
+                  = l(loan.created_at, format: :short)
+                %td
+                  = loan.status
+                %td
+                  = link_to edit_admin_co_borrower_loan_path(@user, loan) do
+                    = fa_icon('edit')
+                  = link_to admin_co_borrower_loan_path(@user, loan, format: :csv) do
+                    = fa_icon('download')

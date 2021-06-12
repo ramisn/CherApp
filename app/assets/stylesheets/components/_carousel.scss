@@ -1,0 +1,66 @@
+// OVERRIDE DEFAULT BULMA CAROUSEL
+.carousel {
+  display: flex;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  .slider-navigation-previous {
+    left: 10px;
+  }
+
+  .slider-navigation-next {
+    right: 10px;
+  }
+
+  &.has-no-pagination .slider-pagination {
+    display: none;
+  }
+
+  &.has-no-arrows {
+    .slider-navigation-next,
+    .slider-navigation-previous {
+      display: none;
+    }
+  }
+
+  &.coborrower {
+    .slider-navigation-previous,
+    .slider-navigation-next {
+      background-color: $helper-blue;
+      border-color: $helper-blue;
+
+      polyline {
+        fill: $essential-blue;
+      }
+    }
+  }
+}
+
+
+.carousel-item {
+  display: none;
+  min-height: 125px;
+
+  &.is-active {
+    animation: carousel-appear 1s forwards;
+    display: block;
+  }
+
+  &.fade-carousel {
+    animation: fade-carousel 1s forwards;
+  }
+}
+
+@keyframes carousel-appear {
+  0% {  opacity: 0; transform: translate(0, 25px); }
+  50% {  opacity: 0; transform: translate(0, 25px); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes fade-carousel {
+  0% { opacity: 1; transform: translate(0, 0); }
+  50% {  opacity: 0; transform: translate(0, -25px); }
+  51% {  opacity: 0; transform: translate(0, -25px); }
+}

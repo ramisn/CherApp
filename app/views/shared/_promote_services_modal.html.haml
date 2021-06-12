@@ -1,0 +1,26 @@
+.modal#professionalContactModal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .column{ 'data-target': 'modal.modalContent' }
+      .box
+        .columns.is-centered.is-marginless.is-multiline.is-vcentered
+          = form_for(:contact, url: contact_supports_path ) do |f|
+            .column-is-10
+              %h3.is-size-3.has-text-centered
+                = t('dashboard.speak_to_a_representative')
+              .field.has-text-left
+                = f.label :name, t('generic.name'), class: 'label'
+                .control
+                  = f.text_field :name, placeholder: t('placeholders.your_name_here'), class: 'input', required: true, minlength: 3, maxlength: 30, value: current_user&.full_name
+              .field.has-text-left
+                = f.label :email, t('generic.email'), class: 'label'
+                .control
+                  = f.text_field :email, type: 'email', placeholder: t('placeholders.your_email'), class: 'input', required: true, minlength: 10, maxlength: 50, value: current_user&.email
+              .field.has-text-left{ 'data-controller': 'calls' }
+                = f.label :phone, t('labels.phone'), class: 'label'
+                .control
+                  = f.text_field :phone, pattern: '[0-9]{10}', placeholder: t('placeholders.phone_number'), class: 'input', required: true, minlength: 10, maxlength: 10, value: current_user&.phone_number, 'data-target': 'calls.phoneNumber'
+              .field.is-expanded.m-t-md
+                = f.submit t('buttons.submit'), class: 'button is-primary is-fullwidth'
+          = render 'shared/contact_icons'      
+        %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

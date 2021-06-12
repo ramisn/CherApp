@@ -1,0 +1,12 @@
+%section.section.real-estate
+  .container
+    .columns.is-centered.is-marginless
+      .column.is-8.has-text-centered
+        %h1.is-size-1.is-size-2-mobile.has-text-white
+          =t('landing_page.body.hey_real_state_agents')
+          %br
+          =t('landing_page.body.see_if_you_qualify')
+    .columns.is-centered.is-marginless
+      .column.is-3.has-text-centered
+        = link_to t("landing_page.body.real_button"), new_user_registration_path, class: 'button is-primary m-t-md'
+        = link_to t("landing_page.body.real_learn"), professionals_path, class: 'button is-secondary m-t-md'

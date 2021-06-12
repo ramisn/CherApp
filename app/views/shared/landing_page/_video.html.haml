@@ -1,0 +1,8 @@
+#video-section
+  .container.image{ 'data-controller': 'modal'}
+    %button.playVideo.gtm-video-play
+    = video_tag("cher.mp4", id: 'video')
+    %button.button.action{ 'data-action': 'modal#toggleModal' }
+      = image_tag('cherapp-ownership-coborrowing-ico-share.svg', alt: t('img_alts.share'))
+      %span= t('generic.share')
+    = render 'shared/share_general_item_modal', path: 'https://youtu.be/LLOhYfK2biM', type: 'video'

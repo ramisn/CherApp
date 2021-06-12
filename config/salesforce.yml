@@ -1,0 +1,17 @@
+# salesforce.yml
+# common: &common
+#   api_version: ENV['SF_API_VERSION']
+#   username: ENV['SF_USERNAME']
+#   password: ENV['SF_PASSWORD']
+#   security_token: ENV['SF_SECURITY_TOKEN']
+#   client_id: ENV['SF_CLIENT_ID']
+#   client_secret: ENV['SF_CLIENT_SECRET']
+
+# test:
+#   <<: *common
+
+# development:
+#   <<: *common
+
+# production:
+#   <<: *common

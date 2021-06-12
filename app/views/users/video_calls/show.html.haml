@@ -1,0 +1,11 @@
+%input{ type: 'hidden', value: 'video call page', id: 'currentPageInput' }
+- title(t("meta.video_call.title"))
+.is-hidden-mobile
+  = react_component('chat/VideoChatConversation', channelSid: @channel_sid, userExternalName: current_user.external_attendee_name)
+.is-hidden-tablet.has-regular-padding.has-text-centered
+  %h4.is-bold= t("video_call.not_working_title")
+  %hr
+  = image_tag('cherapp-ownership-coborrowing-not-working-phone.svg', class: 'm-t-md m-b-lg')
+  %p.is-bold= t('video_call.suggestion')
+  = link_to 'Go back', url_for(:back), class: 'link is-link is-bold m-t-md m-b-lg is-block'
+

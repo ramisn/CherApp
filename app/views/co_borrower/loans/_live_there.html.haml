@@ -1,0 +1,24 @@
+#liveThereContainer.is-hidden
+  %h2.is-size-3.has-text-centered.has-text-blue= t('loans.about_home')
+  %h5.is-size-5.has-text-centered.m-b-md= t('loans.will_live_there')
+  .columns.is-marginless.is-mobile
+    .column.is-6.is-mobile.is-6-tablet
+      .is-flex.has-items-centered.has-direction-column
+        = image_tag('mortgage/cherapp-ownership-coborrowing-bed-blue.svg', alt: t('img_alts.confortable_bed'), class: 'image is-64x64 has-text-primary', id: 'bedBlue')
+        = image_tag('mortgage/cherapp-ownership-coborrowing-bed-grey.svg', alt: t('img_alts.confortable_bed'), class: 'image is-64x64 has-text-primary is-hidden', id: 'bedGrey')
+        .field.m-t-md
+          = f.radio_button :live_there, true, class: 'is-checkradio', checked: true, id: 'loan_live_there_true', 'data-action': 'loans#updateIcon', 'data-disable-image': ['bedGrey', 'bagBlue'].to_json, 'data-enable-image': ['bedBlue', 'bagGrey'].to_json
+          = f.label :live_there_true, t('generic.yes_i_will')
+
+    .column.is-6.is-mobile.is-6-tablet
+      .is-flex.has-items-centered.has-direction-column
+        = image_tag('mortgage/cherapp-ownership-coborrowing-bag-grey.svg', alt: t('img_alts.suitcase'), class: 'image is-64x64', id: 'bagGrey')
+        = image_tag('mortgage/cherapp-ownership-coborrowing-bag-blue.svg', alt: t('img_alts.suitcase'), class: 'image is-64x64 is-hidden', id: 'bagBlue')
+        .field.m-t-md
+          = f.radio_button :live_there, false, class: 'is-checkradio', id: 'loan_live_there_false', 'data-action': 'loans#updateIcon', 'data-disable-image': ['bedBlue', 'bagGrey'].to_json, 'data-enable-image': ['bedGrey', 'bagBlue'].to_json
+          = f.label :live_there_false, t('generic.no_i_wont')
+  .columns.is-centered.is-marginless
+    .column.is-12-mobile.is-8-tablet.is-flex.has-space-between.m-t-lg
+      %button.button.is-tag-primary.has-regular-border{ type: 'button', 'data-action': 'stepper#previousItem', 'data-previous-item': 'firstHomeContainer', 'data-current-item': 'liveThereContainer' }
+        = t('generic.previous')
+      = f.button t('buttons.finish'), type: 'submit', class: 'button is-tag-primary has-regular-border'

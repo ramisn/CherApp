@@ -1,0 +1,54 @@
+%li.post.is-relative
+  - if post.owner_id == current_user.id
+    .options-container
+      = fa_icon('ellipsis-h')
+      .is-relative
+        .options
+          %button.button.is-tertiary{ 'data-publication-id': post.id, 'data-action': 'edit-publications#requestForm edit-publications#toggleModal'}
+            = t('generic.edit')
+          = link_to t('generic.delete'), publication_path(post), class: 'action is-blue', method: :delete, data: { confirm: t("generic.are_you_sure")}
+
+  - if user_posted_in_friend_newsfeed?(post)
+    %span= t('feed.user.you_posted_in')
+    = link_to(post.recipient.full_name, user_path(post.recipient), target: '_blank', class: 'gtm-track-click', 'gtm-label': 'News Feed Click - UserPost', 'gtm-value': post.recipient.full_name)
+    %span= t('feed.user.profile')
+  - elsif someone_posted_in_user_newsfeed?(post)
+    = link_to(post.owner.full_name, user_path(post.owner), target: '_blank', class: 'gtm-track-click', 'gtm-label': 'News Feed Click - UserPost', 'gtm-value': post.owner.full_name)
+    %span= t('feed.user.posted_in_your_profile')
+  - elsif user_is_owner_of_post?(post)
+    %span= t('feed.user.you_shared')
+  - else
+    = link_to(post.owner.full_name, user_path(post.owner), target: '_blank', class: 'gtm-track-click', 'gtm-label': 'News Feed Click - UserPost', 'gtm-value': post.owner.full_name)
+    %span= t('feed.user.shared_post')
+
+  = record_formated_date(post)
+  = image_tag(post.owner.profile_image, alt: t('img_alts.user_profile'), class: 'profile-picture')
+  .content.is-marginless
+    %p.is-marginless.has-text-weight-normal= post.message
+  .columns.is-marginless.is-flex.is-multiline
+    - post.images.each_with_index do |image, index|
+      .image-container{ class: index >= 5 ? 'is-hidden' : ''}
+        = image_tag(image.variant(resize: '200x200'),
+                    id: "image_#{image.id}",
+                    alt: t('img_alts.user_post'),
+                    class: 'post-image',
+                    'data-action': 'click->images-modal#updateModalImage click->images-modal#toggleModal',
+                    'data-publication-id': post.id,
+                    'data-previous-image': index == 0 ?  nil : post.images[index - 1]&.id,
+                    'data-image-id': image.id,
+                    'data-next-image': post.images[index + 1]&.id )
+    - if post.images.size > 5
+      .image-container
+        %button.button.has-no-style{ 'data-action': 'click->images-modal#updateModalImage click->images-modal#toggleModal',
+                                     'data-publication-id': post.id,
+                                     'data-previous-image': post.images[4].id,
+                                     'data-image-id': post.images[5].id,
+                                     'data-next-image': post.images[6]&.id }
+          = "+#{post.images.size - 5}"
+
+  - if user_likes_post?(post, current_user)
+    = button_dislike_post(post)
+  - else
+    = button_like_post(post)
+  = share_button(post)
+  = render 'shared/comments', path: publication_comments_path(post), post: post

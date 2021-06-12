@@ -1,0 +1,20 @@
+exclude: 'app/assets/stylesheets/pages/vouched_container.scss'
+
+linters:
+  ColorVariable:
+    enabled: false
+
+  SelectorFormat:
+    enabled: false
+
+  PlaceholderInExtend:
+    enabled: false
+
+  IdSelector:
+    enabled: false
+
+  ImportantRule:
+    enabled: false
+
+  NestingDepth:
+    max_depth: 4

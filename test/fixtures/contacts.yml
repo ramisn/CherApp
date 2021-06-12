@@ -1,0 +1,15 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id               :bigint           not null, primary key
+#  status           :integer          default("0")
+#  contactable_id   :integer
+#  contactable_type :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+co_borrower_contact:
+  status: created
+  contactable: co_borrower_user(User)

@@ -1,0 +1,21 @@
+.is-size-4.is-bold
+  = t('sell.open_house')
+.columns.is-marginless
+  .column
+    .is-size-5.is-bold
+      = t('generic.date')
+    = @house.date_for_open_house || t('generic.n_a')
+  .column
+    .is-size-5.is-bold
+      = t('sell.start_time')
+    - if @house.start_hour_for_open_house.blank?
+      = t('generic.n_a')
+    - else
+      = l(@house.start_hour_for_open_house, format: :standar_hour)
+  .column
+    .is-size-5.is-bold
+      = t('sell.end_time')
+    - if @house.end_hour_for_open_house.blank?
+      = t('generic.n_a')
+    - else
+      = l(@house.end_hour_for_open_house, format: :standar_hour)

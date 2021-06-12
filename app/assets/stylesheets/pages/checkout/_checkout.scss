@@ -1,0 +1,33 @@
+#checkout {
+  margin-top: $regular-margin * 2;
+  h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .amount {
+    color: $gold;
+    font-size: 2.5rem;
+  }
+
+  .footer {
+    padding: $regular-padding 0;
+  }
+
+  .banner {
+    background-color: $primary;
+
+    .title {
+      color: $white;
+    }
+  }
+}
+
+.StripeElement {
+  background-color: $white;
+  border: solid 1px #eaf1f9;
+  border-radius: 5px;
+  box-shadow: none;
+  color: #545454;
+  padding: 9px calc(0.625em - 1px);
+}

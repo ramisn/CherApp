@@ -1,0 +1,48 @@
+- title(t("meta.personality_test.title"))
+.container.has-regular-padding{"data-controller": "responses-carousel"}
+  .column.is-centered.is-flex.has-regular-padding-vertical
+    %progress#progressBar.progress{ "data-target": "responses-carousel.statusBar", value: 0, max: LiveFactor.number_of_questions }
+  .columns.is-centered.is-flex.has-regular-padding-vertical.is-marginless
+    = form_for current_user, url: co_borrower_responses_path, method: :post do |f|
+      .carousel-container{'data-target': 'responses-carousel.carouselContainer'}
+        %h2.is-purple.has-centered-text
+          =t("personality_test.label")
+        .main-content
+          .columns.is-centered.is-flex.is-paddingless.is-marginless
+            .column.is-paddingless.is-flex.has-content-centered
+              %button.link-arrow{ "data-action": "responses-carousel#previousElement", type: "button" }
+                = image_tag('cherapp-ownership-coborrowing-back.svg', alt: t('img_alts.left_arrow'))
+            .column.is-paddingless.is-10-mobile.is-10-tablet.is-8-desktop
+              = f.hidden_field :last_question_reponded, { "data-target": "responses-carousel.lastRespondedQuestion", value: current_user.last_question_reponded }
+              = f.fields_for :responses_attributes do |r|
+                - LiveFactor.all.each_with_index do |live_factor, index|
+                  .carousel-item{id: "liveFactor#{index}", "data-index": index, "data-target": "responses-carousel.container"}
+                    .field.is-a-checkbox-group
+                      .column.has-text-centered
+                        = r.label :response, live_factor.question, class: 'label is-size-5 is-size-6-mobile'
+                      .column.is-paddingless.is-flex
+                        = r.hidden_field :id, value: response_id(live_factor), index: index
+                        - LiveFactor.frequencies.keys.each_with_index do |key, key_index|
+                          = r.radio_button :response, key_index+1, {class: "is-checkradio is-small is-group is-coral",
+                                                                    index: index,
+                                                                    checked: user_select_option(live_factor, key_index + 1),
+                                                                    "data-current": "liveFactor#{index}",
+                                                                    "data-action": "click->responses-carousel#nextElement",
+                                                                    id: "user_responses_attributes_#{index}_response_#{key_index+1}"}
+                          = r.label :response, key_index+1, for: "user_responses_attributes_#{index}_response_#{key_index + 1}", class: "label is-size-5 is-size-7-mobile"
+                      .column.is-paddingless
+                        = r.label live_factor.start_label, class: 'left-label is-size-6-desktop is-size-6-tablet'
+                        = r.label live_factor.end_label, class: 'right-label is-size-6-desktop is-size-6-tablet'
+                        = r.hidden_field :live_factor_id, value: live_factor.id, index: index
+            .column.is-paddingless.is-flex.has-content-centered
+              %button.link-arrow.next{ type: "button" }
+                = image_tag('cherapp-ownership-coborrowing-back.svg', alt: t('img_alts.right_arrow'))
+      .main-content
+        #personalityTestSubmit.carousel-item.has-regular-margin-vertical{ "data-target": "responses-carousel.container" }
+          .columns.is-marginless.is-multiline
+            .column.is-6.is-offset-3.has-centered-text
+              = image_tag 'cherapp-ownership-coborrowing-ico-user-key.svg', alt: t('img_alts.person_with_key'), width: '50%'
+            .column.is-6.is-offset-3.has-centered-text
+              %h3.m-b-lg.is-purple.is-bold=t("personality_test.done")
+              = f.submit t("buttons.personality_test_submit"), class: 'button is-primary is-fullwidth gtm-track-click', 'gtm-label': 'Personality Test - Finish', 'gtm-value': current_user.id
+

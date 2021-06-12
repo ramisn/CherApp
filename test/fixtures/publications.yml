@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: publications
+#
+#  id               :bigint           not null, primary key
+#  owner_id         :bigint
+#  message          :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  recipient_id     :bigint
+#  publication_type :integer
+#  link             :string
+#  params           :jsonb
+#
+
+co_borrower_home:
+  owner: co_borrower_user
+  message: I'm lookin for a co-owner

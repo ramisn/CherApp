@@ -1,0 +1,22 @@
+.rebrand.full-width-container
+  .container.is-family-secondary
+    .panel.has-fixed-width.is-centered
+      .columns.is-centered.is-multiline.is-marginless
+        .column.is-11
+          %h3= t("buttons.password_reset")
+        - if devise_mapping.omniauthable?
+          .column.is-11
+            .columns.is-vcentered.is-centered.has-border-bottom.is-marginless
+              .column.is-4.has-text-right-desktop
+                %span.is-bold= t('sign_in.connect_with')
+              .column.is-7
+                = render "devise/shared/links"
+        .column.is-11
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            .field
+              = f.label :email, t("labels.email"), class: "label"
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "email input", placeholder: t("placeholders.email")
+              - if resource.errors[:email]
+                %p.help.is-danger
+                  = resource.errors[:email].first
+            = f.submit t("devise.buttons.send_instructions"), class: 'button is-primary is-fullwidth'

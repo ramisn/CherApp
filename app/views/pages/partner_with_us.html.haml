@@ -1,0 +1,39 @@
+- title(t("meta.partner_with_us.title"))
+- meta_tag(:description, t("meta.partnet_with_us.description"))
+#partner-with-us.full-width-container.custom-page
+  .page-hero.is-fully-centered
+    .container.is-fully-centered
+      .columns.is-multiline
+        .column.is-12.has-text-centered
+          %h1 Want to be our partner?
+  .container
+    .columns.is-multiline.is-marginless
+      .column.is-12
+        %h2.has-red-border Partner with us
+        %p Recognized by our innovation and modern approach, we've partnered with some of the biggest companies in the real estate space so far.
+        %p We are always looking to add many more topnotch companies that can bring value to our users.
+        %p
+          Do you think your company would be a good fit to work with our co-ownership platform? If so, click below to shoot us an email
+          = mail_to "cher@cher.app", t(".email"), subject: t(".subject"), class: "link red"
+          with a brief introduction explaining what you are about and why we should collaborate.
+      .column.is-4.is-12-mobile.is-offset-4
+        = mail_to "cher@cher.app", 'Send us an email', subject: t(".subject"), class: "red button has-text-white is-bold"
+
+.landing-ticker.main-container.has-big-padding
+  .container
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-barada_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-vouched_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-uwm_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-equifax_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-rocket_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-crmls_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = image_tag("partner/cherapp-ownership-coborrowing-isoft_logo.png", class: 'animated-image')
+    .logo-container.is-fully-centered
+      = link_to image_tag("press/cherapp-ownership-coborrowing-mucker.png", class: 'animated-image'), "https://www.mucker.com/muckerlab-accelerator/", target: :blank

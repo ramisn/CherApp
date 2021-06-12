@@ -1,0 +1,86 @@
+image: registry.michelada.io/cherapp/cherapp:latest
+
+services:
+  - postgres
+  - redis:latest
+
+stages:
+  - lint
+  - test
+  - deploy
+
+variables:
+  POSTGRES_PASSWORD: postgres
+  REDIS_URL: redis://redis:6379
+
+cache:
+  paths:
+    - vendor/ruby
+    - node_modules
+
+before_script:
+  - gem install bundler -v 2.0.2
+  - bundle install -j $(nproc) --path vendor --full-index --clean
+  - yarn install
+  - ruby -v
+  - node -v
+  - bundler -v
+
+test:
+  stage: test
+  script:
+    - cp config/database.ci.yml config/database.yml
+    - RAILS_ENV=test bundle exec rails db:create
+    - bundle exec rails db:test:prepare
+    - bundle exec rails test
+  artifacts:
+    when: on_failure
+    paths:
+      - coverage/
+      - tmp/screenshots
+
+jest:
+  stage: test
+  script:
+    - yarn test
+
+"test:system":
+  stage: test
+  script:
+    - cp config/database.ci.yml config/database.yml
+    - RAILS_ENV=test bundle exec rails db:create
+    - bundle exec rails db:test:prepare
+    - CI=true bundle exec rails test:system
+  artifacts:
+    when: on_failure
+    paths:
+      - coverage/
+      - tmp/screenshots
+
+rubocop:
+  stage: lint
+  script:
+    - bundle exec rubocop
+
+scss-lint:
+  stage: lint
+  script:
+    - bundle exec scss-lint app/assets/stylesheets/components
+
+heroku-master:
+  stage: deploy
+  script:
+    - bundle
+    - gem install dpl
+    - dpl --provider=heroku --app=cherappio --api-key=$HEROKU_API_KEY
+  only:
+    - master
+
+heroku-staging:
+  stage: deploy
+  script:
+    - bundle
+    - gem install dpl
+    - dpl --provider=heroku --app=cherapp-stage --api-key=$HEROKU_API_KEY
+  only:
+    - development

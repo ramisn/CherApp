@@ -1,0 +1,6 @@
+.box {
+  &.is-borderless {
+    border-radius: 0;
+    box-shadow: $darker-shadow;
+  }
+}

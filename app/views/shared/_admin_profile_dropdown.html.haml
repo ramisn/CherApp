@@ -1,0 +1,25 @@
+= link_to admin_topics_path do
+  = image_tag("cherapp-ownership-coborrowing-ico-doc.svg", alt: t('img_alts.document'), class: 'drop-image')
+  = t("admin.topics.label")
+%hr.is-marginless
+= link_to admin_contacts_path do
+  = image_tag("cherapp-ownership-coborrowing-ico-envelope.svg", alt: t('img_alts.envelope'), class: 'drop-image')
+  = t("admin.contacts.label")
+= link_to admin_professionals_path do
+  = image_tag("cherapp-ownership-coborrowing-ico-professional.svg", alt: t('img_alts.person_with_tie'), class: 'drop-image')
+  = t("admin.professionals.label")
+= link_to admin_inquiries_path do
+  = image_tag("cherapp-ownership-coborrowing-ico-research.svg", alt: t('img_alts.magnifying_glass_with_question_mark'), class: 'drop-image')
+  = t("admin.inquiries.label")
+= link_to admin_houses_path do
+  = image_tag("cherapp-ownership-coborrowing-house-feed.svg", alt: t('img_alts.house'), class: 'drop-image')
+  = t("generic.houses")
+= link_to admin_rentals_path do
+  = image_tag("cherapp-ownership-coborrowing-ico-rent.svg", alt: t('img_alts.house'), class: 'drop-image')
+  = t("generic.rentals")
+= link_to admin_co_borrowers_path do
+  = image_tag("loan.svg", alt: t('img_alts.house'), class: 'drop-image')
+  = 'Loans'
+= link_to admin_salesforce_path do
+  = image_tag("cherapp-ownership-coborrowing-refresh-ico.svg", alt: t('img_alts.house'), class: 'drop-image')
+  = 'Salesforce'  

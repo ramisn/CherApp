@@ -1,0 +1,404 @@
+.navbar {
+  background: $white;
+  border-bottom: 1px solid $grey-lightest;
+  box-shadow: $regular-shadow;
+  height: $header-size;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 25;
+
+  &.is-secondary {
+    border: 0;
+    box-shadow: none;
+
+    .cher-brand {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .panel.is-pointed {
+      border-radius: 0;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+      padding: $regular-padding;
+    }
+  }
+
+  li {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 15px;
+
+    &.has-separator::after {
+      background-color: $grey-lightest;
+      content: ' ';
+      display: block;
+      height: 20px;
+      margin-left: 15px;
+      width: 1px;
+    }
+  }
+
+  ul {
+    display: flex;
+  }
+
+  .cher-logo {
+    height: 50px;
+    padding: 1px;
+  }
+
+  .container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .chat-button {
+    align-items: center;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin-right: 1rem;
+    position: relative;
+    width: 50px;
+
+    &:focus {
+      outline: none;
+    }
+
+    .badge {
+      align-items: center;
+      background-color: $melow-coral;
+      border-radius: 5px;
+      bottom: 10px;
+      color: $white;
+      display: flex;
+      font-size: .75rem;
+      font-weight: bold;
+      height: 1rem;
+      justify-content: center;
+      min-width: 1rem;
+      padding: 2px 5px;
+      position: absolute;
+      right: 5px;
+    }
+  }
+
+  .menu-button {
+    align-items: center;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    display: none;
+    height: 50px;
+    justify-content: center;
+    width: 50px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+  }
+}
+
+.go-profile {
+  --profile-size: 50px;
+  align-items: center;
+  display: flex;
+  height: var(--profile-size);
+  position: relative;
+  width: var(--profile-size);
+
+  &:hover .drop-down {
+    opacity: 1;
+    pointer-events: auto;
+    transition: .2s;
+  }
+
+  a {
+    align-items: center;
+    color: $black;
+    display: flex;
+    font-weight: bold;
+    padding: 10px 100px 10px 60px;
+    position: relative;
+    transition: .2s;
+    white-space: nowrap;
+
+    &.is-secondary {
+      background-color: $helper-blue;
+      color: $essential-blue;
+
+      &:hover {
+        background: rgba($helper-blue, .7);
+      }
+    }
+  }
+
+  a:hover {
+    background: rgba($violet, .1);
+    transition: .2s;
+
+    .drop-image {
+      transform: scale(1.2);
+      transition: .2s;
+    }
+  }
+
+  .drop-container {
+    background: $white;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .drop-down {
+    opacity: 0;
+    padding-top: calc(15px + var(--profile-size));
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .2s;
+    z-index: 5;
+
+    .is-badge {
+      background-color: $coral;
+      border-radius: 100%;
+      height: 10px;
+      position: absolute;
+      right: 10px;
+      top: calc(50% - 5px);
+      width: 10px;
+    }
+  }
+
+  .drop-image {
+    border-radius: 0;
+    color: $violet;
+    font-size: 20px;
+    height: 20px;
+    left: 25px;
+    object-fit: contain;
+    object-position: center;
+    position: absolute;
+    transition: .2s;
+    width: 20px;
+  }
+
+  .drop-title {
+    font-size: 1rem;
+    font-style: italic;
+    padding: 0 15px;
+  }
+
+  .is-alert {
+    background: $red;
+    color: $white;
+
+    &:hover {
+      background: rgba($red, .7);
+    }
+  }
+
+  #notificationBadgeContainer .main-badge {
+    align-items: center;
+    background-color: $coral;
+    border-radius: 5px;
+    color: $white;
+    display: flex;
+    font-size: .75rem;
+    font-weight: bold;
+    height: 20px;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    width: 20px;
+
+    &.is-loading {
+      background-color: $coral;
+      border-width: 3px;
+      opacity: 1;
+      position: absolute;
+
+      &::after {
+        height: 10px;
+        left: calc(50% - 5px);
+        top: calc(50% - 5px);
+        width: 10px;
+      }
+    }
+  }
+
+  .profile-image {
+    border-radius: 100%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+
+    &.is-agent {
+      border: 2px solid $mint-green;
+
+      &.premium {
+        border-color: $gold;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 769px) {
+  .navbar {
+    align-items: center;
+    display: flex;
+    height: $header-size-mobile;
+    padding: 0 15px;
+
+    ul {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    li {
+      .button.is-flamingo {
+        font-size: .75rem;
+        padding: 5px 15px;
+      }
+    }
+
+    .cher-logo {
+      max-height: 35px;
+    }
+
+    .button.is-coral {
+      height: auto;
+      padding: 10px;
+    }
+
+    .cher-brand {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .menu-button {
+      display: flex;
+    }
+
+    .nav-menu {
+      align-items: center;
+      display: flex;
+
+      &.extra-menu {
+        ul {
+          width: 100%;
+        }
+
+        li {
+          color: $essential-blue;
+          font-size: 1rem;
+          font-weight: bold;
+          margin: 5px 0 5px 5px;
+          width: 100%;
+        }
+      }
+
+
+      ul {
+        --list-shadow-color: rgba(0, 0, 0, .2);
+        background: $divider-blue;
+        box-shadow: 10vw 10vw 10vw 0 var(--list-shadow-color);
+        display: none;
+        flex-direction: column;
+        height: calc(100vh - 75px);
+        left: 0;
+        position: fixed;
+        text-align: left;
+        top: 75px;
+        width: 90vw;
+        z-index: 3;
+
+        &.show {
+          animation: show-menu .2s forwards;
+          display: flex;
+        }
+
+        &.hide {
+          animation: hide-menu .2s forwards;
+          display: flex;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  .navbar-landing-page {
+    .nav-menu ul {
+      width: 100%;
+    }
+  }
+
+  .go-profile {
+    width: 100%;
+
+    .drop-container {
+      box-shadow: none;
+      padding-top: 1rem;
+    }
+
+    a {
+      padding-left: 70px;
+    }
+
+    .drop-title {
+      padding-left: 35px;
+    }
+
+    .drop-image {
+      left: 35px;
+    }
+
+    .drop-down {
+      opacity: 1;
+      padding-top: 0;
+      pointer-events: auto;
+      width: 100%;
+    }
+
+    .profile-image {
+      display: none;
+    }
+  }
+}
+
+@keyframes show-menu {
+  0% { opacity: 0; }
+
+  100% {  opacity: 1; }
+}
+
+@keyframes hide-menu {
+  0% { display: block; opacity: 1; }
+
+  100% { display: block; opacity: 0;}
+}
+
+@keyframes hide-notice {
+  0% { opacity: 1; }
+
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

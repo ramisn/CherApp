@@ -1,0 +1,30 @@
+.column.is-3-tablet.is-12-mobile.is-3-desktop.sidebar
+  .columns.is-marginless.has-direction-column
+    .column.is-paddingless
+      .navigational-container
+        %button.navigational-button.has-text-left.is-active{ type: "button", 'data-action': 'social-network#toogleView', 'data-target-container-id': 'connectionsContainer', 'data-target': 'social-network.actionButton' }
+          = fa_icon('users', class: 'icon')
+          = current_user.agent? ?  t('generic.prospects') : t('generic.friends')
+          - if @friend_requests.size.positive?
+            %span= @friend_requests.size
+
+      .navigational-container
+        %button.navigational-button.has-text-left{ type: "button", 'data-action': 'social-network#toogleView', 'data-target-container-id': 'suggestedFriendsContainer', 'data-target': 'social-network.actionButton' }
+          = fa_icon('user-friends', class: 'icon')
+          = current_user.agent? ? t('social_network.suggested_connections') : t('social_network.suggested_friends')
+
+      - if current_user.co_borrower?
+        .navigational-container
+          %button.navigational-button.has-text-left{ type: "button", 'data-action': 'social-network#toogleView', 'data-target-container-id': 'agentsContainer', 'data-target': 'social-network.actionButton', id: 'displayAgentsButton' }
+            = fa_icon('user-tie', class: 'icon')
+            = t('social_network.agents')
+    %hr
+      %h5.is-size-5.is-bold.m-b-md= t('generic.search_people')
+      = react_component("UserSugesterInput", isUserProfessional: current_user.agent?)
+    %hr
+    .column.is-paddingless.m-t-md
+      %h5.is-size-5.is-bold.m-b-md
+        = current_user.agent? ? t('social_network.import_prospects') : t('social_network.import_contacts')
+      .group-icons
+        = image_tag("cherapp-ownership-coborrowing-ico-facebook-basic.svg", class: 'icon gtm-import-from-facebook is-hidden', 'data-action': 'click->social-network#importFromFacebook', alt: t('img_alts.facebook_account'))
+        = image_tag("cherapp-ownership-coborrowing-ico-gmail.svg", class: 'icon gtm-import-from-google', 'data-action': 'click->social-network#importFromGoogle', alt: t('img_alts.mail_account'))

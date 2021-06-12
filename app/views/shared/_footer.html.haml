@@ -1,0 +1,51 @@
+%footer.footer
+  -# ShareASale MasterTag to track affiliates, it was put here because it's the html that is rendered in all the application
+  %script{ src:"https://www.dwin1.com/19038.js", type:"text/javascript", defer:"defer"}
+
+  .columns.is-multiline.is-marginless
+    .column.is-12-mobile.is-6-desktop
+      .columns.footer-links.is-flex.is-multiline.is-marginless
+        .column.is-6-mobile
+          %p.is-bold.is-size-5.m-b-md= t("footer.about")
+          %ul.is-open
+            %li.m-b-xs
+              = link_to t("footer.who_we_are"), '/who_we_are'
+            %li.m-b-xs
+              = link_to t("footer.why_we_do_it"), '/know_more'
+            %li.m-b-xs
+              = link_to t("footer.partner"), '/partner_with_us'
+        .column.is-6-mobile
+          %p.is-bold.is-size-5.m-b-md= t("footer.help_center")
+          %ul.is-open
+            %li.m-b-xs
+              = link_to t("footer.contact_us"), "/#contactUs"
+            %li.m-b-xs
+              = link_to t("footer.faq"), faq_path
+            %li.m-b-xs
+              = link_to t("footer.knowledge_hub"), knowledge_hub_path
+        .column.is-12-mobile.m-t-md-mobile
+          %p.is-bold.is-size-5.m-b-md= t("footer.legal")
+          %ul.is-open
+            %li.m-b-xs
+              = link_to t("footer.terms_conditions"), '/terms'
+            %li.m-b-xs
+              = link_to t("footer.private_terms"), '/privacy'
+            %li.m-b-xs
+              %a= t("footer.cookie")
+    .column.is-12-mobile.is-6-desktop.right-aligned-section-desktop
+      .is-hidden-mobile.p-b-lg
+        %a{href: 'https://www.youtube.com/channel/UCCSV1Qm64UBe-okuoEcA8Bg', target: '_blank', rel: 'noreferrer', class: 'm-r-md' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-youtube.svg', alt: t("img_alts.youtube_footer")
+        %a{href: 'https://www.linkedin.com/company/cher', target: '_blank', rel: 'noreferrer', class: 'm-r-md' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-linkedin-white.svg', alt: t("img_alts.linkedin_footer")
+        %a{href: 'https://www.facebook.com/cherapp', target: '_blank', rel: 'noreferrer', class: 'm-r-md' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-facebook.svg', alt: t("img_alts.facebook_account")
+        %a{href: 'https://www.instagram.com/cher.app/', target: '_blank', rel: 'noreferrer', class: 'm-r-md' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-instagram-white.svg', alt: t("img_alts.instagram_footer")
+        %a{href: 'https://twitter.com/Cher_App', target: '_blank', rel: 'noreferrer', class: 'm-r-md' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-twitter-white.svg', alt: t("img_alts.twitter_footer")
+        %a{href: ENV['BLOG_URL'], target: '_blank', rel: 'noreferrer', class: 'm-r-md' }
+          = image_tag 'cherapp-ownership-coborrowing-ico-rss.svg', alt: t("img_alts.rss_footer")
+      %p.is-marginless= t("footer.nmls_number")
+      %p.is-marginless= t("footer.department")
+      %p.is-marginless= t("footer.copyright")

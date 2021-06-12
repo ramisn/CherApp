@@ -1,0 +1,17 @@
+- if Rails.env.production?
+  User-agent: *
+  Allow: /$
+  Allow: /faq.html
+  Allow: /knowledge_hub.html
+  Allow: /look_around.html
+  Allow: /who_we_are.html
+  Allow: /know_more.html
+  Allow: /partner_with_us.html
+  Allow: /terms.html
+  Allow: /privacy.html
+  Disallow: /
+
+  Sitemap: https://www.cher.app/sitemap.xml
+- else
+  User-Agent: *
+  Disallow: /

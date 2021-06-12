@@ -1,0 +1,6 @@
+- @engaged_people.take(3).each do |engaged_person|
+  %fieldset.fieldset
+    .user-card
+      = image_tag engaged_person_picture(engaged_person), class: 'user-image', alt: t('img_alts.user_profile')
+    - if @engaged_people.count > 3
+      %span.has-text-weight-bold= "+ #{pluralize(@engaged_people.count - 3, 'other')}"

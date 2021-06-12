@@ -1,0 +1,21 @@
+.panel.has-shadow.is-paddingless.network-list{ 'data-controller': 'collapsible', 'data-collapsible-collapsed-message': t('notifications.title'), 'data-collapsible-expanded-message': t('notifications.title') }
+  .columns.is-marginless.has-space-between.has-items-centered.is-mobile
+    .column.is-narrow.is-paddingless.m-l-md.m-t-md
+      %h2.is-size-5.is-paddingless{ 'data-target': 'collapsible.messageContainer' }
+        = t('notifications.title')
+    .column.is-narrow.is-narrow.is-paddingless.m-r-md.m-t-md
+      = image_tag('cherapp-ownership-coborrowing-ico-arrow-up.svg', class: 'icon is-small is-clickable arrow-up', 'data-target': 'collapsible.arrow', 'data-action': 'click->collapsible#toogleCollapsible')
+  %hr.m-t-xs.m-b-xs
+  .is-collapsible.is-active{ 'data-target': 'collapsible.container' }
+    - notifications.each do |notification|
+      .columns.has-divider.is-paddingless.in-app-notification-card.is-mobile.is-marginless{ 'data-controller': 'notifications', 'data-notifications-notification-id': notification.id }
+        = link_to redirect_notification_path(notification), 'data-action': 'notifications#updateNotificationStatus', class: 'column is-paddingless' do
+          .in-app-notification{'class': "#{ "is-read" if notification.readed? }"}
+            %figure.image.is-48x48
+              = image_tag(notification_image(notification), alt: 'Notification', class: 'is-rounded')
+            %span.in-app-notification-container.m-l-md
+              = notification_message(notification)
+            .time
+              %span= formated_hour(notification.created_at)
+            - if notification.pending?
+              .badge= t('generic.new')

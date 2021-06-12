@@ -1,0 +1,15 @@
+%h3.is-bold.is-size-4.m-t-lg.has-text-left
+  = t('rental.contact_info')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    %p.is-marginless.is-bold= t('generic.name')
+    = @rental.name.blank? ? t('generic.n_a') : @rental.name
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    %p.is-marginless.is-bold= t('generic.phone_number')
+    = @rental.phone_number.blank? ? t('generic.n_a') : @rental.phone_number
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    %p.is-marginless.is-bold= t('generic.email')
+    = @rental.email.blank? ? t('generic.n_a') : @rental.email
+  .column.is-paddingless.is-12-mobile.is-6-tablet
+    %p.is-marginless.is-bold= t('rental.for_rent_by')
+    = t("rental.listed_by_type.#{@rental.listed_by_type}")

@@ -1,0 +1,49 @@
+.rebrand.full-width-container
+  .container.is-family-secondary
+    .panel.has-fixed-width.is-centered
+      .columns.is-centered.is-multiline.is-marginless
+        .column.is-11
+          %h3= t('labels.confirm_account')
+        - if devise_mapping.omniauthable?
+          .column.is-11
+            .columns.is-vcentered.is-centered.has-border-bottom.is-marginless
+              .column.is-4.has-text-right-desktop
+                %span.is-bold= t('sign_in.connect_with')
+              .column.is-7
+                = render "devise/shared/links"
+        .column.is-11{ "data-controller": "password"}
+          = form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f|
+            = f.hidden_field :invitation_token, readonly: true
+            .field
+              = f.label :first_name, class: "label"
+              .control
+                = f.text_field :first_name, class: "input field is-marginless", placeholder: t("placeholders.first_name"), required: true, minlength: 3, maxlength: 30
+                - if resource.errors[:first_name]
+                  %p.help.is-danger
+                    = resource.errors[:first_name].first
+            .field
+              = f.label :last_name, class: "label"
+              .control
+                = f.text_field :last_name, class: "input field is-marginless", placeholder: t("placeholders.last_name"), required: true, minlength: 3, maxlength: 30
+                - if resource.errors[:last_name]
+                  %p.help.is-danger
+                    = resource.errors[:last_name].first
+            .field
+              = f.label :password, class: "label"
+              .control.has-icons-right
+                = f.password_field :password, autocomplete: "off", placeholder: t("placeholders.password"), type: 'password', class: 'password input field', required: true, 'data-target': 'password.password'
+                %span.icon.is-right.is-clickable{ 'data-action': 'click->password#seePassword' }
+                  = fa_icon('eye-slash')
+                - if resource.errors[:password]
+                  %p.help.is-danger
+                    = resource.errors[:password].first
+            .control.has-icons-right
+              = f.label :password_confirmation, class: "label"
+              .control
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "input field password", placeholder: t("placeholders.password_confirmation"), required: true, 'data-target': 'password.passwordConfirmation'
+                %span.icon.is-right.is-clickable{ 'data-action': 'click->password#seePasswordConfirmation' }
+                  = fa_icon('eye-slash')
+                - if resource.errors[:password_confirmation]
+                  %p.help.is-danger
+                    = resource.errors[:password_confirmation].first
+            = f.submit t('buttons.confirm_account'), class: "button is-primary is-fullwidth"

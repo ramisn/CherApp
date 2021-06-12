@@ -1,0 +1,17 @@
+#propertySearchModal.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent' }
+      .column.is-11
+        .box{'data-controller': 'share-item'}
+          .is-size-4.is-bold.m-b-md= t('look_around.search.save_your_search')
+          .field
+            %label.label{for: 'saveSearchAlias'}
+              = t('look_around.search.add_alias')
+            .control
+              %input.input.is-marginless{ type: 'text', placeholder: 'For example 3BD in Santa Monica', id: 'saveSearchAlias', 'data-target': 'properties-search.searchAliasInput' }
+              %p.help.is-danger{ 'data-target': 'properties-search.saveSearchMessage' }
+          .is-flex.is-justified-end
+            %button.button.is-primary{ type: 'button', 'data-action': 'properties-search#saveSearch' }
+              = t('generic.save')
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}

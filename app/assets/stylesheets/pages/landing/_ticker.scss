@@ -1,0 +1,54 @@
+.landing-ticker {
+  background: $white;
+  background-color: transparent;
+
+  &.has-big-padding {
+    padding-bottom: 0;
+  }
+
+  &.is-essential-blue {
+    background: transparent;
+    margin-bottom: 0;
+    padding: 50px 0;
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .logo-container {
+    padding: 25px;
+    width: 10%;
+
+    &.is-small {
+      width: 7%;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: .5s;
+    }
+
+    @media (max-width: 1024px) {
+      margin: 0;
+      width: 20%;
+
+      &.is-small {
+        width: 15%;
+      }
+    }
+
+    @media (max-width: 769px) {
+      margin: 0;
+      width: 35%;
+
+      &.is-small {
+        width: 25%;
+      }
+    }
+  }
+}

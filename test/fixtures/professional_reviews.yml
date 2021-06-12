@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+agent_review:
+  reviewed: agent_user
+  reviewer: co_borrower_user
+  comment: He did it! Jessy hit it out of the ballpark.
+  local_knowledge: 1
+  process_expertise: 1
+  responsiveness: 1
+  negotiation_skills: 1

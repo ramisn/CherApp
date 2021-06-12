@@ -1,0 +1,18 @@
+- if restaurants && restaurants.any?
+  .m-b-sm.m-l-md
+    %h4.is-marginless= t('property_overview.popular_nearby')
+  .columns.is-mobile.is-multiline.is-marginless
+    - restaurants.take(3).each do |restaurant|
+      .popular-place.column.is-8-mobile.is-4-tablet.is-3-desktop{ 'data-controller': 'places-property', 'data-places-property-place-id': restaurant['place_id'], 'data-places-property-is-element-complex': 'true' }
+        %div{ 'data-target': 'places-property.placeContainer' }
+        %figure.image.is-5by3.is-loading
+          = image_tag('cherapp-ownership-coborrowing-property_placeholder.png', alt: 'Property', 'data-target': 'places-property.placeImage')
+        %p.is-bold.is-marginless.has-overflow-elipsed= restaurant['name']
+        %span.m-r-sm.is-size-7= restaurant['rating']
+        %span.is-size-7
+          - for i in (1..5) do
+            = fa_icon('star', type: i <= restaurant['rating'] ? :solid : :regular)
+        %span.is-marginless.is-size-7{ 'data-target': 'places-property.placeReviews' }
+        %p.is-hidden{ 'data-target': 'places-property.placePhoneNumber' }
+        .m-t-sm
+          %p.is-size-7.is-marginless= restaurant['address']

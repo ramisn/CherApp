@@ -1,0 +1,25 @@
+- title(t("meta.admin.inquiries.title"))
+.container
+  %h2.has-text-centered
+    = "Pending inquiries"
+  .columns.is-marginless
+    .column
+      %table.table.has-full-width
+        %thead
+          %tr
+            %th
+              = t("placeholder.name")
+            %th
+              = t("admin.prospects.email")
+            %th
+              Actions
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td
+                = user.full_name
+              %td
+                = user.email
+              %td
+                = link_to edit_admin_inquiry_path(user) do
+                  = fa_icon('edit')

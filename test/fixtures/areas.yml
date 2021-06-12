@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: areas
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+redwood:
+  name: Redwood city
+
+santa_monica:
+  name: Santa Monica
+
+alturas:
+  name: Alturas
+
+amador_city:
+  name: Amador City
+
+american_canyo:
+  name: American Canyon
+
+aneheim:
+  name: Anaheim
+
+anderson:
+  name: Anderson
+
+angels_camp:
+  name: Angels Camp
+
+antioch:
+  name: Antioch
+
+arcadia:
+  name: Arcadia
+
+arcata:
+  name: Arcata

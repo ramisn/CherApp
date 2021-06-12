@@ -1,0 +1,43 @@
+.is-size-4.is-bold.m-t-md
+  = t('sell.open_house')
+%p.help= t('sell.open_house_note')
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-5-desktop{ 'data-controller': 'date-picker' }
+    .m-b-sm
+      = f.label :date_for_open_house, t('sell.date'), class: 'label'
+      = f.date_field :date_for_open_house, type: 'date', 'data-is-date-restricted': true, 'data-target': 'date-picker.picker'
+  .column.is-paddingless.is-6.is-offset-1
+    .columns.is-marginless.has-space-between.is-flex.is-multiline
+      .column.is-paddingless.is-12-mobile.is-6-tablet.is-5-widescreen
+        .m-b-sm
+          = f.label :start_hour_for_open_house, t('sell.start_time'), class: 'label'
+          .is-flex.is-wrapped
+            .select.m-r-sm
+              = am_pm_select_hour(@house.start_hour_for_open_house, { prefix: 'house', field_name: "start_hour_for_open_house(4i)", prompt: true })
+            .select
+              = select_minute(@house.start_hour_for_open_house, { prefix: 'house', field_name: "start_hour_for_open_house(5i)", prompt: true, minute_step: 10 })
+
+      .column.is-paddingless.is-12-mobile.is-6-tablet.is-5-widescreen
+        .m-b-sm
+          = f.label :end_hour_for_open_house, t('sell.end_time'), class: 'label'
+          .is-flex.is-wrapped
+            .select.m-r-sm
+              = am_pm_select_hour(@house.end_hour_for_open_house, { prefix: 'house', field_name: "end_hour_for_open_house(4i)", prompt: true })
+            .select
+              = select_minute(@house.end_hour_for_open_house, { prefix: 'house', field_name: "end_hour_for_open_house(5i)", prompt: true, minute_step: 10 })
+%hr
+
+.is-size-4.is-bold.m-t-md
+  = t('sell.additional_information')
+
+.columns.is-marginless.is-flex.is-multiline
+  .column.is-paddingless.is-12-mobile.is-5-desktop
+    .field
+      = f.label :website, t('sell.website'), class: 'label'
+      .control
+        = f.text_field :website, class: 'input', placeholder: t('placeholders.url')
+  .column.is-paddingless.is-6.is-offset-1
+    .field
+      = f.label :details, t('sell.what_i_love'), class: 'label'
+      .control
+        = f.text_area :details, class: 'textarea has-fixed-size has-width-auto', placeholder: t('sell.say_what_you_love')

@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i&display=swap');
+$montserrat: 'Montserrat';
+$karla: 'Karla';
+
+$white: #fff;
+$dim: #fafafa;
+$black: #000;
+$dark-violet: #27128f;
+$ultra-violet: #4700c0;
+$violet: #4431f4;
+$hue: #817ed8;
+$dark-grey: #545454;
+$darker-grey: #1c252d;
+$charcoal: #11171c;
+$grey-lightest: #e1e1e1;
+$grey-lighter: #cecece;
+$purple-dim: #ac9ae2;
+$green-check: rgba(93, 216, 86, 1);
+$grey: #eff0f2;
+$grey-ligth: #7e7e7e;
+$coral: #f74f4e;
+$main-body: #333;
+$melow-coral: #fc313f;
+$gradient-coral: #fc313f;
+$light-coral: #fc313f;
+$brilliant-blue: #133cdf;
+$gradient-blue: #0a2799;
+$blue-lighter: #42adf5;
+$gradient-coral-blue: rgba(63, 116, 255, .85);
+$purple-background: #f5f7fd;
+$tabs-link-active-border-bottom-color: #fc313f;
+$tabs-link-active-color: #fc313f;
+$tabs-link-color:  #7e7e7e;
+$tabs-link-hover-color: #fc313f;
+$tabs-link-hover-border-bottom-color:  #fc313f;
+$progress-value-background-color: #4431f4;
+$progress-bar-background-color: #bcbbe4;
+$progress-border-radius: 0;
+$essential-blue: #1600ff;
+$red: #fc313f;
+$blue: #4431f4;
+$darker-blue: #0f00aa;
+$warning: #ffc107;
+$flamingo: #fc8686;
+$pastel-blue: #00b6c1;
+$salmon: #fe5f55;
+$strong-blue: #0f00aa;
+$conversation-grey: #f6f6f6;
+$mint-green: #75eaaa;
+$gold: #ffe45c;
+$recent-message-tag-blue: #83a9c6;
+$coborrower-blue: #0073ff;
+$light-coborrower-blue: #ebf4ff;
+
+$divider-blue: #eaf1f9;
+$helper-blue: #dbe1fe;
+$lighter-blue: #9cafc8;
+$yellow-lemon: #ffe45c;
+$mint: #75eaaa;
+$green-lime: #67e4a6;
+$grey-blue: #f5f7fc;
+$helper-grey: #eee;
+$logged-in-green: #6db398;
+
+$light-purple: #dae0ff;
+$background-grey: #eff4f8;
+
+$regular-padding: 15px;
+$regular-margin: 15px;
+
+$regular-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.05);
+$darker-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+
+$header-size: 100px;
+$header-size-mobile: 90px;
+$checkradio-focus: $ultra-violet;
+
+$modal-background-background-color: rgba(0, 0, 0, 0.5);
+$family-primary: $karla;
+$family-secondary: $karla;
+$font-montserrat: $montserrat;
+
+// Override bulma
+$steps-default-color: $grey;
+$card-content-padding: 3rem 2rem;
+$primary: $essential-blue;
+$tag-radius: 15px;
+$yellow: $warning;
+$landing-page-grey: #e8eceb;
+
+
+// Override bulma steps
+$steps-divider-size: .5em;
+$steps-hollow-border-size: .2em;
+
+
+// overwrite bulma disabled color
+$input-disabled-color: $grey-ligth;

@@ -1,0 +1,26 @@
+%tr
+  %th
+    = t('notifications.cher_clique')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.confirmation_clique')
+  %th
+    = notification_check_box_input('chers_clique_email')
+    %label{ for: 'notification_settings_chers_clique_email' }
+  %th
+    = notification_check_box_input('chers_clique_sms')
+    %label{ for: 'notification_settings_chers_clique_sms' }
+  %th
+    = notification_check_box_input('chers_clique_in_app')
+    %label{ for: 'notification_settings_chers_clique_in_app' }
+%tr
+  %th
+    = t('notifications.clique_expiration')
+    %p.has-text-weight-normal.m-b-sm= t('notifications.clique_expires')
+  %th
+    = notification_check_box_input('clique_expiration_email')
+    %label{ for: 'notification_settings_clique_expiration_email' }
+  %th
+    = notification_check_box_input('clique_expiration_sms')
+    %label{ for: 'notification_settings_clique_expiration_sms' }
+  %th
+    = notification_check_box_input('clique_expiration_in_app')
+    %label{ for: 'notification_settings_clique_expiration_in_app' }

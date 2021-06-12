@@ -1,0 +1,48 @@
+- title(t("meta.admin.professionals.title"))
+.container
+  %h2.has-text-centered
+    = "Professionals"
+  .columns.is-marginless
+    .column
+      .columns.is-marginless
+        .column.is-paddingless.is-half-tablet.is-one-third-desktop
+          = form_with url: admin_professionals_path, method: :get, class: 'columns is-marginless', data: { remote: false } do |f|
+            = f.text_field :search, class: 'm-r-md input is-primary column is-half', placeholder: 'Type a name or email', value: params[:search]
+            = f.submit t('look_around.search.search'), class: 'is-paddingless button is-primary column is-half'
+            = f.hidden_field :filter, value: params[:filter]
+        .column.is-paddingless
+          .buttons.is-justified-end.is-marginless
+            = link_to t("admin.professionals.all"), admin_professionals_path, class: 'button is-info'
+            = link_to t("admin.professionals.only_verified"), admin_professionals_path(filter: :verified), class: 'button is-success'
+            = link_to t("admin.professionals.no_verified"), admin_professionals_path(filter: :no_verified), class: 'button is-warning'
+      .has-text-left
+        = t("admin.professionals.total_records", number: @professionals.count)
+      %table.table.has-full-width
+        %thead
+          %tr
+            %th
+              = t("admin.prospects.email")
+            %th
+              = t("admin.professionals.cities")
+            %th
+              = t("admin.professionals.license_number")
+            %th
+              = t("admin.professionals.verified")
+            %th
+              = t("admin.professionals.actions")
+        %tbody
+          - @professionals.each do |professional|
+            %tr
+              %td
+                = professional.email
+              %td
+                = professional.areas.join(", ")
+              %td
+                = professional.number_license
+              %td
+                = t(professional.proffesional_verfied)
+              %td
+                - if professional.proffesional_verfied
+                  = link_to t("admin.professionals.unverify"), admin_professional_path(professional, proffesional_verfied: false), method: :patch, class: "button is-danger has-full-height is-marginless"
+                - else
+                  = link_to t("admin.professionals.verify"), admin_professional_path(professional, proffesional_verfied: true), method: :patch, class: "button is-success has-full-height is-marginless"

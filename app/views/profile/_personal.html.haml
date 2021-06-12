@@ -1,0 +1,113 @@
+= form_for current_user, url: profile_path(current_user) do |f|
+  - unless current_user.skip_onbording
+    = f.hidden_field :skip_onbording, value: true
+
+  .columns.is-marginless
+    .column.is-half.p-l-none.p-l-md-mobile
+      .field{ 'data-controller': 'date-picker' }
+        .field-label.has-text-left
+          = f.label :date_of_birth, t('labels.date_of_birth_up'), class: 'label'
+        %p.control.is-expanded.is-marginless
+          = f.date_field :date_of_birth, type: 'date', 'data-target': 'date-picker.picker'
+          - if current_user.errors[:date_of_birth].any?
+            %p.help.is-danger
+              = current_user.errors[:date_of_birth].first
+
+    .column.is-half.p-r-none.p-r-md-mobile
+      .field
+        .field-label.has-text-left
+          = f.label :gender, class: 'has-text-main-body is-capitalized is-bold'
+        .field-body
+          .control.has-full-width
+            .select.has-full-width
+              = f.select :gender, User.genders.keys.map {|k| [k.humanize.capitalize, k]}, selected: current_user.gender || '', prompt: 'Select a gender', disabled: ''
+              - if current_user.errors[:gender].any?
+                %p.help.is-danger
+                  = current_user.errors[:gender].first
+
+  - unless current_user.agent?
+    .columns.is-marginless
+      .column.is-half.p-l-none.p-l-md-mobile
+        .field
+          .field-label.has-text-left
+            = f.label t("labels.property_type"), class: 'has-text-main-body is-capitalized is-bold'
+          .field-body
+            .control.has-full-width
+              .select.has-full-width
+                = f.select :property_type, User.property_types.keys.map {|k| [k.humanize.capitalize, k]}, selected: current_user.property_type || '', prompt: 'Select a property type', disabled: ''
+                - if current_user.errors[:property_type].any?
+                  %p.help.is-danger
+                    = current_user.errors[:property_type].first
+
+      .column.is-half.p-r-none.p-r-md-mobile
+        .field
+          .field-label.has-text-left
+            = f.label :budget_from, class: 'has-text-main-body is-capitalized is-bold'
+          .field-body.columns.is-marginless
+            .column.is-paddingless
+              .select.has-full-width
+                = f.select :budget_from, valid_prices, default: current_user.budget_from
+            .column.is-2.is-fully-centered.is-paddingless
+              %p.is-bold to
+            .column.is-paddingless
+              .select.has-full-width
+                = f.select :budget_to, valid_prices, default: current_user.budget_to
+            - if current_user.errors[:budget_from].any?
+              %p.help.is-danger
+                = current_user.errors[:budget_from].first
+
+  .columns.is-marginless.is-centered.p-t-md
+    .column.is-two-thirds
+      .field
+        .field-label.has-text-left
+          %label.has-text-main-body.is-bold= t("profile.edit.perfect_match")
+        .field.m-t-md
+          = link_to t('profile.edit.start_test'), new_co_borrower_response_path, class: 'button is-outlined-coborrower-blue is-fullwidth'
+
+      - if current_user.agent?
+        %div{ 'data-controller': 'user-profile' }
+          .field
+            = f.label t('labels.license_number'), class: 'has-text-main-body is-bold'
+            .control
+              = f.text_field :number_license, class: 'input has-text-black', placeholder: t('placeholders.license_number'), minLength: '8', maxLength: '8', disabled: !current_user.number_license.blank?
+
+          - if current_user.professional_role.blank? ||  agent_needs_to_accept_referral?(current_user)
+            .field.is-horizontal
+              .field-label.is-normal
+                = f.label :professional_role, class: 'has-text-main-body is-bold'
+              .select
+                = f.select :professional_role, User.professional_roles.keys.map{ |role| [t("professional_roles.#{role}"), role] },
+                  { selected: current_user.professional_role ? current_user.professional_role : '',
+                    prompt: 'Select a role', disabled: '' },
+                  { 'data-target': 'user-profile.professionalRoleInput',
+                    'data-action': 'user-profile#requireEstateAgentAgreement',
+                  }
+
+            .field.m-t-md.m-b-md{ 'data-target': 'user-profile.professionalEstateAgentContainer', class: agent_needs_to_accept_referral?(current_user) ? '' : 'is-hidden'  }
+              = f.check_box :accept_referral_agreement, class: 'is-checkradio', required:  agent_needs_to_accept_referral?(current_user), 'data-target': 'user-profile.professionalAgreementInput', checked: current_user.accept_referral_agreement
+              = f.label :accept_referral_agreement, class: 'label has-text-essential-blue' do
+                = link_to t('labels.accept_referral_agreement'), "#{root_url}/docs/Referral_Agreement.pdf", { target: '_blank', class: 'has-text-essential-blue'}
+              - if agent_needs_to_accept_referral?(current_user)
+                %p.help.is-danger
+                  You need to accept this referral agreement
+
+      - if current_user.co_borrower?
+        .is-flex.m-t-md
+          .has-margin-auto.is-flex
+            = link_to t("customer_verifications.check"), new_co_borrower_inquiry_path, class: 'link is-bold has-text-coborrower-blue is-flex'
+            .m-l-sm.is-up{'data-tooltip': t('customer_verifications.check_description')}
+              %span
+                = image_tag "cherapp-ownership-coborrowing-question-coborrower.svg", class: 'm-t-xs'
+        .is-flex.m-t-md.m-b-md
+          .has-margin-auto.is-flex
+            = link_to t("customer_verifications.id_check"), new_identification_path, class: 'link is-bold has-text-coborrower-blue is-flex'
+            .m-l-sm.is-up{'data-tooltip': t('customer_verifications.id_check_description')}
+              %span
+                = image_tag "cherapp-ownership-coborrowing-question-coborrower.svg", class: 'm-t-xs'
+      - if current_user.co_borrower?
+        .is-size-7.is-italic.m-b-md= t("profile.edit.data_usage")
+
+      .column.is-paddingless.has-text-centered{'data-controller': 'modal'}
+        = f.submit t('profile.edit.save_profile'), class: 'button is-coborrower-blue is-fullwidth', 'data-target': 'user-profile.submitButton city-map-selecter.changeLocationButton'
+        = render "delete_confirmation.html"
+        %button.link.is-bold.has-text-coborrower-blue{'data-action': 'click->modal#toggleModal'}= t('profile.edit.delete_account')

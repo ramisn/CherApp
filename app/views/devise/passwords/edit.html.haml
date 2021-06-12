@@ -1,0 +1,33 @@
+.rebrand.full-width-container
+  .container.is-family-secondary
+    .panel.has-fixed-width.is-centered
+      .columns.is-centered.is-multiline.is-marginless
+        .column.is-11
+          %h3= 'Set your password'
+        - if devise_mapping.omniauthable?
+          .column.is-11
+            .columns.is-vcentered.is-centered.has-border-bottom.is-marginless
+              .column.is-4.has-text-right-desktop
+                %span.is-bold= t('sign_in.connect_with')
+              .column.is-7
+                = render "devise/shared/links"
+        .column.is-11
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+            = render "devise/shared/error_messages", resource: resource
+            = f.hidden_field :reset_password_token
+            .field
+              = f.label :password, t("labels.new_password"), class: "label"
+              - if @minimum_password_length
+                %em
+                  = t("devise.registrations.password_registration", size: @minimum_password_length)
+              = f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input password", placeholder: t("placeholders.password")
+              - if resource.errors[:password]
+                %p.help.is-danger
+                  = resource.errors[:password].first
+            .field
+              = f.label :password_confirmation, t("labels.confirm_new_password"), class: "label"
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "password input", placeholder: t("placeholders.password_confirmation")
+              - if resource.errors[:password_confirmation]
+                %p.help.is-danger
+                  = resource.errors[:password_confirmation].first
+            = f.submit t("buttons.change_password"), class: "button is-primary is-fullwidth"

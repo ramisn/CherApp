@@ -1,0 +1,87 @@
+.rebrand {
+  background-color: $purple-background;
+  h1, h2, h3, h4, h5 {
+    color: $darker-grey;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 1.26em;
+  }
+
+  .benefits-card {
+    min-height: 640px;
+    padding: 40px 0;
+    & ul li {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    height: auto;
+  }
+
+  section {
+    &.section {
+      padding: 100px 0;
+    }
+
+    &.is-essential-blue {
+      p, h1, h2, h3, h4, h5, a {
+        color: $white;
+      }
+    }
+
+    &.real-estate {
+      background: transparent image-url('landing/cherapp-ownership-coborrowing-home-01.png') center center no-repeat;
+      background-size: cover;
+      h1 {
+        text-shadow: 0 0 5px rgba(0,0,0,0.3),
+                     0 0 10px rgba(0,0,0,0.3),
+                     0 0 20px rgba(0,0,0,0.2);;
+      }
+    }
+
+    &.contact {
+      background: transparent image-url('cherapp-ownership-coborrowing-testimonial-contact-us-2021.png') center center no-repeat;
+      background-size: cover;
+    }
+  }
+
+  .has-text-essential-blue {
+    color: $essential-blue;
+  }
+
+  .is-checkbutton[type="radio"] {
+    + label {
+      border-color: $essential-blue;
+      color: $essential-blue;
+    }
+
+    &:checked {
+      background-color: $essential-blue;
+      border-color: $essential-blue;
+      + label {
+        background-color: $essential-blue;
+        border-color: $essential-blue;
+        color: $white;
+      }
+    }
+  }
+
+  .has-border-bottom {
+    border-bottom: 2px solid $divider-blue;
+    margin-bottom: $block-spacing;
+  }
+
+  label {
+    &.label {
+      margin-bottom: calc($block-spacing / 2rem) ;
+    }
+  }
+
+  a.button {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

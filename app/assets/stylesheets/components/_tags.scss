@@ -1,0 +1,38 @@
+.tag {
+  &.is-blue {
+    background-color: $white;
+    border: solid 1px $primary;
+    border-radius: 3px;
+    color: $primary;
+    width: auto;
+
+    .is-close {
+      color: $primary;
+    }
+  }
+
+  &.is-grey {
+    background-color: $white;
+    border: 1px solid #83a9c6;
+    border-radius: 3px;
+    color: #83a9c6;
+    margin: .25rem .25rem 0 0;
+    width: auto;
+
+    .is-close {
+      color: #83a9c6;
+    }
+  }
+
+  .is-close {
+    background-color: transparent;
+    border: 0;
+    color: $white;
+    cursor: pointer;
+    font-size: .75rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+.panel.has-shadow.is-paddingless.activity-feed
+  %h2.is-size-5{class: "#{'is-hidden-mobile' if local_assigns[:collapses]}"}= t("newsfeed.title")
+  %hr.m-t-xs.m-b-xs{class: "#{'is-hidden-mobile' if local_assigns[:collapses]}"}
+  .columns.is-marginless
+    .is-marginless.column.m-l-xs{'data-controller': 'publications'}
+      .is-bold.m-b-xs
+        = t('generic.share_something')
+      = form_for(@publication, url: publications_path) do |f|
+        - if posting_in_friend_profile
+          = f.hidden_field :recipient_id, value: @user&.id
+        .file
+          %label.file-label
+            = f.file_field :images, multiple: true, class: 'file-input', accept: 'image/jpeg, image/jpg, image/png', 'data-action': 'change->publications#updateFileTag'
+            .file-cta.is-tag
+              = fa_icon('image')
+              %span.file-label= t('labels.picture')
+        %p.help.is-primary{ 'data-target': 'publications.fileName' }
+        .field.has-addons.has-border
+          .control.has-full-width
+            = f.text_area :message, class: 'input is-transparent is-marginless', placeholder: t('placeholders.share_something'), minlength: 1, maxlength: 1000, required: true, 'data-target': 'publications.message'
+          .control
+            .field.has-full-height.is-flex.has-items-centered
+              = f.submit t('labels.publish'), class: 'button is-transparent is-marginless'
+  %ul.m-t-md{ 'data-controller': 'images-modal edit-publications share-post edit-comments' }
+    - @posts.each do |post|
+      - if post.is_a?(Publication)
+        = render 'shared/user_publication', post: post
+      - else
+        %li{class: post.key.gsub(/\./, '_').to_s}
+          - if user_can_delete_activity?(post)
+            .options-container
+              = fa_icon('ellipsis-h', class: 'has-text-primary') if post.owner_id == current_user.id
+              .is-relative
+                .options
+                  = link_to t('generic.delete'), activity_path(post), class: 'action is-blue', method: :delete, data: { confirm: t("generic.are_you_sure")}
+          = activity_message(post)
+          = render 'shared/comments', path: activity_comments_path(post), post: post
+
+    #editPublicationModal.modal{ 'data-target': 'edit-publications.modal' }
+      .modal-background
+      .modal-content.is-fully-centered
+        .panel{ 'data-target': 'edit-publications.modalContent' }
+          #publicationEditModal.is-size-4.is-bold= t('generic.edit_pot')
+        %button.modal-close.is-large{"aria-label": "close", "data-action": "edit-publications#toggleModal"}
+
+    #editCommentModal.modal{ 'data-target': 'edit-comments.modal' }
+      .modal-background
+      .modal-content.is-fully-centered
+        .columns.is-marginless.is-fully-centered
+          .column.is-12
+            .box
+              .is-size-4.is-bold.m-b-sm= t('labels.edit_comment')
+              %div{ 'data-target': 'edit-comments.formContainer' }
+              %button.modal-close.is-large{"aria-label": "close", "data-action": "edit-comments#toggleModal"}
+    = render 'shared/post_image_gallery_modal'
+    = render 'shared/share_post_modal'

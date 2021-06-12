@@ -1,0 +1,49 @@
+.table.is-primary {
+  .is-checkradio[type="checkbox"] {
+    width: auto;
+
+    + label::before {
+      border: .1rem solid $divider-blue;
+      border-radius: 0;
+    }
+  }
+
+  thead {
+    background-color: $divider-blue;
+
+    th {
+      border-width: 0;
+      padding-bottom: .75rem;
+      padding-top: .75rem;
+      white-space: nowrap;
+
+      @media (max-width: 769px) {
+        padding-left: .5rem;
+        padding-right: .5rem;
+      }
+    }
+  }
+
+  th {
+    border: 1px solid $divider-blue;
+    border-width: 0 0 1px;
+  }
+}
+
+table {
+  &.has-no-style {
+    width: 100%;
+
+    th {
+      font-weight: normal;
+      height: 2rem;
+    }
+
+    tbody {
+      tr {
+        border-bottom: 0;
+        height: 2rem;
+      }
+    }
+  }
+}

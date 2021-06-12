@@ -1,0 +1,35 @@
+.m-t-md
+%p.is-bold.is-marginless.has-text-centered
+  Or select one of your flagged properties
+.columns.is-marginless.is-multiline.is-flex
+  - @flagged_properties.each do |property|
+    .column.is-6-mobile.is-6-tablet.is-4-desktop.property-card{ 'data-controller': 'home-selecter' }
+      .property-preview.panel.has-shadow{ 'data-target': 'home-selecter.container',
+                                          'data-property-price': property['listPrice'],
+                                          'data-property-type': property.dig('property', 'type'),
+                                          'data-property-county': property.dig('geo', 'county'),
+                                          'data-property-zipcode': property.dig('address', 'postalCode'),
+                                          'data-property-street': property.dig('address', 'full'),
+                                          'data-property-city': property.dig('address', 'city'),
+                                          'data-property-state': property.dig('address', 'state'),
+                                          'data-action': 'click->home-selecter#selectHome',
+                                          'data-home-address': property_full_address(property["address"])}
+        = image_tag(property_image(property),
+                          alt: t('look_around.featured.alts.home'),
+                          class: "property-image",
+                          "data-controller": "property-default-image",
+                          "data-action": "error->property-default-image#setDefaultPropertyImage")
+        .property-info.m-b-sm
+          %span.is-caption= t('generic.price')
+          %h4.is-size-4.is-size-5-mobile= number_to_currency(property.dig('listPrice'), precision: 0)
+          %p.is-bold= "#{property.dig('address', 'streetNumber')} #{property.dig('address', 'streetName')}"
+          %p= property.dig('address', 'city')
+          %p= "#{property.dig('address', 'state')} #{property.dig('address', 'postalCode')}"
+        .columns.is-centered{'data-controller': 'share-item'}
+          .column.is-12-touch.is-narrow.share-item
+            %button.button.is-tertiary{ 'data-action': 'property-share#updatePropertyModalData',
+                                        'type': 'button',
+                                        'data-property-address': property_full_address(property["address"]),
+                                        'data-property-id': property['listingId'] }
+              = image_tag('cherapp-ownership-coborrowing-ico-share-black.svg', alt: t('img_alts.share'), class: 'm-r-md')
+              %span= t('generic.share')

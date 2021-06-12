@@ -1,0 +1,55 @@
+.columns.is-marginless
+  .column
+    %p.is-bold= t('property_overview.food_and_drink')
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'bar', 'data-target': 'places-around.input' }
+      = t("property_overview.bar")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'restaurant', 'data-target': 'places-around.input' }
+      = t("property_overview.restaurant")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'meal_delivery', 'data-target': 'places-around.input' }
+      = t("property_overview.meal_delivery")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'cafe', 'data-target': 'places-around.input' }
+      = t("property_overview.cafe")
+
+  .column{ 'data-controller': 'collapsible' }
+    %p.is-bold= t('property_overview.things_to_do')
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'takeaway', 'data-target': 'places-around.input' }
+      = t("property_overview.meal_takeaway")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'museum', 'data-target': 'places-around.input' }
+      = t("property_overview.museum")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'nightlife', 'data-target': 'places-around.input' }
+      = t("property_overview.nightlife")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'attractions', 'data-target': 'places-around.input' }
+      = t("property_overview.tourist_attraction")
+    .is-collapsible{ 'data-target': 'collapsible.container' }
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'art', 'data-target': 'places-around.input' }
+        = t("property_overview.art_gallery")
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'gym', 'data-target': 'places-around.input' }
+        = t("property_overview.gym")
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'park', 'data-target': 'places-around.input' }
+        = t("property_overview.park")
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'library', 'data-target': 'places-around.input' }
+        = t("property_overview.library")
+    %button.button.has-no-style.is-size-7.has-text-primary{ 'data-action': 'click->collapsible#toogleCollapsible', 'data-target': 'collapsible.messageContainer' }
+      = t('generic.show_more')
+
+  .column{ 'data-controller': 'collapsible' }
+    %p.is-bold= t('property_overview.services')
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'atm', 'data-target': 'places-around.input' }
+      = t("property_overview.atm")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'hospital', 'data-target': 'places-around.input' }
+      = t("property_overview.hospital")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'gas_station', 'data-target': 'places-around.input' }
+      = t("property_overview.gas_station")
+    %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'car_wash', 'data-target': 'places-around.input' }
+      = t("property_overview.car_wash")
+    .is-collapsible{ 'data-target': 'collapsible.container' }
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'car_repair', 'data-target': 'places-around.input' }
+        = t("property_overview.car_repair")
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'car_rental', 'data-target': 'places-around.input' }
+        = t("property_overview.car_rental")
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'beauty_salon', 'data-target': 'places-around.input' }
+        = t("property_overview.beauty_salon")
+      %p.is-marginless{ 'data-controller': 'places-around', 'data-type': 'parking', 'data-target': 'places-around.input' }
+        = t("property_overview.parking")
+    %button.button.has-no-style.is-size-7.has-text-primary{ 'data-action': 'click->collapsible#toogleCollapsible', 'data-target': 'collapsible.messageContainer' }
+      = t('generic.show_more')

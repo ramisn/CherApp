@@ -1,0 +1,28 @@
+.is-size-4.is-bold.m-b-xs= t('labels.edit_post')
+= form_for(@publication, url: publication_path(@publication)) do |f|
+  .field.has-border
+    .control.has-full-width
+      = f.text_area :message, class: 'input', placeholder: t('placeholders.share_something'), minlength: 1, maxlength: 1000, required: true, 'data-target': 'edit-publications.message', id: nil
+  .file
+    #imagesFieldsContainer
+      %label.file-label
+        = f.file_field :images,
+                       name: 'publication[images][]',
+                       class: 'file-input',
+                       accept: 'image/jpeg, image/jpg, image/png',
+                       'data-action': 'change->edit-publications#attachImage click->edit-publications#triggerLastFileInput',
+                       id: 'firstImageInput'
+        .file-cta.is-tag
+          = fa_icon('image')
+          %span.file-label= t('labels.add_another_picture')
+      = file_field :publication, :images, name: 'publication[images][]', class: 'is-hidden', accept: 'image/jpeg, image/jpg, image/png', 'data-action': 'change->edit-publications#attachImage', id: "imageInput#{@input_id}"
+  #imagesContainer.columns.is-marginless.is-flex.is-multiline
+    - @publication.images.each do |image|
+      .image-container{ id: "imageContainer#{image.id}" }
+        = image_tag(image.variant(resize: '200x200'))
+        %button.button.is-delete{ type: 'button', 'data-action': 'click->edit-publications#markItemForDestruction', 'data-image-id': image.id }
+          = fa_icon('times')
+      = hidden_field_tag "images_marked_for_destruction[]", [],  'data-target': 'edit-publications.imagesMarkedForDestuctionInput', id: "deleteImageInput#{image.id}"
+  .field.m-t-md
+    .control
+      = f.submit t('generic.save'), class: 'button is-primary'

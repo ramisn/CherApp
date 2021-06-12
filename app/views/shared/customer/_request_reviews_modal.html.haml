@@ -1,0 +1,74 @@
+.modal{"data-target": "modal.modal"}
+  .modal-background
+  .modal-content
+    .columns.is-centered.is-marginless{ 'data-target': 'modal.modalContent' }
+      .column.is-11
+        .box{'data-controller': 'share-item'}
+          .is-size-4.is-bold.m-b-md.has-text-centered= t('review.ask_for_reviews')
+          = form_for :email, url: email_path, remote: true, html: { 'data-action': 'submit->share-item#handleSubmitFull', 'autofill': 'off' } do |f|
+            - if !current_user
+              .field.is-marginless
+                .label= "From"
+                .control
+                  = react_component('UserSuggester', scopeName: "user")
+            - else
+              = f.text_field :user_email, class: 'is-hidden', id: 'userContactInput', 'data-target': 'share-item.userContactInput', value: current_user.email
+              - unless current_user.full_name.blank?
+                = f.text_field :user_first_name, class: 'is-hidden', id: 'userFirstName', 'data-target': 'share-item.userFirstNameInput', value: current_user.first_name
+                = f.text_field :user_last_name, class: 'is-hidden', id: 'userLastName', 'data-target': 'share-item.userLastNameInput', value: current_user.last_name
+
+            - if !current_user || current_user.full_name.blank? 
+              .field.is-marginless{'data-target': 'share-item.userFullNameInputs', class: "#{ "is-hidden" if !current_user }"}
+                - if !current_user
+                  .label.has-text-centered.is-italic.has-text-weight-light
+                    and
+                .field-body
+                  .field
+                    .control
+                      = f.text_field :user_first_name, class: 'input is-marginless', placeholder: 'Your First Name', 'data-target': 'share-item.userFirstNameInput', minlength: 2, id: 'userFirstNameInput', required: true
+                  .field
+                    .control
+                      = f.text_field :user_last_name, class: 'input is-marginless', placeholder: 'Your Last Name', 'data-target': 'share-item.userLastNameInput', minlength: 2, id: 'userLastNameInput', required: true
+
+            .field.m-t-md
+              .label= "To"
+              .control
+                = react_component('UserSuggester', scopeName: "recipient")
+
+            .field.is-hidden{'data-target': 'share-item.recipientFullNameInputs'}
+              .label.has-text-centered.is-italic.has-text-weight-light
+                and
+              .field-body
+                .field
+                  .control
+                    = f.text_field :recipient_first_name, class: 'input is-marginless', placeholder: "Recipient's First Name", 'data-target': 'share-item.recipientFirstNameInput', minlength: 2, id: 'recipientFirstNameInput', required: true
+                .field
+                  .control
+                    = f.text_field :recipient_last_name, class: 'input is-marginless', placeholder: "Recipient's Last Name", 'data-target': 'share-item.recipientLastNameInput', minlength: 2, id: 'recipientLastNameInput', required: true
+            %p.help.is-danger.is-hidden{'data-target': 'share-item.errorMessage'}
+            %p.help.is-success.is-hidden{'data-target': 'share-item.successMessage'}
+            .share-links
+              %span= t('review.get_more_reviews')
+              %a{ href: "https://twitter.com/share?url=#{user_url(current_user)}", target: '_blank', rel: 'noopener' }
+                = image_tag 'cherapp-ownership-coborrowing-ico-twitter-basic.svg', alt: t("img_alts.twitter_footer"), class: 'icon'
+              %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{user_url(current_user)}", target: '_blank', rel: 'noopener' }
+                = image_tag 'cherapp-ownership-coborrowing-ico-facebook-basic.svg', alt: t("img_alts.facebook_account"), class: 'icon'
+              %a{href: "https://www.linkedin.com/shareArticle?url=#{user_url(current_user)}&source=LinkedIn", target: '_blank', rel: 'noopener' }
+                = image_tag 'cherapp-ownership-coborrowing-ico-linkedin-basic.svg', alt: t("img_alts.linkedin_footer"), class: 'icon'
+
+            .field.m-t-md
+              .control
+                = f.text_area :body, class: 'textarea has-fixed-size input', placeholder: t('placeholders.enter_your_note'), required: true, 'data-target': 'share-item.messageInput', id: 'requestReviewMessageInput', maxlength: 140
+            = f.text_field :link, value: user_url(current_user), class: 'copy-input', "data-target": "share-item.linkInput", id: 'profileShareLink'
+            = f.hidden_field :type, value: 'review', 'data-target': 'share-item.typeInput', id: 'requestReviewTypeInput'
+            = f.submit 'Send', class: 'button is-primary is-fullwidth'
+          %hr
+            %span= t('review.send_client')
+            %span.link{ 'data-action': 'click->share-item#copyLink' }
+              = t('review.direct_link')
+            %span= t('review.to_rate_your_service')
+          %p.help.is-marginless
+            = t('review.note')
+          %p.help.is-hidden.is-marginless{'data-target': 'share-item.linkMessage'}
+            = t('property_overview.link_copied')
+          %button.modal-close.is-large{"aria-label": "close", "data-action": "modal#toggleModal"}
