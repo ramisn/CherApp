@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include StorageLocationBackport
 
   before_action :store_user_location!, if: :storable_location?
-  before_action :set_raven_context
+  # before_action :set_raven_context
 
   private
 
