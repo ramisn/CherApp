@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AuthenticationsController < ApplicationController
-  protect_from_forgery prepend: true
+  protect_from_forgery with: :null_session
   before_action :authenticate_user!
   before_action :set_last_seen_at, if: :user_signed_in?
 
