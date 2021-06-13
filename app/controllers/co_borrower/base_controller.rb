@@ -2,6 +2,7 @@
 
 module CoBorrower
   class BaseController < AuthenticationsController
+    protect_from_forgery with: :null_session
     before_action :verify_user_role!, :verify_terms_and_privacy
 
     private

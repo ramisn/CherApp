@@ -2,7 +2,7 @@
 
 module Users
   class SessionsController < Devise::SessionsController
-    protect_from_forgery prepend: true
+    protect_from_forgery with: :null_session
     after_action :track_user_location, only: :create
 
     def destroy

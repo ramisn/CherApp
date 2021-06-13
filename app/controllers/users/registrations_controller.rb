@@ -2,7 +2,7 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    protect_from_forgery prepend: true
+    protect_from_forgery with: :null_session
     before_action :configure_permitted_parameters
     before_action :append_confirmation_param, only: :create
     after_action :update_user_extra_params, :track_user_registration, only: :create
