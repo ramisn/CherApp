@@ -10,15 +10,15 @@ class SalesforceJob < ApplicationJob
     search_critera = "(LastModifiedDate >= YESTERDAY AND LastModifiedDate <= TODAY) AND (Status = 'New')"
     search_open = "(Status = 'New')"
     
-    # sf_leads = sf_obj.query_all("SELECT Id, Name, Email, Company, Phone, Status, LastModifiedDate FROM Lead where #{search_open} LIMIT 1")
-    sf_leads = sf_obj.query_all("SELECT FIELDS(ALL) FROM Lead where #{search_critera} LIMIT 5")
+    sf_leads = sf_obj.query_all("SELECT Id, Name, Email, Company, Phone, Status, LastModifiedDate FROM Lead where #{search_critera}")
+    # sf_leads = sf_obj.query_all("SELECT FIELDS(ALL) FROM Lead where #{search_critera} LIMIT 5")
         puts "---leads---"
         puts sf_leads.count
 
         sf_leads.each do |l|
           # puts l.Id, l.Name, l.Email, l.Company, l.Phone, l.LastModifiedDate
-          puts l.inspect
-          # SalesForceContact.find_or_create_by(sf_id: l.Id, email:l.Email, name:l.Name, phone_number:l.Phone, provider:l.Company)
+          # puts l.inspect
+          SalesForceContact.find_or_create_by(sf_id: l.Id, email:l.Email, name:l.Name, phone_number:l.Phone, provider:l.Company)
         end
 
     # if user.lead.present?
